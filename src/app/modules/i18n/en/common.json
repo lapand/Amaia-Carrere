@@ -1,0 +1,18 @@
+{
+    "translation": {
+        "menu": ["Accueil", "", "", "A propos", "Contact"],
+        "home": {
+            "tagline": "<0>Bienvenue dans mon atelier, source de rêves crayonnés</0>",
+            "title": "Illustratrice Jeunesse / Fantasy / Bande dessinée"
+        },
+        "projectSection": {
+            "sectionName": ""
+        },
+        "skillSection": {
+            "sectionName": ""
+        },
+        "aboutSection": {
+            "sectionName": "A propos"
+        }
+    }
+}
