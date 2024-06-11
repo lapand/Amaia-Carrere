@@ -6,7 +6,7 @@ import frCommon from './fr/common.json';
 i18next
     .use(initReactI18next)
     .init({
-        // debug: true,
+        debug: true,
         interpolation: { escapeValue: false },
         fallbackLng: 'fr',
         resources: {
@@ -17,6 +17,6 @@ i18next
                 common: frCommon,
             }
         },
-    })
+    });
 
-    export default i18next;
+export default i18next;

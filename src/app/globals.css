@@ -37,9 +37,15 @@ strong {
   .header-height {
     @apply h-[var(--header-height)] 2xl:h-[var(--header-height-2xl)];
   }
+  .side-nav {
+    height: calc(100vh - var(--header-height));
+    @apply top-[var(--header-height)] right-0;
+  }
   .section-padding {
-    @apply p-2 md:p-6 lg:p-8;
-    @apply pt-[var(--header-height)] 2xl:pt-[var(--header-height-2xl)];
+    @apply 
+      p-2 md:p-6 lg:p-8
+      pt-[var(--header-height)] 2xl:pt-[var(--header-height-2xl)]
+    ;
   }
   .licorice-font {
     font-family: "Licorice", cursive;
@@ -53,10 +59,13 @@ strong {
   .londrina-shadow {
     font-family: "Londrina Shadow", sans-serif;
   }
-  .bg-home {
+  .main-bg {
     background-image: url("/bg-toile.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-size: contain;
+    /* background-position: center center; */
+    /* background-repeat: repeat; */
+  }
+  .header-icon {
+    @apply w-5 aspect-square lg:w-6 2xl:w-8;
   }
 }

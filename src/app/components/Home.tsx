@@ -8,12 +8,12 @@ const Home: React.FC = () => {
   useTranslation();
 
     return(
-      <div className="licorice-font relative h-full flex flex-col justify-center gap-16 xl:gap-32 2xl:gap-40">
+      <div className="licorice-font relative h-full flex flex-col justify-center md:justify-evenly max-md:gap-12">
         <div 
           className="absolute top-0 left-4 md:left-auto md:right-4 min-w-24 w-1/6 h-32 md:h-44 2xl:h-80 bg-contain bg-no-repeat bg-top" 
           style={{ backgroundImage: `url(${bulbBgPath})` }}
         ></div>
-        <div className="flex flex-col justify-end text-center">
+        <div className="flex flex-col justify-end max-md:mt-16 text-center">
           <p className="text-5xl lg:text-6xl 2xl:text-7xl">
             {/* <Trans i18nKey="home.tagline"> */}
                 Bienvenue dans mon atelier,<br/>
@@ -26,8 +26,10 @@ const Home: React.FC = () => {
             {/* </Trans> */}
           </h2>
         </div>
-        <div className="relative h-1/3 xl:h-2/5 w-full">
-          <div className="absolute size-full bg-contain bg-no-repeat bg-center md:bg-left" style={{ backgroundImage: `url(${tableBgPath})` }}
+        <div className="relative w-full h-1/3 xl:h-2/5">
+          <div 
+            className="absolute size-full bg-contain bg-no-repeat bg-center md:bg-left" 
+            style={{ backgroundImage: `url(${tableBgPath})` }}
           ></div>
         </div>
       </div>

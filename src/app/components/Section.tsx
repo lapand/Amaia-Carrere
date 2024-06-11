@@ -7,7 +7,7 @@ interface SectionProps extends PropsWithChildren {
 const Section: React.FC<SectionProps> = ({ children, className = "" }) => {
 
     return(
-      <section className={`section-padding ${className}`}>
+      <section className={`section-padding border-b-2 border-surface-300 ${className}`}>
         {children}
       </section>
     );
