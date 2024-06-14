@@ -4,6 +4,7 @@ import { Element } from "react-scroll";
 import Section from "./components/Section";
 import Home from "./components/Home";
 import Gallery from "./components/Gallery";
+import ForSale from "./components/ForSale";
 
 const Main: React.FC = () => {
 
@@ -21,7 +22,7 @@ const Main: React.FC = () => {
       </Element>
       <Element name="ForSale" id="ForSale">
         <Section className="min-h-screen">
-       {/* <Skills /> */}
+          <ForSale />
         </Section>
       </Element>
       <Element name="About" id="About">

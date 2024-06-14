@@ -62,8 +62,6 @@ strong {
   .main-bg {
     background-image: url("/bg-toile.jpg");
     background-size: contain;
-    /* background-position: center center; */
-    /* background-repeat: repeat; */
   }
   .header-icon {
     @apply w-5 aspect-square lg:w-6 2xl:w-8;
