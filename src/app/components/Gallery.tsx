@@ -97,7 +97,7 @@ const Gallery: React.FC = () => {
     return(
       <div className="">
         <h2 className="londrina-shadow text-4xl m-8">Galerie</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 xl:gap-12">
             {galleryItems}
         </div>
       </div>

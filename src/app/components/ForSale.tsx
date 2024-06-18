@@ -13,7 +13,7 @@ type CardProps = {
 
 const projects = [
     {
-        content: "Le crowdfunding pour Lunatique, le fanzine de l'espace, va commencer dès le 20 Avril !!\nLe lien Ulule sera diffusé sur mes réseaux et sur le site ce jour là.\nLunatique est un recueil de BD humouristiques et de gags qui se passent en majorité dans l'espace.",
+        content: "Le crowdfunding pour Lunatique, le fanzine de l'espace, va commencer dès le 20 Juin !!\nLe lien Ulule sera diffusé sur mes réseaux et sur le site ce jour là.\nLunatique est un recueil de BD humouristiques et de gags qui se passent en majorité dans l'espace.",
         img: {
             src: "/forSale/lunatique1.png",
             alt: "lunatique fanzine",

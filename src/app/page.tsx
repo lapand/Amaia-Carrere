@@ -5,11 +5,13 @@ import Section from "./components/Section";
 import Home from "./components/Home";
 import Gallery from "./components/Gallery";
 import ForSale from "./components/ForSale";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 const Main: React.FC = () => {
 
   return (
-    <main className="flex min-h-screen flex-col overflow-hidden main-bg">
+    <main className="flex min-h-screen flex-col main-bg">
       <Element name="Home" id="Home">
         <Section className="h-screen">
           <Home />
@@ -27,12 +29,12 @@ const Main: React.FC = () => {
       </Element>
       <Element name="About" id="About">
         <Section className="min-h-screen">
-       {/* <About /> */}
+          <About />
         </Section>
       </Element>
       <Element name="Contact" id="Contact">
-        <Section className="h-screen">
-       {/* <Contact /> */}
+        <Section className="h-screen" style={{ paddingBottom: 0 }}>
+          <Contact />
         </Section>
       </Element>
     </main>

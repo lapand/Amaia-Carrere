@@ -1,0 +1,18 @@
+Obligatoire :
+
+	=> Balises <strong> pour le référencement
+
+	=> Modifier les divs correspondantes en <figure>, <figcaption>, <article> et <aside>
+
+	=> Bouton scroll section
+
+	=> Appuyer sur TAB pour contrôler l'accessibilité des boutons
+
+	=> Compresser les vidéos / images et srcset sur les images trop lourdes
+
+
+Facultatif :
+
+	=> Loader au chargement du site
+
+	=> Temporisation des évènements scroll / resize
