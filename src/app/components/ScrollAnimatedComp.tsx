@@ -1,31 +1,44 @@
 import { useState, useEffect, useRef, PropsWithChildren } from 'react';
 
 interface ScrollAnimatedCompProps extends PropsWithChildren {
-  showAt: number;
-  hideAt: number;
+  openAt: number;
+  closeAt: number;
   transitionDuration?: number;
+  transitionDelay?: number;
   className?: string;
+  enterClassName?: string;
+  exitClassName?: string;
   style?: React.CSSProperties;
+  enterStyle?: React.CSSProperties;
+  exitStyle?: React.CSSProperties;
 }
+
+const nbIntoStringInMS = (n: number) => (n ? n.toString() + 'ms' : '');
 
 const ScrollAnimatedComp: React.FC<ScrollAnimatedCompProps> = ({
   children,
-  showAt,
-  hideAt,
-  transitionDuration,
+  openAt,
+  closeAt,
+  className,
+  enterClassName,
+  exitClassName,
+  style,
+  enterStyle,
+  exitStyle,
+  transitionDuration = 0,
+  transitionDelay = 0,
 }) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  // const [parentScrollTop, setParentScrollTop] = useState(0);
   const transiOffTimeoutIdRef = useRef<NodeJS.Timeout>(null);
-
-  let transitionDurationString = '';
-  if (transitionDuration) {
-    transitionDurationString = transitionDuration.toString() + 'ms';
-  }
+  const componentRef = useRef<HTMLDivElement>(null); //
+  const transitionDurationStr = nbIntoStringInMS(transitionDuration);
+  const transitionDelayStr = nbIntoStringInMS(transitionDelay);
 
   useEffect(() => {
     const handleScroll = () => {
-      window.scrollY > showAt && window.scrollY < hideAt ? open() : close();
+      window.scrollY > openAt && window.scrollY < closeAt ? open() : close();
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -66,10 +79,15 @@ const ScrollAnimatedComp: React.FC<ScrollAnimatedCompProps> = ({
     <>
       {isOpened && (
         <div
-          className={`absolute -right-[80%] bottom-1/2 w-[120%] h-[120%] flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat transition duration-700 ${
-            isVisible ? 'opacity-100' : 'opacity-0 -translate-x-10'
+          className={`${className} ${
+            isVisible ? enterClassName : exitClassName
           }`}
-          style={{ transitionDuration: transitionDurationString }}  
+          style={{
+            transition: `all ${transitionDurationStr} cubic-bezier(0.4, 0, 0.2, 1) ${transitionDelayStr}`,
+            ...style,
+            ...(isVisible ? enterStyle : exitStyle),
+          }}
+          ref={componentRef}
         >
           {children}
         </div>

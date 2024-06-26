@@ -11,13 +11,18 @@
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
   --header-height: 60px;
-  --header-height-2xl: 80px;
+  --about-section-mt: 10rem;
 }
-
-@media (prefers-color-scheme: dark) {
+@media (min-width: 1280px) {
   :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-rgb: 255, 255, 255;
+    --header-height: 80px;
+    --about-section-mt: 14rem;
+  }
+}
+@media (min-width: 1536px) {
+  :root {
+    --header-height: 80px;
+    --about-section-mt: 18rem;
   }
 }
 
@@ -37,7 +42,7 @@ strong {
     text-wrap: balance;
   }
   .header-height {
-    @apply h-[var(--header-height)] 2xl:h-[var(--header-height-2xl)];
+    @apply h-[var(--header-height)];
   }
   .side-nav {
     height: calc(100vh - var(--header-height));
@@ -46,8 +51,14 @@ strong {
   .section-padding {
     @apply 
       p-2 md:p-6 lg:p-8 xl:p-24
-      pt-[var(--header-height)] 2xl:pt-[var(--header-height-2xl)]
+      pt-[var(--header-height)]
     ;
+  }
+  .about-section-mt {
+    @apply mt-[var(--about-section-mt)];
+  }
+  .dwarf-position {
+    top: calc(var(--about-section-mt) + var(--header-height));
   }
   .licorice-font {
     font-family: "Licorice", cursive;
