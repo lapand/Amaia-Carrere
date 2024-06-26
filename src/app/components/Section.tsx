@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 interface SectionProps extends PropsWithChildren {
     className?: string;
-    style?: React.CSSProperties
+    style?: React.CSSProperties;
 }
 
 const Section: React.FC<SectionProps> = ({ children, className = "", style }) => {

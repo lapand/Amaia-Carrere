@@ -25,10 +25,12 @@ body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
 }
-
 strong {
   font-weight: inherit;
 }
+/* button {
+  box-shadow: 6px 6px 3px 2px #000000 ;
+} */
 
 @layer utilities {
   .text-balance {
@@ -44,7 +46,6 @@ strong {
   .section-padding {
     @apply 
       p-2 md:p-6 lg:p-8 xl:p-24
-      xl:pb-10
       pt-[var(--header-height)] 2xl:pt-[var(--header-height-2xl)]
     ;
   }
@@ -66,5 +67,8 @@ strong {
   }
   .header-icon {
     @apply w-5 aspect-square lg:w-6 2xl:w-8;
+  }
+  .btn-shadow {
+    box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, .5);
   }
 }

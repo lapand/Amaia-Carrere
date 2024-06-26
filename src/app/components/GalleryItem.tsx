@@ -11,13 +11,13 @@ type GalleryItemProps = {
 const GalleryItem: React.FC<GalleryItemProps> = ({ uri, alt, width, height, colSpan }) => {
 
   return (
-    <div className={`${colSpan === 2 ? 'col-span-2' : 'col-span-1'} flex justify-center items-center cursor-pointer shadow-lg`}>
+    <div className={`${colSpan === 2 ? 'col-span-2' : 'col-span-1'} flex justify-center items-center cursor-pointer overflow-hidden`}>
       <Image
         src={uri}
         alt={alt}
         width={width}
         height={height}
-        className="size-full object-contain"
+        className="size-full object-contain hover:scale-105 grayscale hover:grayscale-0"
       />
     </div>
   );
