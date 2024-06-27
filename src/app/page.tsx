@@ -33,7 +33,7 @@ const Main: React.FC = () => {
         </Section>
       </Element>
       <Element name="Contact" id="Contact">
-        <Section className="h-screen" style={{ paddingBottom: 0 }}>
+        <Section className="max-lg:min-h-screen lg:h-screen" style={{ paddingBottom: 0 }}>
           <Contact />
         </Section>
       </Element>

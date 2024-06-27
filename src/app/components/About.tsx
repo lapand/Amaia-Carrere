@@ -17,8 +17,8 @@ const About: React.FC = () => {
             />
             <ScrollAnimatedComp
               className="absolute -right-[80%] bottom-1/2 w-[120%] h-[120%] flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
-              openAt={6400}
-              closeAt={7100}
+              openAt={6000}
+              closeAt={6800}
               enterClassName="opacity-100"
               exitClassName="opacity-0"
               transitionDuration={500}
@@ -34,8 +34,8 @@ const About: React.FC = () => {
             </ScrollAnimatedComp>
             <ScrollAnimatedComp
               className="absolute right-[60%] bottom-1/2 w-[120%] h-[120%] flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
-              openAt={7100}
-              closeAt={7600}
+              openAt={6800}
+              closeAt={7500}
               enterClassName="opacity-100"
               exitClassName="opacity-0"
               transitionDuration={500}

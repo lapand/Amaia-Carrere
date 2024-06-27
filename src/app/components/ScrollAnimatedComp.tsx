@@ -30,11 +30,19 @@ const ScrollAnimatedComp: React.FC<ScrollAnimatedCompProps> = ({
 }) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  // const [parentScrollTop, setParentScrollTop] = useState(0);
+  const [componentY, setComponentY] = useState(null);
   const transiOffTimeoutIdRef = useRef<NodeJS.Timeout>(null);
   const componentRef = useRef<HTMLDivElement>(null); //
   const transitionDurationStr = nbIntoStringInMS(transitionDuration);
   const transitionDelayStr = nbIntoStringInMS(transitionDelay);
+
+  const [scrollY, setScrollY] = useState<number | null>(null);
+  // console.log(scrollY);
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => setScrollY(window.scrollY));
+  },[])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +84,7 @@ const ScrollAnimatedComp: React.FC<ScrollAnimatedCompProps> = ({
   };
 
   return (
-    <>
+    <div ref={componentRef}>
       {isOpened && (
         <div
           className={`${className} ${
@@ -87,12 +95,11 @@ const ScrollAnimatedComp: React.FC<ScrollAnimatedCompProps> = ({
             ...style,
             ...(isVisible ? enterStyle : exitStyle),
           }}
-          ref={componentRef}
         >
           {children}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

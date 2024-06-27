@@ -70,6 +70,9 @@ const Menu: React.FC = () => {
               scrollToSection(sectionNames[index]);
               windowWidth <= menuIconBreakpoint && handleClick();
             }}
+            className="nav-link"
+            activeClass="active"
+            spy={true}
           >
             {item}
           </Link>

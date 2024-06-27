@@ -26,13 +26,13 @@ const ContactForm: React.FC = () => {
   return (
     <form 
         onSubmit={handleSubmit}
-        className="flex flex-col gap-8 bg-surface-200 border-2 border-surface-300 p-12 shadow-xl rounded-md"
+        className="flex flex-col gap-3 lg:gap-8 bg-surface-200 border-2 border-surface-300 px-4 py-6 sm:p-8 lg:p-12 shadow-xl rounded-md"
     >
-        <p className="text-center leading-8 text-lg">
+        <p className="text-center leading-8 md:text-lg max-md:leading-7">
             Intéressé par un projet d'illustrations ?<br/>
             Contactez moi :
         </p>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2 md:gap-4">
             <div className="flex flex-col text-sm">
                 <label htmlFor="name">Nom:</label>
                 <input

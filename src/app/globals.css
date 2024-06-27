@@ -33,9 +33,23 @@ body {
 strong {
   font-weight: inherit;
 }
-/* button {
-  box-shadow: 6px 6px 3px 2px #000000 ;
-} */
+.nav-link {
+  cursor: pointer;
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transform: scale(0);
+  transition: transform .2s ease-in-out;
+}
+.nav-link:hover::after, .active::after {
+  transform: scale(1);
+}
 
 @layer utilities {
   .text-balance {
@@ -77,7 +91,7 @@ strong {
     background-size: contain;
   }
   .header-icon {
-    @apply w-5 aspect-square lg:w-6 2xl:w-8;
+    @apply w-5 aspect-square lg:w-6 2xl:w-7 cursor-pointer transition-transform hover:scale-110 grayscale hover:grayscale-0;
   }
   .btn-shadow {
     box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, .5);
