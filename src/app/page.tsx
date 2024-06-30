@@ -28,7 +28,7 @@ const Main: React.FC = () => {
         </Section>
       </Element>
       <Element name="About" id="About">
-        <Section className="min-h-screen">
+        <Section className="min-h-screen" style={{paddingTop: 0}}>
           <About />
         </Section>
       </Element>

@@ -50,6 +50,13 @@ strong {
 .nav-link:hover::after, .active::after {
   transform: scale(1);
 }
+.out-view {
+  @apply opacity-0 translate-y-10 transition duration-500;
+}
+.in-view {
+  transform: translateX(0);
+  opacity: 1;
+}
 
 @layer utilities {
   .text-balance {

@@ -1,6 +1,6 @@
 import Button from './Button';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 type CardProps = {
   content: string;
