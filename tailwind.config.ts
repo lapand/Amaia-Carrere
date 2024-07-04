@@ -13,6 +13,7 @@ const config: Config = {
           300: '#6528F7',
           400: '#501BCE',
           500: '#3B1791',
+          800: '#211F38',
         },
         secondary: '#9333EA',
         accent: '#F59E0B',

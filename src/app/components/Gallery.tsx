@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import GalleryItem from './GalleryItem';
 import Modal from './Modal';
+import GallerySlider from './GallerySlider';
+import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
 
-type DrawType = {
-  imgIdx: number;
+export type DrawType = {
   uri: string;
   alt: string;
   width: number;
@@ -89,30 +90,24 @@ const draws: DrawType[] = [
     height: 850,
     colSpan: 2,
   },
-].map((imgData, i) => {
-  return { ...imgData, imgIdx: i };
-});
+];
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [activeImg, setActiveImg] = useState<DrawType | null>(null);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   const openModal = (imgIdx: number) => {
     setIsModalOpened(true);
-    setActiveImg(draws[imgIdx]);
+    setActiveIdx(imgIdx);
   };
   const closeModal = () => {
     setIsModalOpened(false);
   };
   const onPrevImg = (currentIdx: number) => {
-    setActiveImg(() =>
-      currentIdx === 0 ? draws[draws.length - 1] : draws[currentIdx - 1]
-    );
+    setActiveIdx(getPrevIdx(draws, currentIdx));
   };
   const onNextImg = (currentIdx: number) => {
-    setActiveImg(() =>
-      currentIdx === draws.length - 1 ? draws[0] : draws[currentIdx + 1]
-    );
+    setActiveIdx(getNextIdx(draws, currentIdx));
   };
 
   const galleryItems = draws.map((draw, i: number) => (
@@ -131,11 +126,20 @@ const Gallery: React.FC = () => {
   return (
     <div className="">
       {/* <h2 className="londrina-shadow text-4xl m-8">Galerie</h2> */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 xl:gap-12 my-20 mx-5 sm:mx-8 lg:mx-14 xl:mx-24 2xl:mx-48">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 xl:gap-12 my-20 mx-5 sm:mx-8 lg:mx-14 xl:mx-24 2xl:mx-72">
         {galleryItems}
       </div>
       {isModalOpened && (
-        <Modal closeModal={closeModal} onPrevImg={onPrevImg} onNextImg={onNextImg} {...activeImg} />
+        <Modal closeModal={closeModal}>
+          {activeIdx !== null && (
+            <GallerySlider
+              onPrevImg={onPrevImg}
+              onNextImg={onNextImg}
+              imgIdx={activeIdx}
+              {...draws[activeIdx]}
+            />
+          )}
+        </Modal>
       )}
     </div>
   );

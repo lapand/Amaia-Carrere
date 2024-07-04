@@ -1,20 +1,27 @@
-import Button from './Button';
-import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import ForSaleSlider from './ForSaleSlider';
+import { CardType } from './ForSale';
+import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
 
-type CardProps = {
-  content: string;
-  img?: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
+const Card: React.FC<CardType> = ({
+  headline,
+  content,
+  gallery,
+  imgFormat = 'portrait',
+}) => {
+  const [activeIdx, setActiveIdx] = useState<number | null>(
+    gallery && gallery.length > 0 ? 0 : null
+  );
+
+  const onPrevImg = (currentIdx: number) => {
+    setActiveIdx(getPrevIdx(gallery!, currentIdx));
   };
-  btnText?: string;
-};
-
-const Card: React.FC<CardProps> = ({ content, img, btnText }) => {
-  const [isButtonHovered, setIsButtonHovered] = useState(false);
+  const onNextImg = (currentIdx: number) => {
+    setActiveIdx(getNextIdx(gallery!, currentIdx));
+  };
+  const onSelectImg = (currentIdx: number) => {
+    setActiveIdx(currentIdx);
+  };
 
   const contentJSX = content
     .split('\n')
@@ -24,7 +31,6 @@ const Card: React.FC<CardProps> = ({ content, img, btnText }) => {
           <span key={i}>
             {line}
             <br />
-            <br />
           </span>
         );
       } else {
@@ -32,38 +38,36 @@ const Card: React.FC<CardProps> = ({ content, img, btnText }) => {
       }
     });
 
+    let cardHeight = "";
+    if(imgFormat === "portrait") {
+      cardHeight = "md:h-[400px]";
+    } else if(imgFormat === "landscape") {
+      cardHeight = "md:h-[300px]";
+    } else if(imgFormat === "square") {
+      cardHeight = "md:h-[350px]";
+    }
+
   return (
-    <div
-      className={`w-full xl:w-[85%] 2xl:w-[60%] 3xl:w-1/2 p-4 md:p-6 flex max-sm:flex-col max-sm:items-center gap-8 bg-surface-200 border-2 border-surface-300 rounded-md shadow-xl cursor-pointer hover:${
-        !isButtonHovered ? 'brightness-90' : ''
-      }`}
-    >
-      {img && (
-        <div className="w-4/5 sm:w-2/5 flex justify-center items-center">
-          <Image
-            src={img.src}
-            alt={img.alt}
-            width={img.width}
-            height={img.height}
-            className="size-full object-contain"
-          />
+    <div className={`${cardHeight} flex max-md:flex-col max-md:items-center md:max-w-3xl bg-primary-800 border border-primary-800 rounded-lg shadow`}>
+      {gallery && gallery.length !== 0 && (
+        <div className="md:w-2/5 flex justify-center items-center max-md:rounded-t-lg md:rounded-l-lg overflow-hidden">
+          {activeIdx !== null && (
+            <ForSaleSlider
+              onPrevImg={onPrevImg}
+              onNextImg={onNextImg}
+              onSelectImg={onSelectImg}
+              {...gallery[activeIdx]}
+              imgIdx={activeIdx}
+              galleryLength={gallery.length}
+            />
+          )}
         </div>
       )}
-      <div className="w-full sm:w-3/5 flex flex-col gap-6 sm:px-8 sm:pt-8">
-        <p className="flex-1 flex flex-col justify-center items-center">
-          {contentJSX}
-        </p>
-        {btnText && (
-          <div className="text-end">
-            <Button
-              onMouseEnter={() => setIsButtonHovered(true)}
-              onMouseLeave={() => setIsButtonHovered(false)}
-              className="hover:brightness-50"
-            >
-              {btnText}
-            </Button>
-          </div>
-        )}
+      <div className="md:w-3/5 overflow-auto p-5 md:p-10">
+        <h5 className="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {headline}
+        </h5>
+        <p className="text-gray-700 dark:text-gray-400">{contentJSX}</p>
       </div>
     </div>
   );
