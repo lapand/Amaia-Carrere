@@ -19,7 +19,7 @@ const Product: React.FC<ProductProps> = ({ title, card, btnText }) => {
         <Card {...card} />
         {btnText && (
           <div className="text-center md:text-end">
-            <Button className="hover:brightness-50">{btnText}</Button>
+            <Button className="hover:brightness-90">{btnText}</Button>
           </div>
         )}
       </div>

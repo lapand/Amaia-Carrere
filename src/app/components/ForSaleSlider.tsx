@@ -25,14 +25,16 @@ const ForSaleSlider: React.FC<ForSaleSliderProps> = ({
   height,
   galleryLength,
 }) => {
-
   const indicators = [];
   for (let i = 0; i < galleryLength; i++) {
     indicators.push(
       <button
+        key={i}
         type="button"
-        className={`w-3 h-3 rounded-full border-[1px] border-white opacity-90  ${ i === imgIdx ? "bg-white" : "bg-primary-800"} hover:bg-white`}
-        aria-current={`${ i === imgIdx ? "true" : "false"}`}
+        className={`w-3 h-3 rounded-full border-[1px] border-white opacity-90  ${
+          i === imgIdx ? 'bg-white' : 'bg-primary-800'
+        } hover:bg-white`}
+        aria-current={`${i === imgIdx ? 'true' : 'false'}`}
         aria-label={`Slide ${i + 1}`}
         onClick={() => onSelectImg(i)}
       ></button>

@@ -2,9 +2,6 @@ import { CSSProperties } from 'react';
 import { ButtonHTMLAttributes } from 'react';
 
 type ButtonProps = {
-  children: React.ReactNode;
-  className?: string;
-  style?: CSSProperties;
   ariaLabel?: string,
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -25,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
       onMouseOver={onMouseOver}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`${className} py-3 px-4 bg-gradient-to-br from-primary-300 to-primary-500 rounded-xl text-white btn-shadow hover:brightness-90`}
+      className={`${className} py-3 px-4 bg-gradient-to-br from-blue-500 to-primary-300 rounded-xl text-white btn-shadow transition hover:scale-105 focus:ring-2 ring-offset-2 ring-blue-500`}
       style={style}
       aria-label={ariaLabel}
       type={type}

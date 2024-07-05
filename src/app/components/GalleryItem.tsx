@@ -49,7 +49,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         alt={alt}
         width={width}
         height={height}
-        className="size-full object-contain transition-transform duration-400 hover:scale-105"
+        className="size-full object-contain transition duration-400 hover:scale-105"
       />
     </div>
   );

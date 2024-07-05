@@ -131,7 +131,7 @@ const ForSale: React.FC = () => {
     return (
       <React.Fragment key={i}>
         <Product {...product} />
-        <div className="border-t-2 border-black min-w-64 w-[15%]"></div>
+        <div className="border-t-2 border-surface-400 min-w-64 w-[15%]"></div>
       </React.Fragment>
     );
   });
