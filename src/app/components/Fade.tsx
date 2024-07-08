@@ -16,6 +16,7 @@ type From = {
 type Fade = PropsWithChildren<{
   visible: boolean;
   duration?: number;
+  delay?: number;
   animateEnter?: boolean;
   from?: From;
   style?: CSSProperties;
@@ -31,6 +32,7 @@ const Fade: React.FC<Fade> = ({
   children,
   visible,
   duration = 500,
+  delay = 0,
   animateEnter = false,
   from = { opacity: 0, x: 0, y: 0, z: 0 },
   style,
@@ -80,17 +82,21 @@ const Fade: React.FC<Fade> = ({
     transitionProperty: 'opacity transform',
     transitionDuration: `${duration}ms`,
     transitionTimingFunction: 'ease-in-out',
+    transitionDelay: `${delay}ms`
   };
   if (state !== VISIBLE) {
     if (from.opacity !== undefined) {
       transitionStyle.opacity = from.opacity;
     }
     transitionStyle.transform = `translate3d(${from.x ?? 0}px, ${
-      from.y ?? 0}px, ${from.z ?? 0}px)`;
+      from.y ?? 0
+    }px, ${from.z ?? 0}px)`;
   }
 
+  //L'ordre de déstructuration des styles a de l'importance :
+  // On déstructurera transitionStyle en second afin qu'il vienne overwrite les styles apportés et permettre un effet de transition correct
   return (
-    <div style={{ ...transitionStyle, ...style }} className={className}>
+    <div style={{ ...style, ...transitionStyle }} className={className}>
       {childRef.current}
     </div>
   );

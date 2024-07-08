@@ -10,20 +10,23 @@ const langData = [
   {
     langName: 'basque',
     iconUri: '/basco-flag.png',
-    posX: -150,
-    posY: 130,
+    posX: -50,
+    posY: 30,
+    delay: 0,
   },
   {
     langName: 'french',
     iconUri: '/french-flag.png',
     posX: 0,
-    posY: 160,
+    posY: 40,
+    delay: 100,
   },
   {
     langName: 'english',
     iconUri: '/english-flag.png',
-    posX: 150,
-    posY: 130,
+    posX: 50,
+    posY: 30,
+    delay: 200,
   },
 ];
 
@@ -40,22 +43,27 @@ const Header: React.FC = () => {
 
   const JSXLanguages = langData.map((lang, i: number) => {
     return (
-      <Fade key={i} visible={isLanguagesVisible} from={{opacity: 0, x: 0, y: 0, z: 0}} className='absolute left-0 top-0'>
-      <button
+      <Fade
         key={i}
-        className="header-icon absolute top-0 left-0 transition-transform"
-        style={{ transform: `translate(${lang.posX}%, ${lang.posY}%)` }}
-        onClick={() => null}
-        aria-label={`Switch to ${lang.langName} language`}
+        visible={isLanguagesVisible}
+        delay={lang.delay}
+        className="absolute left-0 top-0"
+        style={{ transform: `translate3d(${lang.posX}px, ${lang.posY}px, 0)` }}
       >
-        <Image
-          src={`${lang.iconUri}`}
-          alt={`${lang.langName} flag icon`}
-          width={100}
-          height={100}
-          className="size-full"
-        />
-      </button>
+        <button
+          key={i}
+          className="language-icon absolute top-0 left-0"
+          onClick={() => null}
+          aria-label={`Switch to ${lang.langName} language`}
+        >
+          <Image
+            src={`${lang.iconUri}`}
+            alt={`${lang.langName} flag icon`}
+            width={100}
+            height={100}
+            className="size-full"
+          />
+        </button>
       </Fade>
     );
   });
@@ -75,40 +83,11 @@ const Header: React.FC = () => {
             </h2>
           </Link>
         </div>
-        <div className="flex items-center gap-4 lg:gap-6 2xl:gap-10">
-          <div className="header-icon">
-            <Image
-              src="/insta-icon.svg"
-              alt="instagram-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
-          </div>
-          <div className="header-icon">
-            <Image
-              src="/facebook-icon.svg"
-              alt="facebook-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
-          </div>
-          <div className="header-icon">
-            <Image
-              src="/pinterest-icon.svg"
-              alt="pinterest-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
-          </div>
-        </div>
       </div>
       <div className="flex items-center gap-8 md:gap-12 lg:gap-16 xl:gap-24">
         <div className="relative">
           <button
-            className="header-icon block"
+            className="block header-icon black-to-color"
             onClick={() => setIsLanguagesVisible((v) => !v)}
             aria-label="Toggle language panel"
           >
@@ -120,13 +99,39 @@ const Header: React.FC = () => {
               className="size-full"
             />
           </button>
-          {/* <Fade visible={isLanguagesVisible} className='absolute top-0 left-0'>0 */}
-            {JSXLanguages}
-          {/* </Fade> */}
-          {/* {isLanguagesVisible && JSXLanguages} */}
+          {JSXLanguages}
         </div>
         <div>
           <Menu />
+        </div>
+        <div className="flex items-center gap-4 lg:gap-6 2xl:gap-6">
+          <div className="header-icon black-to-color">
+            <Image
+              src="/insta-icon.svg"
+              alt="instagram-icon"
+              width={100}
+              height={100}
+              className="size-full"
+            />
+          </div>
+          <div className="header-icon black-to-color">
+            <Image
+              src="/facebook-icon.svg"
+              alt="facebook-icon"
+              width={100}
+              height={100}
+              className="size-full"
+            />
+          </div>
+          <div className="header-icon black-to-color">
+            <Image
+              src="/pinterest-icon.svg"
+              alt="pinterest-icon"
+              width={100}
+              height={100}
+              className="size-full"
+            />
+          </div>
         </div>
       </div>
     </header>

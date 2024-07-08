@@ -20,21 +20,19 @@ const Contact: React.FC = () => {
           <ContactForm />
         </div>
       </div>
-      <footer className="flex justify-center p-4">
-        <div className="flex items-center gap-3">
-          <div className="size-9 md:size-6">
+      <footer className="flex justify-center items-center p-4">
+        <p className="text-center text-sm 2xl:text-base">
+          <span className="inline-block size-5 mr-1">
             <Image
               src="/contact/copyright.png"
               alt="copyright"
               width={50}
               height={50}
-              className="size-full object-contain"
+              className="inline-block size-full object-contain align-bottom"
             />
-          </div>
-          <p className="text-center text-sm 2xl:text-base">
-            2024 - Amaia Carrere - Auteur illustratrice - Tous droits réservés
-          </p>
-        </div>
+          </span>
+          2024 - Amaia Carrere - Auteur illustratrice - Tous droits réservés
+        </p>
       </footer>
     </div>
   );
