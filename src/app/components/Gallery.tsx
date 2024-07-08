@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import GalleryItem from './GalleryItem';
-import Modal from './Modal';
+import ModalWithTransition from './ModalWithTransition';
 import GallerySlider from './GallerySlider';
-import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
 
 export type DrawType = {
   uri: string;
@@ -94,20 +93,14 @@ const draws: DrawType[] = [
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
   const openModal = (imgIdx: number) => {
     setIsModalOpened(true);
-    setActiveIdx(imgIdx);
+    setSelectedIdx(imgIdx);
   };
   const closeModal = () => {
     setIsModalOpened(false);
-  };
-  const onPrevImg = (currentIdx: number) => {
-    setActiveIdx(getPrevIdx(draws, currentIdx));
-  };
-  const onNextImg = (currentIdx: number) => {
-    setActiveIdx(getNextIdx(draws, currentIdx));
   };
 
   const galleryItems = draws.map((draw, i: number) => (
@@ -129,18 +122,9 @@ const Gallery: React.FC = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 xl:gap-12 my-20 mx-5 sm:mx-8 lg:mx-14 xl:mx-24 2xl:mx-72">
         {galleryItems}
       </div>
-      {isModalOpened && (
-        <Modal closeModal={closeModal}>
-          {activeIdx !== null && (
-            <GallerySlider
-              onPrevImg={onPrevImg}
-              onNextImg={onNextImg}
-              imgIdx={activeIdx}
-              {...draws[activeIdx]}
-            />
-          )}
-        </Modal>
-      )}
+      <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
+        {selectedIdx !== null && <GallerySlider selectedIdx={selectedIdx} />}
+      </ModalWithTransition>
     </div>
   );
 };

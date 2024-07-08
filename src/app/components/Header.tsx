@@ -4,6 +4,7 @@ import { Link, scroller } from 'react-scroll';
 import Image from 'next/image';
 import Menu from './Menu';
 import { useState } from 'react';
+import Fade from './Fade';
 
 const langData = [
   {
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
 
   const JSXLanguages = langData.map((lang, i: number) => {
     return (
+      <Fade key={i} visible={isLanguagesVisible} from={{opacity: 0, x: 0, y: 0, z: 0}} className='absolute left-0 top-0'>
       <button
         key={i}
         className="header-icon absolute top-0 left-0 transition-transform"
@@ -54,6 +56,7 @@ const Header: React.FC = () => {
           className="size-full"
         />
       </button>
+      </Fade>
     );
   });
 
@@ -117,7 +120,10 @@ const Header: React.FC = () => {
               className="size-full"
             />
           </button>
-          {isLanguagesVisible && JSXLanguages}
+          {/* <Fade visible={isLanguagesVisible} className='absolute top-0 left-0'>0 */}
+            {JSXLanguages}
+          {/* </Fade> */}
+          {/* {isLanguagesVisible && JSXLanguages} */}
         </div>
         <div>
           <Menu />

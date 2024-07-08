@@ -2,6 +2,11 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 // import ScrollAnimatedComp from './ScrollAnimatedComp';
 
+const firstAbsoluteCtnTop = 10;
+const bubbleWrapperHeight = 80;
+const bubbleHeight = 40;
+const secondAbsCtnTop = firstAbsoluteCtnTop + bubbleWrapperHeight - bubbleHeight;
+
 const About: React.FC = () => {
   const bubble1Ref = useRef<HTMLDivElement | null>(null);
   // const bubble2Ref = useRef<HTMLDivElement | null>(null);
@@ -46,10 +51,10 @@ const About: React.FC = () => {
       </div>
 
       <div
-        className="absolute w-1/2 left-[52%] top-[10vh] h-[80vh] border-2 border-black"
+        className={`absolute left-[52%] ${`top-[${firstAbsoluteCtnTop}vh]`} w-1/2 ${`h-[${bubbleWrapperHeight}vh]`} border-2 border-black`}
         ref={bubble1Ref}
       >
-        <div className="sticky w-[30rem] h-[24rem] top-[10vh] out-view bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat flex justify-center items-center">
+        <div className={`sticky top-[10vh] w-[30rem] ${`h-[${bubbleHeight}vh]`} flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat border-2 border-violet-400`}>
           <p
             className={`w-3/4 2xl:w-[75%] mb-10 licorice-font text-4xl font-semibold text-center text-pretty`}
           >
@@ -60,15 +65,17 @@ const About: React.FC = () => {
           </p>
         </div>
       </div>
-      {/* <div
-        ref={bubble2Ref}
-        className="absolute opacity-0 transition-opacity duration-1000 right-[60%] bottom-1/2 w-[120%] h-[120%] flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
-      >
-        <p className="w-[70%] h-[30%] mb-6 mr-4 licorice-font text-3xl font-semibold text-center">
-          Je suis bascophone, et j'aime illustrer également ce qui a un rapport
-          avec la mythologie et la culture basque.
-        </p>
-      </div> */}
+      <div className={`absolute left-0 ${`top-[${secondAbsCtnTop}vh]`} w-1/2 ${`h-[${bubbleWrapperHeight}vh]`} border-2 border-red-400`}>
+        <div
+          ref={null}
+          className={`sticky top-[10vh] ml-auto w-[30rem] ${`h-[${bubbleHeight}vh]`} flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat border-2 border-violet-400`}
+        >
+          <p className="w-[70%] h-[30%] mb-6 mr-4 licorice-font text-3xl font-semibold text-center">
+            Je suis bascophone, et j'aime illustrer également ce qui a un
+            rapport avec la mythologie et la culture basque.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
