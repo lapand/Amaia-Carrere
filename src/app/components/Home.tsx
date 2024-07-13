@@ -9,9 +9,9 @@ const Home: React.FC = () => {
   useTranslation();
 
   return (
-    <div className="licorice-font relative h-full flex flex-col ">
+    <div className="licorice-font relative h-full flex flex-col">
       <div
-        className="absolute top-0 left-4 md:left-auto md:right-4 min-w-24 w-1/6 h-32 md:h-44 2xl:h-64 bg-contain bg-no-repeat bg-top"
+        className="absolute -top-1 left-4 md:left-auto md:right-4 min-w-24 w-1/6 h-32 md:h-44 2xl:h-64 bg-contain bg-no-repeat bg-top"
         style={{ backgroundImage: `url(${bulbBgPath})` }}
       ></div>
       <div className="flex-1 flex flex-col justify-center max-md:mt-16 text-center">

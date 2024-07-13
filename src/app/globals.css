@@ -29,6 +29,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
+  @apply scroll-smooth;
 }
 strong {
   font-weight: inherit;
@@ -71,9 +72,7 @@ strong {
   }
   .section-padding {
     @apply 
-      p-2 md:p-10 xl:p-24
-      pt-[var(--header-height)]
-    ;
+      pb-2 px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];
@@ -111,5 +110,8 @@ strong {
   }
   .shadow-legend {
     box-shadow: 2px 3px 6px 3px rgba(0, 0, 0, .25);
+  }
+  .shine-bg {
+    background-image: linear-gradient(120deg, rgba(255,255,255, 0) 30%, rgba(255,255,255, .8), rgba(255,255,255, 0) 70%);
   }
 }

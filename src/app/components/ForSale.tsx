@@ -137,7 +137,7 @@ const ForSale: React.FC = () => {
   });
 
   return (
-    <div className="flex flex-col items-center gap-20 md:gap-32 m-4 lg:m-12 xl:m-32">
+    <div className="flex flex-col items-center gap-20 md:gap-32 m-4 lg:m-12 xl:m-24">
       {productsJSX}
     </div>
   );

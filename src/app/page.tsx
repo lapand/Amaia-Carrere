@@ -1,15 +1,14 @@
-"use client";
+'use client';
 
-import { Element } from "react-scroll";
-import Section from "./components/Section";
-import Home from "./components/Home";
-import Gallery from "./components/Gallery";
-import ForSale from "./components/ForSale";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import { Element } from 'react-scroll';
+import Section from './components/Section';
+import Home from './components/Home';
+import Gallery from './components/Gallery';
+import ForSale from './components/ForSale';
+import About from './components/About';
+import Contact from './components/Contact';
 
 const Main: React.FC = () => {
-
   return (
     <main className="flex min-h-screen flex-col main-bg">
       <Element name="Home" id="Home">
@@ -28,17 +27,20 @@ const Main: React.FC = () => {
         </Section>
       </Element>
       <Element name="About" id="About">
-        <Section className="min-h-screen" style={{paddingTop: 0}}>
+        <Section className="min-h-screen">
           <About />
         </Section>
       </Element>
       <Element name="Contact" id="Contact">
-        <Section className="max-lg:min-h-screen lg:h-screen" style={{ paddingBottom: 0 }}>
+        <Section
+          className="max-lg:min-h-screen lg:h-screen"
+          style={{ paddingBottom: 0 }}
+        >
           <Contact />
         </Section>
       </Element>
     </main>
   );
-}
+};
 
 export default Main;

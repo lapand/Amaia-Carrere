@@ -38,7 +38,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
 
   return (
     <div
-      className={`flex justify-center items-center overflow-hidden mb-5 cursor-pointer rounded-md out-view`}
+      className={`out-view flex justify-center items-center overflow-hidden bg-black mb-5 cursor-pointer rounded-md after:absolute after:pointer-events-none after:text-white after:luckiest-guy after:text-xl hover:after:content-["OUVRIR"]`}
       ref={galleryItemRef}
       onClick={() => openModal(imgIdx)}
     >
@@ -47,7 +47,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         alt={alt}
         width={width}
         height={height}
-        className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105"
+        className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
       />
     </div>
   );

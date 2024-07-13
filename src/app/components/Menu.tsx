@@ -4,8 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
 
 const sectionNames: string[] = ["Home", "Gallery", "ForSale", "About", "Contact"];
-// menuIconBreakpoint <=> Tailwind breakpoint -sm
-const menuIconBreakpoint: number = 640;
+// menuIconBreakpoint <=> Tailwind breakpoint max-lg
+const menuIconBreakpoint: number = 1024;
 
 const Menu: React.FC = () => {
 
@@ -93,7 +93,7 @@ const Menu: React.FC = () => {
           </button>
         }
         {windowWidth > menuIconBreakpoint &&
-          <ul className="flex gap-5 lg:gap-6 xl:gap-8 2xl:gap-20 2xl:text-xl">
+          <ul className="flex gap-5 lg:gap-6 xl:gap-8 2xl:gap-14 3xl:gap-20 2xl:text-xl">
             {liJSX}
           </ul>
         }
