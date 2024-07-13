@@ -131,13 +131,13 @@ const ForSale: React.FC = () => {
     return (
       <React.Fragment key={i}>
         <Product {...product} />
-        <div className="border-t-2 border-surface-400 min-w-64 w-[15%]"></div>
+        <div className="border-t-2 border-surface-300 min-w-64 w-[15%]"></div>
       </React.Fragment>
     );
   });
 
   return (
-    <div className="flex flex-col items-center gap-20 md:gap-32 m-4 lg:m-12 xl:m-24">
+    <div className="flex flex-col items-center gap-20 md:gap-24 m-4 lg:m-12 xl:m-24">
       {productsJSX}
     </div>
   );

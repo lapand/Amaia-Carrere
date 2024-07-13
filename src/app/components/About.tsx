@@ -58,7 +58,7 @@ const About: React.FC = () => {
       }}
     >
       <div
-        className="absolute max-md:left-[15%] w-1/4 min-w-60 flex justify-center border-2 border-green-600"
+        className="absolute max-md:left-[15%] w-1/4 min-w-60 flex justify-center"
         style={{
           top: `${dwarfCtnTop}vh`,
           height: `${dwarfCtnHeight}vh`,
@@ -80,7 +80,7 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute sm:left-[35%] lg:left-[52%] w-[95%] sm:w-1/2 border-2 border-black"
+        className="absolute sm:left-[35%] lg:left-[52%] w-[95%] sm:w-1/2"
         style={{
           top: `${bubble1CtnTop}vh`,
           height: `${bubbleWrapperHeight}vh`,
@@ -88,7 +88,7 @@ const About: React.FC = () => {
       >
         <div
           ref={bubble1Ref}
-          className="sticky out-view w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat border-2 border-violet-400"
+          className="sticky out-view w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubble1CtnTop}vh`, height: `${bubbleHeight}vh` }}
         >
           <p className="w-[88%] 2xl:w-[85%] mb-8 sm:mb-10 licorice-font text-3xl xl:text-4xl font-semibold text-center text-pretty">
@@ -100,7 +100,7 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute sm:left-[10%] lg:left-0 w-[95%] sm:w-1/2 border-2 border-red-400"
+        className="absolute sm:left-[10%] lg:left-0 w-[95%] sm:w-1/2"
         style={{
           top: `${bubble2CtnTop}vh`,
           height: `${bubbleWrapperHeight}vh`,
@@ -108,7 +108,7 @@ const About: React.FC = () => {
       >
         <div
           ref={bubble2Ref}
-          className="sticky out-view ml-auto w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat border-2 border-violet-400"
+          className="sticky out-view ml-auto w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubble2Top}vh`, height: `${bubbleHeight}vh` }}
         >
           <p className="w-[70%] h-[30%] mb-16 licorice-font text-3xl xl:text-4xl font-semibold text-center">

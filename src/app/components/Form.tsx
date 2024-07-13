@@ -29,7 +29,7 @@ const ContactForm: React.FC = () => {
     >
       <p className="text-center leading-3 max-md:leading-7">
         <span className="block text-2xl xl:text-3xl font-bold">
-          Intéressé par un projet d'illustrations ?
+          Intéressé(e) par un projet d'illustrations ?
         </span>
         <br />
         <span className="text-base xl:text-lg text-stone-300">

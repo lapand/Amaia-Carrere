@@ -13,7 +13,7 @@ type ProductProps = {
 const Product: React.FC<ProductProps> = ({ title, card, btnText }) => {
     
   return (
-    <div className="flex flex-col items-center gap-12 md:gap-20">
+    <div className="flex flex-col items-center gap-12 md:gap-16">
       <h3 className="inspiration-font text-8xl">{title}</h3>
       <div className="flex flex-col gap-5">
         <Card {...card} />
