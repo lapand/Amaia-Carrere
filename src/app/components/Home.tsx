@@ -6,7 +6,7 @@ const tableBgPath = '/table.png';
 const bulbBgPath = '/ampoule-suspendue.png';
 
 const Home: React.FC = () => {
-  useTranslation();
+  // useTranslation();
 
   return (
     <div className="licorice-font relative h-full flex flex-col">

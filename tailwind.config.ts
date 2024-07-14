@@ -30,7 +30,7 @@ const config: Config = {
         },
       },
       animation: {
-        shine: "shine 3s infinite linear",
+        shine: "shine 2s linear",
       },
       keyframes: {
         shine: {

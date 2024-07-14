@@ -14,9 +14,9 @@ const Menu: React.FC = () => {
     const sideNavRef = useRef<HTMLDivElement>(null);
     const menuIconRef = useRef<HTMLButtonElement>(null);
 
-    const { t } = useTranslation();
-    const menuArray: string[] = t('menu', { returnObjects: true }) as string[];
-
+    const { t } = useTranslation('common');
+    const menuArray: string[] = t('translation.menu', { returnObjects: true }) as string[];
+    
     useEffect(() => {
       const handleResize = () => {
         setWindowWidth(window.innerWidth);
@@ -59,7 +59,7 @@ const Menu: React.FC = () => {
       });
     };
 
-    const liJSX = sectionNames.map((item, index) => {
+    const liJSX = menuArray.map((item, index) => {
       return(
         <li key={item}>
           <Link 

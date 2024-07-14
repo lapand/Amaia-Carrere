@@ -19,8 +19,6 @@ const About: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        console.log(entries);
-
         entries.forEach((entry) => {
           if (entry.intersectionRatio >= 1) {
             entry.target.classList.add('in-view');

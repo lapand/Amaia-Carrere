@@ -5,10 +5,12 @@ import Image from 'next/image';
 import Menu from './Menu';
 import { useState } from 'react';
 import Fade from './Fade';
+import { useTranslation } from 'react-i18next';
 
 const langData = [
   {
     langName: 'basque',
+    languageCode: 'eus',
     iconUri: '/basco-flag.png',
     posX: -50,
     posY: 30,
@@ -16,6 +18,7 @@ const langData = [
   },
   {
     langName: 'french',
+    languageCode: 'fr',
     iconUri: '/french-flag.png',
     posX: 0,
     posY: 40,
@@ -23,6 +26,7 @@ const langData = [
   },
   {
     langName: 'english',
+    languageCode: 'en',
     iconUri: '/english-flag.png',
     posX: 50,
     posY: 30,
@@ -32,6 +36,21 @@ const langData = [
 
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
+  const { i18n } = useTranslation();
+
+  const handleToggle = (language: string) => {
+    switch (language) {
+      case 'eus':
+        i18n.changeLanguage('eus');
+        break;
+      case 'en':
+        i18n.changeLanguage('en');
+        break;
+      case 'fr':
+        i18n.changeLanguage('fr');
+        break;
+    }
+  };
 
   const scrollToSection = (sectionId: string) => {
     scroller.scrollTo(sectionId, {
@@ -53,7 +72,7 @@ const Header: React.FC = () => {
         <button
           key={i}
           className="language-icon absolute top-0 left-0"
-          onClick={() => null}
+          onClick={() => handleToggle(lang.languageCode)}
           aria-label={`Switch to ${lang.langName} language`}
         >
           <Image
@@ -70,7 +89,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed z-10 w-full header-height flex items-center justify-around sm:justify-between md:px-6 lg:px-16 xl:px-28 bg-white border-b border-slate-500">
-      <h1 className="w-[25%] min-w-32 cursor-pointer">
+      <h1 className="min-w-40 w-[15%] max-w-64 cursor-pointer">
         <Link
           to="Home"
           smooth={true}
@@ -83,6 +102,7 @@ const Header: React.FC = () => {
             alt="Site logo - Amaia Carrere"
             width={200}
             height={200}
+            className="size-full"
           />
         </Link>
       </h1>
