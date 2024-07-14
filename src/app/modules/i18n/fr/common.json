@@ -1,18 +1,16 @@
 {
-    "translation": {
-        "menu": ["Accueil", "Galerie", "En vente", "A propos", "Contact"],
-        "home": {
-            "tagline": "Bienvenue dans mon atelier,<0/> source de rêves crayonnés",
-            "title": "<0>Illustratrice Jeunesse</0> / Fantasy / <1>Bande dessinée</1>"
-        },
-        "projectSection": {
-            "sectionName": ""
-        },
-        "skillSection": {
-            "sectionName": ""
-        },
-        "aboutSection": {
-            "sectionName": "A propos"
-        }
-    }
+  "menu": ["Accueil", "Galerie", "En vente", "A propos", "Contact"],
+  "home": {
+    "tagline": "Bienvenue dans mon atelier,<0/> source de rêves crayonnés",
+    "title": "<0>Illustratrice Jeunesse</0> / Fantasy / <1>Bande dessinée</1>"
+  },
+  "projectSection": {
+    "sectionName": ""
+  },
+  "skillSection": {
+    "sectionName": ""
+  },
+  "aboutSection": {
+    "sectionName": "A propos"
+  }
 }

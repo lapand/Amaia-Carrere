@@ -1,18 +1,16 @@
 {
-    "translation": {
-        "menu": ["Hasiera", "Galeria", "Salgai", "Honi buruz", "Kontaktua"],
-        "home": {
-            "tagline": "Ongi etorri nire tailerrera,<0/> amets marraztuen iturrira",
-            "title": "<0>Haur Ilustratzailea<0 /> / Fantasia / <1>Komikia</1>"
-        },
-        "projectSection": {
-            "sectionName": ""
-        },
-        "skillSection": {
-            "sectionName": ""
-        },
-        "aboutSection": {
-            "sectionName": ""
-        }
-    }
+  "menu": ["Hasiera", "Galeria", "Salgai", "Honi buruz", "Kontaktua"],
+  "home": {
+    "tagline": "Ongi etorri nire tailerrera,<0/> amets marraztuen iturrira",
+    "title": "<0>Haur Ilustratzailea</0> / Fantasia / <1>Komikia</1>"
+  },
+  "projectSection": {
+    "sectionName": ""
+  },
+  "skillSection": {
+    "sectionName": ""
+  },
+  "aboutSection": {
+    "sectionName": ""
+  }
 }

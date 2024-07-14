@@ -1,12 +1,10 @@
 import { useTranslation, Trans } from 'react-i18next';
-import Fade from './Fade';
-import { useState } from 'react';
 
 const tableBgPath = '/table.png';
 const bulbBgPath = '/ampoule-suspendue.png';
 
 const Home: React.FC = () => {
-  useTranslation('common');
+  useTranslation();
 
   return (
     <div className="licorice-font relative h-full flex flex-col">
@@ -16,16 +14,14 @@ const Home: React.FC = () => {
       ></div>
       <div className="flex-1 flex flex-col justify-center max-md:mt-16 text-center">
         <p className="text-5xl lg:text-6xl 2xl:text-7xl">
-          <Trans i18nKey="translation.home.tagline">
-          Bienvenue dans mon atelier,
-          <br/>
-          source de rêves crayonnés
+          <Trans i18nKey="common:home.tagline">
+            <br />
           </Trans>
         </p>
         <h2 className="text-2xl lg:text-3xl 2xl:text-5xl mt-5">
-          <Trans i18nKey="translation.home.title">
-          <strong>Illustratrice</strong> Jeunesse / Fantasy /{' '}
-          <strong>Bande dessinée</strong>
+          <Trans i18nKey="common:home.title">
+            <strong></strong>
+            <strong></strong>
           </Trans>
         </h2>
       </div>

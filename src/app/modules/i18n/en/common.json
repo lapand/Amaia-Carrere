@@ -1,18 +1,16 @@
 {
-    "translation": {
-        "menu": ["Home", "Gallery", "For Sale", "About", "Contact"],
-        "home": {
-            "tagline": "Welcome to my studio,<0/> source of penciled dreams",
-            "title": "<0>Children's Illustrator</0> / Fantasy / <1>Comic</1>"
-        },
-        "projectSection": {
-            "sectionName": ""
-        },
-        "skillSection": {
-            "sectionName": ""
-        },
-        "aboutSection": {
-            "sectionName": ""
-        }
-    }
+  "menu": ["Home", "Gallery", "For Sale", "About", "Contact"],
+  "home": {
+    "tagline": "Welcome to my studio,<0/> source of penciled dreams",
+    "title": "<0>Children's Illustrator</0> / Fantasy / <1>Comic</1>"
+  },
+  "projectSection": {
+    "sectionName": ""
+  },
+  "skillSection": {
+    "sectionName": ""
+  },
+  "aboutSection": {
+    "sectionName": ""
+  }
 }

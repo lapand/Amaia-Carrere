@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 const langData = [
   {
-    langName: 'basque',
+    langName: 'euskadi',
     languageCode: 'eus',
     iconUri: '/basco-flag.png',
     posX: -50,

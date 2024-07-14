@@ -15,7 +15,7 @@ const Menu: React.FC = () => {
     const menuIconRef = useRef<HTMLButtonElement>(null);
 
     const { t } = useTranslation('common');
-    const menuArray: string[] = t('translation.menu', { returnObjects: true }) as string[];
+    const menuArray: string[] = t('menu', { returnObjects: true }) as string[];
     
     useEffect(() => {
       const handleResize = () => {
