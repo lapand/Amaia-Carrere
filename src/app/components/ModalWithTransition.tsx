@@ -8,7 +8,7 @@ type ModalProps = {
   duration?: number,
 };
 
-const closeIconUri = '/gallery-lightbox/cross.svg';
+const closeIconUri = '/cross.svg';
 
 const ModalWithTransition: React.FC<ModalProps> = ({
   children,

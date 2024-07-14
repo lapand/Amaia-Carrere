@@ -25,7 +25,7 @@ const ContactForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-[550px] flex flex-col gap-3 lg:gap-6 px-4 py-6 sm:p-8 lg:py-8 bg-primary-800 border-2 outline-double outline-primary-800 text-white shadow-xl rounded-md"
+      className="flex flex-col gap-3 lg:gap-6 px-4 py-6 sm:p-8 lg:py-8 bg-primary-800 border-2 outline-double outline-primary-800 text-white shadow-xl rounded-md"
     >
       <p className="text-center leading-3 max-md:leading-7">
         <span className="block text-2xl xl:text-3xl font-bold">

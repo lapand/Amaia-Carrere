@@ -5,7 +5,7 @@ type ModalProps = {
   children: ReactNode;
 };
 
-const closeIconUri = '/gallery-lightbox/cross.svg';
+const closeIconUri = '/cross.svg';
 
 const Modal: React.FC<ModalProps> = ({
   children,

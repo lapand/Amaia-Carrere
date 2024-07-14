@@ -2,21 +2,19 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 type GalleryItemProps = {
-  uri: string;
+  src: string;
   alt: string;
   width: number;
   height: number;
-  colSpan: 1 | 2;
   openModal: (imgIdx:number) => void;
   imgIdx: number;
 };
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
-  uri,
+  src,
   alt,
   width,
   height,
-  colSpan,
   openModal,
   imgIdx,
 }) => {
@@ -43,7 +41,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
       onClick={() => openModal(imgIdx)}
     >
       <Image
-        src={uri}
+        src={src}
         alt={alt}
         width={width}
         height={height}

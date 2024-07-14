@@ -6,7 +6,7 @@ const tableBgPath = '/table.png';
 const bulbBgPath = '/ampoule-suspendue.png';
 
 const Home: React.FC = () => {
-  // useTranslation();
+  useTranslation('common');
 
   return (
     <div className="licorice-font relative h-full flex flex-col">
@@ -16,17 +16,17 @@ const Home: React.FC = () => {
       ></div>
       <div className="flex-1 flex flex-col justify-center max-md:mt-16 text-center">
         <p className="text-5xl lg:text-6xl 2xl:text-7xl">
-          {/* <Trans i18nKey="home.tagline"> */}
+          <Trans i18nKey="translation.home.tagline">
           Bienvenue dans mon atelier,
-          <br />
+          <br/>
           source de rêves crayonnés
-          {/* </Trans> */}
+          </Trans>
         </p>
         <h2 className="text-2xl lg:text-3xl 2xl:text-5xl mt-5">
-          {/* <Trans i18nKey="home.title"> */}
+          <Trans i18nKey="translation.home.title">
           <strong>Illustratrice</strong> Jeunesse / Fantasy /{' '}
           <strong>Bande dessinée</strong>
-          {/* </Trans> */}
+          </Trans>
         </h2>
       </div>
       <div className="flex-1 relative w-full">

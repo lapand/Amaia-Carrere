@@ -2,98 +2,12 @@ import { useState } from 'react';
 import GalleryItem from './GalleryItem';
 import ModalWithTransition from './ModalWithTransition';
 import GallerySlider from './GallerySlider';
-
-export type DrawType = {
-  uri: string;
-  alt: string;
-  width: number;
-  height: number;
-  colSpan: 1 | 2;
-};
-
-const draws: DrawType[] = [
-  {
-    uri: '/gallery/xilaba-mendiak-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/xilaba-dantz-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/maggy-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/histoire-bd-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 1,
-  },
-  {
-    uri: '/gallery/11chewal-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 1,
-  },
-  {
-    uri: '/gallery/chat-fee-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/temple-carpe-koi-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/argaihizkia-affiche-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/amitie-lapin-paon-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/oeil-dragon-bleu-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-  {
-    uri: '/gallery/quetzacoaltl-m.jpg',
-    alt: '',
-    width: 850,
-    height: 850,
-    colSpan: 2,
-  },
-];
+import { draws } from '../data/draws';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+console.log(draws);
 
   const openModal = (imgIdx: number) => {
     setIsModalOpened(true);
@@ -107,11 +21,10 @@ const Gallery: React.FC = () => {
     <GalleryItem
       key={i}
       imgIdx={i}
-      uri={draw.uri}
+      src={draw.src}
       alt={draw.alt}
       width={draw.width}
       height={draw.height}
-      colSpan={draw.colSpan}
       openModal={openModal}
     />
   ));
@@ -119,7 +32,6 @@ const Gallery: React.FC = () => {
   return (
     <div className="">
       {/* <h2 className="londrina-shadow text-4xl m-8">Galerie</h2> */}
-      {/* <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 my-20 mx-5 sm:mx-8 lg:mx-14 xl:mx-24 2xl:mx-72"> */}
       <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 my-20 mx-5 sm:mx-8 lg:mx-14 xl:mx-[15%]">
         {galleryItems}
       </div>

@@ -1,90 +1,21 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
-import usePreloadImages from '../hooks/usePreloadImages';
-
-const highQualityDraws = [
-  {
-    src: '/gallery-lightbox/xilaba-mendiak.jpg',
-    alt: '',
-    width: 2500,
-    height: 1750,
-  },
-  {
-    src: '/gallery-lightbox/xilaba-dantz.jpg',
-    alt: '',
-    width: 2500,
-    height: 1800,
-  },
-  {
-    src: '/gallery-lightbox/maggy-rvb.jpg',
-    alt: '',
-    width: 2500,
-    height: 1700,
-  },
-  {
-    src: '/gallery-lightbox/histoire-bd.jpg',
-    alt: '',
-    width: 2500,
-    height: 3500,
-  },
-  {
-    src: '/gallery-lightbox/11chewal.jpg',
-    alt: '',
-    width: 2500,
-    height: 3500,
-  },
-  {
-    src: '/gallery-lightbox/chat-fee.jpg',
-    alt: '',
-    width: 2500,
-    height: 1400,
-  },
-  {
-    src: '/gallery-lightbox/temple-carpe-koi.jpg',
-    alt: '',
-    width: 2500,
-    height: 1750,
-  },
-  {
-    src: '/gallery-lightbox/argaihizkia-affiche.jpg',
-    alt: '',
-    width: 2500,
-    height: 2900,
-  },
-  {
-    src: '/gallery-lightbox/amitie-lapin-paon.jpg',
-    alt: '',
-    width: 2500,
-    height: 2300,
-  },
-  {
-    src: '/gallery-lightbox/oeil-dragon-bleu.jpg',
-    alt: '',
-    width: 2500,
-    height: 1750,
-  },
-  {
-    src: '/gallery-lightbox/quetzacoaltl.jpg',
-    alt: '',
-    width: 2500,
-    height: 1800,
-  },
-];
+import usePreloadImages from '../hooks/usePreloadImages'
+import { draws } from '../data/draws'; // optimisation des perfs pour éviter le double import avec Gallery ?
 
 type GallerySliderProps = {
   selectedIdx: number;
-  galleryLength?: number;
   slideDuration?: number;
 };
 
-const arrowIconUri = '/gallery-lightbox/arrow.svg';
+const arrowIconUri = '/arrow.svg';
 
 const GallerySlider: React.FC<GallerySliderProps> = ({
   selectedIdx,
   slideDuration = 300,
 }) => {
-  // usePreloadImages(highQualityDraws.map(o => o.src));
+  // usePreloadImages(draws.map(o => o.src));
 
   const [activeIdx, setActiveIdx] = useState<number>(selectedIdx);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -93,14 +24,14 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
   const handlePrev = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setActiveIdx(getPrevIdx(highQualityDraws, activeIdx));
+      setActiveIdx(getPrevIdx(draws, activeIdx));
       setIsLoading(true);
     }, slideDuration);
   };
   const handleNext = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setActiveIdx(getNextIdx(highQualityDraws, activeIdx));
+      setActiveIdx(getNextIdx(draws, activeIdx));
       setIsLoading(true);
     }, slideDuration);
   };
@@ -136,7 +67,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
       >
         <Image
           className="size-full object-contain"
-          {...highQualityDraws[activeIdx]}
+          {...draws[activeIdx]}
           onLoad={handleImgLoad}
         />
       </div>

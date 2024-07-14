@@ -1,9 +1,9 @@
 {
     "translation": {
-        "menu": ["Home", "Galery", "For Sale", "About", "Contact"],
+        "menu": ["Home", "Gallery", "For Sale", "About", "Contact"],
         "home": {
-            "tagline": "<0>Bienvenue dans mon atelier, source de rêves crayonnés</0>",
-            "title": "Illustratrice Jeunesse / Fantasy / Bande dessinée"
+            "tagline": "Welcome to my studio,<0/> source of penciled dreams",
+            "title": "<0>Children's Illustrator</0> / Fantasy / <1>Comic</1>"
         },
         "projectSection": {
             "sectionName": ""
@@ -12,7 +12,7 @@
             "sectionName": ""
         },
         "aboutSection": {
-            "sectionName": "A propos"
+            "sectionName": ""
         }
     }
 }
