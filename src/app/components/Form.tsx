@@ -28,7 +28,7 @@ const ContactForm: React.FC = () => {
       className="flex flex-col gap-3 lg:gap-6 px-4 py-6 sm:p-8 lg:py-8 bg-gradient-to-tr from-primary-800/90 to-primary-800 border-2 outline-double outline-primary-800 text-white shadow-xl rounded-md"
     >
       <p className="text-center leading-3 max-md:leading-7">
-        <span className="block text-2xl xl:text-3xl font-bold">
+        <span className="block text-2xl 2xl:text-3xl font-bold">
           Intéressé(e) par un projet d'illustrations ?
         </span>
         <br />
