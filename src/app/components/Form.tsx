@@ -47,7 +47,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             required
             placeholder="name@outlook.fr"
-            className="p-2 rounded-md bg-primary-800 border-[1px] border-stone-500"
+            className="p-2 rounded-md bg-transparent border-[1px] border-stone-500"
           />
         </div>
         <div className="flex flex-col gap-1 text-sm">
@@ -60,7 +60,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             required
             placeholder="Text"
-            className="p-2 rounded-md bg-primary-800 border-[1px] border-stone-500"
+            className="p-2 rounded-md bg-transparent border-[1px] border-stone-500"
           />
         </div>
         <div className="flex flex-col gap-1 text-sm">
@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
             onChange={handleChange}
             required
             placeholder="Leave a comment..."
-            className="h-32 p-2 rounded-md bg-primary-800 border-[1px] border-stone-500"
+            className="h-32 p-2 rounded-md bg-transparent border-[1px] border-stone-500"
           ></textarea>
         </div>
       </div>

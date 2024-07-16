@@ -4,13 +4,47 @@
     "tagline": "Welcome to my studio,<0/> source of penciled dreams",
     "title": "<0>Children's Illustrator</0> / Fantasy / <1>Comic</1>"
   },
-  "projectSection": {
+  "gallery": {
+    "alt": {
+      "1": "TartanpionEN",
+      "2": "",
+      "3": "PoulichetteEN",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": "",
+      "16": "",
+      "17": "",
+      "18": "",
+      "19": "",
+      "20": "",
+      "21": "",
+      "22": "",
+      "23": "",
+      "24": "",
+      "25": "",
+      "26": "",
+      "27": "",
+      "28": "",
+      "29": "",
+      "30": ""
+    }
+  },
+  "projects": {
     "sectionName": ""
   },
-  "skillSection": {
+  "about": {
     "sectionName": ""
   },
-  "aboutSection": {
+  "contact": {
     "sectionName": ""
   }
 }

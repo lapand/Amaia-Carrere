@@ -1,37 +1,45 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
 import usePreloadImages from '../hooks/usePreloadImages'
-import { draws } from '../data/draws'; // optimisation des perfs pour éviter le double import avec Gallery ?
+
+type DrawType = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
 
 type GallerySliderProps = {
-  selectedIdx: number;
+  activeDraw: DrawType;
   slideDuration?: number;
+  changePrevIdx: () => void;
+  changeNextIdx: () => void;
 };
 
 const arrowIconUri = '/arrow.svg';
 
 const GallerySlider: React.FC<GallerySliderProps> = ({
-  selectedIdx,
+  activeDraw,
   slideDuration = 300,
+  changePrevIdx,
+  changeNextIdx,
 }) => {
   // usePreloadImages(draws.map(o => o.src));
 
-  const [activeIdx, setActiveIdx] = useState<number>(selectedIdx);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handlePrev = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setActiveIdx(getPrevIdx(draws, activeIdx));
+      changePrevIdx();
       setIsLoading(true);
     }, slideDuration);
   };
   const handleNext = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setActiveIdx(getNextIdx(draws, activeIdx));
+      changeNextIdx();
       setIsLoading(true);
     }, slideDuration);
   };
@@ -67,7 +75,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
       >
         <Image
           className="size-full object-contain"
-          {...draws[activeIdx]}
+          {...activeDraw}
           onLoad={handleImgLoad}
         />
       </div>

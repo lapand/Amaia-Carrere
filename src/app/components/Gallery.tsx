@@ -3,26 +3,38 @@ import GalleryItem from './GalleryItem';
 import ModalWithTransition from './ModalWithTransition';
 import GallerySlider from './GallerySlider';
 import { draws } from '../data/draws';
+import { useTranslation } from 'react-i18next';
+import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-console.log(draws);
+  const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const { t } = useTranslation('common');
+
+  const imgAltObj: { [key: string]: string } = t('gallery.alt', {
+    returnObjects: true,
+  });
 
   const openModal = (imgIdx: number) => {
     setIsModalOpened(true);
-    setSelectedIdx(imgIdx);
+    setActiveIdx(imgIdx);
   };
   const closeModal = () => {
     setIsModalOpened(false);
   };
+  const changePrevIdx = () => {
+    setActiveIdx(getPrevIdx(draws, activeIdx as number));
+  }
+  const changeNextIdx = () => {
+    setActiveIdx(getNextIdx(draws, activeIdx as number));
+  }
 
   const galleryItems = draws.map((draw, i: number) => (
     <GalleryItem
       key={i}
       imgIdx={i}
       src={draw.src}
-      alt={draw.alt}
+      alt={imgAltObj[(i + 1).toString()]}
       width={draw.width}
       height={draw.height}
       openModal={openModal}
@@ -36,7 +48,16 @@ console.log(draws);
         {galleryItems}
       </div>
       <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
-        {selectedIdx !== null && <GallerySlider selectedIdx={selectedIdx} />}
+        {activeIdx !== null && (
+          <GallerySlider
+            activeDraw={{
+              ...draws[activeIdx],
+              alt: imgAltObj[(activeIdx + 1).toString()],
+            }}
+            changePrevIdx={changePrevIdx}
+            changeNextIdx={changeNextIdx}
+          />
+        )}
       </ModalWithTransition>
     </div>
   );

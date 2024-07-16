@@ -4,13 +4,47 @@
     "tagline": "Bienvenue dans mon atelier,<0/> source de rêves crayonnés",
     "title": "<0>Illustratrice Jeunesse</0> / Fantasy / <1>Bande dessinée</1>"
   },
-  "projectSection": {
+  "gallery": {
+    "alt": {
+      "1": "Tartanpion",
+      "2": "",
+      "3": "Poulichette",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": "",
+      "16": "",
+      "17": "",
+      "18": "",
+      "19": "",
+      "20": "",
+      "21": "",
+      "22": "",
+      "23": "",
+      "24": "",
+      "25": "",
+      "26": "",
+      "27": "",
+      "28": "",
+      "29": "",
+      "30": ""
+    }
+  },
+  "projects": {
     "sectionName": ""
   },
-  "skillSection": {
+  "about": {
     "sectionName": ""
   },
-  "aboutSection": {
-    "sectionName": "A propos"
+  "contact": {
+    "sectionName": ""
   }
 }
