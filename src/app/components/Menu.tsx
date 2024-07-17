@@ -55,24 +55,29 @@ const Menu: React.FC = () => {
       scroller.scrollTo(sectionId, {
         duration: 800,
         delay: 0,
-        smooth: 'easeInOutQuart'
+        smooth: 'easeInOutQuart',
       });
+      setTimeout(() => {
+        window.scrollBy(0, 30);
+      }, 900);
     };
 
-    const liJSX = menuArray.map((item, index) => {
+    const liJSX = menuArray.map((item, i) => {
       return(
         <li key={item}>
           <Link 
-            to={sectionNames[index]} 
+            to={sectionNames[i]} 
             smooth={true} 
             duration={800} 
             onClick={() => {
-              scrollToSection(sectionNames[index]);
+              scrollToSection(sectionNames[i]);
               windowWidth <= menuIconBreakpoint && handleClick();
             }}
             className="nav-link"
             activeClass="active"
             spy={true}
+            aria-label={`Go to ${sectionNames[i]}`}
+            tabIndex={0}
           >
             {item}
           </Link>

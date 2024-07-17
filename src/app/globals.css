@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -38,17 +39,21 @@ strong {
   cursor: pointer;
   position: relative;
 }
+.nav-link:focus-visible {
+  outline: 2px solid #000;
+}
 .nav-link::after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 100%;
   height: 2px;
   background-color: black;
   transform: scale(0);
-  transition: transform .2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
-.nav-link:hover::after, .active::after {
+.nav-link:hover::after,
+.active::after {
   transform: scale(1);
 }
 .out-view {
@@ -60,6 +65,23 @@ strong {
 }
 
 @layer utilities {
+  .licorice-font {
+    font-family: 'Licorice', cursive;
+  }
+  .inspiration-font {
+    font-family: 'Inspiration', cursive;
+  }
+  .luckiest-guy {
+    font-family: 'Luckiest Guy', cursive;
+  }
+  .londrina-shadow {
+    font-family: 'Londrina Shadow', sans-serif;
+  }
+  .calligraffitti-regular {
+    font-family: "Calligraffitti", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -71,8 +93,7 @@ strong {
     @apply top-[var(--header-height)] right-0;
   }
   .section-padding {
-    @apply 
-      pb-2 px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
+    @apply pb-2 px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];
@@ -80,38 +101,39 @@ strong {
   .dwarf-position {
     top: calc(var(--about-section-mt) + var(--header-height));
   }
-  .licorice-font {
-    font-family: "Licorice", cursive;
-  }
-  .inspiration-font {
-    font-family: "Inspiration", cursive;
-  }
-  .luckiest-guy {
-    font-family: "Luckiest Guy", cursive;
-  }
-  .londrina-shadow {
-    font-family: "Londrina Shadow", sans-serif;
-  }
   .main-bg {
-    background-image: url("/bg-toile.jpg");
+    background-image: url('/bg-toile.jpg');
     background-size: contain;
   }
   .header-icon {
-    @apply w-10 aspect-square p-3 lg:w-11 2xl:w-12 cursor-pointer transition-transform hover:scale-110;
+    @apply w-11 2xl:w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
   }
   .language-icon {
-    @apply w-9 aspect-square p-2 lg:w-10 2xl:w-12 cursor-pointer transition-transform hover:scale-110;
+    @apply w-10 lg:w-10 2xl:w-12 aspect-square p-2 cursor-pointer transition-transform hover:scale-110;
   }
   .black-to-color {
-    @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100
+    @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
   }
   .btn-shadow {
-    box-shadow: 3px 5px 8px 0px rgba(0, 0, 0, .5);
+    box-shadow: 3px 5px 8px 0px rgba(0, 0, 0, 0.5);
   }
   .shadow-legend {
-    box-shadow: 2px 3px 6px 3px rgba(0, 0, 0, .25);
+    box-shadow: 2px 3px 6px 3px rgba(0, 0, 0, 0.25);
   }
   .shine-bg {
-    background-image: linear-gradient(120deg, rgba(255,255,255, 0) 30%, rgba(255,255,255, .8), rgba(255,255,255, 0) 70%);
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+  }
+  .dwarf-left {
+    @apply max-lg:translate-x-[-40%];
+    /* transform: translateX(-40%); */
+  }
+  .dwarf-right {
+    @apply max-lg:translate-x-[40%];
+    /* transform: translateX(40%); */
   }
 }

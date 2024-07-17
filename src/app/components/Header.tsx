@@ -1,6 +1,7 @@
 'use client';
 
-import { Link, scroller } from 'react-scroll';
+import { Link as ScrollLink, scroller } from 'react-scroll';
+import Link from 'next/link';
 import Image from 'next/image';
 import Menu from './Menu';
 import { useState } from 'react';
@@ -88,25 +89,26 @@ const Header: React.FC = () => {
   });
 
   return (
-    <header className="fixed z-10 w-full header-height flex items-center justify-around sm:justify-between md:px-6 lg:px-16 xl:px-28 bg-white border-b border-slate-500">
-      <h1 className="min-w-40 w-[15%] max-w-64 cursor-pointer">
-        <Link
-          to="Home"
-          smooth={true}
-          duration={800}
-          onClick={() => scrollToSection('Home')}
-          aria-label="Homepage"
-        >
-          <Image
-            src="/amaia-logo.png"
-            alt="Site logo - Amaia Carrere"
-            width={200}
-            height={200}
-            className="size-full"
-          />
-        </Link>
-      </h1>
-      <div className="flex items-center gap-6 md:gap-12 lg:gap-16 xl:gap-24">
+    <header className="fixed z-10 w-full header-height flex items-center justify-between px-6 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
+      <div className="h-full flex items-center gap-10 lg:gap-12 2xl:gap-40">
+        <h1 className="h-4/5 min-w-40 cursor-pointer">
+          <ScrollLink
+            to="Home"
+            smooth={true}
+            duration={800}
+            onClick={() => scrollToSection('Home')}
+            aria-label="Homepage"
+            tabIndex={0}
+          >
+            <Image
+              src="/amaia-logo.png"
+              alt="Site logo - Amaia Carrere"
+              width={483}
+              height={141}
+              className="size-full"
+            />
+          </ScrollLink>
+        </h1>
         <div className="relative">
           <button
             className="block header-icon black-to-color"
@@ -123,36 +125,44 @@ const Header: React.FC = () => {
           </button>
           {JSXLanguages}
         </div>
+      </div>
+      <div className="flex items-center max-lg:flex-row-reverse gap-6 md:gap-12 lg:gap-16 xl:gap-24">
         <div>
           <Menu />
         </div>
-        <div className="flex items-center sm:gap-2">
+        <div className="max-sm:absolute max-sm:left-2 max-sm: top-full flex items-center sm:gap-2">
           <div className="header-icon black-to-color">
-            <Image
-              src="/insta-icon.svg"
-              alt="instagram-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
+            <Link href={''}>
+              <Image
+                src="/insta-icon.svg"
+                alt="instagram-icon"
+                width={100}
+                height={100}
+                className="size-full"
+              />
+            </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Image
-              src="/facebook-icon.svg"
-              alt="facebook-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
+            <Link href={''}>
+              <Image
+                src="/facebook-icon.svg"
+                alt="facebook-icon"
+                width={100}
+                height={100}
+                className="size-full"
+              />
+            </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Image
-              src="/pinterest-icon.svg"
-              alt="pinterest-icon"
-              width={100}
-              height={100}
-              className="size-full"
-            />
+            <Link href={''}>
+              <Image
+                src="/pinterest-icon.svg"
+                alt="pinterest-icon"
+                width={100}
+                height={100}
+                className="size-full"
+              />
+            </Link>
           </div>
         </div>
       </div>
