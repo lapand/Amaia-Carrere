@@ -31,6 +31,7 @@ const config: Config = {
       },
       animation: {
         shine: "shine 2s linear",
+        bounce2: "bounce2 .8s 1 forwards"
       },
       keyframes: {
         shine: {
@@ -38,7 +39,26 @@ const config: Config = {
           '20%': {left: '100%'},
           '100%': {left: '100%'},
         },
-      }
+        bounce2: {
+            '0%': {
+                transform: "translate(50%, 0)",
+                "animation-timing-function": "cubic-bezier(0.8,0,1,1)",
+            },
+            '50%': {
+                transform: "translate(50%, 25%)",
+                "animation-timing-function": "cubic-bezier(0,0,0.2,1)",
+            },
+            '100%': {
+                transform: "translate(50%, 0)",
+            },
+        },
+      },
+      backgroundSize: {
+        '28%': '28%',
+        '60%': '60%',
+        '70%': '70%',
+        '80%': '80%',
+      },
     },
   },
   plugins: [],

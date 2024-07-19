@@ -4,7 +4,7 @@ import ModalWithTransition from './ModalWithTransition';
 import GallerySlider from './GallerySlider';
 import { draws } from '../data/draws';
 import { useTranslation } from 'react-i18next';
-import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
+import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);

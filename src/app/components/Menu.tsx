@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Link, scroller } from 'react-scroll';
+import { Link } from 'react-scroll';
+import { scrollToSection } from '../modules/utils/scrollTo';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
 
@@ -51,16 +52,7 @@ const Menu: React.FC = () => {
       setIsSideMenuOpened(isSideMenuOpened => !isSideMenuOpened);
     }
 
-    const scrollToSection = (sectionId: string) => {
-      scroller.scrollTo(sectionId, {
-        duration: 800,
-        delay: 0,
-        smooth: 'easeInOutQuart',
-      });
-      setTimeout(() => {
-        window.scrollBy(0, 30);
-      }, 900);
-    };
+
 
     const liJSX = menuArray.map((item, i) => {
       return(

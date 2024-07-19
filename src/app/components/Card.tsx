@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import ForSaleSlider from './ForSaleSlider';
 import { CardType } from './ForSale';
-import { getPrevIdx, getNextIdx } from '../modules/array-utils/getIndex';
+import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 
 const Card: React.FC<CardType> = ({
   headline,

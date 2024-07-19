@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import usePreloadImages from '../hooks/usePreloadImages'
+import usePreloadImages from '../hooks/usePreloadImages';
 
 type DrawType = {
   src: string;
@@ -16,7 +16,7 @@ type GallerySliderProps = {
   changeNextIdx: () => void;
 };
 
-const arrowIconUri = '/arrow.svg';
+const arrowIconUri = '/test-arrow.png';
 
 const GallerySlider: React.FC<GallerySliderProps> = ({
   activeDraw,
@@ -55,14 +55,14 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 absolute"></div>
         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primary-300 absolute"></div>
       </div>
-      <p className='luckiest-guy text-4xl'>Loading...</p>
+      <p className="luckiest-guy text-4xl">Loading...</p>
     </div>
   );
 
   return (
     <div className="h-full flex justify-between">
       <button
-        className="aspect-square w-32 rotate-180 bg-no-repeat bg-[length:50px_50px] bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
+        className="aspect-square w-32 lg:w-44 rotate-180 scale-y-[-1] bg-70% bg-no-repeat bg-center hover:bg-black/30 duration-300 cursor-pointer"
         style={{ backgroundImage: `url(${arrowIconUri})` }}
         onClick={() => handlePrev()}
         aria-label="previous image"
@@ -80,11 +80,17 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
         />
       </div>
       <button
-        className="aspect-square w-32 bg-[length:50px_50px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
+        className="aspect-square w-32 lg:w-44 bg-70% bg-no-repeat bg-center hover:bg-black/30 duration-300 cursor-pointer"
         style={{ backgroundImage: `url(${arrowIconUri})` }}
         onClick={() => handleNext()}
         aria-label="next image"
       ></button>
+      {/* <button
+        className="aspect-square w-32 bg-[length:50px_50px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
+        style={{ backgroundImage: `url(${arrowIconUri})` }}
+        onClick={() => handleNext()}
+        aria-label="next image"
+      ></button> */}
     </div>
   );
 };

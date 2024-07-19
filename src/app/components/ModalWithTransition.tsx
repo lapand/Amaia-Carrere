@@ -8,7 +8,7 @@ type ModalProps = {
   duration?: number,
 };
 
-const closeIconUri = '/cross.svg';
+const closeIconUri = '/pencil-cross.png';
 
 const ModalWithTransition: React.FC<ModalProps> = ({
   children,
@@ -28,7 +28,7 @@ const ModalWithTransition: React.FC<ModalProps> = ({
     >
       <div className={`h-full bg-gray-600 bg-opacity-80`}>
         <button
-          className="fixed aspect-square w-32 right-0 top-0 z-10 bg-[length:40px_40px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
+          className="fixed aspect-square w-32 lg:w-44 right-0 top-0 z-10 bg-28% bg-no-repeat bg-center transition-transform hover:scale-110 duration-300 cursor-pointer"
           style={{ backgroundImage: `url(${closeIconUri})` }}
           onClick={handleClose}
           aria-label="Close the lightbox"
