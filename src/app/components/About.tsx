@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-// import ScrollAnimatedComp from './ScrollAnimatedComp';
+import { useTranslation, Trans } from 'react-i18next';
 
 const aboutCtnHeight = 200;
 const dwarfCtnTop = 40;
@@ -16,6 +16,8 @@ const About: React.FC = () => {
   const bubble1Ref = useRef<HTMLDivElement | null>(null);
   const bubble2Ref = useRef<HTMLDivElement | null>(null);
   const dwarfRef = useRef<HTMLDivElement | null>(null);
+
+  useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -109,10 +111,10 @@ const About: React.FC = () => {
           style={{ top: `${bubble1CtnTop}vh`, height: `${bubbleHeight}vh` }}
         >
           <p className="w-[88%] 2xl:w-[85%] mb-8 sm:mb-10 licorice-font text-3xl xl:text-4xl font-semibold text-center text-pretty">
-            Je m'appelle Amaia et je suis dessinatrice.
-            <br />
-            Je fais des illustrations jeunesse, fantasy ainsi que des BD
-            humoristiques.
+            <Trans
+              i18nKey="common:about.bubble1"
+              components={{ break: <br /> }}
+            />
           </p>
         </div>
       </div>
@@ -129,8 +131,7 @@ const About: React.FC = () => {
           style={{ top: `${bubble2Top}vh`, height: `${bubbleHeight}vh` }}
         >
           <p className="w-[70%] h-[30%] mb-16 licorice-font text-3xl xl:text-4xl font-semibold text-center">
-            Je suis bascophone, et j'aime illustrer également ce qui a un
-            rapport avec la mythologie et la culture basque.
+            <Trans i18nKey="common:about.bubble2" />
           </p>
         </div>
       </div>

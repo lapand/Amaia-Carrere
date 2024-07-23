@@ -1,8 +1,8 @@
 {
   "menu": ["Accueil", "Galerie", "En vente", "A propos", "Contact"],
   "home": {
-    "tagline": "Bienvenue dans mon atelier,<0/> source de rêves crayonnés",
-    "title": "<0>Illustratrice Jeunesse</0> / Fantasy / <1>Bande dessinée</1>"
+    "tagline": "Bienvenue dans mon atelier,<br/> source de rêves crayonnés",
+    "title": "<strong>Illustratrice Jeunesse</strong> / Fantasy / <strong>Bande dessinée</strong>"
   },
   "gallery": {
     "alt": {
@@ -38,11 +38,110 @@
       "30": ""
     }
   },
-  "projects": {
-    "sectionName": ""
-  },
+  "products": [
+    {
+      "title": "Lunatique",
+      "card": {
+        "headline": "Lunatique est un recueil de BD humoristiques et de gags qui se passent en majorité dans l'espace.",
+        "content": "Le crowdfunding pour Lunatique, le fanzine de l'espace est disponible.",
+        "gallery": [
+          {
+            "uri": "/forSale/lunatique/lunatique1.png",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique2.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique3.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique4.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique5.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique6.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique7.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique8.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          }
+        ]
+      },
+      "btnText": "Vers le site marchand"
+    },
+    {
+      "title": "Ttinka",
+      "card": {
+        "headline": "Livre-CD pour les tout petits de 0 à 6 ans",
+        "content": "Les textes sont d'Arantxa Hirigoyen, la musique de Philippe Albor, et j'ai fait les illustrations :)\n\nProduit par la maison de disque Belarri, de Matthieu Haramboure.\nTtinka est maintenant disponible en ligne.",
+        "imgFormat": "square",
+        "gallery": [
+          {
+            "uri": "/forSale/ttinka/ttinka1.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka2.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka3.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka4.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka5.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          }
+        ]
+      },
+      "btnText": "Vers le site marchand"
+    }
+  ],
   "about": {
-    "sectionName": ""
+    "bubble1": "Je m'appelle Amaia et je suis dessinatrice.<br />Je fais des illustrations jeunesse, fantasy ainsi que des BD humoristiques.",
+    "bubble2": "Je suis bascophone, et j'aime illustrer également ce qui a un rapport avec la mythologie et la culture basque."
   },
   "contact": {
     "sectionName": ""

@@ -1,8 +1,8 @@
 {
   "menu": ["Hasiera", "Galeria", "Salgai", "Honi buruz", "Kontaktua"],
   "home": {
-    "tagline": "Ongi etorri nire tailerrera,<0/> amets marraztuen iturrira",
-    "title": "<0>Haur Ilustratzailea</0> / Fantasia / <1>Komikia</1>"
+    "tagline": "Ongi etorri nire tailerrera,<br/> amets marraztuen iturrira",
+    "title": "<strong>Haur Ilustratzailea</strong> / Fantasia / <strong>Komikia</strong>"
   },
   "gallery": {
     "alt": {
@@ -38,11 +38,110 @@
       "30": ""
     }
   },
-  "projects": {
-    "sectionName": ""
-  },
+  "products": [
+    {
+      "title": "Lunatique",
+      "card": {
+        "headline": "Lunatique espazioan gertatzen diren umorezko komikien eta txantxen bilduma da.",
+        "content": "Lunatique, espazio-fanzinea, crowdfundinga ekainaren 20an hasiko da!!\n\nUluleko esteka nire sare sozialetan eta webgunean argitaratuko da egun horretan.",
+        "gallery": [
+          {
+            "uri": "/forSale/lunatique/lunatique1.png",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique2.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique3.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique4.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique5.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique6.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique7.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/lunatique/lunatique8.jpg",
+            "alt": "lunatique fanzine",
+            "width": 850,
+            "height": 850
+          }
+        ]
+      },
+      "btnText": "Saltokira joan"
+    },
+    {
+      "title": "Ttinka",
+      "card": {
+        "headline": "0 eta 6 urte bitarteko txikientzako liburu-CDa",
+        "content": "Testuak Arantxa Hirigoyenek idatzi ditu, musika Philippe Alborrek, eta ni ilustratu ditut :)\n\nMatthieu Haramboureren Belarri diskoetxearen produkzioa.\nTtinka azaroaren 15etik online dago Belarri webgunean.",
+        "imgFormat": "square",
+        "gallery": [
+          {
+            "uri": "/forSale/ttinka/ttinka1.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka2.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka3.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka4.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          },
+          {
+            "uri": "/forSale/ttinka/ttinka5.jpg",
+            "alt": "livre Ttinka",
+            "width": 850,
+            "height": 850
+          }
+        ]
+      },
+      "btnText": "Saltokira joan"
+    }
+  ],
   "about": {
-    "sectionName": ""
+    "bubble1": "Nire izena Amaia da eta ilustratzailea naiz.<br />Haurrentzako ilustrazioak, fantasiazko artelanak eta umorezko komikiak sortzen ditut.",
+    "bubble2": "Euskalduna naiz, eta euskal mitologiarekin eta kulturarekin zerikusia duten gauzak ilustratzea ere gustatzen zait."
   },
   "contact": {
     "sectionName": ""
