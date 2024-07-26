@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
@@ -45,8 +46,12 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         alt={alt}
         width={width}
         height={height}
+        // sizes=""
+        // quality={100}
+        // placeholder="blur"
+        // blurDataURL={`${src}.blurDataURL`}
         className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
-      />
+      />  
     </div>
   );
 };

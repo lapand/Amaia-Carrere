@@ -114,9 +114,6 @@ strong {
   .black-to-color {
     @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
   }
-  .btn-shadow {
-    box-shadow: 3px 5px 8px 0px rgba(0, 0, 0, 0.5);
-  }
   .shadow-legend {
     box-shadow: 2px 3px 6px 3px rgba(0, 0, 0, 0.25);
   }
@@ -130,11 +127,12 @@ strong {
   }
   .dwarf-left {
     @apply max-lg:translate-x-[-40%];
-    /* transform: translateX(-40%); */
   }
   .dwarf-right {
     @apply max-lg:translate-x-[40%];
-    /* transform: translateX(40%); */
+  }
+  .transform-onclick {
+    transform: scale(0.99) rotateX(10deg) rotateY(2deg) translateY(2px);
   }
 }
 

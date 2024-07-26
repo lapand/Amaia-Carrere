@@ -8,7 +8,7 @@ import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 import usePreloadImages from '../hooks/usePreloadImages';
 
 const Gallery: React.FC = () => {
-  usePreloadImages(draws.map((o) => o.src));
+  // usePreloadImages(draws.map((o) => o.src));
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const { t } = useTranslation('common');
