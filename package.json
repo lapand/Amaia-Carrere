@@ -11,8 +11,10 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@types/react-scroll": "^1.8.10",
+    "google-auth-library": "^9.12.0",
     "i18next": "^23.11.5",
     "next": "14.2.3",
+    "nodemailer": "^6.9.14",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

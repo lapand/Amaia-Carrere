@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import Loader from './Loader';
 
 type DrawType = {
   src: string;
@@ -46,21 +47,11 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
     setIsTransitioning(false);
   };
 
-  const loader = (
-    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex gap-16">
-      <div className="relative flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 absolute"></div>
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-primary-300 absolute"></div>
-      </div>
-      <p className="luckiest-guy text-4xl">Loading...</p>
-    </div>
-  );
-
   return (
     <div className="h-full flex justify-between">
-      {/* {isLoading && loader} */}
+      {isLoading && <Loader width={100} height={80} />}
       <button
-        className="aspect-square rotate-180 w-36 bg-[length:45px_45px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 hover:bg-black/30 duration-300 cursor-pointer"
+        className="aspect-square rotate-180 w-36 bg-[length:45px_45px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
         style={{ backgroundImage: `url(${arrowIconUri})` }}
         onClick={() => handlePrev()}
         aria-label="next image"
@@ -71,13 +62,14 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
         }`}
       >
         <Image
-          className="size-full object-contain"
           {...activeDraw}
+          quality={100}
+          className="size-full object-contain"
           onLoad={handleImgLoad}
         />
       </div>
       <button
-        className="aspect-square w-36 bg-[length:45px_45px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 hover:bg-black/30 duration-300 cursor-pointer"
+        className="aspect-square w-36 bg-[length:45px_45px] bg-no-repeat bg-center transition-opacity opacity-60 hover:opacity-100 duration-300 cursor-pointer"
         style={{ backgroundImage: `url(${arrowIconUri})` }}
         onClick={() => handleNext()}
         aria-label="next image"

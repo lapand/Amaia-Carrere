@@ -1,8 +1,8 @@
 {
-  "menu": ["Hasiera", "Galeria", "Salgai", "Honi buruz", "Kontaktua"],
+  "menu": ["Harrera", "Galeria", "Salgai", "Honi buruz", "Kontaktua"],
   "home": {
-    "tagline": "Ongi etorri nire tailerrera,<br/> amets marraztuen iturrira",
-    "title": "<strong>Haur Ilustratzailea</strong> / Fantasia / <strong>Komikia</strong>"
+    "tagline": "Ongi etorri,<br/>nire irudimenean",
+    "title": "Fantasia eta <strong>haurrendako ilustratzailea</strong>, <strong>komiki</strong> umoristikoak"
   },
   "gallery": {
     "alt": {
@@ -40,10 +40,10 @@
   },
   "products": [
     {
-      "title": "Lunatique",
+      "title": "Ilunabar",
       "card": {
-        "headline": "Lunatique espazioan gertatzen diren umorezko komikien eta txantxen bilduma da.",
-        "content": "Lunatique, espazio-fanzinea, crowdfundinga ekainaren 20an hasiko da!!\n\nUluleko esteka nire sare sozialetan eta webgunean argitaratuko da egun horretan.",
+        "headline": "Ilunabar, komiki umoristiko bat da, pasatzen dena espazioan.",
+        "content": "Marrazkia oso minimalista eta simplea da, mundu absurdo eta poetiko batean.\n\nIlunabarendako crowdfunding-a prest da ! Aurkitu dezakezue behereko loturan.",
         "gallery": [
           {
             "uri": "/forSale/lunatique/lunatique1.png",
@@ -95,13 +95,13 @@
           }
         ]
       },
-      "btnText": "Saltokira joan"
+      "btnText": "Erosgai hemen"
     },
     {
       "title": "Ttinka",
       "card": {
-        "headline": "0 eta 6 urte bitarteko txikientzako liburu-CDa",
-        "content": "Testuak Arantxa Hirigoyenek idatzi ditu, musika Philippe Alborrek, eta ni ilustratu ditut :)\n\nMatthieu Haramboureren Belarri diskoetxearen produkzioa.\nTtinka azaroaren 15etik online dago Belarri webgunean.",
+        "headline": "0 eta 6 urte arteko haurrendako da Ttinka disko liburua",
+        "content": "Testuak Arantxa Hirigoyenek ditu idatzi, Philippe Alborrek musika, eta nik marrazkia.\n\nMatthieu Haramboure Belarri diskoetxearen sortzaileak du produzituta.\nTtinka erosgai da interneten bidez.",
         "imgFormat": "square",
         "gallery": [
           {
@@ -140,10 +140,27 @@
     }
   ],
   "about": {
-    "bubble1": "Nire izena Amaia da eta ilustratzailea naiz.<br />Haurrentzako ilustrazioak, fantasiazko artelanak eta umorezko komikiak sortzen ditut.",
-    "bubble2": "Euskalduna naiz, eta euskal mitologiarekin eta kulturarekin zerikusia duten gauzak ilustratzea ere gustatzen zait."
+    "bubble1": "Amaia deitzen naiz, marrazkilaria naiz,<br />haurrendako ilustrazioak egiten ditut, bai eta ere fantastikoak, eta komiki umoristikoak.",
+    "bubble2": "Euskalduna naiz, eta maite dut euskal mitologiari buruzko marrazkiak egitea ere bai."
   },
   "contact": {
-    "sectionName": ""
+    "form": {
+      "formTitle": "Interesatua bazerete <strong>ilustrazio</strong> ala <strong>komiki</strong> proiektu bat egitea ?",
+      "formSubTitle": "Harremanetan sartzeko nirekin hemen egin dezakezue",
+      "input1": {
+        "label": "Email:",
+        "placeholder": "email@outlook.com"
+      },
+      "input2": {
+        "label": "Gaia:",
+        "placeholder": "..."
+      },
+      "input3": {
+        "label": "Mezua:",
+        "placeholder": "Sartu zure mezua..."
+      },
+      "submit": "Igorri"
+    },
+    "copyright": "2024 - <strong>Amaia Carrere</strong> - Auteur <strong>illustratrice</strong> - Tous droits réservés"
   }
 }

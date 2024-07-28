@@ -78,7 +78,7 @@ strong {
     font-family: 'Londrina Shadow', sans-serif;
   }
   .calligraffitti-regular {
-    font-family: "Calligraffitti", cursive;
+    font-family: 'Calligraffitti', cursive;
     font-weight: 400;
     font-style: normal;
   }
@@ -144,7 +144,7 @@ strong {
   left: 50%;
   width: 1rem;
   height: 1rem;
-  margin-left: -.5rem;
+  margin-left: -0.5rem;
   border-left: 2px solid #1f2937;
   border-bottom: 2px solid #1f2937;
   -webkit-transform: rotateZ(-45deg);
@@ -176,9 +176,9 @@ strong {
 
 @media screen and (max-width: 1024px) {
   .scroll-down-btn span {
-    width: .8rem;
-    height: .8rem;
-    margin-left: -.4rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    margin-left: -0.4rem;
   }
   @keyframes sdb {
     0% {
@@ -196,3 +196,46 @@ strong {
 }
 
 /**** End **** Scroll down button ****/
+
+  /*  begin rect css */
+  
+  .rect {
+    margin: 100px auto;
+    text-align: center;
+    font-size: 10px;
+   }
+   
+   .rect>div {
+    background-color: #ffffff;
+    height: 100%;
+    width: 8%;
+    display: inline-block;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+   }
+   
+   .rect .rect2 {
+    animation-delay: -1.1s;
+   }
+   
+   .rect .rect3 {
+    animation-delay: -1.0s;
+   }
+   
+   .rect .rect4 {
+    animation-delay: -0.9s;
+   }
+   
+   .rect .rect5 {
+    animation-delay: -0.8s;
+   }
+   
+   @keyframes sk-stretchdelay {
+    0%,
+    40%,
+    100% {
+     transform: scaleY(0.4);
+    }
+    20% {
+     transform: scaleY(1.0);
+    }
+   }

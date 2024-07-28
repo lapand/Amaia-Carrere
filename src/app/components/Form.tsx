@@ -2,8 +2,11 @@ import Button from './Button';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactSchema, TcontactSchema } from '../schemas/formSchema';
+import { useTranslation, Trans } from 'react-i18next';
 
 const ContactForm: React.FC = () => {
+  const { t } = useTranslation('common');
+
   const {
     register,
     handleSubmit,
@@ -56,21 +59,21 @@ const ContactForm: React.FC = () => {
     >
       <p className="text-center leading-3 max-md:leading-7">
         <span className="block text-2xl 2xl:text-3xl font-bold">
-          Intéressé(e) par un projet d'illustrations ?
+          <Trans i18nKey="common:contact.form.formTitle" components={{ strong: <strong /> }} />
         </span>
         <br />
         <span className="text-base xl:text-lg text-stone-300">
-          Contactez moi par email ou téléphone
+          {t('contact.form.formSubTitle')}
         </span>
       </p>
       <div className="flex flex-col gap-2 xl:gap-4">
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">{t('contact.form.input1.label')}</label>
           <input
             {...register('email')}
             type="email"
             id="email"
-            placeholder="name@outlook.fr"
+            placeholder={t('contact.form.input1.placeholder')}
             className="p-2 rounded-md bg-transparent border-[1px] border-stone-500"
             aria-invalid={errors.email ? 'true' : 'false'}
             aria-describedby={
@@ -82,12 +85,12 @@ const ContactForm: React.FC = () => {
           )}
         </div>
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="subject">Subject:</label>
+          <label htmlFor="subject">{t('contact.form.input2.label')}</label>
           <input
             {...register('subject')}
             type="text"
             id="subject"
-            placeholder="Text"
+            placeholder={t('contact.form.input2.placeholder')}
             className="p-2 rounded-md bg-transparent border-[1px] border-stone-500"
             aria-invalid={errors.subject ? 'true' : 'false'}
             aria-describedby={
@@ -99,11 +102,11 @@ const ContactForm: React.FC = () => {
           )}
         </div>
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="message">Message:</label>
+          <label htmlFor="message">{t('contact.form.input3.label')}</label>
           <textarea
             {...register('content')}
             id="message"
-            placeholder="Leave a comment..."
+            placeholder={t('contact.form.input3.placeholder')}
             className="h-32 p-2 rounded-md bg-transparent border-[1px] border-stone-500"
             aria-invalid={errors.content ? 'true' : 'false'}
             aria-describedby={
@@ -121,7 +124,7 @@ const ContactForm: React.FC = () => {
           disabled={isSubmitting}
           className="disabled:bg-none disabled:bg-gray-500"
         >
-          Envoyer
+          {t('contact.form.submit')}
         </Button>
       </div>
     </form>

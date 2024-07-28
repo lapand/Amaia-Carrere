@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import ContactForm from './Form';
+import { Trans, useTranslation } from 'react-i18next';
 
 const Contact: React.FC = () => {
+
+  useTranslation();
+
   return (
     <div className="flex-1 flex flex-col mt-4 lg:mt-12 xl:mt-16">
       <div className="flex-1 w-4/5 mx-auto flex flex-col gap-5">
@@ -35,7 +39,7 @@ const Contact: React.FC = () => {
                 style={{ verticalAlign: 'sub' }}
               />
             </span>
-            2024 - Amaia Carrere - Auteur illustratrice - Tous droits réservés
+            <Trans i18nKey="common:contact.copyright" components={{ strong: <strong /> }} />
           </p>
         </footer>
       </div>

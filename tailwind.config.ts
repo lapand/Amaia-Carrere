@@ -62,7 +62,7 @@ const config: Config = {
       boxShadow: {
         btn: '3px 5px 8px 0px rgba(0, 0, 0, 0.5)',
         'active-btn': '2px 3px 5px 0px rgba(0, 0, 0, 0.5)',
-      }
+      },
     },
   },
   plugins: [],

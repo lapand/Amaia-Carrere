@@ -43,7 +43,7 @@
       "title": "Lunatique",
       "card": {
         "headline": "Lunatique is a collection of humorous comics and gags, mostly set in space.",
-        "content": "The crowdfunding for Lunatique, the space fanzine, will start on June 20th!!\n\nThe Ulule link will be shared on my social media and on the website that day.",
+        "content": "In a minimalist and naïve graphic style, the characters evolve in an absurd and poetic universe.\n\nThe crowdfunding for Lunatique, the space fanzine, is now available.",
         "gallery": [
           {
             "uri": "/forSale/lunatique/lunatique1.png",
@@ -144,6 +144,23 @@
     "bubble2": "I am a Basque speaker, and I also enjoy illustrating things related to Basque mythology and culture."
   },
   "contact": {
-    "sectionName": ""
+    "form": {
+      "formTitle": "Interested in an <strong>illustration</strong> project ?",
+      "formSubTitle": "Contact me by email or phone",
+      "input1": {
+        "label": "Email:",
+        "placeholder": "email@outlook.com"
+      },
+      "input2": {
+        "label": "Subject:",
+        "placeholder": "Text"
+      },
+      "input3": {
+        "label": "Message:",
+        "placeholder": "Leave a comment..."
+      },
+      "submit": "Send"
+    },
+    "copyright": "2024 - <strong>Amaia Carrere</strong> - Author <strong>illustrator</strong> - All rights reserved"
   }
 }
