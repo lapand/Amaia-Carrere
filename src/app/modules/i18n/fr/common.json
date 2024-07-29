@@ -44,56 +44,7 @@
       "card": {
         "headline": "Lunatique est un recueil de BD humoristiques et de gags qui se passent en majorité dans l'espace.",
         "content": "Dans un style graphique minimaliste et naïf, les personnages évoluent dans un univers absurde et poétique.\n\nLe crowdfunding pour Lunatique, le fanzine de l'espace est disponible.",
-        "gallery": [
-          {
-            "uri": "/forSale/lunatique/lunatique1.png",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique2.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique3.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique4.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique5.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique6.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique7.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique8.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "fanzine Lunatique"
       },
       "btnText": "Vers le site marchand"
     },
@@ -103,38 +54,7 @@
         "headline": "Livre-CD pour les tout petits de 0 à 6 ans",
         "content": "Les textes sont d'Arantxa Hirigoyen, la musique de Philippe Albor, et j'ai fait les illustrations :)\n\nProduit par la maison de disque Belarri, de Matthieu Haramboure.\nTtinka est maintenant disponible en ligne.",
         "imgFormat": "square",
-        "gallery": [
-          {
-            "uri": "/forSale/ttinka/ttinka1.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka2.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka3.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka4.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka5.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "Livre Ttinka"
       },
       "btnText": "Vers le site marchand"
     }

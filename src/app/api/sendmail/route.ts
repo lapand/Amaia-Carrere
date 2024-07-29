@@ -45,15 +45,17 @@ export async function POST(req: Request) {
       }
     });
 
+    const { email, subject, content } = result.data;
+
     const mailOptions = {
-      from: `LAPONI DEV <${USER}>`,
+      from: `Amaia Carrere - site web <${USER}>`,
       to: 'lapand@hotmail.fr',
-      subject: result.data.subject,
-      text: result.data.content,
-      // html: `
-      //   <h1> Hello world </h1>
-      //   <p> Salut, j'aime les pieds dodus </p>
-      // `,
+      subject,
+      text: content,
+      html: `
+        <h3>Message reçu de : ${email}</h3>
+        <p>${content}</p>
+      `,
     };
 
     await transporter.sendMail(mailOptions);

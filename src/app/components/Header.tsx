@@ -90,7 +90,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed z-10 w-full header-height flex items-center justify-between px-6 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
-      <div className="h-full flex items-center gap-10 lg:gap-12 2xl:gap-40">
+      <div className="h-full flex items-center gap-10 xl:gap-12 2xl:gap-32">
         <h1 className="h-4/5 min-w-40 cursor-pointer">
           <ScrollLink
             to="Home"
@@ -132,7 +132,7 @@ const Header: React.FC = () => {
         </div>
         <div className="max-sm:absolute max-sm:left-2 max-sm: top-full flex items-center sm:gap-2">
           <div className="header-icon black-to-color">
-            <Link href={''}>
+            <Link href={'https://www.instagram.com/amaia.carrere'} target='_blank'>
               <Image
                 src="/insta-icon.svg"
                 alt="instagram-icon"
@@ -143,7 +143,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Link href={''}>
+            <Link href={'https://www.facebook.com/amaia.carrere'} target='_blank'>
               <Image
                 src="/facebook-icon.svg"
                 alt="facebook-icon"
@@ -154,7 +154,7 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Link href={''}>
+            <Link href={'https://www.linkedin.com/in/amaia-carrere-6302b7245'} target='_blank'>
               <Image
                 src="/pinterest-icon.svg"
                 alt="pinterest-icon"

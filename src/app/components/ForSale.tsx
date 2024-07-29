@@ -1,135 +1,44 @@
 import React from 'react';
 import Product from './Product';
 import { useTranslation } from 'react-i18next';
+import { productData } from '../data/products';
 
-export type ImageType = {
-  uri: string;
-  alt: string;
-  width: number;
-  height: number;
-};
-
-export type CardType = {
-  headline: string;
-  content: string;
-  gallery?: ImageType[];
-};
-
-type Product = {
+type ProductType = {
   title: string;
-  card: CardType;
-  btnText?: string;
-  imgFormat?: 'landscape' | 'portrait' | 'square';
+  card: {
+    headline: string;
+    content: string;
+    gallery?: {
+      uri: string;
+      width: number;
+      height: number;
+    }[];
+    imgAlt?: string;
+    imgFormat?: 'landscape' | 'portrait' | 'square';
+  };
+  btn?: {
+    btnText: string;
+    btnLink: string;
+  };
 };
-
-// const products: Product[] = [
-//   {
-//     title: 'Lunatique',
-//     card: {
-//       headline:
-//         "Lunatique est un recueil de BD humouristiques et de gags qui se passent en majorité dans l'espace.",
-//       content:
-//         "Le crowdfunding pour Lunatique, le fanzine de l'espace, va commencer dès le 20 Juin !!\n\nLe lien Ulule sera diffusé sur mes réseaux et sur le site ce jour là.",
-//       gallery: [
-//         {
-//           uri: '/forSale/lunatique/lunatique1.png',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique2.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique3.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique4.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique5.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique6.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique7.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/lunatique/lunatique8.jpg',
-//           alt: 'lunatique fanzine',
-//           width: 850,
-//           height: 850,
-//         },
-//       ],
-//     },
-//     btnText: 'Vers le site marchand',
-//   },
-//   {
-//     title: 'Ttinka',
-//     card: {
-//       headline: 'Livre-CD pour les tout petits de 0 à 6 ans',
-//       content:
-//         "Les textes sont d'Arantxa Hirigoyen, la musique de Philippe Albor, et j'ai fait les illustrations :)\n\nProduit par la maison de disque Belarri, de Matthieu Haramboure.\nTtinka est disponible en ligne depuis le 15 Novembre sur le site Belarri.",
-//       gallery: [
-//         {
-//           uri: '/forSale/ttinka/ttinka1.jpg',
-//           alt: 'livre Ttinka',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/ttinka/ttinka2.jpg',
-//           alt: 'livre Ttinka',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/ttinka/ttinka3.jpg',
-//           alt: 'livre Ttinka',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/ttinka/ttinka4.jpg',
-//           alt: 'livre Ttinka',
-//           width: 850,
-//           height: 850,
-//         },
-//         {
-//           uri: '/forSale/ttinka/ttinka5.jpg',
-//           alt: 'livre Ttinka',
-//           width: 850,
-//           height: 850,
-//         },
-//       ],
-//     },
-//     btnText: 'Vers le site marchand',
-//   },
-// ];
 
 const ForSale: React.FC = () => {
-
   const { t } = useTranslation('common');
-  const products: any[] = t('products', { returnObjects: true }) as any[];
+  const tradProduct: any[] = t('products', { returnObjects: true }) as any[];
+
+  const products = tradProduct.map((product, i): ProductType => {
+    return {
+      title: product.title,
+      card: {
+        ...product.card,
+        gallery: productData[i].gallery,
+      },
+      btn: {
+        btnText: product.btnText,
+        btnLink: productData[i].btnLink,
+      },
+    };
+  });
 
   const productsJSX = products.map((product, i) => {
     return (

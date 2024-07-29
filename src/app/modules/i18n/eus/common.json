@@ -44,56 +44,7 @@
       "card": {
         "headline": "Ilunabar, komiki umoristiko bat da, pasatzen dena espazioan.",
         "content": "Marrazkia oso minimalista eta simplea da, mundu absurdo eta poetiko batean.\n\nIlunabarendako crowdfunding-a prest da ! Aurkitu dezakezue behereko loturan.",
-        "gallery": [
-          {
-            "uri": "/forSale/lunatique/lunatique1.png",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique2.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique3.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique4.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique5.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique6.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique7.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique8.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "Lunatique fanzine"
       },
       "btnText": "Erosgai hemen"
     },
@@ -103,40 +54,9 @@
         "headline": "0 eta 6 urte arteko haurrendako da Ttinka disko liburua",
         "content": "Testuak Arantxa Hirigoyenek ditu idatzi, Philippe Alborrek musika, eta nik marrazkia.\n\nMatthieu Haramboure Belarri diskoetxearen sortzaileak du produzituta.\nTtinka erosgai da interneten bidez.",
         "imgFormat": "square",
-        "gallery": [
-          {
-            "uri": "/forSale/ttinka/ttinka1.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka2.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka3.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka4.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka5.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "Ttinka liburua"
       },
-      "btnText": "Saltokira joan"
+      "btnText": "Erosgai hemen"
     }
   ],
   "about": {

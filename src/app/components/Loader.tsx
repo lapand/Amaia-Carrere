@@ -1,6 +1,9 @@
-import { CSSProperties } from "react";
+interface LoaderProps {
+  width?: number;
+  height?: number;
+}
 
-const Loader: React.FC = ({width = 50, height = 40}: CSSProperties) => {
+const Loader: React.FC<LoaderProps> = ({width = 50, height = 40}) => {
   return (
     <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex gap-16">
       <div className="rect flex gap-1" style={{ width: `${width}px`, height: `${height}px` }}>

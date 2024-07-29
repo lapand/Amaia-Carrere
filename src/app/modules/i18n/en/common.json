@@ -44,56 +44,7 @@
       "card": {
         "headline": "Lunatique is a collection of humorous comics and gags, mostly set in space.",
         "content": "In a minimalist and naïve graphic style, the characters evolve in an absurd and poetic universe.\n\nThe crowdfunding for Lunatique, the space fanzine, is now available.",
-        "gallery": [
-          {
-            "uri": "/forSale/lunatique/lunatique1.png",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique2.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique3.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique4.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique5.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique6.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique7.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/lunatique/lunatique8.jpg",
-            "alt": "lunatique fanzine",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "Lunatique fanzine"
       },
       "btnText": "Go to the online store"
     },
@@ -103,38 +54,7 @@
         "headline": "A book-CD for little ones aged 0 to 6",
         "content": "The texts are by Arantxa Hirigoyen, the music by Philippe Albor, and I did the illustrations :)\n\nProduced by the Belarri record label, by Matthieu Haramboure.\nTtinka is available online since November 15th on the Belarri website.",
         "imgFormat": "square",
-        "gallery": [
-          {
-            "uri": "/forSale/ttinka/ttinka1.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka2.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka3.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka4.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          },
-          {
-            "uri": "/forSale/ttinka/ttinka5.jpg",
-            "alt": "livre Ttinka",
-            "width": 850,
-            "height": 850
-          }
-        ]
+        "imgAlt": "Ttinka book"
       },
       "btnText": "Go to the online store"
     }

@@ -1,12 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
 import ForSaleSlider from './ForSaleSlider';
-import { CardType } from './ForSale';
 import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
+
+type ImageType = {
+  uri: string;
+  width: number;
+  height: number;
+};
+
+export type CardType = {
+  headline: string;
+  content: string;
+  gallery?: ImageType[];
+  imgAlt?: string;
+  imgFormat?: 'landscape' | 'portrait' | 'square';
+};
 
 const Card: React.FC<CardType> = ({
   headline,
   content,
   gallery,
+  imgAlt = "",
   imgFormat = 'portrait',
 }) => {
   const [activeIdx, setActiveIdx] = useState<number | null>(
@@ -58,6 +72,7 @@ const Card: React.FC<CardType> = ({
               onSelectImg={onSelectImg}
               {...gallery[activeIdx]}
               imgIdx={activeIdx}
+              alt={imgAlt}
               galleryLength={gallery.length}
             />
           )}
