@@ -2,15 +2,15 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
+const aboutCtnHeight = 200;
 const dwarfCtnTop = 40;
-const dwarfCtnHeight = 2000;
-const bubbleWrapperHeight = 1000;
-const bubbleHeight = 400;
-const bubbleTop = 10;
+const dwarfCtnHeight = aboutCtnHeight * 0.9 - dwarfCtnTop;
+const bubbleWrapperHeight = 90;
+const bubbleHeight = 40;
+const bubble1CtnTop = 10;
 // Place la 2nde bulle à la hauteur de la 1ere lorsque cette dernière a fini de défiler
-// const bubble2CtnTop = bubbleTop + bubbleWrapperHeight - bubbleHeight;
-const bubble2CtnTop = bubbleWrapperHeight;
-const mainCtnHeight = bubbleWrapperHeight * 2 + bubbleHeight;
+const bubble2CtnTop = bubble1CtnTop + bubbleWrapperHeight - bubbleHeight;
+const bubble2Top = 10;
 
 const About: React.FC = () => {
   const bubble1Ref = useRef<HTMLDivElement | null>(null);
@@ -23,7 +23,7 @@ const About: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
+          if (entry.intersectionRatio >= 1) {
             entry.target.classList.add('in-view');
           } else {
             entry.target.classList.remove('in-view');
@@ -47,7 +47,7 @@ const About: React.FC = () => {
           }
         });
       },
-      { root:null, rootMargin: '-10% 100% -40% 100%', threshold: 1.0 }
+      { rootMargin: '-10% 0px -40% 0px', threshold: [0, 1] }
     );
 
     if (bubble1Ref.current) {
@@ -69,17 +69,18 @@ const About: React.FC = () => {
 
   return (
     <div
-      className="relative flex justify-center border border-black"
+      className="relative flex justify-center"
       style={{
-        height: `${mainCtnHeight}px`,
+        height: `${aboutCtnHeight}vh`,
+        clipPath: 'inset(0 0 0 0)',
       }}
     >
       <div
         ref={dwarfRef}
-        className="absolute w-1/4 min-w-60 flex justify-center transition-transform duration-300 border border-green-500"
+        className="absolute w-1/4 min-w-60 flex justify-center transition-transform duration-300"
         style={{
           top: `${dwarfCtnTop}vh`,
-          height: `${dwarfCtnHeight}px`,
+          height: `${dwarfCtnHeight}vh`,
         }}
       >
         <div
@@ -98,18 +99,18 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute right-0 max-lg:right-40 w-[95%] sm:w-1/2 border border-red-500"
+        className="absolute sm:left-[35%] lg:left-[52%] w-[95%] sm:w-1/2"
         style={{
-          top: `${bubbleTop}vh`,
-          height: `${bubbleWrapperHeight}px`,
+          top: `${bubble1CtnTop}vh`,
+          height: `${bubbleWrapperHeight}vh`,
         }}
       >
         <div
           ref={bubble1Ref}
-          className="sticky out-view translate-x-40 w-[524px] mr-auto p-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat border border-yellow-500"
-          style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
+          className="sticky out-view sm:w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
+          style={{ top: `${bubble1CtnTop}vh`, height: `${bubbleHeight}vh` }}
         >
-          <p className="mb-8 sm:mb-10 licorice-font text-4xl font-semibold text-center text-pretty border border-blue-500">
+          <p className="w-[88%] 2xl:w-[85%] mb-8 sm:mb-10 licorice-font text-3xl xl:text-4xl font-semibold text-center text-pretty">
             <Trans
               i18nKey="common:about.bubble1"
               components={{ break: <br /> }}
@@ -118,18 +119,18 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute left-0 w-[95%] sm:w-1/2 border border-lime-600"
+        className="absolute sm:left-[10%] lg:left-0 w-[95%] sm:w-1/2"
         style={{
-          top: `${bubble2CtnTop}px`,
-          height: `${bubbleWrapperHeight}px`,
+          top: `${bubble2CtnTop}vh`,
+          height: `${bubbleWrapperHeight}vh`,
         }}
       >
         <div
           ref={bubble2Ref}
-          className="sticky out-view -translate-x-40 w-[538px] ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat border border-purple-500"
-          style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
+          className="sticky out-view ml-auto sm:w-96 xl:w-[30rem] flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
+          style={{ top: `${bubble2Top}vh`, height: `${bubbleHeight}vh` }}
         >
-          <p className="licorice-font text-4xl font-semibold text-center border border-blue-500">
+          <p className="w-[70%] h-[30%] mb-16 licorice-font text-3xl xl:text-4xl font-semibold text-center">
             <Trans i18nKey="common:about.bubble2" />
           </p>
         </div>
@@ -139,8 +140,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
-
-      // Pour la div contenant le background bulle, mettre des dimensions en px (ou em?) qui correspondent à l'aspect ratio de la bulle
-      // Background bulle bg-contain
-      // Top en vh pour que les éléments soient tjs à la même hauteur quelle que soit la hauteur de l'écran
