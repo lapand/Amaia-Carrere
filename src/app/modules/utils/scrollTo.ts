@@ -4,7 +4,7 @@ export const scrollToSection = (sectionId: string) => {
     scroller.scrollTo(sectionId, {
       duration: 800,
       delay: 0,
-      smooth: 'easeInOutQuart',
+      smooth: 'easeInOutQuint',
     });
     setTimeout(() => {
       window.scrollBy(0, 30);

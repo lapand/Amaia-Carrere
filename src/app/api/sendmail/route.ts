@@ -1,7 +1,7 @@
 import { contactSchema } from '@/app/schemas/formSchema';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-const { OAuth2Client } = require('google-auth-library');
+import { OAuth2Client } from 'google-auth-library';
 
 const {CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN, USER, RECIPIENT} = process.env;
 
@@ -21,16 +21,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ errors: zodErrors });
   }
 
-  // sending mail
+  // Sending mail
   try {
     const accessToken = await oAuth2Client.getAccessToken();
-    // console.log(accessToken, CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN, USER);
+    if (!accessToken.token || typeof accessToken.token !== 'string') {
+      throw new Error('Invalid access token');
+    }
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // Hôte du serveur SMTP
-      // host: 'smtp.gmail.com',
-      // port: 587, // 587 : Utilisé pour chiffrage STARTTLS --- 465 : Utilisé pour chiffrage SSL/TLS
-      // secure: false, // false pour STARTTLS, true pour SSL/TLS
+      service: 'gmail',
       auth: {
         type: 'OAuth2',
         user: USER,
@@ -39,10 +38,10 @@ export async function POST(req: Request) {
         refreshToken: REFRESH_TOKEN,
         accessToken: accessToken.token,
       },
-      tls: {
-        // Assurez-vous de ne pas ignorer la vérification des certificats en production
-        rejectUnauthorized: false
-      }
+      // tls: {
+      //   // Assurez-vous de ne pas ignorer la vérification des certificats en production
+      //   rejectUnauthorized: false
+      // }
     });
 
     const { email, subject, content } = result.data;

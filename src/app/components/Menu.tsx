@@ -52,8 +52,6 @@ const Menu: React.FC = () => {
       setIsSideMenuOpened(isSideMenuOpened => !isSideMenuOpened);
     }
 
-
-
     const liJSX = menuArray.map((item, i) => {
       return(
         <li key={item}>
