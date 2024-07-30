@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Loader from './Loader';
+import removeContextMenu from '../modules/utils/removeContextMenu';
 
 type DrawType = {
   src: string;
@@ -66,6 +67,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
           quality={100}
           className="size-full object-contain"
           onLoad={handleImgLoad}
+          onContextMenu={removeContextMenu}
         />
       </div>
       <button

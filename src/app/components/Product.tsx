@@ -1,10 +1,20 @@
 import Link from 'next/link';
 import Button from './Button';
 import Card from './Card';
-import { CardType } from './Card';
+import { Trans } from 'react-i18next';
+import { ImageType } from './Card';
+
+type CardType = {
+  headline?: string;
+  content?: string;
+  gallery?: ImageType[];
+  imgAlt?: string;
+  imgFormat?: 'landscape' | 'portrait' | 'square';
+};
 
 type ProductProps = {
-  title: string;
+  id: number;
+  title?: string;
   card: CardType;
   btn?: {
     btnText: string;
@@ -12,12 +22,18 @@ type ProductProps = {
   };
 };
 
-const Product: React.FC<ProductProps> = ({ title, card, btn }) => {
+const Product: React.FC<ProductProps> = ({ id, card, btn }) => {
+  
   return (
     <div className="flex flex-col items-center gap-12 md:gap-16">
-      <h3 className="inspiration-font text-8xl">{title}</h3>
+      <h3 className="inspiration-font text-8xl">
+        <Trans
+          i18nKey={`common:products.${id - 1}.title`}
+          components={{ strong: <strong /> }}
+        />
+      </h3>
       <div className="flex flex-col gap-5">
-        <Card {...card} />
+        <Card id={id} {...card} />
         {btn && (
           <div className="text-center md:text-end">
             {btn.btnLink ? (

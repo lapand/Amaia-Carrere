@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import ContactForm from './Form';
 import { Trans, useTranslation } from 'react-i18next';
+import removeContextMenu from '../modules/utils/removeContextMenu';
 
 const Contact: React.FC = () => {
 
@@ -18,6 +19,7 @@ const Contact: React.FC = () => {
                 width={650}
                 height={650}
                 className="size-full object-contain"
+                onContextMenu={removeContextMenu}
               />
             </div>
           </div>

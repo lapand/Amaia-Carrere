@@ -40,19 +40,21 @@
   },
   "products": [
     {
-      "title": "Lunatique",
+      "id": 1,
+      "title": "<strong>Lunatique</strong>",
       "card": {
-        "headline": "Lunatique est un recueil de BD humoristiques et de gags qui se passent en majorité dans l'espace.",
-        "content": "Dans un style graphique minimaliste et naïf, les personnages évoluent dans un univers absurde et poétique.\n\nLe crowdfunding pour Lunatique, le fanzine de l'espace est disponible.",
+        "headline": "<strong>Lunatique</strong> est un recueil de <strong>BD</strong> humoristiques et de gags qui se passent en majorité dans l'espace.",
+        "content": "Dans un style graphique minimaliste et naïf, les personnages évoluent dans un univers absurde et poétique.<br /><br />Le crowdfunding pour <strong>Lunatique</strong>, le fanzine de l'espace est disponible.",
         "imgAlt": "fanzine Lunatique"
       },
       "btnText": "Vers le site marchand"
     },
     {
-      "title": "Ttinka",
+      "id": 2,
+      "title": "<strong>Ttinka</strong>",
       "card": {
-        "headline": "Livre-CD pour les tout petits de 0 à 6 ans",
-        "content": "Les textes sont d'Arantxa Hirigoyen, la musique de Philippe Albor, et j'ai fait les illustrations :)\n\nProduit par la maison de disque Belarri, de Matthieu Haramboure.\nTtinka est maintenant disponible en ligne.",
+        "headline": "<strong>Livre-CD</strong> pour les tout petits de 0 à 6 ans",
+        "content": "Les textes sont d'Arantxa Hirigoyen, la musique de Philippe Albor, et j'ai fait les <strong>illustrations</strong> :)<br /><br />Produit par la maison de disque Belarri, de Matthieu Haramboure.<br /><strong>Ttinka</strong> est maintenant disponible en ligne.",
         "imgFormat": "square",
         "imgAlt": "Livre Ttinka"
       },
@@ -60,8 +62,8 @@
     }
   ],
   "about": {
-    "bubble1": "Je m'appelle Amaia et je suis dessinatrice.<br />Je fais des illustrations jeunesse, fantasy ainsi que des BD humoristiques.",
-    "bubble2": "Je suis bascophone, et j'aime illustrer également ce qui a un rapport avec la mythologie et la culture basque."
+    "bubble1": "Je m'appelle <strong>Amaia</strong> et je suis <strong>dessinatrice</strong>.<br />Je fais des <strong>illustrations</strong> jeunesse, fantasy ainsi que des <strong>BD</strong> humoristiques.",
+    "bubble2": "Je suis bascophone, et j'aime illustrer également ce qui a un rapport avec <strong>la mythologie et la culture basque</strong>."
   },
   "contact": {
     "form": {

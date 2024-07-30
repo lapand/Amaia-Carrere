@@ -156,8 +156,8 @@ const Header: React.FC = () => {
           <div className="header-icon black-to-color">
             <Link href={'https://www.linkedin.com/in/amaia-carrere-6302b7245'} target='_blank'>
               <Image
-                src="/pinterest-icon.svg"
-                alt="pinterest-icon"
+                src="/linkedin.svg"
+                alt="linkedin-icon"
                 width={100}
                 height={100}
                 className="size-full"

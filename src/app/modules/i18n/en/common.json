@@ -40,19 +40,21 @@
   },
   "products": [
     {
-      "title": "Lunatique",
+      "id": 1,
+      "title": "<strong>Lunatique</strong>",
       "card": {
-        "headline": "Lunatique is a collection of humorous comics and gags, mostly set in space.",
-        "content": "In a minimalist and naïve graphic style, the characters evolve in an absurd and poetic universe.\n\nThe crowdfunding for Lunatique, the space fanzine, is now available.",
+        "headline": "<strong>Lunatique</strong> is a collection of humorous <strong>comics</strong> and gags, mostly set in space.",
+        "content": "In a minimalist and naïve graphic style, the characters evolve in an absurd and poetic universe.<br /><br />The crowdfunding for <strong>Lunatique</strong>, the space fanzine, is now available.",
         "imgAlt": "Lunatique fanzine"
       },
       "btnText": "Go to the online store"
     },
     {
-      "title": "Ttinka",
+      "id": 2,
+      "title": "<strong>Ttinka</strong>",
       "card": {
-        "headline": "A book-CD for little ones aged 0 to 6",
-        "content": "The texts are by Arantxa Hirigoyen, the music by Philippe Albor, and I did the illustrations :)\n\nProduced by the Belarri record label, by Matthieu Haramboure.\nTtinka is available online since November 15th on the Belarri website.",
+        "headline": "A <strong>book-CD</strong> for little ones aged 0 to 6",
+        "content": "The texts are by Arantxa Hirigoyen, the music by Philippe Albor, and I did the <strong>illustrations</strong> :)<br /><br />Produced by the Belarri record label, by Matthieu Haramboure.<br /><strong>Ttinka</strong> is available online since November 15th on the Belarri website.",
         "imgFormat": "square",
         "imgAlt": "Ttinka book"
       },
@@ -60,8 +62,8 @@
     }
   ],
   "about": {
-    "bubble1": "My name is Amaia and I am an illustrator.<br />I create children's illustrations, fantasy art, and humorous comics.",
-    "bubble2": "I am a Basque speaker, and I also enjoy illustrating things related to Basque mythology and culture."
+    "bubble1": "My name is <strong>Amaia</strong> and I am an <strong>illustrator</strong>.<br />I create children's <strong>illustrations</strong>, fantasy art, and humorous <strong>comics</strong>.",
+    "bubble2": "I am a Basque speaker, and I also enjoy illustrating things related to <strong>Basque mythology and culture</strong>."
   },
   "contact": {
     "form": {

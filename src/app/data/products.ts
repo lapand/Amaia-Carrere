@@ -8,6 +8,7 @@ type ProductImg = {
 type IncompleteProductsType = {
   gallery: ProductImg[];
   btnLink: string;
+  reverse: boolean;
 };
 
 export const productData: IncompleteProductsType[] = [
@@ -55,6 +56,7 @@ export const productData: IncompleteProductsType[] = [
       },
     ],
     btnLink: '',
+    reverse: false,
   },
   {
     gallery: [
@@ -85,5 +87,6 @@ export const productData: IncompleteProductsType[] = [
       },
     ],
     btnLink: 'https://www.belarri.com/produit/ttinka',
+    reverse: true,
   },
 ];

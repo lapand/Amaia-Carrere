@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { productData } from '../data/products';
 
 type ProductType = {
-  title: string;
+  id: number;
+  title?: string;
   card: {
-    headline: string;
-    content: string;
+    headline?: string;
+    content?: string;
     gallery?: {
       uri: string;
       width: number;
@@ -15,6 +16,7 @@ type ProductType = {
     }[];
     imgAlt?: string;
     imgFormat?: 'landscape' | 'portrait' | 'square';
+    reverse: boolean;
   };
   btn?: {
     btnText: string;
@@ -28,10 +30,11 @@ const ForSale: React.FC = () => {
 
   const products = tradProduct.map((product, i): ProductType => {
     return {
-      title: product.title,
+      id: product.id,
       card: {
-        ...product.card,
+        imgAlt: product.card.imgAlt,
         gallery: productData[i].gallery,
+        reverse: productData[i].reverse,
       },
       btn: {
         btnText: product.btnText,

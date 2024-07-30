@@ -40,19 +40,21 @@
   },
   "products": [
     {
-      "title": "Ilunabar",
+      "id": 1,
+      "title": "<strong>Ilunabar</strong>",
       "card": {
-        "headline": "Ilunabar, komiki umoristiko bat da, pasatzen dena espazioan.",
-        "content": "Marrazkia oso minimalista eta simplea da, mundu absurdo eta poetiko batean.\n\nIlunabarendako crowdfunding-a prest da ! Aurkitu dezakezue behereko loturan.",
+        "headline": "<strong>Ilunabar</strong>, <strong>komiki</strong> umoristiko bat da, pasatzen dena espazioan.",
+        "content": "<strong>Marrazkia</strong> oso minimalista eta simplea da, mundu absurdo eta poetiko batean.<br /><br />Ilunabarendako crowdfunding-a prest da ! Aurkitu dezakezue behereko loturan.",
         "imgAlt": "Lunatique fanzine"
       },
       "btnText": "Erosgai hemen"
     },
     {
-      "title": "Ttinka",
+      "id": 2,
+      "title": "<strong>Ttinka</strong>",
       "card": {
-        "headline": "0 eta 6 urte arteko haurrendako da Ttinka disko liburua",
-        "content": "Testuak Arantxa Hirigoyenek ditu idatzi, Philippe Alborrek musika, eta nik marrazkia.\n\nMatthieu Haramboure Belarri diskoetxearen sortzaileak du produzituta.\nTtinka erosgai da interneten bidez.",
+        "headline": "0 eta 6 urte arteko haurrendako da <strong>Ttinka disko liburua</strong>",
+        "content": "Testuak Arantxa Hirigoyenek ditu idatzi, Philippe Alborrek musika, eta nik <strong>marrazkia</strong>.<br /><br />Matthieu Haramboure Belarri diskoetxearen sortzaileak du produzituta.<br /><strong>Ttinka</strong> erosgai da interneten bidez.",
         "imgFormat": "square",
         "imgAlt": "Ttinka liburua"
       },
@@ -60,8 +62,8 @@
     }
   ],
   "about": {
-    "bubble1": "Amaia deitzen naiz, marrazkilaria naiz,<br />haurrendako ilustrazioak egiten ditut, bai eta ere fantastikoak, eta komiki umoristikoak.",
-    "bubble2": "Euskalduna naiz, eta maite dut euskal mitologiari buruzko marrazkiak egitea ere bai."
+    "bubble1": "<strong>Amaia</strong> deitzen naiz, <strong>marrazkilaria</strong> naiz,<br />haurrendako <strong>ilustrazioak</strong> egiten ditut, bai eta ere fantastikoak, eta <strong>komiki</strong> umoristikoak.",
+    "bubble2": "Euskalduna naiz, eta maite dut <strong>euskal mitologiari</strong> buruzko marrazkiak egitea ere bai."
   },
   "contact": {
     "form": {

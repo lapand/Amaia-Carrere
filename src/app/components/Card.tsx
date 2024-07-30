@@ -1,53 +1,46 @@
+import { Trans } from 'react-i18next';
 import ForSaleSlider from './ForSaleSlider';
 
-type ImageType = {
+export type ImageType = {
   uri: string;
   width: number;
   height: number;
 };
 
-export type CardType = {
-  headline: string;
-  content: string;
+type CardPropsType = {
+  id: number;
+  headline?: string;
+  content?: string;
   gallery?: ImageType[];
   imgAlt?: string;
   imgFormat?: 'landscape' | 'portrait' | 'square';
+  reverse?: boolean;
 };
 
-const Card: React.FC<CardType> = ({
+const Card: React.FC<CardPropsType> = ({
+  id,
   headline,
   content,
   gallery,
-  imgAlt = "",
+  imgAlt = '',
   imgFormat = 'portrait',
+  reverse = false,
 }) => {
+  let cardHeight = '';
+  if (imgFormat === 'portrait') {
+    cardHeight = 'md:h-[400px]';
+  } else if (imgFormat === 'landscape') {
+    cardHeight = 'md:h-[300px]';
+  } else if (imgFormat === 'square') {
+    cardHeight = 'md:h-[350px]';
+  }
 
-  const contentJSX = content
-    .split('\n')
-    .map((line: string, i: number, linesTable) => {
-      if (i !== linesTable.length - 1) {
-        return (
-          <span key={i}>
-            {line}
-            <br />
-          </span>
-        );
-      } else {
-        return <span key={i}>{line}</span>;
-      }
-    });
-
-    let cardHeight = "";
-    if(imgFormat === "portrait") {
-      cardHeight = "md:h-[400px]";
-    } else if(imgFormat === "landscape") {
-      cardHeight = "md:h-[300px]";
-    } else if(imgFormat === "square") {
-      cardHeight = "md:h-[350px]";
-    }
+  const flexDirection = reverse ? 'md:flex-row-reverse' : '';
 
   return (
-    <div className={`${cardHeight} flex max-md:flex-col max-md:items-center sm:w-3/5 mx-auto md:w-full max-w-3xl bg-primary-800 border border-primary-800 rounded-lg shadow`}>
+    <div
+      className={`${cardHeight} flex max-md:flex-col ${flexDirection} max-md:items-center sm:w-3/5 mx-auto md:w-full max-w-3xl bg-primary-800 border border-primary-800 rounded-lg shadow`}
+    >
       {gallery && gallery.length !== 0 && (
         <div className="md:w-2/5 flex justify-center items-center max-md:rounded-t-lg md:rounded-l-lg overflow-hidden">
           {gallery.length !== 0 && (
@@ -61,9 +54,17 @@ const Card: React.FC<CardType> = ({
       )}
       <div className="md:w-3/5 overflow-auto p-5 md:p-10">
         <h5 className="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {headline}
+          <Trans
+            i18nKey={`common:products.${id - 1}.card.headline`}
+            components={{ strong: <strong /> }}
+          />
         </h5>
-        <p className="text-gray-700 dark:text-gray-400">{contentJSX}</p>
+        <p className="text-gray-700 dark:text-gray-400">
+          <Trans
+            i18nKey={`common:products.${id - 1}.card.content`}
+            components={{ strong: <strong />, break: <br /> }}
+          />
+        </p>
       </div>
     </div>
   );

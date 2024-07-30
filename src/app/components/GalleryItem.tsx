@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Loader from './Loader';
+import removeContextMenu from '../modules/utils/removeContextMenu';
 
 type GalleryItemProps = {
   src: string;
@@ -20,7 +21,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   openModal,
   imgIdx,
 }) => {
-  const galleryItemRef = useRef<HTMLDivElement | null>();
+  const galleryItemRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         quality={100}
         className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
         onLoad={() => setIsLoading(false)}
+        onContextMenu={removeContextMenu}
         // placeholder="blur"
         // blurDataURL={`${src}.blurDataURL`}
       />

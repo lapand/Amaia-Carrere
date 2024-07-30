@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
+import removeContextMenu from '../modules/utils/removeContextMenu';
 
 type ImageType = {
   uri: string;
@@ -77,6 +78,7 @@ const ForSaleSlider: React.FC<ForSaleSliderProps> = ({
           width={gallery[currentImgIdx].width}
           height={gallery[currentImgIdx].height}
           className="size-full object-cover"
+          onContextMenu={removeContextMenu}
         />
       </div>
       {/* Slider controls */}
