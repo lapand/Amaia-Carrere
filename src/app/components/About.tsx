@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 const dwarfCtnTop = 40;
@@ -69,14 +69,14 @@ const About: React.FC = () => {
 
   return (
     <div
-      className="relative flex justify-center border border-black"
+      className="relative flex justify-center"
       style={{
         height: `${mainCtnHeight}px`,
       }}
     >
       <div
         ref={dwarfRef}
-        className="absolute w-1/4 min-w-60 flex justify-center transition-transform duration-300 border border-green-500"
+        className="absolute w-1/4 min-w-60 flex justify-center transition-transform duration-300"
         style={{
           top: `${dwarfCtnTop}vh`,
           height: `${dwarfCtnHeight}px`,
@@ -98,7 +98,7 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute right-0 max-lg:right-40 w-[95%] sm:w-1/2 border border-red-500"
+        className="absolute right-60 sm:right-40 lg:right-20 xl:right-0 w-1/2"
         style={{
           top: `${bubbleTop}vh`,
           height: `${bubbleWrapperHeight}px`,
@@ -106,10 +106,10 @@ const About: React.FC = () => {
       >
         <div
           ref={bubble1Ref}
-          className="sticky out-view translate-x-40 w-[524px] mr-auto p-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat border border-yellow-500"
+          className="sticky out-view translate-x-12 w-[524px] scale-bubble mr-auto px-12 pt-16 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="mb-8 sm:mb-10 licorice-font text-4xl font-semibold text-center text-pretty border border-blue-500">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
             <Trans
               i18nKey="common:about.bubble1"
               components={{ break: <br /> }}
@@ -118,7 +118,7 @@ const About: React.FC = () => {
         </div>
       </div>
       <div
-        className="absolute left-0 w-[95%] sm:w-1/2 border border-lime-600"
+        className="absolute -left-16 sm:left-0 w-[95%] sm:w-1/2"
         style={{
           top: `${bubble2CtnTop}px`,
           height: `${bubbleWrapperHeight}px`,
@@ -126,10 +126,10 @@ const About: React.FC = () => {
       >
         <div
           ref={bubble2Ref}
-          className="sticky out-view -translate-x-40 w-[538px] ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat border border-purple-500"
+          className="sticky out-view -translate-x-40 w-[538px] scale-bubble ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="licorice-font text-4xl font-semibold text-center border border-blue-500">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
             <Trans i18nKey="common:about.bubble2" />
           </p>
         </div>

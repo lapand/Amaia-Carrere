@@ -63,6 +63,18 @@ strong {
   transform: translateX(0);
   opacity: 1;
 }
+/* max-xl breakpoint */
+@media screen and (max-width: 1280px) { 
+  .scale-bubble {
+    scale: 0.9;
+  }
+}
+/* max-md breakpoint */
+@media screen and (max-width: 768px) { 
+  .scale-bubble {
+    scale: 0.8;
+  }
+}
 
 @layer utilities {
   .licorice-font {

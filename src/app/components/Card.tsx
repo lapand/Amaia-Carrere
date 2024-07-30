@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
 import ForSaleSlider from './ForSaleSlider';
-import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 
 type ImageType = {
   uri: string;
@@ -23,19 +21,6 @@ const Card: React.FC<CardType> = ({
   imgAlt = "",
   imgFormat = 'portrait',
 }) => {
-  const [activeIdx, setActiveIdx] = useState<number | null>(
-    gallery && gallery.length > 0 ? 0 : null
-  );
-
-  const onPrevImg = (currentIdx: number) => {
-    setActiveIdx(getPrevIdx(gallery!, currentIdx));
-  };
-  const onNextImg = (currentIdx: number) => {
-    setActiveIdx(getNextIdx(gallery!, currentIdx));
-  };
-  const onSelectImg = (currentIdx: number) => {
-    setActiveIdx(currentIdx);
-  };
 
   const contentJSX = content
     .split('\n')
@@ -65,13 +50,9 @@ const Card: React.FC<CardType> = ({
     <div className={`${cardHeight} flex max-md:flex-col max-md:items-center sm:w-3/5 mx-auto md:w-full max-w-3xl bg-primary-800 border border-primary-800 rounded-lg shadow`}>
       {gallery && gallery.length !== 0 && (
         <div className="md:w-2/5 flex justify-center items-center max-md:rounded-t-lg md:rounded-l-lg overflow-hidden">
-          {activeIdx !== null && (
+          {gallery.length !== 0 && (
             <ForSaleSlider
-              onPrevImg={onPrevImg}
-              onNextImg={onNextImg}
-              onSelectImg={onSelectImg}
-              {...gallery[activeIdx]}
-              imgIdx={activeIdx}
+              gallery={gallery}
               alt={imgAlt}
               galleryLength={gallery.length}
             />
