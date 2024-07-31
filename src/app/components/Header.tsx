@@ -1,10 +1,9 @@
 'use client';
 
-import { Link as ScrollLink, scroller } from 'react-scroll';
 import Link from 'next/link';
 import Image from 'next/image';
 import Menu from './Menu';
-import { useState } from 'react';
+import { createRef, RefObject, useEffect, useRef, useState } from 'react';
 import Fade from './Fade';
 import { useTranslation } from 'react-i18next';
 
@@ -38,6 +37,12 @@ const langData = [
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
   const { i18n } = useTranslation();
+  const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
+
+  // Assure que langIconRefs.current est toujours un tableau de la bonne longueur
+  langIconRefs.current = langData.map(
+    (_, i) => langIconRefs.current[i] ?? createRef()
+  );
 
   const handleToggle = (language: string) => {
     switch (language) {
@@ -53,12 +58,36 @@ const Header: React.FC = () => {
     }
   };
 
-  const scrollToSection = (sectionId: string) => {
-    scroller.scrollTo(sectionId, {
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart',
-    });
+  useEffect(() => {
+    const handleClickOutside = (event: Event) => {
+      if (
+        langIconRefs.current.every((ref) => ref.current !== null) &&
+        langIconRefs.current.every(
+          (ref) => !ref.current?.contains(event.target as Node)
+        )
+      ) {
+        setIsLanguagesVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleScrollToHome = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    const home = document.getElementById('Home');
+
+    if (home) {
+      window.scrollTo({
+        top: home.offsetTop,
+        behavior: 'smooth',
+      });
+    }
   };
 
   const JSXLanguages = langData.map((lang, i: number) => {
@@ -71,6 +100,7 @@ const Header: React.FC = () => {
         style={{ transform: `translate3d(${lang.posX}px, ${lang.posY}px, 0)` }}
       >
         <button
+          ref={langIconRefs.current[i]}
           key={i}
           className="language-icon absolute top-0 left-0"
           onClick={() => handleToggle(lang.languageCode)}
@@ -92,11 +122,9 @@ const Header: React.FC = () => {
     <header className="fixed z-10 w-full header-height flex items-center justify-between px-6 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
       <div className="h-full flex items-center gap-10 xl:gap-12 2xl:gap-32">
         <h1 className="h-4/5 min-w-40 cursor-pointer">
-          <ScrollLink
-            to="Home"
-            smooth={true}
-            duration={800}
-            onClick={() => scrollToSection('Home')}
+          <Link
+            href=""
+            onClick={handleScrollToHome}
             aria-label="Homepage"
             tabIndex={0}
           >
@@ -107,7 +135,7 @@ const Header: React.FC = () => {
               height={141}
               className="size-full"
             />
-          </ScrollLink>
+          </Link>
         </h1>
         <div className="relative">
           <button
@@ -132,7 +160,10 @@ const Header: React.FC = () => {
         </div>
         <div className="max-sm:absolute max-sm:left-2 max-sm: top-full flex items-center sm:gap-2">
           <div className="header-icon black-to-color">
-            <Link href={'https://www.instagram.com/amaia.carrere'} target='_blank'>
+            <Link
+              href={'https://www.instagram.com/amaia.carrere'}
+              target="_blank"
+            >
               <Image
                 src="/insta-icon.svg"
                 alt="instagram-icon"
@@ -143,7 +174,10 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Link href={'https://www.facebook.com/amaia.carrere'} target='_blank'>
+            <Link
+              href={'https://www.facebook.com/amaia.carrere'}
+              target="_blank"
+            >
               <Image
                 src="/facebook-icon.svg"
                 alt="facebook-icon"
@@ -154,7 +188,10 @@ const Header: React.FC = () => {
             </Link>
           </div>
           <div className="header-icon black-to-color">
-            <Link href={'https://www.linkedin.com/in/amaia-carrere-6302b7245'} target='_blank'>
+            <Link
+              href={'https://www.linkedin.com/in/amaia-carrere-6302b7245'}
+              target="_blank"
+            >
               <Image
                 src="/linkedin.svg"
                 alt="linkedin-icon"
