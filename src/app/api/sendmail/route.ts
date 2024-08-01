@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     result.error.issues.forEach((issue) => {
       zodErrors = { ...zodErrors, [issue.path[0]]: issue.message };
     });
-    return NextResponse.json({ errors: zodErrors });
+    return NextResponse.json({ zodErrors });
   }
 
   // Sending mail
@@ -38,8 +38,8 @@ export async function POST(req: Request) {
         refreshToken: REFRESH_TOKEN,
         accessToken: accessToken.token,
       },
+      // Il est important de ne pas ignorer la vérification des certificats en production
       // tls: {
-      //   // Assurez-vous de ne pas ignorer la vérification des certificats en production
       //   rejectUnauthorized: false
       // }
     });
@@ -61,10 +61,10 @@ export async function POST(req: Request) {
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.error('Error sending email:', e.message);
-      return NextResponse.json({ message: e.message });
+      return NextResponse.json({ emailSendingError: e.message });
     } else {
       console.error('An unexpected error occurred:', e);
-      return NextResponse.json({ message: 'An unexpected error occurred' });
+      return NextResponse.json({ emailSendingError: 'An unexpected error occurred' });
     }
   }
 

@@ -27,13 +27,15 @@ const ContactForm: React.FC = () => {
     });
     const responseData = await response.json();
 
+    // Absence de réponse du serveur
     if (!response.ok) {
-      alert('Submitting form failed!');
+      alert('Submitting form failed, the server is not responding');
       return;
     }
 
-    if (responseData.errors) {
-      const errors = responseData.errors;
+    // Récupération des erreurs de validation des données côté serveur
+    if (responseData.zodErrors) {
+      const errors = responseData.zodErrors;
       Object.keys(data).forEach((field) => {
         if (errors[field]) {
           setError(field as keyof TcontactSchema, {
@@ -47,8 +49,18 @@ const ContactForm: React.FC = () => {
       }
     }
 
+    // Récupération des erreurs d'envoi d'email
+    if( responseData.emailSendingError){
+      const error = responseData.emailSendingError;
+      console.log("Error: " + error);
+      alert("Error: The email could not be sent correctly.");
+    }
+
+    // response successfully
     if (responseData.success) {
       reset();
+      console.log("The email has been sent successfully.");
+      alert("Email envoyé avec succès. Merci d'avoir pris le temps de m'écrire, je vous adresserai une réponse au plus vite.");
     }
   };
 
