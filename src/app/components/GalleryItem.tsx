@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
 import Loader from './Loader';
 import removeContextMenu from '../modules/utils/removeContextMenu';
 
@@ -11,8 +12,12 @@ type GalleryItemProps = {
   height: number;
   openModal: (imgIdx: number) => void;
   imgIdx: number;
-  blurDataURL: string;
+  // blurDataURL: string;
 };
+
+type DataUris = {
+  [key: string]: string;
+}
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
   src,
@@ -21,10 +26,12 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   height,
   openModal,
   imgIdx,
-  blurDataURL,
+  // blurDataURL,
 }) => {
+
   const galleryItemRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [dataUris, setDataUris] = useState<DataUris>({});
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,7 +47,29 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
     if (galleryItemRef.current) {
       observer.observe(galleryItemRef.current);
     }
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/dataUris.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        setDataUris(jsonData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  let placeholder: PlaceholderValue | undefined = undefined;
+  let blurDataURL = undefined;
+  if (Object.keys(dataUris).length !== 0) {
+    blurDataURL = dataUris[`${imgIdx + 1}.webp`];
+    if(blurDataURL) placeholder = "blur";
+  }
 
   return (
     <div
@@ -59,7 +88,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
         onLoad={() => setIsLoading(false)}
         onContextMenu={removeContextMenu}
-        placeholder="blur"
+        placeholder={placeholder}
         blurDataURL={blurDataURL}
       />
     </div>
