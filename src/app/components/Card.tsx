@@ -36,13 +36,14 @@ const Card: React.FC<CardPropsType> = ({
   }
 
   const flexDirection = reverse ? 'md:flex-row-reverse' : '';
+  const rounded = reverse ? 'md:rounded-r-lg' : 'md:rounded-l-lg';
 
   return (
     <div
       className={`${cardHeight} flex max-md:flex-col ${flexDirection} max-md:items-center sm:w-3/5 mx-auto md:w-full max-w-3xl bg-primary-800 border border-primary-800 rounded-lg shadow`}
     >
       {gallery && gallery.length !== 0 && (
-        <div className="md:w-2/5 flex justify-center items-center max-md:rounded-t-lg md:rounded-l-lg overflow-hidden">
+        <div className={`md:w-2/5 flex justify-center items-center max-md:rounded-t-lg ${rounded} overflow-hidden`}>
           {gallery.length !== 0 && (
             <ForSaleSlider
               gallery={gallery}

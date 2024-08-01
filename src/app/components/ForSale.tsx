@@ -33,6 +33,7 @@ const ForSale: React.FC = () => {
       id: product.id,
       card: {
         imgAlt: product.card.imgAlt,
+        imgFormat: productData[i].imgFormat,
         gallery: productData[i].gallery,
         reverse: productData[i].reverse,
       },

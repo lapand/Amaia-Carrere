@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 import removeContextMenu from '../modules/utils/removeContextMenu';
+import Loader from './Loader';
 
 type ImageType = {
   uri: string;
@@ -23,29 +24,35 @@ const ForSaleSlider: React.FC<ForSaleSliderProps> = ({
   galleryLength,
 }) => {
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
-  const [fade, setFade] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onNextImg = () => {
-    setFade(false);
+    setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImgIdx(getNextIdx(gallery, currentImgIdx));
-      setFade(true);
+      setIsLoading(true);
     }, 150);
   };
 
   const onPrevImg = () => {
-    setFade(false);
+    setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImgIdx(getPrevIdx(gallery, currentImgIdx));
-      setFade(true);
+      setIsLoading(true);
     }, 150);
   };
 
+  const handleImgLoad = () => {
+    setIsLoading(false);
+    setIsTransitioning(false);
+  };
+
   const onSelectImg = (i: number) => {
-    setFade(false);
+    setIsTransitioning(true);
     setTimeout(() => {
       setCurrentImgIdx(i);
-      setFade(true);
+      setIsLoading(true);
     }, 150);
   };
 
@@ -67,9 +74,10 @@ const ForSaleSlider: React.FC<ForSaleSliderProps> = ({
 
   return (
     <div className="relative h-full flex">
+      {isLoading && <Loader width={60} height={48} />}
       <div
         className={`w-full transition-opacity ${
-          fade ? 'opacity-100' : 'opacity-0'
+          isTransitioning ? 'opacity-0' : 'opacity-100'
         }`}
       >
         <Image
@@ -79,6 +87,7 @@ const ForSaleSlider: React.FC<ForSaleSliderProps> = ({
           height={gallery[currentImgIdx].height}
           className="size-full object-cover"
           onContextMenu={removeContextMenu}
+          onLoad={handleImgLoad}
         />
       </div>
       {/* Slider controls */}

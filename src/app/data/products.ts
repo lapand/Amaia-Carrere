@@ -9,6 +9,7 @@ type IncompleteProductsType = {
   gallery: ProductImg[];
   btnLink: string;
   reverse: boolean;
+  imgFormat: 'landscape' | 'portrait' | 'square';
 };
 
 export const productData: IncompleteProductsType[] = [
@@ -57,6 +58,7 @@ export const productData: IncompleteProductsType[] = [
     ],
     btnLink: '',
     reverse: false,
+    imgFormat: 'portrait',
   },
   {
     gallery: [
@@ -88,5 +90,6 @@ export const productData: IncompleteProductsType[] = [
     ],
     btnLink: 'https://www.belarri.com/produit/ttinka',
     reverse: true,
+    imgFormat: "square",
   },
 ];

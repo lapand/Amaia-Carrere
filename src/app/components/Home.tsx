@@ -1,13 +1,25 @@
-import Image from 'next/image';
-import { Link } from 'react-scroll';
+import Link from 'next/link';
 import { useTranslation, Trans } from 'react-i18next';
-import { scrollToSection } from '../modules/utils/scrollTo';
 
 const tableBgPath = '/table.png';
 const bulbBgPath = '/ampoule-suspendue.png';
 
 const Home: React.FC = () => {
   useTranslation();
+
+  const handleScrollToGallery = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    const gallery = document.getElementById('Gallery');
+
+    if (gallery) {
+      window.scrollTo({
+        top: gallery.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   return (
     <div className="licorice-font relative h-full flex flex-col">
@@ -20,7 +32,10 @@ const Home: React.FC = () => {
           <Trans i18nKey="common:home.tagline" components={{ break: <br /> }} />
         </p>
         <h2 className="text-2xl sm:text-3xl md:text-5xl 2xl:text-5xl mt-5">
-          <Trans i18nKey="common:home.title" components={{ strong: <strong /> }} />
+          <Trans
+            i18nKey="common:home.title"
+            components={{ strong: <strong /> }}
+          />
         </h2>
       </div>
       <div className="flex-1 relative w-full">
@@ -30,13 +45,9 @@ const Home: React.FC = () => {
         ></div>
       </div>
       <Link
+        href=""
         className="absolute bottom-8 md:bottom-0 right-1/2 lg:right-[5%] 2xl:right-1/4 translate-x-1/2 w-8 h-[3rem] lg:w-10 lg:h-[5rem] rounded-full border-2 border-surface-800 cursor-pointer hover:bg-slate-50/70"
-        to={'Gallery'}
-        smooth={true}
-        duration={800}
-        onClick={() => {
-          scrollToSection('Gallery');
-        }}
+        onClick={handleScrollToGallery}
         aria-label={`Scroll down to the next section`}
         tabIndex={0}
       >
