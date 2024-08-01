@@ -37,6 +37,7 @@ const Gallery: React.FC = () => {
       alt={imgAltObj[(i + 1).toString()]}
       width={draw.width}
       height={draw.height}
+      blurDataURL={draw.blurDataURL}
       openModal={openModal}
     />
   ));

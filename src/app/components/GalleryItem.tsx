@@ -11,6 +11,7 @@ type GalleryItemProps = {
   height: number;
   openModal: (imgIdx: number) => void;
   imgIdx: number;
+  blurDataURL: string;
 };
 
 const GalleryItem: React.FC<GalleryItemProps> = ({
@@ -20,6 +21,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
   height,
   openModal,
   imgIdx,
+  blurDataURL,
 }) => {
   const galleryItemRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,8 +59,8 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
         onLoad={() => setIsLoading(false)}
         onContextMenu={removeContextMenu}
-        // placeholder="blur"
-        // blurDataURL={`${src}.blurDataURL`}
+        placeholder="blur"
+        blurDataURL={blurDataURL}
       />
     </div>
   );
