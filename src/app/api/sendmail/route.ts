@@ -38,7 +38,8 @@ export async function POST(req: Request) {
         refreshToken: REFRESH_TOKEN,
         accessToken: accessToken.token,
       },
-      // Il est important de ne pas ignorer la vérification des certificats en production
+      // Il est important de ne pas ignorer la vérification des certificats en production.
+      // On l'utilise ici pdt la phase de dév car l'antivirus re-signe le certificat TLS/SSL émis par le serveur SMTP de google, certificat alors rejeté.
       // tls: {
       //   rejectUnauthorized: false
       // }
