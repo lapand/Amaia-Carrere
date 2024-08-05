@@ -76,7 +76,7 @@ const About: React.FC = () => {
     >
       <div
         ref={dwarfRef}
-        className="absolute w-1/4 min-w-60 flex justify-center transition-transform duration-300"
+        className="absolute w-1/4 min-w-60 max-w-80 flex justify-center transition-transform duration-300"
         style={{
           top: `${dwarfCtnTop}vh`,
           height: `${dwarfCtnHeight}px`,
@@ -89,10 +89,10 @@ const About: React.FC = () => {
           }}
         >
           <Image
-            src="/about/nain.png"
-            alt="nain présentation"
-            width={500}
-            height={500}
+            src="/about/lutin.png"
+            alt="lutin poilu au chapeau pointu tenant un crayon"
+            width={1323}
+            height={1389}
             className="size-full object-contain"
             onContextMenu={removeContextMenu}
           />
@@ -111,7 +111,7 @@ const About: React.FC = () => {
           className="sticky out-view w-[524px] scale-bubble mr-auto px-12 pt-16 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-balance">
             <Trans
               i18nKey="common:about.bubble1"
               components={{ break: <br />, strong: <strong /> }}
@@ -132,7 +132,7 @@ const About: React.FC = () => {
           className="sticky out-view w-[538px] scale-bubble ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-balance">
             <Trans
               i18nKey="common:about.bubble2"
               components={{ strong: <strong /> }}

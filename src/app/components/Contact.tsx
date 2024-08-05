@@ -10,14 +10,14 @@ const Contact: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col mt-4 lg:mt-12 xl:mt-16">
       <div className="flex-1 w-4/5 mx-auto flex flex-col gap-5">
-        <div className="flex-1 flex max-lg:flex-col justify-center items-center lg:gap-4 2xl:gap-24">
+        <div className="flex-1 flex max-lg:flex-col justify-center items-center">
           <div className="lg:w-1/2 lg:self-end flex lg:justify-end">
-            <div className="lg:w-full max-w-[550px]">
+            <div className="lg:w-full max-w-[500px]">
               <Image
                 src="/contact/lezard.png"
                 alt="lézards au téléphone"
-                width={650}
-                height={650}
+                width={630}
+                height={520}
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
               />
