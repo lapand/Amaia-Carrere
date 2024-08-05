@@ -10,7 +10,7 @@ import Contact from './components/Contact';
 const Main: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col main-bg">
-      <Section className="h-screen" id="Home">
+      <Section className="h-screen pb-safe-bottom" id="Home">
         <Home />
       </Section>
       <Section className="min-h-screen" id="Gallery">

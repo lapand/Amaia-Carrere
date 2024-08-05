@@ -101,7 +101,6 @@ const Header: React.FC = () => {
       >
         <button
           ref={langIconRefs.current[i]}
-          key={i}
           className="language-icon absolute top-0 left-0"
           onClick={() => handleToggle(lang.languageCode)}
           aria-label={`Switch to ${lang.langName} language`}
@@ -119,9 +118,9 @@ const Header: React.FC = () => {
   });
 
   return (
-    <header className="fixed z-10 w-full header-height flex items-center justify-between px-6 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
-      <div className="h-full flex items-center gap-10 xl:gap-12 2xl:gap-32">
-        <h1 className="h-4/5 min-w-40 cursor-pointer">
+    <header className="fixed z-10 w-full header-height flex items-center justify-between gap-4 px-4 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
+      <div className="h-full flex items-center gap-6 sm:gap-10 xl:gap-12 2xl:gap-32">
+        <h1 className="h-4/5 min-w-36 cursor-pointer">
           <Link
             href=""
             onClick={handleScrollToHome}
@@ -154,7 +153,7 @@ const Header: React.FC = () => {
           {JSXLanguages}
         </div>
       </div>
-      <div className="flex items-center max-lg:flex-row-reverse gap-6 md:gap-12 lg:gap-16 xl:gap-24">
+      <div className="flex items-center max-xl:flex-row-reverse gap-6 md:gap-12 lg:gap-16 xl:gap-24">
         <div>
           <Menu />
         </div>

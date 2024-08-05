@@ -13,6 +13,7 @@
   --background-rgb: 255, 255, 255;
   --header-height: 60px;
   --about-section-mt: 10rem;
+  --safe-area-bottom: env(safe-area-inset-bottom);
 }
 @media (min-width: 1280px) {
   :root {
@@ -120,8 +121,11 @@ strong {
     height: calc(100vh - var(--header-height));
     @apply top-[var(--header-height)] right-0;
   }
+  .pb-safe-bottom {
+    padding-bottom: calc(var(--safe-area-bottom) + theme('spacing.2'));
+  }
   .section-padding {
-    @apply pb-2 px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
+    @apply px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];
@@ -134,7 +138,7 @@ strong {
     background-size: contain;
   }
   .header-icon {
-    @apply w-11 2xl:w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
+    @apply w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
   }
   .language-icon {
     @apply w-10 lg:w-10 2xl:w-12 aspect-square p-2 cursor-pointer transition-transform hover:scale-110;

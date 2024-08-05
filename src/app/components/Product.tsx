@@ -26,7 +26,7 @@ const Product: React.FC<ProductProps> = ({ id, card, btn }) => {
   
   return (
     <div className="flex flex-col items-center gap-12 md:gap-16">
-      <h3 className="inspiration-font text-8xl">
+      <h3 className="inspiration-font text-6xl sm:text-8xl">
         <Trans
           i18nKey={`common:products.${id - 1}.title`}
           components={{ strong: <strong /> }}

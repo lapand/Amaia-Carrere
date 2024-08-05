@@ -46,7 +46,7 @@ const About: React.FC = () => {
           }
         });
       },
-      { root: null, rootMargin: '-10% 100% -40% 100%', threshold: 1.0 }
+      { root: null, rootMargin: '0% 100% 0% 100%', threshold: 1.0 }
     );
 
     if (bubble1Ref.current) {

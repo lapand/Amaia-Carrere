@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import LinkNavigation from './LinkNavigation';
 import useSectionObserver from './useSectionObserver';
+import Fade from './Fade';
 
 // menuIconBreakpoint <=> Tailwind breakpoint max-lg
 const menuIconBreakpoint: number = 1024;
@@ -58,13 +59,19 @@ const Menu: React.FC = () => {
   }, [windowWidth]);
 
   const handleClick = () => {
-    windowWidth <= menuIconBreakpoint && setIsSideMenuOpened((isSideMenuOpened) => !isSideMenuOpened);
+    windowWidth <= menuIconBreakpoint &&
+      setIsSideMenuOpened((isSideMenuOpened) => !isSideMenuOpened);
   };
 
   const liJSX = menuArray.map((item, i) => {
     return (
       <li key={item}>
-        <LinkNavigation i={i} content={item} onClick={handleClick} activeSection={activeSection} />
+        <LinkNavigation
+          i={i}
+          content={item}
+          onClick={handleClick}
+          activeSection={activeSection}
+        />
       </li>
     );
   });
@@ -74,7 +81,7 @@ const Menu: React.FC = () => {
       {windowWidth <= menuIconBreakpoint && (
         <button
           onClick={handleClick}
-          className="w-10 2xl:w-12 aspect-square"
+          className="w-11 2xl:w-12 aspect-square"
           aria-label="Toggle menu"
           ref={menuIconRef}
         >
@@ -92,16 +99,18 @@ const Menu: React.FC = () => {
           {liJSX}
         </ul>
       )}
-      {windowWidth <= menuIconBreakpoint && isSideMenuOpened && (
-        <div
-          className="fixed side-nav w-72 p-10 bg-surface-200 border-2 border-l-surface-300"
-          ref={sideNavRef}
-        >
-          <ul className="size-full flex flex-col justify-center gap-6 text-4xl">
-            {liJSX}
-          </ul>
-        </div>
-      )}
+      <Fade
+        className="fixed side-nav w-72 p-10 bg-surface-200/70 border-2 border-l-surface-300"
+        from={{ x: 300 }}
+        style={{ transform: `translate3d(0, 0, 0)` }}
+        visible={windowWidth <= menuIconBreakpoint && isSideMenuOpened}
+        duration={300}
+        ref={sideNavRef}
+      >
+        <ul className="size-full flex flex-col justify-center gap-6 text-4xl">
+          {liJSX}
+        </ul>
+      </Fade>
     </nav>
   );
 };
