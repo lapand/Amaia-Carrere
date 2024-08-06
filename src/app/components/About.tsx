@@ -108,10 +108,10 @@ const About: React.FC = () => {
         {/* translate-x-12 */}
         <div
           ref={bubble1Ref}
-          className="sticky out-view w-[524px] scale-bubble mr-auto px-12 pt-16 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
+          className="sticky out-view w-[524px] scale-bubble mr-auto px-20 pt-20 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-balance">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
             <Trans
               i18nKey="common:about.bubble1"
               components={{ break: <br />, strong: <strong /> }}
@@ -132,7 +132,7 @@ const About: React.FC = () => {
           className="sticky out-view w-[538px] scale-bubble ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
           style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
         >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-balance">
+          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
             <Trans
               i18nKey="common:about.bubble2"
               components={{ strong: <strong /> }}

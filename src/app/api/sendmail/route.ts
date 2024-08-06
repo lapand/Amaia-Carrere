@@ -3,7 +3,11 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { OAuth2Client } from 'google-auth-library';
 
-const {CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN, USER, RECIPIENT} = process.env;
+const {USER, RECIPIENT} = process.env;
+const CLIENT_ID = process.env.CLIENT_ID || '';
+const CLIENT_SECRET = process.env.CLIENT_SECRET || '';
+const REDIRECT_URI = process.env.REDIRECT_URI || '';
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN || '';
 
 const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
@@ -23,6 +27,12 @@ export async function POST(req: Request) {
 
   // Sending mail
   try {
+    console.debug('Vérification des variables d\'environnement :');
+    console.debug('CLIENT_ID:', CLIENT_ID.slice(0, 5) + '...');
+    console.debug('CLIENT_SECRET:', CLIENT_SECRET.slice(0, 5) + '...');
+    console.debug('REDIRECT_URI:', REDIRECT_URI);
+    console.debug('REFRESH_TOKEN:', REFRESH_TOKEN.slice(0, 5) + '...')
+
     const accessToken = await oAuth2Client.getAccessToken();
     if (!accessToken.token || typeof accessToken.token !== 'string') {
       throw new Error('Invalid access token');
