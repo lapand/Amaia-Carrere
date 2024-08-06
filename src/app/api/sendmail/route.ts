@@ -27,6 +27,7 @@ export async function POST(req: Request) {
     if (!accessToken.token || typeof accessToken.token !== 'string') {
       throw new Error('Invalid access token');
     }
+    console.debug('Access Token:', accessToken.token.slice(0, 5) + '...');
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
