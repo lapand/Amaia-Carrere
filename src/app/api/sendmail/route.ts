@@ -23,12 +23,10 @@ export async function POST(req: Request) {
 
   // Sending mail
   try {
-    console.debug(1);
     const accessToken = await oAuth2Client.getAccessToken();
     if (!accessToken.token || typeof accessToken.token !== 'string') {
       throw new Error('Invalid access token');
     }
-    console.debug(2);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
