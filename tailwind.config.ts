@@ -9,7 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontSize: {
+        "3.5xl": ['2rem', '2.35rem'],
         "4.5xl": ['2.5rem', '2.6rem'],
+        "4.8xl": ['2.75rem', '3rem'],
       },
       colors: {
         primary: {
