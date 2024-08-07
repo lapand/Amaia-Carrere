@@ -12,24 +12,30 @@ const langData = [
     langName: 'euskadi',
     languageCode: 'eus',
     iconUri: '/basco-flag.png',
-    posX: -50,
-    posY: 30,
+    // posX: -50,
+    posX: "-translate-x-[50px]",
+    // posY: 30,
+    posY: "translate-y-full sm:translate-y-[40px]",
     delay: 0,
   },
   {
     langName: 'french',
     languageCode: 'fr',
     iconUri: '/french-flag.png',
-    posX: 0,
-    posY: 40,
+    // posX: 0,
+    posX: "",
+    // posY: 40,
+    posY: "translate-y-full sm:translate-y-[60px]",
     delay: 100,
   },
   {
     langName: 'english',
     languageCode: 'en',
     iconUri: '/english-flag.png',
-    posX: 50,
-    posY: 30,
+    posX: "translate-x-[50px]",
+    // posX: 50,
+    posY: "translate-y-full sm:translate-y-[40px]",
+    // posY: 30,
     delay: 200,
   },
 ];
@@ -96,12 +102,12 @@ const Header: React.FC = () => {
         key={i}
         visible={isLanguagesVisible}
         delay={lang.delay}
-        className="absolute left-0 top-0"
-        style={{ transform: `translate3d(${lang.posX}px, ${lang.posY}px, 0)` }}
+        className={`absolute left-0 top-0 ${lang.posX} ${lang.posY}`}
+        // style={{ transform: `translate3d(${lang.posX}px, ${lang.posY}px, 0)` }}
       >
         <button
           ref={langIconRefs.current[i]}
-          className="language-icon absolute top-0 left-0"
+          className="size-12 p-2 cursor-pointer transition-transform max-sm:scale-90 hover:scale-105 sm:hover:scale-110"
           onClick={() => handleToggle(lang.languageCode)}
           aria-label={`Switch to ${lang.langName} language`}
         >
@@ -144,7 +150,7 @@ const Header: React.FC = () => {
           >
             <Image
               src="/language-icon.svg"
-              alt="facebook-icon"
+              alt="language-icon"
               width={100}
               height={100}
               className="size-full"
@@ -157,7 +163,7 @@ const Header: React.FC = () => {
         <div>
           <Menu />
         </div>
-        <div className="max-sm:absolute max-sm:left-2 max-sm: top-full flex items-center sm:gap-2">
+        <div className="max-sm:absolute max-sm:left-2 max-sm:top-full flex items-center sm:gap-2">
           <div className="header-icon black-to-color">
             <Link
               href={'https://www.instagram.com/amaia.carrere'}

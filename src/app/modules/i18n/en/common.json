@@ -67,7 +67,7 @@
   "contact": {
     "form": {
       "formTitle": "Interested in an <strong>illustration</strong> project ?",
-      "formSubTitle": "Contact me by email or phone",
+      "formSubTitle": "Contact me",
       "input1": {
         "label": "Email:",
         "placeholder": "email@outlook.com"

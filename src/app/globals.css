@@ -140,9 +140,6 @@ strong {
   .header-icon {
     @apply w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
   }
-  .language-icon {
-    @apply w-10 lg:w-10 2xl:w-12 aspect-square p-2 cursor-pointer transition-transform hover:scale-110;
-  }
   .black-to-color {
     @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
   }
