@@ -14,7 +14,7 @@ type From = {
   z?: number;
 };
 
-type FadeProps = PropsWithChildren<{
+type TransitionDOMProps = PropsWithChildren<{
   visible: boolean;
   duration?: number;
   delay?: number;
@@ -24,12 +24,15 @@ type FadeProps = PropsWithChildren<{
   className?: string;
 }>;
 
+// VISIBLE => style opacity 1 et présence dans le DOM
+// ENTERING & LEAVING => style opacity 0 et présence dans le DOM
+// HIDDEN => style opacity 0 et suppression du DOM
 const VISIBLE = 1;
 const HIDDEN = 2;
 const ENTERING = 3;
 const LEAVING = 4;
 
-const Fade = forwardRef<HTMLDivElement, FadeProps>(function FadeComponent(
+const TransitionDOM = forwardRef<HTMLDivElement, TransitionDOMProps>(function TransitionDOMComponent(
   {
     children,
     visible,
@@ -43,7 +46,7 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(function FadeComponent(
   ref
 ) {
   const childRef = useRef(children);
-  // state représente l'état du composant Fade
+
   const [state, setState] = useState(
     visible ? (animateEnter ? ENTERING : VISIBLE) : HIDDEN
   );
@@ -78,10 +81,6 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(function FadeComponent(
     return null;
   }
 
-  // VISIBLE => style opacity 1 et présence dans le DOM
-  // ENTERING & LEAVING => style opacity 0 et présence dans le DOM
-  // HIDDEN => style opacity 0 et suppression du DOM
-
   let transitionStyle: CSSProperties = {
     transitionProperty: 'opacity transform',
     transitionDuration: `${duration}ms`,
@@ -110,4 +109,4 @@ const Fade = forwardRef<HTMLDivElement, FadeProps>(function FadeComponent(
   );
 });
 
-export default Fade;
+export default TransitionDOM;

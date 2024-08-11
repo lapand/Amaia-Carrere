@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Fade from './Fade';
+import TransitionDOM from './TransitionDOM';
 
 type ModalProps = {
   closeModal: () => void;
@@ -21,7 +21,7 @@ const ModalWithTransition: React.FC<ModalProps> = ({
   };
 
   return (
-    <Fade
+    <TransitionDOM
       className="fixed z-50 inset-0"
       visible={visible}
       duration={duration}
@@ -35,7 +35,7 @@ const ModalWithTransition: React.FC<ModalProps> = ({
         ></button>
         {children}
       </div>
-    </Fade>
+    </TransitionDOM>
   );
 };
 

@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import LinkNavigation from './LinkNavigation';
-import useSectionObserver from './useSectionObserver';
-import Fade from './Fade';
+import useSectionObserver from '../hooks/useSectionObserver';
+import TransitionDOM from './TransitionDOM';
 
 // menuIconBreakpoint <=> Tailwind breakpoint max-lg
 const menuIconBreakpoint: number = 1024;
@@ -99,7 +99,7 @@ const Menu: React.FC = () => {
           {liJSX}
         </ul>
       )}
-      <Fade
+      <TransitionDOM
         className="fixed side-nav w-72 p-10 bg-surface-200/70 border-2 border-l-surface-300"
         from={{ x: 300 }}
         style={{ transform: `translate3d(0, 0, 0)` }}
@@ -110,7 +110,7 @@ const Menu: React.FC = () => {
         <ul className="size-full flex flex-col justify-center gap-6 text-4xl">
           {liJSX}
         </ul>
-      </Fade>
+      </TransitionDOM>
     </nav>
   );
 };

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Menu from './Menu';
 import { createRef, RefObject, useEffect, useRef, useState } from 'react';
-import Fade from './Fade';
+import TransitionDOM from './TransitionDOM';
 import { useTranslation } from 'react-i18next';
 
 const langData = [
@@ -92,12 +92,11 @@ const Header: React.FC = () => {
 
   const JSXLanguages = langData.map((lang, i: number) => {
     return (
-      <Fade
+      <TransitionDOM
         key={i}
         visible={isLanguagesVisible}
         delay={lang.delay}
         className={`absolute left-0 top-0 ${lang.posX} ${lang.posY}`}
-        // style={{ transform: `translate3d(${lang.posX}px, ${lang.posY}px, 0)` }}
       >
         <button
           ref={langIconRefs.current[i]}
@@ -113,7 +112,7 @@ const Header: React.FC = () => {
             className="size-full"
           />
         </button>
-      </Fade>
+      </TransitionDOM>
     );
   });
 
