@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     const mailOptions = {
       from: `Amaia Carrere - site web <${MYMAIL}>`,
-      to: 'lapand@hotmail.fr',
+      to: 'pietro.nolanda@gmail.com',
       subject,
       text: `
         Message reçu de : ${email}
