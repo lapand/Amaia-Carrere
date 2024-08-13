@@ -1,12 +1,8 @@
 import { contactSchema } from '@/app/schemas/formSchema';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { OAuth2Client } from 'google-auth-library';
 
-const {CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN, USER, RECIPIENT} = process.env;
-
-const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+const {USER, API_KEY, MYMAIL} = process.env;
 
 export async function POST(req: Request) {
   const body: unknown = await req.json();
@@ -23,20 +19,13 @@ export async function POST(req: Request) {
 
   // Sending mail
   try {
-    const accessToken = await oAuth2Client.getAccessToken();
-    if (!accessToken.token || typeof accessToken.token !== 'string') {
-      throw new Error('Invalid access token');
-    }
-
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.sendgrid.net',
+      port: 587,
+      secure: false,
       auth: {
-        type: 'OAuth2',
         user: USER,
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
-        refreshToken: REFRESH_TOKEN,
-        accessToken: accessToken.token,
+        pass: API_KEY,
       },
       // Il est important de ne pas ignorer la vérification des certificats en production.
       // On l'utilise ici pdt la phase de dév car l'antivirus re-signe le certificat TLS/SSL émis par le serveur SMTP de google, certificat alors rejeté.
@@ -48,15 +37,15 @@ export async function POST(req: Request) {
     const { email, subject, content } = result.data;
 
     const mailOptions = {
-      from: `Amaia Carrere - site web <${USER}>`,
-      to: 'lapand@hotmail.fr',
+      from: `Amaia Carrere - site web <${MYMAIL}>`,
+      to: 'pietro.nolanda@gmail.com',
       subject,
       text: content,
       html: `
         <h3>Message reçu de : ${email}</h3>
         <p>${content}</p>
       `,
-    };
+    };    
 
     await transporter.sendMail(mailOptions);
   } catch (e: unknown) {
