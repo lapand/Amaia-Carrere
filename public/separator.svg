@@ -1,0 +1,17 @@
+<svg width="100%" height="100%" id="svg" viewBox="0 -180 1440 390" xmlns="http://www.w3.org/2000/svg"
+    class="transition duration-300 ease-in-out delay-150">
+  <!-- Définir le dégradé linéaire -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color: rgba(0, 0, 0, 0); stop-opacity: 1;" />
+      <stop offset="100%" style="stop-color: rgba(0, 0, 0, 1); stop-opacity: 1;" />
+    </linearGradient>
+  </defs>
+
+  <!-- Appliquer le dégradé comme remplissage -->
+  <path
+    d="M 0,400 L 0,150 C 106.69856459330146,126.91866028708134 213.3971291866029,103.83732057416267 319,120 C 424.6028708133971,136.16267942583733 529.1100478468899,191.56937799043064 619,197 C 708.8899521531101,202.43062200956936 784.1626794258373,157.88516746411483 868,125 C 951.8373205741627,92.11483253588517 1044.2392344497607,70.88995215311006 1141,77 C 1237.7607655502393,83.11004784688994 1338.8803827751196,116.55502392344496 1440,150 L 1440,400 L 0,400 Z"
+    stroke="none" stroke-width="0" fill="url(#gradient)"
+    class="transition-all duration-300 ease-in-out delay-150 path-0">
+  </path>
+</svg>

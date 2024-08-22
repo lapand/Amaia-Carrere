@@ -12,30 +12,31 @@ const langData = [
     langName: 'euskadi',
     languageCode: 'eus',
     iconUri: '/basco-flag.png',
-    posX: "-translate-x-[50px]",
-    posY: "translate-y-[60px] sm:translate-y-[40px]",
+    posX: '-translate-x-[50px]',
+    posY: 'translate-y-[60px] sm:translate-y-[40px]',
     delay: 0,
   },
   {
     langName: 'french',
     languageCode: 'fr',
     iconUri: '/french-flag.png',
-    posX: "",
-    posY: "translate-y-[60px]",
+    posX: '',
+    posY: 'translate-y-[60px]',
     delay: 100,
   },
   {
     langName: 'english',
     languageCode: 'en',
     iconUri: '/english-flag.png',
-    posX: "translate-x-[50px]",
-    posY: "translate-y-[60px] sm:translate-y-[40px]",
+    posX: 'translate-x-[50px]',
+    posY: 'translate-y-[60px] sm:translate-y-[40px]',
     delay: 200,
   },
 ];
 
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
+  const [whiteHeaderStyle, setWhiteHeaderStyle] = useState(false);
   const { i18n } = useTranslation();
   const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
 
@@ -116,8 +117,34 @@ const Header: React.FC = () => {
     );
   });
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const shouldAddStyle = window.scrollY > 50;
+      if (shouldAddStyle && !whiteHeaderStyle) {
+        setWhiteHeaderStyle(true);
+      } else if (!shouldAddStyle && whiteHeaderStyle) {
+        setWhiteHeaderStyle(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [whiteHeaderStyle]);
+
+  let headerStyle = '';
+  if(whiteHeaderStyle) {
+    headerStyle = 'border-slate-500 bg-white';
+  } else {
+    headerStyle = 'border-transparent';
+  }
+
   return (
-    <header className="fixed z-10 w-full header-height flex items-center justify-between gap-4 px-4 sm:px-12 xl:px-20 bg-white border-b border-slate-500">
+    <header
+      className={`fixed z-30 w-full header-height flex items-center justify-between gap-4 px-4 sm:px-12 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
+    >
       <div className="h-full flex items-center gap-6 sm:gap-10 xl:gap-12 2xl:gap-32">
         <h1 className="h-4/5 min-w-36 cursor-pointer">
           <Link

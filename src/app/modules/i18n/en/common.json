@@ -2,7 +2,9 @@
   "menu": ["Home", "Gallery", "For Sale", "About", "Contact"],
   "home": {
     "tagline": "Welcome to my studio,<br/> source of penciled dreams",
-    "title": "<strong>Children's illustrator</strong> / Fantasy / <strong>Comic</strong>"
+    "title1": "<strong>Children's illustrator</strong>",
+    "title2": "Fantasy",
+    "title3": "<strong>Comic</strong>"
   },
   "gallery": {
     "alt": {

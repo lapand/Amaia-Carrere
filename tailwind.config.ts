@@ -8,10 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '350px',
+      },
       fontSize: {
         "3.5xl": ['2rem', '2.35rem'],
         "4.5xl": ['2.5rem', '2.6rem'],
         "4.8xl": ['2.75rem', '3rem'],
+        "5.5xl": ['3.4rem', '3.3rem'],
       },
       colors: {
         primary: {

@@ -36,9 +36,11 @@ export async function POST(req: Request) {
       to: 'lapand1@outlook.com',
       subject,
       text: `
+        Message reçu de : ${email}
         ${content}
       `,
       html: `
+        <h3>Message reçu de : ${email}</h3>
         <p>${content}</p>
       `,
     };    

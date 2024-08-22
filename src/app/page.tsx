@@ -10,10 +10,15 @@ import Contact from './components/Contact';
 const Main: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col main-bg">
-      <Section className="h-screen pb-safe-bottom" id="Home">
-        <Home />
-      </Section>
-      <Section className="min-h-screen" id="Gallery">
+      <div
+        className="h-[120vh] home-bg"
+        id="Home"
+      >
+        <Section className='h-screen pb-safe-bottom border-none'>
+          <Home />
+        </Section>
+      </div>
+      <Section className="min-h-screen gallery" id="Gallery">
         <Gallery />
       </Section>
       <Section className="min-h-screen" id="ForSale">
