@@ -22,25 +22,25 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="relative h-full flex flex-col licorice-font">
+    <div className="relative h-full flex flex-col luckiest-guy">
       <div className="relative text-surface-900 flex-1">
-        <p className="absolute max-sm:w-screen max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:py-2 top-1/2 sm:top-20 sm:left-[10%] max-sm:backdrop-blur-sm max-sm:bg-white/20 text-4.5xl xs:text-5xl sm:text-6xl xl:text-7xl tt text-center">
+        <p className="absolute max-sm:w-screen max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:py-2 top-[45%] sm:top-20 sm:left-[10%] text-3xl sm:text-6xl xl:text-7xl text-center sm:licorice-font sm:thickening">
           <Trans i18nKey="common:home.tagline" components={{ break: <br /> }} />
         </p>
-        <h2 className="absolute max-sm:w-full max-sm:flex max-sm:flex-col max-sm:gap-2 top-[15%] sm:top-3/4 sm:right-[15%] max-sm:py-2 text-lg xs:text-xl sm:text-2xl xl:text-3xl sm:text-center luckiest-guy">
-          <span className="sm:block sm:mb-6 xl:mb-10">
+        <h2 className="absolute max-sm:w-full top-[15%] sm:top-[60%] md:top-[63%] sm:right-[65%] md:right-[55%] 2xl:right-[45%] max-sm:flex max-sm:flex-col max-sm:gap-2 text-lg xs:text-xl sm:text-2xl xl:text-3xl sm:text-center">
+          <span className="sm:absolute sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title1"
               components={{ strong: <strong /> }}
             />
           </span>
-          <span className="sm:mt-10 sm:mr-6 lg:mr-10 2xl:mr-16">
+          <span className="sm:absolute sm:top-32 xl:top-40 sm:left-28 xl:left-32 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title2"
               components={{ strong: <strong /> }}
             />
           </span>
-          <span className="sm:mt-10 sm:ml-6 lg:ml-10 2xl:ml-16">
+          <span className="sm:absolute sm:-top-8 lg:top-20 sm:left-52 lg:left-72 xl:left-80 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title3"
               components={{ strong: <strong /> }}
