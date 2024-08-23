@@ -31,9 +31,13 @@ export async function POST(req: Request) {
 
     const { email, subject, content } = result.data;
 
+    const formatContentForHtml = (text: string) => {
+      return text.split('\n').map(line => `<p>${line}</p>`).join('');
+    };
+    
     const mailOptions = {
       from: `"Amaia Carrere - site web" <${MYMAIL}>`,
-      to: "lapand1@outlook.com",
+      to: RECIPIENT,
       subject,
       text: `
         Message reçu de : ${email}
@@ -41,7 +45,7 @@ export async function POST(req: Request) {
       `,
       html: `
         <h3>Message reçu de : ${email}</h3>
-        <p>${content}</p>
+        ${formatContentForHtml(content)}
       `,
       replyTo: email,
     };
