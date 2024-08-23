@@ -27,20 +27,20 @@ const Home: React.FC = () => {
         <p className="absolute max-sm:w-screen max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:py-2 top-[45%] sm:top-20 sm:left-[10%] text-3xl sm:text-6xl xl:text-7xl text-center sm:licorice-font sm:thickening">
           <Trans i18nKey="common:home.tagline" components={{ break: <br /> }} />
         </p>
-        <h2 className="absolute max-sm:w-full top-[15%] sm:top-[60%] md:top-[63%] sm:right-[65%] md:right-[55%] 2xl:right-[45%] max-sm:flex max-sm:flex-col max-sm:gap-2 text-lg xs:text-xl sm:text-2xl xl:text-3xl sm:text-center">
+        <h2 className="absolute max-sm:w-full top-[15%] sm:top-[60%] md:top-[63%] sm:right-[65%] md:right-[55%] 2xl:right-[45%] max-sm:flex max-sm:flex-col max-sm:gap-2 text-lg xs:text-xl sm:text-2xl 3xl:text-3xl sm:text-center">
           <span className="sm:absolute sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title1"
               components={{ strong: <strong /> }}
             />
           </span>
-          <span className="sm:absolute sm:top-32 xl:top-40 sm:left-28 xl:left-32 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
+          <span className="sm:absolute sm:top-36 3xl:top-40 sm:left-28 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title2"
               components={{ strong: <strong /> }}
             />
           </span>
-          <span className="sm:absolute sm:-top-8 lg:top-20 sm:left-52 lg:left-72 xl:left-80 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
+          <span className="sm:absolute sm:-top-8 xl:top-20 sm:left-52 lg:left-72 sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-3 sm:px-5 rounded-full flex items-center sm:border-2 border-black">
             <Trans
               i18nKey="common:home.title3"
               components={{ strong: <strong /> }}
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
       </div>
       <Link
         href=""
-        className="absolute bottom-28 sm:bottom-8 md:bottom-0 right-10 translate-x-1/2 w-8 lg:w-10 h-[3rem] lg:h-[5rem] rounded-full border-2 border-surface-800 cursor-pointer hover:bg-slate-50/70"
+        className="absolute bottom-[15%] sm:bottom-8 md:bottom-0 right-10 translate-x-1/2 w-8 lg:w-10 h-[3rem] lg:h-[5rem] rounded-full border-2 border-surface-800 cursor-pointer hover:bg-slate-50/70"
         onClick={handleScrollToGallery}
         aria-label={`Scroll down to the next section`}
         tabIndex={0}

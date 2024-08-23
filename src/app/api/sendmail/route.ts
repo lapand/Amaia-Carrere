@@ -2,7 +2,7 @@ import { contactSchema } from '@/app/schemas/formSchema';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-const {USER, API_KEY, MYMAIL} = process.env;
+const {USER, API_KEY, MYMAIL, RECIPIENT} = process.env;
 
 export async function POST(req: Request) {
   const body: unknown = await req.json();
@@ -32,8 +32,8 @@ export async function POST(req: Request) {
     const { email, subject, content } = result.data;
 
     const mailOptions = {
-      from: `Amaia Carrere - site web <${MYMAIL}>`,
-      to: 'lapand1@outlook.com',
+      from: `"Amaia Carrere - site web" <${MYMAIL}>`,
+      to: "lapand1@outlook.com",
       subject,
       text: `
         Message reçu de : ${email}
@@ -43,7 +43,8 @@ export async function POST(req: Request) {
         <h3>Message reçu de : ${email}</h3>
         <p>${content}</p>
       `,
-    };    
+      replyTo: email,
+    };
 
     await transporter.sendMail(mailOptions);
   } catch (e: unknown) {

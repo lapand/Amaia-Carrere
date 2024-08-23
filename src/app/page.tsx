@@ -11,14 +11,14 @@ const Main: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col main-bg">
       <div
-        className="h-[120vh] home-bg"
+        className="home"
         id="Home"
       >
         <Section className='h-screen pb-safe-bottom border-none'>
           <Home />
         </Section>
       </div>
-      <Section className="min-h-screen gallery" id="Gallery">
+      <Section className="min-h-screen" id="Gallery">
         <Gallery />
       </Section>
       <Section className="min-h-screen" id="ForSale">
