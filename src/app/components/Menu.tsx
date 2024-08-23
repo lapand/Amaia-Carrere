@@ -21,6 +21,7 @@ const Menu: React.FC = () => {
   const sideNavRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLButtonElement>(null);
   const [activeSection, setActiveSection] = useState('Home');
+  const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   const { t } = useTranslation('common');
   const menuArray: string[] = t('menu', { returnObjects: true }) as string[];
@@ -58,6 +59,18 @@ const Menu: React.FC = () => {
     windowWidth > menuIconBreakpoint && setIsSideMenuOpened(false);
   }, [windowWidth]);
 
+  //Pb : A t0 windowWidth = 0 et menuIconRef (icone du menu) est présente, on ne rentre donc jamais dans la condition au montage
+  // useEffect(() => {
+  //   if (windowWidth > menuIconBreakpoint) {
+  //     const timer = setTimeout(() => {
+  //       setIsMenuVisible(true);
+  //     }, 100);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, []);
+
   const handleClick = () => {
     windowWidth <= menuIconBreakpoint &&
       setIsSideMenuOpened((isSideMenuOpened) => !isSideMenuOpened);
@@ -65,7 +78,7 @@ const Menu: React.FC = () => {
 
   const liJSX = menuArray.map((item, i) => {
     return (
-      <li key={item}>
+      <li key={item} className={`${isMenuVisible ? '-translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
         <LinkNavigation
           i={i}
           content={item}
