@@ -54,13 +54,13 @@ const Card: React.FC<CardPropsType> = ({
         </div>
       )}
       <div className="md:w-3/5 overflow-auto p-5 md:p-10">
-        <h5 className="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h5 className="mb-5 text-2xl font-bold tracking-tight text-white">
           <Trans
             i18nKey={`common:products.${id - 1}.card.headline`}
             components={{ strong: <strong /> }}
           />
         </h5>
-        <p className="text-gray-700 dark:text-gray-400">
+        <p className="text-gray-400">
           <Trans
             i18nKey={`common:products.${id - 1}.card.content`}
             components={{ strong: <strong />, break: <br /> }}
