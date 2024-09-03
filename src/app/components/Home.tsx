@@ -2,9 +2,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
-const tableBgPath = '/table.png';
-const bulbBgPath = '/ampoule-suspendue.png';
-
 const Home: React.FC = () => {
   useTranslation();
 
@@ -15,13 +12,13 @@ const Home: React.FC = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setIs1TitleVisible(true);
-    }, 100);
+    }, 500);
     const timer2 = setTimeout(() => {
       setIs2TitleVisible(true);
-    }, 800);
+    }, 1200);
     const timer3 = setTimeout(() => {
       setIs3TitleVisible(true);
-    }, 1500);
+    }, 1900);
 
     return () => {
       clearTimeout(timer1);

@@ -37,7 +37,7 @@ const Product: React.FC<ProductProps> = ({ id, card, btn }) => {
         {btn && (
           <div className="text-center md:text-end">
             {btn.btnLink ? (
-              <Link href={btn.btnLink} target="_blank">
+              <Link href={btn.btnLink} target="_blank" rel="noreferrer">
                 <Button>{btn.btnText}</Button>
               </Link>
             ) : (

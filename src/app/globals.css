@@ -1,8 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
+@font-face {
+  font-family: 'Inspiration';
+  src: url('../../fonts/Inspiration/Inspiration-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Licorice';
+  src: url('../../fonts/Licorice/Licorice-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('../../fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap'); */
 
 @tailwind base;
 @tailwind components;
@@ -105,11 +122,6 @@ strong {
   }
   .londrina-shadow {
     font-family: 'Londrina Shadow', sans-serif;
-  }
-  .calligraffitti-regular {
-    font-family: 'Calligraffitti', cursive;
-    font-weight: 400;
-    font-style: normal;
   }
   .text-balance {
     text-wrap: balance;

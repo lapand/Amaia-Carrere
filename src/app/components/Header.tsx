@@ -154,11 +154,12 @@ const Header: React.FC = () => {
             tabIndex={0}
           >
             <Image
-              src="/amaia-logo.png"
+              src="/amaia-logo.webp"
               alt="Site logo - Amaia Carrere"
               width={483}
               height={141}
               className="size-full"
+              priority
             />
           </Link>
         </h1>
@@ -174,6 +175,7 @@ const Header: React.FC = () => {
               width={100}
               height={100}
               className="size-full"
+              priority
             />
           </button>
           {JSXLanguages}
@@ -195,6 +197,7 @@ const Header: React.FC = () => {
                 width={100}
                 height={100}
                 className="size-full"
+                priority
               />
             </Link>
           </div>
@@ -209,6 +212,7 @@ const Header: React.FC = () => {
                 width={100}
                 height={100}
                 className="size-full"
+                priority
               />
             </Link>
           </div>
@@ -223,6 +227,7 @@ const Header: React.FC = () => {
                 width={100}
                 height={100}
                 className="size-full"
+                priority
               />
             </Link>
           </div>

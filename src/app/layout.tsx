@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from './components/Header';
 import ClientI18nProvider from './modules/i18n/ClientI18nProvider';
+import PageLoader from './components/PageLoader';
+import PreloadResources from './components/PreloadResources';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,10 +22,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${inter.className}`}>
-        <ClientI18nProvider>
-          <Header />
-          {children}
-        </ClientI18nProvider>
+        <PreloadResources />
+        <PageLoader>
+          <ClientI18nProvider>
+            <Header />
+            {children}
+          </ClientI18nProvider>
+        </PageLoader>
       </body>
     </html>
   );
