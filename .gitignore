@@ -37,3 +37,6 @@ next-env.d.ts
 
 # A faire
 /toDoList.txt
+
+# Draft
+/draft/

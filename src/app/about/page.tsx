@@ -1,7 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import removeContextMenu from '../modules/utils/removeContextMenu';
+import Section from '../components/Section';
 
 const dwarfCtnTop = 40;
 const dwarfCtnHeight = 2000;
@@ -68,79 +71,81 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div
-      className="relative flex justify-center"
-      style={{
-        height: `${mainCtnHeight}px`,
-      }}
-    >
+    <Section className="min-h-screen" id="about">
       <div
-        ref={dwarfRef}
-        className="absolute w-1/4 min-w-60 max-w-80 flex justify-center transition-transform duration-300"
+        className="relative flex justify-center"
         style={{
-          top: `${dwarfCtnTop}vh`,
-          height: `${dwarfCtnHeight}px`,
+          height: `${mainCtnHeight}px`,
         }}
       >
         <div
-          className="sticky h-96 flex justify-center items-center"
+          ref={dwarfRef}
+          className="absolute w-1/4 min-w-60 max-w-80 flex justify-center transition-transform duration-300"
           style={{
             top: `${dwarfCtnTop}vh`,
+            height: `${dwarfCtnHeight}px`,
           }}
         >
-          <Image
-            src="/about/lutin.png"
-            alt="lutin poilu au chapeau pointu tenant un crayon"
-            width={1323}
-            height={1389}
-            className="size-full object-contain"
-            onContextMenu={removeContextMenu}
-          />
-        </div>
-      </div>
-      <div
-        className="absolute right-64 sm:right-40 lg:right-20 xl:right-0 w-1/2"
-        style={{
-          top: `${bubbleTop}vh`,
-          height: `${bubbleWrapperHeight}px`,
-        }}
-      >
-        {/* translate-x-12 */}
-        <div
-          ref={bubble1Ref}
-          className="sticky out-view w-[524px] scale-bubble mr-auto px-20 pt-20 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
-          style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
-        >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
-            <Trans
-              i18nKey="common:about.bubble1"
-              components={{ break: <br />, strong: <strong /> }}
+          <div
+            className="sticky h-96 flex justify-center items-center"
+            style={{
+              top: `${dwarfCtnTop}vh`,
+            }}
+          >
+            <Image
+              src="/about/lutin.png"
+              alt="lutin poilu au chapeau pointu tenant un crayon"
+              width={1323}
+              height={1389}
+              className="size-full object-contain"
+              onContextMenu={removeContextMenu}
             />
-          </p>
+          </div>
         </div>
-      </div>
-      <div
-        className="absolute -left-32 sm:left-0 w-[95%] sm:w-1/2"
-        style={{
-          top: `${bubble2CtnTop}px`,
-          height: `${bubbleWrapperHeight}px`,
-        }}
-      >
-        {/* -translate-x-40 */}
         <div
-          ref={bubble2Ref}
-          className="sticky out-view w-[538px] scale-bubble ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
-          style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
+          className="absolute right-64 sm:right-40 lg:right-20 xl:right-0 w-1/2"
+          style={{
+            top: `${bubbleTop}vh`,
+            height: `${bubbleWrapperHeight}px`,
+          }}
         >
-          <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
-            <Trans
-              i18nKey="common:about.bubble2"
-              components={{ strong: <strong /> }}
-            />
-          </p>
+          {/* translate-x-12 */}
+          <div
+            ref={bubble1Ref}
+            className="sticky out-view w-[524px] scale-bubble mr-auto px-20 pt-20 pb-28 xl:px-16 xl:pt-12 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat"
+            style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
+          >
+            <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
+              <Trans
+                i18nKey="common:about.bubble1"
+                components={{ break: <br />, strong: <strong /> }}
+              />
+            </p>
+          </div>
+        </div>
+        <div
+          className="absolute -left-32 sm:left-0 w-[95%] sm:w-1/2"
+          style={{
+            top: `${bubble2CtnTop}px`,
+            height: `${bubbleWrapperHeight}px`,
+          }}
+        >
+          {/* -translate-x-40 */}
+          <div
+            ref={bubble2Ref}
+            className="sticky out-view w-[538px] scale-bubble ml-auto px-12 pt-16 pb-28 flex justify-center items-center bg-[url('/about/bulle2.png')] bg-contain bg-center bg-no-repeat"
+            style={{ top: `${bubbleTop}vh`, height: `${bubbleHeight}px` }}
+          >
+            <p className="licorice-font text-4.5xl xl:text-4xl font-semibold text-center text-pretty">
+              <Trans
+                i18nKey="common:about.bubble2"
+                components={{ strong: <strong /> }}
+              />
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 };
 

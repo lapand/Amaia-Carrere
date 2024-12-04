@@ -1,8 +1,8 @@
 {
-  "menu": ["Home", "Gallery", "For Sale", "About", "Contact"],
+  "menu": ["Gallery", "Shop", "About", "Contact"],
   "home": {
     "tagline": "Welcome to my studio,<br/> source of penciled dreams",
-    "title1": "<strong>Children's illustrator</strong>",
+    "title1": "<strong>Children's<br/>illustrator</strong>",
     "title2": "Fantasy",
     "title3": "<strong>Comic</strong>"
   },

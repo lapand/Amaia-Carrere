@@ -2,31 +2,20 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import LinkNavigation from './LinkNavigation';
-import useSectionObserver from '../hooks/useSectionObserver';
 import TransitionDOM from './TransitionDOM';
 
 // menuIconBreakpoint <=> Tailwind breakpoint max-lg
 const menuIconBreakpoint: number = 1024;
-export const sectionNames: string[] = [
-  'Home',
-  'Gallery',
-  'ForSale',
-  'About',
-  'Contact',
-];
 
 const Menu: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [isSideMenuOpened, setIsSideMenuOpened] = useState(false);
   const sideNavRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLButtonElement>(null);
-  const [activeSection, setActiveSection] = useState('Home');
   const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   const { t } = useTranslation('common');
   const menuArray: string[] = t('menu', { returnObjects: true }) as string[];
-
-  useSectionObserver(sectionNames, setActiveSection);
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,20 +60,21 @@ const Menu: React.FC = () => {
   //   }
   // }, []);
 
-  const handleClick = () => {
-    windowWidth <= menuIconBreakpoint &&
-      setIsSideMenuOpened((isSideMenuOpened) => !isSideMenuOpened);
+  const closeLateralMenu = () => {
+    windowWidth <= menuIconBreakpoint && setIsSideMenuOpened((prev) => !prev);
   };
 
   const liJSX = menuArray.map((item, i) => {
     return (
-      <li key={item} className={`${isMenuVisible ? '-translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-        <LinkNavigation
-          i={i}
-          content={item}
-          onClick={handleClick}
-          activeSection={activeSection}
-        />
+      <li
+        key={item}
+        className={`${
+          isMenuVisible
+            ? '-translate-x-0 opacity-100'
+            : '-translate-x-10 opacity-0'
+        }`}
+      >
+        <LinkNavigation i={i} content={item} onClick={closeLateralMenu} />
       </li>
     );
   });
@@ -93,7 +83,7 @@ const Menu: React.FC = () => {
     <nav className="luckiest-guy flex items-center">
       {windowWidth <= menuIconBreakpoint && (
         <button
-          onClick={handleClick}
+          onClick={closeLateralMenu}
           className="w-11 2xl:w-12 aspect-square"
           aria-label="Toggle menu"
           ref={menuIconRef}

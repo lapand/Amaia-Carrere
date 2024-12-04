@@ -5,6 +5,8 @@ import Header from './components/Header';
 import ClientI18nProvider from './modules/i18n/ClientI18nProvider';
 import PageLoader from './components/PageLoader';
 import PreloadResources from './components/PreloadResources';
+import Footer from './components/Footer';
+import ReduxProvider from './components/ReduxProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,10 +26,15 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <PreloadResources />
         <PageLoader>
-          <ClientI18nProvider>
-            <Header />
-            {children}
-          </ClientI18nProvider>
+          <ReduxProvider>
+            <ClientI18nProvider>
+              <Header />
+              <main className="flex min-h-screen flex-col main-bg">
+                {children}
+              </main>
+              <Footer />
+            </ClientI18nProvider>
+          </ReduxProvider>
         </PageLoader>
       </body>
     </html>

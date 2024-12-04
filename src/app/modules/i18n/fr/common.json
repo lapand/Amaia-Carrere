@@ -1,10 +1,10 @@
 {
-  "menu": ["Accueil", "Galerie", "En vente", "A propos", "Contact"],
+  "menu": ["Galerie", "Boutique", "A propos", "Contact"],
   "home": {
     "tagline": "Bienvenue dans mon atelier,<br/> source de rêves crayonnés",
-    "title1": "<strong>Illustratrice jeunesse</strong>",
+    "title1": "<strong>Illustratrice<br/>jeunesse</strong>",
     "title2": "Fantasy",
-    "title3": "<strong>Bande dessinée</strong>"
+    "title3": "<strong>Bande<br/>dessinée</strong>"
   },
   "gallery": {
     "alt": {
