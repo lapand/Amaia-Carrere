@@ -1,41 +1,57 @@
-'use client';
+import { notFound } from 'next/navigation';
+import ArticleClient from './ArticleClient';
+import { ArticleCardType } from '@/app/types';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '@/app/store/store';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
+const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
+const articlesEndpoint = '/api/articles?populate=img';
 
-const ArticlePage = () => {
-  // Récupère l'ID de la route dynamique pour chercher l'article dans le store
-  const params = useParams();
-  const article = useSelector((state: RootState) =>
-    state.shop.articles.find((article) => article.id === params.id)
+// Génération des routes dynamiques pour SSG
+export async function generateStaticParams() {
+  let articles = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}`).then(
+    (res) => res.json()
   );
-  console.log(params.id);
-  
 
+  return articles.data.map((article: { [key: string]: any }) => ({
+    id: article.documentId,
+  }));
+}
+
+async function getArticle(id: string) {
+  let res = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}/${id}`); // URL à modifier pour trouver un seul article strapi
+  let article = await res.json();
+  // console.log(article);
   if (!article) {
-    return <div>Article non trouvé</div>;
+    notFound();
+  } else {
+    const { documentId, title, price, updatedAt } = article;
+    const description = article.description || '';
+    const img = article.img || {};
+    const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
+    const alt = img.alternativeText || 'Image indisponible';
+    const width = img.width || 0;
+    const height = img.height || 0;
+    return {
+      id: documentId,
+      updatedAt,
+      img: {
+        src,
+        alt,
+        width,
+        height,
+      },
+      title,
+      description,
+      price: price.toFixed(2),
+    };
   }
+}
 
-  const { img, title, description, price } = article;
+export default async function ArticlePage({
+  params,
+}: {
+  params: { title: string; id: string };
+}) {
+  const article = await getArticle(params.id);
 
-  return (
-    <div className="size-full flex flex-col gap-10 justify-center items-center">
-      <h1>{title}</h1>
-      <div className="">
-        <Image
-          src={img.src}
-          alt={img.alt}
-          width={img.width}
-          height={img.height}
-          className="size-full object-contain"
-        />
-      </div>
-      <p>{description}</p>
-      <p>{price}</p>
-    </div>
-  );
-};
-
-export default ArticlePage;
+  return <ArticleClient article={article} />;
+}

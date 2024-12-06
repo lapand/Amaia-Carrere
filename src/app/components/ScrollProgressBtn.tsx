@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import ArrowIcon from '/public/arrow.svg';
-import scrollToSection from '../modules/utils/scrollToSection';
-import { sectionIDs } from '../data/sectionIDs';
+// import scrollToSection from '../modules/utils/scrollToSection';
+// import { sectionIDs } from '../data/sectionIDs';
 
 type ScrollProgressBtnType = {
   className?: string;
@@ -47,7 +47,8 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({ className }) => {
     >
       <button
         className={`relative size-12 flex justify-center items-center bg-surface-200 text-white font-bold rounded-full border border-black`}
-        onClick={(e) => scrollToSection(e, sectionIDs[0])}
+        // onClick={(e) => scrollToSection(e, sectionIDs[0])}
+        onClick={undefined}
       >
         <motion.svg
           className="absolute top-0 left-0 w-full h-full"

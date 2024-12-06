@@ -2,6 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from './Button';
 import { ArticleCardType } from '@/app/types';
+import { useDispatch } from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+  updateQuantity,
+} from '../store/slices/cartSlice';
 
 const ArticleCard: React.FC<ArticleCardType> = ({
   id,
@@ -12,6 +18,8 @@ const ArticleCard: React.FC<ArticleCardType> = ({
 }) => {
   // Formatage du titre de l'article afin qu'il soit valide dans l'URL
   const titleSlug = encodeURIComponent(title.toLowerCase().replace(/ /g, '-'));
+
+  const dispatch = useDispatch();
 
   return (
     <div className="flex flex-col gap-3">
@@ -33,7 +41,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
               alt="eye-icon"
               width={100}
               height={100}
-              className="size-10 group-hover:opacity-100"
+              className="size-8 group-hover:opacity-100"
             />
           </div>
         </div>
@@ -63,7 +71,10 @@ const ArticleCard: React.FC<ArticleCardType> = ({
               priority
             />
           </div>
-          <Button className="w-8 aspect-square rounded-full py-0 px-0 text-xl hover:scale-110 flex justify-center items-center">
+          <Button
+            onClick={() => dispatch(addToCart(id))}
+            className="w-8 aspect-square rounded-full py-0 px-0 text-xl hover:scale-110 flex justify-center items-center"
+          >
             +
           </Button>
         </div>

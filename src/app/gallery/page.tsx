@@ -14,7 +14,7 @@ const Gallery: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const { t } = useTranslation('common');
 
-  const imgAltObj: { [key: string]: string } = t('gallery.alt', {
+  const imgAltObj: any = t('gallery.alt', {
     returnObjects: true,
   });
 

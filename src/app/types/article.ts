@@ -1,5 +1,6 @@
 export type ArticleCardType = {
   id: string;
+  updatedAt: Date;
   img: {
     src: string;
     alt: string;
@@ -10,3 +11,10 @@ export type ArticleCardType = {
   description: string;
   price: string;
 };
+
+export type CartArticle = {
+  id: string;
+  quantity: number;
+};
+
+export type DetailedCartProduct = ArticleCardType & CartArticle;
