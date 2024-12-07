@@ -11,7 +11,7 @@ import {
 
 const ArticleCard: React.FC<ArticleCardType> = ({
   id,
-  img,
+  gallery,
   title,
   description,
   price,
@@ -21,19 +21,26 @@ const ArticleCard: React.FC<ArticleCardType> = ({
 
   const dispatch = useDispatch();
 
+  let imgPlaceholder;
+  if (gallery.length === 0) {
+    imgPlaceholder = (
+      <div className="size-full flex justify-center items-center">
+        Aucune image disponible
+      </div>
+    );
+  } else {
+    imgPlaceholder = (
+      <div className="size-full group-hover:scale-105 transition-transform duration-300">
+        <Image {...gallery[0]} className="size-full object-contain" />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-3">
       <Link href={`/shop/articles/${titleSlug}/${id}`} className="group">
         <div className="relative w-full aspect-square border-2 border-gray-400 min-w-0 min-h-0 overflow-hidden">
-          <div className="size-full group-hover:scale-105 transition-transform duration-300">
-            <Image
-              src={img.src}
-              alt={img.alt}
-              width={img.width}
-              height={img.height}
-              className="size-full object-contain"
-            />
-          </div>
+          {imgPlaceholder}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Image

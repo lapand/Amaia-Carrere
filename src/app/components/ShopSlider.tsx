@@ -34,7 +34,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
 
   if (gallery.length === 0) {
     return (
-      <div className="place-content-center mx-auto text-lg">
+      <div className="flex justify-center items-center">
         Aucune image disponible
       </div>
     );
@@ -92,15 +92,12 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
   );
 
   return (
-    <div className="relative h-full flex">
+    <div className="relative size-full flex">
       {/* {isLoading && <Loader width={60} height={48} />} */}
       <div className={`w-full transition-opacity`}>
         <Image
-          src={gallery[currentIdx].src}
-          alt={gallery[currentIdx].alt}
-          width={gallery[currentIdx].width}
-          height={gallery[currentIdx].height}
-          className="size-full object-cover"
+          {...gallery[currentIdx]}
+          className="size-full object-contain"
           onContextMenu={removeContextMenu}
         />
       </div>

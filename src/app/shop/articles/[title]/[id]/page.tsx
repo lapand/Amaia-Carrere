@@ -1,48 +1,66 @@
-import { notFound } from 'next/navigation';
 import ArticleClient from './ArticleClient';
-import { ArticleCardType } from '@/app/types';
 
 const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
-const articlesEndpoint = '/api/articles?populate=img';
 
-// Génération des routes dynamiques pour SSG
+// Invalide le cache toutes les heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
+export const revalidate = 30;
+
+// Génération des routes dynamiques pour SSG sous forme /[title]/[id] avec encodage du titre pour un URL valide
 export async function generateStaticParams() {
-  let articles = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}`).then(
-    (res) => res.json()
-  );
+  try {
+    let articles = await fetch(
+      `${STRAPI_API_BASE_URL}/api/articles?fields=documentId,title`
+    ).then((res) => res.json());
 
-  return articles.data.map((article: { [key: string]: any }) => ({
-    id: article.documentId,
-  }));
+    if (!articles || !articles.data) {
+      throw new Error('No data returned from API');
+    }
+
+    return articles.data.map((article: { [key: string]: any }) => ({
+      title: encodeURIComponent(article.title),
+      id: article.documentId,
+    }));
+  } catch (error) {
+    console.error('Erreur:', error);
+  }
 }
 
+// Retrieve article data from Strapi API
 async function getArticle(id: string) {
-  let res = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}/${id}`); // URL à modifier pour trouver un seul article strapi
-  let article = await res.json();
-  // console.log(article);
-  if (!article) {
-    notFound();
-  } else {
-    const { documentId, title, price, updatedAt } = article;
-    const description = article.description || '';
-    const img = article.img || {};
-    const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
-    const alt = img.alternativeText || 'Image indisponible';
-    const width = img.width || 0;
-    const height = img.height || 0;
+  try {
+    let res = await fetch(
+      `${STRAPI_API_BASE_URL}/api/articles/${id}?populate=gallery`
+    );
+    let article = await res.json();
+    // console.log(article);
+    let { documentId, title, description, gallery, price, updatedAt } =
+      article.data;
+    gallery = !gallery
+      ? []
+      : gallery.map((img: any) => {
+          const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
+          const alt = img.alternativeText || 'Image indisponible';
+          const width = img.width || 0;
+          const height = img.height || 0;
+          return {
+            src,
+            alt,
+            width,
+            height,
+          };
+        });
+    // console.log(gallery);
     return {
       id: documentId,
       updatedAt,
-      img: {
-        src,
-        alt,
-        width,
-        height,
-      },
+      gallery,
       title,
-      description,
+      description: description || '',
       price: price.toFixed(2),
     };
+  } catch (error) {
+    console.error('Erreur:', error);
+    return undefined;
   }
 }
 

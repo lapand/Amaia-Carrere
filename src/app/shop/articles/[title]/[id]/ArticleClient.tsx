@@ -2,43 +2,50 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/store/store';
-import { useParams } from 'next/navigation';
 import Section from '@/app/components/Section';
 import ShopSlider from '@/app/components/ShopSlider';
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import { useEffect } from 'react';
 import { ArticleCardType } from '@/app/types';
+import Link from 'next/link';
+import { syncArticles } from '@/app/store/slices/articleSlice';
+import { addToCart } from '@/app/store/slices/cartSlice';
 
 type ArticleClientType = {
-  article: ArticleCardType;
+  article?: ArticleCardType;
 };
 
 const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
-  // Récupère l'ID de la route dynamique pour chercher l'article dans le store
-  const params = useParams();
-  const updatedArticle = useSelector((state: RootState) =>
-    state.shop.articles.find((article) => article.id === params.id)
-  );
   const dispatch = useDispatch();
+
+  // Met à jour le store avec l'article si nécessaire
   useEffect(() => {
-    dispatch(syncArticle(article)); // Crée un nouveau reducer pour vérifier et ajouter un seul article si non à jour
+    article && dispatch(syncArticles([article]));
   }, []);
 
   let content;
-  if (!updatedArticle) {
+  if (!article) {
     content = (
-      <div className="place-content-center mx-auto text-lg">
-        Article non trouvé
+      <div className="flex flex-col justify-center items-center gap-20">
+        <p className="text-xl">Article non trouvé</p>
+        <Link
+          href="/shop"
+          className="transition-transform duration-300 hover:scale-105 hover:rotate-3"
+        >
+          <Button className="text-xl rounded-3xl px-8 py-4">
+            Retour à la boutique
+          </Button>
+        </Link>
       </div>
     );
   } else {
-    const { img, title, description, price } = updatedArticle;
+    const { id, gallery, title, description, price } = article;
     content = (
       <>
-        <div className="relative sm:w-96">
-          <div className="sm:sticky top-28 3xl:top-40">
-            <ShopSlider gallery={[img, img, img]} />
+        <div className="relative">
+          <div className="sm:sticky top-28 3xl:top-40 sm:size-96 2xl:size-[500px] flex justify-center items-center overflow-hidden">
+            <ShopSlider gallery={gallery} />
           </div>
         </div>
         <div className="self-start sm:max-w-96 flex flex-col gap-20">
@@ -69,7 +76,10 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
                   priority
                 />
               </div>
-              <Button className="w-10 aspect-square rounded-full py-0 px-0 text-2xl hover:scale-105 flex justify-center items-center">
+              <Button
+                onClick={() => dispatch(addToCart(id))}
+                className="w-10 aspect-square rounded-full py-0 px-0 text-2xl hover:scale-105 flex justify-center items-center"
+              >
                 +
               </Button>
             </div>
@@ -101,8 +111,19 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
 
   return (
     <Section className="min-h-screen flex">
-      <div className="flex-1 flex max-sm:flex-col justify-center gap-32 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
-        {content}
+      <div className="flex-1 flex flex-col gap-10 sm:gap-20 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
+        <Link
+          href="/shop"
+          className="self-start group transition-transform duration-300 hover:scale-105"
+        >
+          <Button className="flex items-center rounded-xl px-4 py-3">
+            <span className="text-xl transition-transform group-hover:-translate-x-1">&#8592;</span>
+            <span className="ml-2">boutique</span>
+          </Button>
+        </Link>
+        <div className="flex-1 flex max-sm:flex-col justify-center gap-16 sm:gap-44">
+          {content}
+        </div>
       </div>
     </Section>
   );

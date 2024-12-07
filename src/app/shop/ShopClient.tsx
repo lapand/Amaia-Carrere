@@ -9,9 +9,6 @@ import { syncArticles } from '../store/slices/articleSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 
-const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
-const articlesEndpoint = '/api/articles?populate=img';
-
 type ShopClientType = {
   articles: ArticleCardType[];
   articlesError?: string;
@@ -21,16 +18,13 @@ const ShopClient: React.FC<ShopClientType> = ({ articles, articlesError }) => {
   // const { t } = useTranslation('common');
   // const tradProduct: any[] = t('products', { returnObjects: true }) as any[];
   const dispatch = useDispatch<AppDispatch>();
-  const updatedArticles = useSelector(
-    (state: RootState) => state.shop.articles
-  );
-  //   console.log(articles);
+    // console.log(articles);
 
   useEffect(() => {
     dispatch(syncArticles(articles));
   }, []);
 
-  const articlesJSX = updatedArticles.map((article, i) => {
+  const articlesJSX = articles.map((article, i) => {
     return <ArticleCard key={i} {...article} />;
   });
 

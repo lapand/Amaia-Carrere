@@ -1,12 +1,12 @@
 export type ArticleCardType = {
   id: string;
   updatedAt: Date;
-  img: {
+  gallery: {
     src: string;
     alt: string;
     width: number;
     height: number;
-  };
+  }[];
   title: string;
   description: string;
   price: string;

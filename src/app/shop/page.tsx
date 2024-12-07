@@ -1,35 +1,40 @@
 import ShopClient from './ShopClient';
 
 const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
-const articlesEndpoint = '/api/articles?populate=img';
+const articlesEndpoint = '/api/articles?populate=gallery';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ShopPage statique avec des données mises à jour
-export const revalidate = 60;
+export const revalidate = 30;
 
-// Server Component
 // Récupération des données et transfert au Client Component
 export default async function ShopPage() {
   try {
     const response = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}`);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     const formattedData = data.data.map((article: any) => {
       const { documentId, title, price, updatedAt } = article;
       const description = article.description || '';
-      const img = article.img || {};
-      const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
-      const alt = img.alternativeText || 'Image indisponible';
-      const width = img.width || 0;
-      const height = img.height || 0;
+      const gallery = !article.gallery
+        ? []
+        : article.gallery.map((img: any) => {
+            const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
+            const alt = img.alternativeText || 'Image indisponible';
+            const width = img.width || 0;
+            const height = img.height || 0;
+            return {
+              src,
+              alt,
+              width,
+              height,
+            };
+          });
+      console.log(gallery);
+
       return {
         id: documentId,
         updatedAt,
-        img: {
-          src,
-          alt,
-          width,
-          height,
-        },
+        gallery,
         title,
         description,
         price: price.toFixed(2),
