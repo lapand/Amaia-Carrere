@@ -11,6 +11,7 @@ import { ArticleCardType } from '@/app/types';
 import Link from 'next/link';
 import { syncArticles } from '@/app/store/slices/articleSlice';
 import { addToCart } from '@/app/store/slices/cartSlice';
+import QuantitySelector from '@/app/components/QuantitySelector';
 
 type ArticleClientType = {
   article?: ArticleCardType;
@@ -65,24 +66,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
             <p className="text-lg sm:text-xl">
               {price} € <span className="text-xs sm:text-sm">TTC</span>
             </p>
-            <div className="flex items-center gap-2">
-              <div className="size-7">
-                <Image
-                  src="/shopping-cart.png"
-                  alt="shopping-cart-icon"
-                  width={100}
-                  height={100}
-                  className="size-full"
-                  priority
-                />
-              </div>
-              <Button
-                onClick={() => dispatch(addToCart(id))}
-                className="w-10 aspect-square rounded-full py-0 px-0 text-2xl hover:scale-105 flex justify-center items-center"
-              >
-                +
-              </Button>
-            </div>
+            <QuantitySelector id={id} size={'md'}/>
           </div>
           <hr className="border border-gray-400" />
           <p>

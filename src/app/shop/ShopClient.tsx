@@ -18,7 +18,7 @@ const ShopClient: React.FC<ShopClientType> = ({ articles, articlesError }) => {
   // const { t } = useTranslation('common');
   // const tradProduct: any[] = t('products', { returnObjects: true }) as any[];
   const dispatch = useDispatch<AppDispatch>();
-    // console.log(articles);
+  // console.log(articles);
 
   useEffect(() => {
     dispatch(syncArticles(articles));
@@ -30,7 +30,7 @@ const ShopClient: React.FC<ShopClientType> = ({ articles, articlesError }) => {
 
   return (
     <Section className="min-h-screen" id="shop">
-      <div className="flex-1 flex flex-col gap-32 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
+      <div className="flex-1 flex flex-col gap-24 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
         <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
           Boutique
         </h1>

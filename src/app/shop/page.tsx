@@ -29,7 +29,7 @@ export default async function ShopPage() {
               height,
             };
           });
-      console.log(gallery);
+      // console.log(gallery);
 
       return {
         id: documentId,

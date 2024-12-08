@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import ArrowIcon from '/public/arrow.svg';
-// import scrollToSection from '../modules/utils/scrollToSection';
-// import { sectionIDs } from '../data/sectionIDs';
 
 type ScrollProgressBtnType = {
   className?: string;
@@ -26,6 +24,11 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({ className }) => {
     smoothProgress,
     (progress) => circumference - progress * circumference
   );
+  console.log(ArrowIcon);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <motion.div
@@ -46,16 +49,15 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({ className }) => {
       }}
     >
       <button
-        className={`relative size-12 flex justify-center items-center bg-surface-200 text-white font-bold rounded-full border border-black`}
-        // onClick={(e) => scrollToSection(e, sectionIDs[0])}
-        onClick={undefined}
+        className={`relative size-12 flex justify-center items-center bg-accent text-white font-bold rounded-full border border-black`}
+        onClick={handleScrollToTop}
       >
         <motion.svg
           className="absolute top-0 left-0 w-full h-full"
           viewBox="0 0 100 100"
         >
           <motion.circle
-            className="text-[rgb(46,139,87)]"
+            className="text-accent2"
             stroke="currentColor"
             strokeWidth="5"
             fill="transparent"

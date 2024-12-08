@@ -8,11 +8,15 @@ import { draws } from '../data/draws';
 import { useTranslation } from 'react-i18next';
 import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
 import Section from '../components/Section';
+import ScrollProgressBtn from '../components/ScrollProgressBtn';
+import { AnimatePresence } from 'framer-motion';
+import usePageScrolling from '../hooks/usePageScrolling';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const { t } = useTranslation('common');
+  const isPageScrolling = usePageScrolling(200);
 
   const imgAltObj: any = t('gallery.alt', {
     returnObjects: true,
@@ -47,22 +51,31 @@ const Gallery: React.FC = () => {
 
   return (
     <Section className="min-h-screen" id="gallery">
-      {/* <h2 className="londrina-shadow text-4xl m-8">Galerie</h2> */}
-      <div className="columns-2 lg:columns-3 gap-4 sm:gap-5 my-20 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%] 2xl:mx-[20%]">
-        {galleryItems}
+      <div className="flex-1 flex flex-col gap-24 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
+        <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
+          Galerie
+        </h1>
+        <div className="columns-2 lg:columns-3 gap-4 sm:gap-5">
+          {galleryItems}
+        </div>
+        <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
+          {activeIdx !== null && (
+            <GallerySlider
+              activeDraw={{
+                ...draws[activeIdx],
+                alt: imgAltObj[(activeIdx + 1).toString()],
+              }}
+              changePrevIdx={changePrevIdx}
+              changeNextIdx={changeNextIdx}
+            />
+          )}
+        </ModalWithTransition>
       </div>
-      <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
-        {activeIdx !== null && (
-          <GallerySlider
-            activeDraw={{
-              ...draws[activeIdx],
-              alt: imgAltObj[(activeIdx + 1).toString()],
-            }}
-            changePrevIdx={changePrevIdx}
-            changeNextIdx={changeNextIdx}
-          />
+      <AnimatePresence>
+        {isPageScrolling && (
+          <ScrollProgressBtn className="fixed z-30 bottom-10 right-10" />
         )}
-      </ModalWithTransition>
+      </AnimatePresence>
     </Section>
   );
 };

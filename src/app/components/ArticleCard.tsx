@@ -8,6 +8,7 @@ import {
   removeFromCart,
   updateQuantity,
 } from '../store/slices/cartSlice';
+import QuantitySelector from './QuantitySelector';
 
 const ArticleCard: React.FC<ArticleCardType> = ({
   id,
@@ -67,24 +68,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
         <p className="text-sm font-bold">
           {price} € <span className="text-xs">TTC</span>
         </p>
-        <div className="flex items-center gap-2">
-          <div className="size-5">
-            <Image
-              src="/shopping-cart.png"
-              alt="shopping-cart-icon"
-              width={100}
-              height={100}
-              className="size-full"
-              priority
-            />
-          </div>
-          <Button
-            onClick={() => dispatch(addToCart(id))}
-            className="w-8 aspect-square rounded-full py-0 px-0 text-xl hover:scale-110 flex justify-center items-center"
-          >
-            +
-          </Button>
-        </div>
+        <QuantitySelector id={id} size={'sm'} />
       </div>
     </div>
   );

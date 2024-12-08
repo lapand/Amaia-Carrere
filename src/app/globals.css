@@ -12,7 +12,8 @@
 }
 @font-face {
   font-family: 'Luckiest Guy';
-  src: url('../../fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+  src: url('../../fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf')
+    format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -134,7 +135,7 @@ strong {
     @apply top-[var(--header-height)] right-0;
   }
   .main-bg {
-    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-fixed bg-cover bg-center
+    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-fixed bg-cover bg-center;
   }
   .header-icon {
     @apply w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
