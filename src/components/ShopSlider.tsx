@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
-import removeContextMenu from '../modules/utils/removeContextMenu';
+import { getPrevIdx, getNextIdx } from '../utils/getIndex';
+import removeContextMenu from '../utils/removeContextMenu';
 import Loader from './Loader';
 
 type ImageType = {

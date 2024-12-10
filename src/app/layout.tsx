@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from './components/Header';
-import ClientI18nProvider from './modules/i18n/ClientI18nProvider';
-import PageLoader from './components/PageLoader';
-import PreloadResources from './components/PreloadResources';
-import Footer from './components/Footer';
-import ReduxProvider from './components/ReduxProvider';
+import Header from '../components/Header';
+import ClientI18nProvider from '../modules/i18n/ClientI18nProvider';
+import PageLoader from '../components/PageLoader';
+import PreloadResources from '../components/PreloadResources';
+import Footer from '../components/Footer';
+import ReduxProvider from '../components/ReduxProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 

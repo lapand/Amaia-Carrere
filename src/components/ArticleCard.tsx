@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from './Button';
-import { ArticleCardType } from '@/app/types';
+import { ArticleCardType } from '@/types';
 import { useDispatch } from 'react-redux';
 import {
   addToCart,

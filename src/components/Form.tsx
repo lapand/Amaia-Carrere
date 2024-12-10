@@ -52,7 +52,7 @@ const ContactForm: React.FC = () => {
     // Récupération des erreurs d'envoi d'email
     if( responseData.emailSendingError){
       const error = responseData.emailSendingError;
-      console.log("Error: " + error);
+      console.error("Error: " + error);
       alert("Error: The email could not be sent correctly.");
     }
 

@@ -1,12 +1,13 @@
 'use client';
 
-import Section from '../components/Section';
+import Section from '../../components/Section';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import CartArticle from '../components/CartArticle';
+import { RootState } from '../../store/store';
+import CartArticle from '../../components/CartArticle';
 import React from 'react';
 import Link from 'next/link';
-import Button from '../components/Button';
+import Button from '../../components/Button';
+import CartValidation from '../../components/CartValidation';
 
 export default function CartPage() {
   const cartArticles = useSelector((state: RootState) => state.cart.articles);
@@ -25,6 +26,16 @@ export default function CartPage() {
   let cartTotal: number = 0;
   detailedCartProduct.forEach(
     (item) => (cartTotal += item.quantity * parseFloat(item.price))
+  );
+
+  const validationData = detailedCartProduct.map(
+    ({ updatedAt, gallery, price, ...rest }) => {
+      const priceInNb = parseFloat(price);
+      return {
+        ...rest,
+        price: priceInNb,
+      };
+    }
   );
 
   const cartArticlesJSX = detailedCartProduct.map((product, i) => {
@@ -67,14 +78,7 @@ export default function CartPage() {
                 </span>
                 <span className="font-bold"> {cartTotal.toFixed(2)} €</span>
               </p>
-              <Link
-                href="/shop"
-                className="transition-transform duration-300 hover:scale-105 text-center"
-              >
-                <Button className="text-base rounded-[.3rem] px-8 py-3">
-                  Valider mon panier
-                </Button>
-              </Link>
+              <CartValidation validationData={validationData} />
             </div>
           </div>
         )}

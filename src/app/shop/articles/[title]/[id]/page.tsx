@@ -1,6 +1,5 @@
 import ArticleClient from './ArticleClient';
-
-const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
+import { STRAPI_API_BASE_URL } from '@/config/config';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
 export const revalidate = 30;

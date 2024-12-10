@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ArticleCardType } from '@/app/types';
+import { ArticleCardType } from '@/types';
 
 type ArticlesState = {
   articles: ArticleCardType[];

@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 // import { useTranslation } from 'react-i18next';
-import Section from '../components/Section';
-import ArticleCard from '../components/ArticleCard';
-import { ArticleCardType } from '@/app/types';
-import { syncArticles } from '../store/slices/articleSlice';
+import Section from '../../components/Section';
+import ArticleCard from '../../components/ArticleCard';
+import { ArticleCardType } from '@/types';
+import { syncArticles } from '../../store/slices/articleSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../store/store';
+import { RootState, AppDispatch } from '../../store/store';
 
 type ShopClientType = {
   articles: ArticleCardType[];

@@ -1,8 +1,12 @@
-import { contactSchema } from '@/app/schemas/formSchema';
+import { contactSchema } from '@/schemas/formSchema';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
-const {USER, API_KEY, MYMAIL, RECIPIENT} = process.env;
+import {
+  SENDGRID_USER,
+  SENDGRID_API_KEY,
+  MYMAIL,
+  CONTACT_FORM_RECIPIENT,
+} from '@/config/config';
 
 export async function POST(req: Request) {
   const body: unknown = await req.json();
@@ -24,20 +28,23 @@ export async function POST(req: Request) {
       port: 587,
       secure: false,
       auth: {
-        user: USER,
-        pass: API_KEY,
+        user: SENDGRID_USER,
+        pass: SENDGRID_API_KEY,
       },
     });
 
     const { email, subject, content } = result.data;
 
     const formatContentForHtml = (text: string) => {
-      return text.split('\n').map(line => `<p>${line}</p>`).join('');
+      return text
+        .split('\n')
+        .map((line) => `<p>${line}</p>`)
+        .join('');
     };
-    
+
     const mailOptions = {
       from: `"Amaia Carrere - site web" <${MYMAIL}>`,
-      to: RECIPIENT,
+      to: CONTACT_FORM_RECIPIENT,
       subject,
       text: `
         Message reçu de : ${email}
@@ -57,7 +64,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ emailSendingError: e.message });
     } else {
       console.error('An unexpected error occurred:', e);
-      return NextResponse.json({ emailSendingError: 'An unexpected error occurred' });
+      return NextResponse.json({
+        emailSendingError: 'An unexpected error occurred',
+      });
     }
   }
 

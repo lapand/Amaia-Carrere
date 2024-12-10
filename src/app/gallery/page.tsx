@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import GalleryItem from '../components/GalleryItem';
-import ModalWithTransition from '../components/ModalWithTransition';
-import GallerySlider from '../components/GallerySlider';
-import { draws } from '../data/draws';
+import GalleryItem from '../../components/GalleryItem';
+import ModalWithTransition from '../../components/ModalWithTransition';
+import GallerySlider from '../../components/GallerySlider';
+import { draws } from '../../data/draws';
 import { useTranslation } from 'react-i18next';
-import { getPrevIdx, getNextIdx } from '../modules/utils/getIndex';
-import Section from '../components/Section';
-import ScrollProgressBtn from '../components/ScrollProgressBtn';
+import { getPrevIdx, getNextIdx } from '../../utils/getIndex';
+import Section from '../../components/Section';
+import ScrollProgressBtn from '../../components/ScrollProgressBtn';
 import { AnimatePresence } from 'framer-motion';
-import usePageScrolling from '../hooks/usePageScrolling';
+import usePageScrolling from '../../hooks/usePageScrolling';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);

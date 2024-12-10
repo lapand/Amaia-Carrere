@@ -1,17 +1,17 @@
 'use client';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/app/store/store';
-import Section from '@/app/components/Section';
-import ShopSlider from '@/app/components/ShopSlider';
+import { RootState } from '@/store/store';
+import Section from '@/components/Section';
+import ShopSlider from '@/components/ShopSlider';
 import Image from 'next/image';
-import Button from '@/app/components/Button';
+import Button from '@/components/Button';
 import { useEffect } from 'react';
-import { ArticleCardType } from '@/app/types';
+import { ArticleCardType } from '@/types';
 import Link from 'next/link';
-import { syncArticles } from '@/app/store/slices/articleSlice';
-import { addToCart } from '@/app/store/slices/cartSlice';
-import QuantitySelector from '@/app/components/QuantitySelector';
+import { syncArticles } from '@/store/slices/articleSlice';
+import { addToCart } from '@/store/slices/cartSlice';
+import QuantitySelector from '@/components/QuantitySelector';
 
 type ArticleClientType = {
   article?: ArticleCardType;

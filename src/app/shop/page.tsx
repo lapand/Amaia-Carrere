@@ -1,7 +1,5 @@
 import ShopClient from './ShopClient';
-
-const STRAPI_API_BASE_URL = process.env.NEXT_PUBLIC_STRAPI_API_BASE_URL;
-const articlesEndpoint = '/api/articles?populate=gallery';
+import { STRAPI_API_BASE_URL, getArticlesEndpoint } from '@/config/config';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ShopPage statique avec des données mises à jour
 export const revalidate = 30;
@@ -9,7 +7,7 @@ export const revalidate = 30;
 // Récupération des données et transfert au Client Component
 export default async function ShopPage() {
   try {
-    const response = await fetch(`${STRAPI_API_BASE_URL}${articlesEndpoint}`);
+    const response = await fetch(getArticlesEndpoint);
     const data = await response.json();
     // console.log(data);
     const formattedData = data.data.map((article: any) => {

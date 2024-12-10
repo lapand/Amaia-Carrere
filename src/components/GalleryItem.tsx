@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
 import Loader from './Loader';
-import removeContextMenu from '../modules/utils/removeContextMenu';
+import removeContextMenu from '../utils/removeContextMenu';
 
 type GalleryItemProps = {
   src: string;

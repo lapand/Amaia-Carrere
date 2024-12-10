@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Loader from './Loader';
-import removeContextMenu from '../modules/utils/removeContextMenu';
+import removeContextMenu from '../utils/removeContextMenu';
 
 type DrawType = {
   src: string;
