@@ -1,13 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from './Button';
 import { ArticleCardType } from '@/types';
-import { useDispatch } from 'react-redux';
-import {
-  addToCart,
-  removeFromCart,
-  updateQuantity,
-} from '../store/slices/cartSlice';
 import QuantitySelector from './QuantitySelector';
 
 const ArticleCard: React.FC<ArticleCardType> = ({
@@ -16,11 +9,10 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   title,
   description,
   price,
+  available,
 }) => {
   // Formatage du titre de l'article afin qu'il soit valide dans l'URL
   const titleSlug = encodeURIComponent(title.toLowerCase().replace(/ /g, '-'));
-
-  const dispatch = useDispatch();
 
   let imgPlaceholder;
   if (gallery.length === 0) {
@@ -40,7 +32,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   return (
     <div className="flex flex-col gap-3">
       <Link href={`/shop/articles/${titleSlug}/${id}`} className="group">
-        <div className="relative w-full aspect-square border-2 border-gray-400 min-w-0 min-h-0 overflow-hidden">
+        <div className="relative w-full aspect-square border border-gray-500 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -65,10 +57,18 @@ const ArticleCard: React.FC<ArticleCardType> = ({
         </p>
       </div>
       <div className="h-8 flex justify-between items-center">
-        <p className="text-sm font-bold">
-          {price} € <span className="text-xs">TTC</span>
-        </p>
-        <QuantitySelector id={id} size={'sm'} />
+        {!available ? (
+          <div className="text-sm text-red-600 font-bold">
+            Actuellement indisponible
+          </div>
+        ) : (
+          <>
+            <p className="text-sm font-bold">
+              {price} € <span className="text-xs">TTC</span>
+            </p>
+            <QuantitySelector id={id} size={'sm'} />
+          </>
+        )}
       </div>
     </div>
   );

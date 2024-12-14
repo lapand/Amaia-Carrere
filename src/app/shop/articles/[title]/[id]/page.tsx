@@ -32,8 +32,16 @@ async function getArticle(id: string) {
     );
     let article = await res.json();
     // console.log(article);
-    let { documentId, title, description, gallery, price, updatedAt } =
-      article.data;
+    let {
+      documentId,
+      title,
+      description,
+      gallery,
+      price,
+      updatedAt,
+      about,
+      available,
+    } = article.data;
     gallery = !gallery
       ? []
       : gallery.map((img: any) => {
@@ -56,6 +64,8 @@ async function getArticle(id: string) {
       title,
       description: description || '',
       price: price.toFixed(2),
+      about: about || '',
+      available,
     };
   } catch (error) {
     console.error('Erreur:', error);

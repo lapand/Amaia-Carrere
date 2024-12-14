@@ -3,10 +3,14 @@ import { ArticleCardType } from '@/types';
 
 type ArticlesState = {
   articles: ArticleCardType[];
+  staticUpdatedAt: number | null;
+  dynamicUpdatedAt: number | null;
 };
 
 const initialState: ArticlesState = {
   articles: [],
+  staticUpdatedAt: null,
+  dynamicUpdatedAt: null,
 };
 
 const articleSlice = createSlice({
@@ -34,10 +38,10 @@ const articleSlice = createSlice({
         }
       });
     },
-    // Supprimer un article par son titre
+    // Supprimer un article par son id
     removeArticle(state, action: PayloadAction<string>) {
       state.articles = state.articles.filter(
-        (article) => article.title !== action.payload
+        (article) => article.id !== action.payload
       );
     },
     // Réinitialiser la liste des articles
@@ -59,9 +63,29 @@ const articleSlice = createSlice({
         };
       }
     },
+    // Rendre l'article indisponible par son id
+    setUnavailable(state, action: PayloadAction<string>) {
+      const article = state.articles.find((item) => item.id === action.payload);
+      if (article) {
+        article.available = false;
+      }
+    },
+    setStaticUpdatedAt(state, action: PayloadAction<number | null>) {
+      state.staticUpdatedAt = action.payload;
+    },
+    setDynamicUpdatedAt(state, action: PayloadAction<number | null>) {
+      state.dynamicUpdatedAt = action.payload;
+    },
   },
 });
 
-export const { syncArticles, removeArticle, resetArticles, updateArticle } =
-  articleSlice.actions;
+export const {
+  syncArticles,
+  removeArticle,
+  resetArticles,
+  updateArticle,
+  setUnavailable,
+  setStaticUpdatedAt,
+  setDynamicUpdatedAt,
+} = articleSlice.actions;
 export default articleSlice.reducer;

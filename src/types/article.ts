@@ -10,6 +10,8 @@ export type ArticleCardType = {
   title: string;
   description: string;
   price: string;
+  about: string;
+  available: boolean;
 };
 
 export type CartArticle = {

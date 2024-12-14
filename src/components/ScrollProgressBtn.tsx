@@ -24,7 +24,6 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({ className }) => {
     smoothProgress,
     (progress) => circumference - progress * circumference
   );
-  console.log(ArrowIcon);
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

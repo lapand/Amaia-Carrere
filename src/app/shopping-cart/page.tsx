@@ -2,43 +2,33 @@
 
 import Section from '../../components/Section';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import CartArticle from '../../components/CartArticle';
 import React from 'react';
 import Link from 'next/link';
 import Button from '../../components/Button';
 import CartValidation from '../../components/CartValidation';
+import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 
 export default function CartPage() {
-  const cartArticles = useSelector((state: RootState) => state.cart.articles);
+  const detailedCartProducts = useSelector(selectDetailedCartProducts);
 
-  const articlesData = useSelector((state: RootState) => {
-    return state.shop.articles.filter((item) =>
-      cartArticles.some((article) => item.id === article.id)
-    );
-  });
-
-  const detailedCartProduct = articlesData.map((article) => {
-    const idx = cartArticles.findIndex((item) => item.id === article.id);
-    return { ...article, quantity: cartArticles[idx].quantity };
-  });
-
-  let cartTotal: number = 0;
-  detailedCartProduct.forEach(
-    (item) => (cartTotal += item.quantity * parseFloat(item.price))
-  );
-
-  const validationData = detailedCartProduct.map(
-    ({ updatedAt, gallery, price, ...rest }) => {
+  // Au cas où un produit devient indisponible après avoir été ajouté dans le panier, on l'enlève de la validation du panier mais on le laisse sur le rendu de la page
+  const validationData = detailedCartProducts
+    .filter((p) => p.available)
+    .map(({ updatedAt, gallery, price, ...rest }) => {
       const priceInNb = parseFloat(price);
       return {
         ...rest,
         price: priceInNb,
       };
-    }
-  );
+    });
 
-  const cartArticlesJSX = detailedCartProduct.map((product, i) => {
+  let cartTotal: number = 0;
+  detailedCartProducts
+    .filter((p) => p.available)
+    .forEach((item) => (cartTotal += item.quantity * parseFloat(item.price)));
+
+  const cartArticlesJSX = detailedCartProducts.map((product, i) => {
     return (
       <React.Fragment key={i}>
         <CartArticle {...product} />

@@ -8,9 +8,9 @@ import TransitionDOM from './TransitionDOM';
 import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/store';
 import Button from './Button';
 import { updateQuantity } from '../store/slices/cartSlice';
+import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 
 const langData = [
   {
@@ -47,23 +47,12 @@ const Header: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state: RootState) => state.cart.articles);
-
-  const articlesData = useSelector((state: RootState) => {
-    return state.shop.articles.filter((item) =>
-      cartItems.some((article) => item.id === article.id)
-    );
-  });
-
-  const detailedCartItem = articlesData.map((article) => {
-    const idx = cartItems.findIndex((item) => item.id === article.id);
-    return { ...article, quantity: cartItems[idx].quantity };
-  });
+  const detailedCartProducts = useSelector(selectDetailedCartProducts);
 
   let cartItemCount = 0;
-  cartItems.forEach((item) => (cartItemCount += item.quantity));
+  detailedCartProducts.forEach((item) => (cartItemCount += item.quantity));
   let totalPrice = 0;
-  detailedCartItem.forEach(
+  detailedCartProducts.forEach(
     (item) => (totalPrice += item.quantity * parseFloat(item.price))
   );
 
@@ -161,9 +150,9 @@ const Header: React.FC = () => {
   }
 
   const cartItemJSX =
-    detailedCartItem.length === 0
+    detailedCartProducts.length === 0
       ? 'Panier vide'
-      : detailedCartItem.map((item, i: number) => {
+      : detailedCartProducts.map((item, i: number) => {
           return (
             <li
               key={i}

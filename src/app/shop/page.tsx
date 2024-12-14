@@ -9,9 +9,10 @@ export default async function ShopPage() {
   try {
     const response = await fetch(getArticlesEndpoint);
     const data = await response.json();
+    const fetchTimestamp = Date.now();
     // console.log(data);
     const formattedData = data.data.map((article: any) => {
-      const { documentId, title, price, updatedAt } = article;
+      const { documentId, title, price, updatedAt, available, about } = article;
       const description = article.description || '';
       const gallery = !article.gallery
         ? []
@@ -36,12 +37,25 @@ export default async function ShopPage() {
         title,
         description,
         price: price.toFixed(2),
+        available,
+        about: about || '',
       };
     });
-    return <ShopClient articles={formattedData} />;
+    return (
+      <ShopClient
+        staticArticles={formattedData}
+        fetchTimestamp={fetchTimestamp}
+      />
+    );
   } catch (error) {
     console.error('Erreur:', error);
     const articlesError = 'Error: Articles not found';
-    return <ShopClient articles={[]} articlesError={articlesError} />;
+    return (
+      <ShopClient
+        staticArticles={[]}
+        fetchTimestamp={null}
+        articlesError={articlesError}
+      />
+    );
   }
 }

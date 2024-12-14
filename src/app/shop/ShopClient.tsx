@@ -5,26 +5,49 @@ import React, { useEffect, useState } from 'react';
 import Section from '../../components/Section';
 import ArticleCard from '../../components/ArticleCard';
 import { ArticleCardType } from '@/types';
-import { syncArticles } from '../../store/slices/articleSlice';
+import {
+  setStaticUpdatedAt,
+  syncArticles,
+} from '../../store/slices/articleSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
 
 type ShopClientType = {
-  articles: ArticleCardType[];
+  staticArticles: ArticleCardType[];
+  fetchTimestamp: number | null;
   articlesError?: string;
 };
 
-const ShopClient: React.FC<ShopClientType> = ({ articles, articlesError }) => {
+const ShopClient: React.FC<ShopClientType> = ({
+  staticArticles,
+  fetchTimestamp,
+  articlesError,
+}) => {
   // const { t } = useTranslation('common');
   // const tradProduct: any[] = t('products', { returnObjects: true }) as any[];
   const dispatch = useDispatch<AppDispatch>();
+  // Mise à jour du rendu à partir du store et non à partir des props statiques car les données des articles peuvent être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
+  const shop = useSelector((state: RootState) => state.shop);
   // console.log(articles);
 
+  // Synchronisation du store avec les props statiques uniquement si les props contiennent des données plus récentes que celles du store
+  // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
+  // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
   useEffect(() => {
-    dispatch(syncArticles(articles));
-  }, []);
+    const { staticUpdatedAt, dynamicUpdatedAt } = shop;
 
-  const articlesJSX = articles.map((article, i) => {
+    // Vérifie si les props statiques sont plus récentes
+    if (
+      !staticUpdatedAt ||
+      !dynamicUpdatedAt ||
+      staticUpdatedAt > dynamicUpdatedAt
+    ) {
+      dispatch(syncArticles(staticArticles));
+      dispatch(setStaticUpdatedAt(fetchTimestamp));
+    }
+  }, [dispatch, staticArticles, shop]);
+
+  const articlesJSX = shop.articles.map((article, i) => {
     return <ArticleCard key={i} {...article} />;
   });
 

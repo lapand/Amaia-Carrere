@@ -12,11 +12,12 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
   description,
   price,
   quantity,
+  available,
 }) => {
   const dispatch = useDispatch();
 
   return (
-    <li className="relative h-40 flex justify-between items-center gap-4 mb-2">
+    <li className="relative w-[740px] h-40 flex justify-between items-center gap-4 mb-2">
       <div className="size-32 sm:size-40">
         {!gallery[0] ? (
           <div className="size-full flex justify-center items-center text-xs text-center">
@@ -30,8 +31,8 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
           />
         )}
       </div>
-      <div className="flex gap-20 bg-gray-800 p-4 pr-6 rounded-lg text-white overflow-hidden">
-        <div className=" w-72 flex flex-col gap-2 text-sm">
+      <div className="w-1/2 flex gap-10 bg-gray-800 p-4 pr-6 rounded-lg text-white overflow-hidden">
+        <div className="w-3/4 flex flex-col gap-2 text-sm line-clamp-2 text-ellipsis break-words">
           <p className="font-bold line-clamp-1 text-ellipsis break-words text-base">
             {title}
           </p>
@@ -39,11 +40,19 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
             {description}
           </p>
         </div>
-        <p className="self-center w-20 line-clamp-1 text-ellipsis break-words">
-          {(quantity * parseFloat(price)).toFixed(2)} €
-        </p>
+        {available && (
+          <p className="w-1/4 self-center text-right line-clamp-1 text-ellipsis break-words">
+            {(quantity * parseFloat(price)).toFixed(2)} €
+          </p>
+        )}
       </div>
-      <QuantitySelector id={id} />
+      {available ? (
+        <QuantitySelector id={id} />
+      ) : (
+        <div className="text-[15px] text-red-600 font-bold">
+          Article indisponible
+        </div>
+      )}
       <div className="absolute top-0 right-0 size-8 p-[.6rem] border border-white invert rounded-full cursor-pointer transition-transform hover:scale-110 hover:invert-0 hover:bg-gray-800">
         <Image
           onClick={() => dispatch(updateQuantity({ id: id, quantity: 0 }))}

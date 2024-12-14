@@ -20,13 +20,18 @@ type ArticleClientType = {
 const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
   const dispatch = useDispatch();
 
-  // Met à jour le store avec l'article si nécessaire
+  // Initialisation et mise à jour (à chaque rendu SSG ISR) du store avec les données de l'article
   useEffect(() => {
     article && dispatch(syncArticles([article]));
-  }, []);
+  }, [article, dispatch]);
+
+  // Mise à jour du rendu à partir du store, les données de l'article pouvant être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
+  const currentArticle = useSelector((state: RootState) =>
+    state.shop.articles.find((a) => a.id === article?.id)
+  );
 
   let content;
-  if (!article) {
+  if (!currentArticle) {
     content = (
       <div className="flex flex-col justify-center items-center gap-20">
         <p className="text-xl">Article non trouvé</p>
@@ -41,53 +46,66 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
       </div>
     );
   } else {
-    const { id, gallery, title, description, price } = article;
+    const { id, gallery, title, description, price, about, available } =
+      currentArticle;
+    // console.log(about);
+    const aboutJSX = about
+      .split('\n')
+      .map((line, index) => <div key={index}>{line || <br />}</div>);
+    // console.log(aboutJSX);
     content = (
       <>
         <div className="relative">
-          <div className="sm:sticky top-28 3xl:top-40 sm:size-96 2xl:size-[500px] flex justify-center items-center overflow-hidden">
-            <ShopSlider gallery={gallery} />
+          <div className="sm:sticky top-28 3xl:top-40 flex flex-col gap-10 sm:gap-20">
+            <Link
+              href="/shop"
+              className="self-start group transition-transform duration-300 hover:scale-105"
+            >
+              <Button className="flex items-center rounded-xl px-4 py-3">
+                <span className="text-xl transition-transform group-hover:-translate-x-1">
+                  &#8592;
+                </span>
+                <span className="ml-2">boutique</span>
+              </Button>
+            </Link>
+            <div className="sm:size-96 2xl:size-[500px] flex justify-center items-center overflow-hidden">
+              <ShopSlider gallery={gallery} />
+            </div>
           </div>
         </div>
-        <div className="self-start sm:max-w-96 flex flex-col gap-20">
+        <div className="self-start sm:max-w-96 2xl:max-w-[500px] flex flex-col gap-10">
           <div>
-            <h1 className="inspiration-font text-6xl sm:text-8xl mb-10">
+            <h1 className="inspiration-font text-6xl sm:text-7xl mb-10">
               {title}
             </h1>
             <p>
-              <span className="text-lg sm:text-xl underline">Description:</span>
+              <span className="text-lg underline">
+                Description de l'article :
+              </span>
               <br />
               <br />
-              {description}
+              <span className="sm:text-lg line-clamp-2 text-ellipsis break-words">
+                {description}
+              </span>
             </p>
           </div>
           <hr className="border border-gray-400" />
           <div className="flex justify-between items-center">
-            <p className="text-lg sm:text-xl">
-              {price} € <span className="text-xs sm:text-sm">TTC</span>
-            </p>
-            <QuantitySelector id={id} size={'md'}/>
+            {!available ? (
+              <div className="text-lg text-red-600 font-bold">
+                Actuellement indisponible
+              </div>
+            ) : (
+              <>
+                <p className="text-lg sm:text-xl">
+                  {price} € <span className="text-xs sm:text-sm">TTC</span>
+                </p>
+                <QuantitySelector id={id} size={'md'} />
+              </>
+            )}
           </div>
           <hr className="border border-gray-400" />
-          <p>
-            <span className="text-lg sm:text-xl underline">A propos:</span>
-            <br />
-            <br /> Livre de poche réalisé avec amour.
-            <br /> Histoire de fion dans l espace intrasidérale en combinaison
-            spatiale.
-            <br />
-            <br /> Dessins réalisés au crayon. Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Dolorem rem consectetur magnam debitis
-            doloribus atque dolorum iusto, illo, consequatur labore excepturi
-            totam quibusdam? Nulla fuga corporis autem eaque, ipsam doloribus.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Consectetur quia nostrum officiis in asperiores non nesciunt,
-            deserunt optio fuga dolore facilis ab, quam quibusdam tempora eius
-            delectus fugit, enim fugiat. Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Ratione, magnam. Excepturi in similique sed
-            adipisci, explicabo cum, consequuntur beatae repellat itaque eveniet
-            id quas distinctio amet dicta, eligendi dolorem rem.
-          </p>
+          <div>{aboutJSX}</div>
         </div>
       </>
     );
@@ -95,19 +113,8 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
 
   return (
     <Section className="min-h-screen flex">
-      <div className="flex-1 flex flex-col gap-10 sm:gap-20 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
-        <Link
-          href="/shop"
-          className="self-start group transition-transform duration-300 hover:scale-105"
-        >
-          <Button className="flex items-center rounded-xl px-4 py-3">
-            <span className="text-xl transition-transform group-hover:-translate-x-1">&#8592;</span>
-            <span className="ml-2">boutique</span>
-          </Button>
-        </Link>
-        <div className="flex-1 flex max-sm:flex-col justify-center gap-16 sm:gap-44">
-          {content}
-        </div>
+      <div className="flex-1 flex max-sm:flex-col justify-center gap-16 sm:gap-44 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
+        {content}
       </div>
     </Section>
   );
