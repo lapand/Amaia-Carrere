@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Trans } from 'react-i18next';
 
 const Footer: React.FC = () => {
-
   // Pages sans footer
   const pathname = usePathname();
   if (pathname === '/') {
@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="flex justify-center items-center p-4">
+    <footer className="absolute z-30 bottom-0 w-full flex flex-col justify-center items-center gap-3 p-4">
       <p className="text-center text-sm 2xl:text-base">
         <span className="inline-block size-[18px] mr-1">
           <Image
@@ -30,6 +30,23 @@ const Footer: React.FC = () => {
           components={{ strong: <strong /> }}
         />
       </p>
+      <ul className="flex gap-5 text-sm">
+        <li className="hover:scale-105 transition-transform duration-300">
+          <Link href="/legal-notice">Mentions légales</Link>
+        </li>
+        <div className="w-[1px] h-5 bg-black"></div>
+        <li className="hover:scale-105 transition-transform duration-300">
+          <Link href="/privacy-policy">
+            Politique de confidentialité
+          </Link>
+        </li>
+        <div className="w-[1px] h-5 bg-black"></div>
+        <li className="hover:scale-105 transition-transform duration-300">
+          <Link href="/terms-and-conditions">
+            Conditions générales de vente
+          </Link>
+        </li>
+      </ul>
     </footer>
   );
 };

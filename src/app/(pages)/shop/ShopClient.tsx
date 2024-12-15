@@ -1,16 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // import { useTranslation } from 'react-i18next';
-import Section from '../../components/Section';
-import ArticleCard from '../../components/ArticleCard';
+import Section from '../../../components/Section';
+import ArticleCard from '../../../components/ArticleCard';
 import { ArticleCardType } from '@/types';
 import {
   setStaticUpdatedAt,
   syncArticles,
-} from '../../store/slices/articleSlice';
+} from '../../../store/slices/articleSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store/store';
+import { RootState, AppDispatch } from '../../../store/store';
 
 type ShopClientType = {
   staticArticles: ArticleCardType[];
@@ -26,6 +26,7 @@ const ShopClient: React.FC<ShopClientType> = ({
   // const { t } = useTranslation('common');
   // const tradProduct: any[] = t('products', { returnObjects: true }) as any[];
   const dispatch = useDispatch<AppDispatch>();
+
   // Mise à jour du rendu à partir du store et non à partir des props statiques car les données des articles peuvent être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
   const shop = useSelector((state: RootState) => state.shop);
   // console.log(articles);
@@ -36,7 +37,6 @@ const ShopClient: React.FC<ShopClientType> = ({
   useEffect(() => {
     const { staticUpdatedAt, dynamicUpdatedAt } = shop;
 
-    // Vérifie si les props statiques sont plus récentes
     if (
       !staticUpdatedAt ||
       !dynamicUpdatedAt ||
@@ -52,17 +52,15 @@ const ShopClient: React.FC<ShopClientType> = ({
   });
 
   return (
-    <Section className="min-h-screen" id="shop">
-      <div className="flex-1 flex flex-col gap-24 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
-        <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
-          Boutique
-        </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 sm:gap-12">
-          {articlesError}
-          {articlesJSX}
-        </div>
+    <div className="flex-1 flex flex-col gap-24">
+      <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
+        Boutique
+      </h1>
+      <div className="grid grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 sm:gap-12">
+        {articlesError}
+        {articlesJSX}
       </div>
-    </Section>
+    </div>
   );
 };
 

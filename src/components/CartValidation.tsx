@@ -3,12 +3,10 @@ import Button from './Button';
 import { TcartSchema } from '../schemas/cartItemSchema';
 import { useDispatch } from 'react-redux';
 import {
-  removeArticle,
   setDynamicUpdatedAt,
   setUnavailable,
   syncArticles,
 } from '@/store/slices/articleSlice';
-import { removeFromCart, updateQuantity } from '@/store/slices/cartSlice';
 import { NewDataType } from '@/types/bddValidation';
 
 type CartValidationType = {
@@ -18,30 +16,32 @@ type CartValidationType = {
 const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  console.log(validationData);
+  // console.log(validationData);
 
   const mismatchHandler = (newData: NewDataType) => {
+    // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
     alert(newData.alertMsg.map((msg) => msg + '\n').join(''));
 
+    // Stocke la date de la mise à jour des données en vue de la comparer avec la fraicheur des données statiques reçues par SSG ISR dans les composants ShopClient & ArticleClient et afficher ainsi les données les plus récentes.
     dispatch(setDynamicUpdatedAt(Date.now()));
 
-    // Articles retirés
+    // Affiche les articles retirés de la bdd comme étant indisponibles le temps que de nouvelles props statiques retire l'article du site à la prochaine session utilisateur ouverte.
     newData.deletedArticles.forEach((article) => {
-      dispatch(removeArticle(article.id));
-      // Ajout d un champ isInBase & available dans cartSlice et isInBase false ici => "Article retiré de la vente" à la place du prix
+      dispatch(setUnavailable(article.id));
     });
 
-    // Articles mis à jour
+    // Mise à jour des données des articles du panier.
     dispatch(syncArticles(newData.updatedArticles));
-    newData.updatedArticles.forEach((article) => {
-      if (!article.available) {
-        // Reducer pour available false dans cartSlice => "Article indisponible" à la place du prix
-      }
-    });
   };
 
   const handleCheckout = async (cartData: TcartSchema) => {
+    if (cartData.length === 0) {
+      alert('Panier vide !');
+      return;
+    }
+
     setLoading(true);
+
     try {
       const res = await fetch('/api/validate-cart', {
         method: 'POST',
@@ -51,6 +51,7 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
         },
       });
       const data = await res.json();
+
       if (data.error) {
         if (data.error === 'discordance') {
           console.log(6, data.error, data.newData);
@@ -60,6 +61,7 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
           alert(data.error);
         }
       }
+
       if (res.ok && data.url) {
         window.location.href = data.url;
       }

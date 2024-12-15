@@ -1,7 +1,7 @@
 import { STRAPI_API_BASE_URL } from '@/config/config';
-import { ArticleCardType } from '@/types';
+import { APIArticleType, ArticleCardType } from '@/types';
 
-export function formatArticle(article: any): ArticleCardType {
+export function formatArticle(article: APIArticleType): ArticleCardType {
   const {
     documentId,
     title,

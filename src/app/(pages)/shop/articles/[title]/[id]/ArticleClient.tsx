@@ -4,31 +4,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import Section from '@/components/Section';
 import ShopSlider from '@/components/ShopSlider';
-import Image from 'next/image';
 import Button from '@/components/Button';
 import { useEffect } from 'react';
 import { ArticleCardType } from '@/types';
 import Link from 'next/link';
-import { syncArticles } from '@/store/slices/articleSlice';
-import { addToCart } from '@/store/slices/cartSlice';
+import { setStaticUpdatedAt, syncArticles } from '@/store/slices/articleSlice';
 import QuantitySelector from '@/components/QuantitySelector';
 
 type ArticleClientType = {
-  article?: ArticleCardType;
+  staticArticle?: ArticleCardType;
+  fetchTimestamp: number | null;
 };
 
-const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
+const ArticleClient: React.FC<ArticleClientType> = ({
+  staticArticle,
+  fetchTimestamp,
+}) => {
   const dispatch = useDispatch();
 
-  // Initialisation et mise à jour (à chaque rendu SSG ISR) du store avec les données de l'article
-  useEffect(() => {
-    article && dispatch(syncArticles([article]));
-  }, [article, dispatch]);
+  console.log(staticArticle);
 
-  // Mise à jour du rendu à partir du store, les données de l'article pouvant être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
-  const currentArticle = useSelector((state: RootState) =>
-    state.shop.articles.find((a) => a.id === article?.id)
-  );
+  // Mise à jour du rendu à partir du store et non à partir des props statiques car les données des articles peuvent être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
+  const shop = useSelector((state: RootState) => state.shop);
+
+  const currentArticle = shop.articles.find((a) => a.id === staticArticle?.id);
+
+  // Synchronisation du store avec les props statiques uniquement si les props contiennent des données plus récentes que celles du store
+  // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
+  // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
+  useEffect(() => {
+    if (staticArticle) {
+      const { staticUpdatedAt, dynamicUpdatedAt } = shop;
+
+      if (
+        !staticUpdatedAt ||
+        !dynamicUpdatedAt ||
+        staticUpdatedAt > dynamicUpdatedAt
+      ) {
+        dispatch(syncArticles([staticArticle]));
+        dispatch(setStaticUpdatedAt(fetchTimestamp));
+      }
+    }
+  }, [dispatch, staticArticle, shop]);
 
   let content;
   if (!currentArticle) {
@@ -49,10 +66,12 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
     const { id, gallery, title, description, price, about, available } =
       currentArticle;
     // console.log(about);
+
     const aboutJSX = about
       .split('\n')
       .map((line, index) => <div key={index}>{line || <br />}</div>);
     // console.log(aboutJSX);
+
     content = (
       <>
         <div className="relative">
@@ -112,11 +131,9 @@ const ArticleClient: React.FC<ArticleClientType> = ({ article }) => {
   }
 
   return (
-    <Section className="min-h-screen flex">
-      <div className="flex-1 flex max-sm:flex-col justify-center gap-16 sm:gap-44 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
-        {content}
-      </div>
-    </Section>
+    <div className="flex-1 flex max-sm:flex-col justify-center gap-16 sm:gap-44">
+      {content}
+    </div>
   );
 };
 

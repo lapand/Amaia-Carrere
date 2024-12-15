@@ -1,3 +1,19 @@
+export type APIArticleType = {
+  documentId: string;
+  title: string;
+  description?: string;
+  gallery?: {
+    url: string;
+    alternativeText?: string;
+    width?: number;
+    height?: number;
+  }[];
+  price: number;
+  updatedAt: Date;
+  available: boolean;
+  about?: string;
+};
+
 export type ArticleCardType = {
   id: string;
   updatedAt: Date;

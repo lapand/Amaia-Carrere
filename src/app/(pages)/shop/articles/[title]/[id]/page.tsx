@@ -1,3 +1,4 @@
+import { formatArticle } from '@/utils/formatters';
 import ArticleClient from './ArticleClient';
 import { STRAPI_API_BASE_URL } from '@/config/config';
 
@@ -27,46 +28,13 @@ export async function generateStaticParams() {
 // Retrieve article data from Strapi API
 async function getArticle(id: string) {
   try {
-    let res = await fetch(
+    const res = await fetch(
       `${STRAPI_API_BASE_URL}/api/articles/${id}?populate=gallery`
     );
-    let article = await res.json();
+    const article = await res.json();
     // console.log(article);
-    let {
-      documentId,
-      title,
-      description,
-      gallery,
-      price,
-      updatedAt,
-      about,
-      available,
-    } = article.data;
-    gallery = !gallery
-      ? []
-      : gallery.map((img: any) => {
-          const src = img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '';
-          const alt = img.alternativeText || 'Image indisponible';
-          const width = img.width || 0;
-          const height = img.height || 0;
-          return {
-            src,
-            alt,
-            width,
-            height,
-          };
-        });
-    // console.log(gallery);
-    return {
-      id: documentId,
-      updatedAt,
-      gallery,
-      title,
-      description: description || '',
-      price: price.toFixed(2),
-      about: about || '',
-      available,
-    };
+
+    return formatArticle(article.data);
   } catch (error) {
     console.error('Erreur:', error);
     return undefined;
@@ -80,5 +48,10 @@ export default async function ArticlePage({
 }) {
   const article = await getArticle(params.id);
 
-  return <ArticleClient article={article} />;
+  // Stocke la date de la mise à jour des données de l'article en vue de la comparer avec la date des données dynamiques reçues lors de l'invalidation du panier, permettant ainsi de toujours afficher les données les plus récentes.
+  const fetchTimestamp = Date.now();
+
+  return (
+    <ArticleClient staticArticle={article} fetchTimestamp={fetchTimestamp} />
+  );
 }

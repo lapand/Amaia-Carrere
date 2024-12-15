@@ -53,9 +53,11 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
           Article indisponible
         </div>
       )}
-      <div className="absolute top-0 right-0 size-8 p-[.6rem] border border-white invert rounded-full cursor-pointer transition-transform hover:scale-110 hover:invert-0 hover:bg-gray-800">
+      <div
+        onClick={() => dispatch(updateQuantity({ id: id, quantity: 0 }))}
+        className="absolute top-0 right-0 size-8 p-[.6rem] border border-white invert rounded-full cursor-pointer transition-transform hover:scale-110 hover:invert-0 hover:bg-gray-800"
+      >
         <Image
-          onClick={() => dispatch(updateQuantity({ id: id, quantity: 0 }))}
           src="/cross.svg"
           alt="Retirer l'article du panier"
           width={20}

@@ -52,9 +52,9 @@ const Header: React.FC = () => {
   let cartItemCount = 0;
   detailedCartProducts.forEach((item) => (cartItemCount += item.quantity));
   let totalPrice = 0;
-  detailedCartProducts.forEach(
-    (item) => (totalPrice += item.quantity * parseFloat(item.price))
-  );
+  detailedCartProducts
+    .filter((p) => p.available)
+    .forEach((item) => (totalPrice += item.quantity * parseFloat(item.price)));
 
   // Assure que langIconRefs.current est toujours un tableau de la bonne longueur
   langIconRefs.current = langData.map(
@@ -175,9 +175,15 @@ const Header: React.FC = () => {
                 <p className="text-xs font-bold line-clamp-1 text-ellipsis break-words">
                   {item.title}
                 </p>
-                <p className="text-xs line-clamp-1 text-ellipsis break-words">
-                  {item.quantity} x {item.price} €
-                </p>
+                {item.available ? (
+                  <p className="text-xs line-clamp-1 text-ellipsis break-words">
+                    {item.quantity} x {item.price} €
+                  </p>
+                ) : (
+                  <div className="text-xs text-red-600 font-bold">
+                    Article indisponible
+                  </div>
+                )}
               </div>
               <Image
                 onClick={() =>

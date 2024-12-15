@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.className}`}>
+      <body className={`relative ${inter.className}`}>
         <PreloadResources />
         <PageLoader>
           <ReduxProvider>

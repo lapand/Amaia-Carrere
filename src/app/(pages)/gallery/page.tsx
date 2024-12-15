@@ -1,16 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import GalleryItem from '../../components/GalleryItem';
-import ModalWithTransition from '../../components/ModalWithTransition';
-import GallerySlider from '../../components/GallerySlider';
-import { draws } from '../../data/draws';
+import GalleryItem from '../../../components/GalleryItem';
+import ModalWithTransition from '../../../components/ModalWithTransition';
+import GallerySlider from '../../../components/GallerySlider';
+import { draws } from '../../../data/draws';
 import { useTranslation } from 'react-i18next';
-import { getPrevIdx, getNextIdx } from '../../utils/getIndex';
-import Section from '../../components/Section';
-import ScrollProgressBtn from '../../components/ScrollProgressBtn';
+import { getPrevIdx, getNextIdx } from '../../../utils/getIndex';
+import Section from '../../../components/Section';
+import ScrollProgressBtn from '../../../components/ScrollProgressBtn';
 import { AnimatePresence } from 'framer-motion';
-import usePageScrolling from '../../hooks/usePageScrolling';
+import usePageScrolling from '../../../hooks/usePageScrolling';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -50,8 +50,8 @@ const Gallery: React.FC = () => {
   ));
 
   return (
-    <Section className="min-h-screen" id="gallery">
-      <div className="flex-1 flex flex-col gap-24 my-24 mx-5 sm:mx-24 lg:mx-32 xl:mx-[15%]">
+    <div className='flex-1 flex flex-col'>
+      <div className='flex-1 flex flex-col gap-24'>
         <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
           Galerie
         </h1>
@@ -76,7 +76,7 @@ const Gallery: React.FC = () => {
           <ScrollProgressBtn className="fixed z-30 bottom-10 right-10" />
         )}
       </AnimatePresence>
-    </Section>
+    </div>
   );
 };
 
