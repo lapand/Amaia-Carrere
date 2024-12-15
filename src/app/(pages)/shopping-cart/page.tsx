@@ -1,6 +1,5 @@
 'use client';
 
-import Section from '../../../components/Section';
 import { useSelector } from 'react-redux';
 import CartArticle from '../../../components/CartArticle';
 import React from 'react';
@@ -38,22 +37,22 @@ export default function CartPage() {
   });
 
   return (
-    <div className="flex-1 flex flex-col gap-24">
+    <div className="flex-1 flex flex-col gap-32">
       <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
         Your Shopping Cart
       </h1>
       {cartArticlesJSX.length === 0 ? (
-        <>
+        <div className=' flex flex-col gap-16'>
           <div className="text-lg text-center">Votre panier est vide</div>
           <Link
             href="/shop"
             className="transition-transform duration-300 hover:scale-105 hover:rotate-1 text-center"
           >
-            <Button className="text-xl rounded-3xl px-8 py-4">
+            <Button className="text-lg rounded-3xl px-6 py-3">
               Retour à la boutique
             </Button>
           </Link>
-        </>
+        </div>
       ) : (
         <div className="flex-1 flex max-sm:flex-col justify-center gap-32">
           <div className="self-start flex flex-col gap-4 p-10 border border-gray-400 rounded-xl">

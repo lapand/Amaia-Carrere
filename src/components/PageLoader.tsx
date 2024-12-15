@@ -32,7 +32,9 @@ const PageLoader: React.FC<PropsWithChildren> = ({ children }) => {
   }, [loading]);
 
   return loading ? (
-    <Loader2 />
+    <div className="h-screen flex justify-center items-center">
+      <Loader2 />
+    </div>
   ) : (
     <TransitionDOM visible={visible}>{children}</TransitionDOM>
   );

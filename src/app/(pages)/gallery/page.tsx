@@ -7,7 +7,6 @@ import GallerySlider from '../../../components/GallerySlider';
 import { draws } from '../../../data/draws';
 import { useTranslation } from 'react-i18next';
 import { getPrevIdx, getNextIdx } from '../../../utils/getIndex';
-import Section from '../../../components/Section';
 import ScrollProgressBtn from '../../../components/ScrollProgressBtn';
 import { AnimatePresence } from 'framer-motion';
 import usePageScrolling from '../../../hooks/usePageScrolling';

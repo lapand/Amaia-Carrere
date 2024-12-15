@@ -7,54 +7,15 @@ import { createRef, RefObject, useEffect, useRef, useState } from 'react';
 import TransitionDOM from './TransitionDOM';
 import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from './Button';
-import { updateQuantity } from '../store/slices/cartSlice';
-import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
-
-const langData = [
-  {
-    langName: 'euskadi',
-    languageCode: 'eus',
-    iconUri: '/basco-flag.png',
-    posX: 'translate-x-[50px]',
-    posY: 'translate-y-[60px] sm:translate-y-[50px]',
-    delay: 0,
-  },
-  {
-    langName: 'french',
-    languageCode: 'fr',
-    iconUri: '/french-flag.png',
-    posX: '',
-    posY: 'translate-y-[60px]',
-    delay: 100,
-  },
-  {
-    langName: 'english',
-    languageCode: 'en',
-    iconUri: '/english-flag.png',
-    posX: 'translate-x-[60px]',
-    posY: '',
-    delay: 200,
-  },
-];
+import HeaderCart from './HeaderCart';
+import HeaderSocial from './HeaderSocial';
+import { langData, socials } from '@/config/config';
 
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
   const [whiteHeaderStyle, setWhiteHeaderStyle] = useState(false);
   const { i18n } = useTranslation();
   const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
-
-  const dispatch = useDispatch();
-
-  const detailedCartProducts = useSelector(selectDetailedCartProducts);
-
-  let cartItemCount = 0;
-  detailedCartProducts.forEach((item) => (cartItemCount += item.quantity));
-  let totalPrice = 0;
-  detailedCartProducts
-    .filter((p) => p.available)
-    .forEach((item) => (totalPrice += item.quantity * parseFloat(item.price)));
 
   // Assure que langIconRefs.current est toujours un tableau de la bonne longueur
   langIconRefs.current = langData.map(
@@ -93,6 +54,29 @@ const Header: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const shouldAddStyle = window.scrollY > 50;
+      if (shouldAddStyle && !whiteHeaderStyle) {
+        setWhiteHeaderStyle(true);
+      } else if (!shouldAddStyle && whiteHeaderStyle) {
+        setWhiteHeaderStyle(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [whiteHeaderStyle]);
+
+  // Pages sans header
+  const pathname = usePathname();
+  if (pathname === '/') {
+    return null;
+  }
+
   const JSXLanguages = langData.map((lang, i: number) => {
     return (
       <TransitionDOM
@@ -119,22 +103,9 @@ const Header: React.FC = () => {
     );
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const shouldAddStyle = window.scrollY > 50;
-      if (shouldAddStyle && !whiteHeaderStyle) {
-        setWhiteHeaderStyle(true);
-      } else if (!shouldAddStyle && whiteHeaderStyle) {
-        setWhiteHeaderStyle(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [whiteHeaderStyle]);
+  const socialsJSX = socials.map((social, i: number) => (
+    <HeaderSocial key={i} {...social} />
+  ));
 
   let headerStyle = '';
   if (whiteHeaderStyle) {
@@ -142,63 +113,6 @@ const Header: React.FC = () => {
   } else {
     headerStyle = 'border-transparent';
   }
-
-  // Pages sans header
-  const pathname = usePathname();
-  if (pathname === '/') {
-    return null;
-  }
-
-  const cartItemJSX =
-    detailedCartProducts.length === 0
-      ? 'Panier vide'
-      : detailedCartProducts.map((item, i: number) => {
-          return (
-            <li
-              key={i}
-              className="flex justify-between items-center gap-4 mb-2"
-            >
-              <div className="size-16">
-                {!item.gallery[0] ? (
-                  <div className="size-full flex justify-center items-center text-xs text-center">
-                    Image Introuvable
-                  </div>
-                ) : (
-                  <Image
-                    {...item.gallery[0]}
-                    className="size-full object-contain"
-                    priority
-                  />
-                )}
-              </div>
-              <div className="flex-1 flex flex-col gap-2">
-                <p className="text-xs font-bold line-clamp-1 text-ellipsis break-words">
-                  {item.title}
-                </p>
-                {item.available ? (
-                  <p className="text-xs line-clamp-1 text-ellipsis break-words">
-                    {item.quantity} x {item.price} €
-                  </p>
-                ) : (
-                  <div className="text-xs text-red-600 font-bold">
-                    Article indisponible
-                  </div>
-                )}
-              </div>
-              <Image
-                onClick={() =>
-                  dispatch(updateQuantity({ id: item.id, quantity: 0 }))
-                }
-                src="/cross.svg"
-                alt="Retirer l'article du panier"
-                width={20}
-                height={20}
-                className="size-9 p-3 object-contain transition-transform hover:scale-125 cursor-pointer"
-                priority
-              />
-            </li>
-          );
-        });
 
   return (
     <header
@@ -240,98 +154,10 @@ const Header: React.FC = () => {
           <Menu />
         </div>
         <div className="max-sm:absolute max-sm:left-2 max-sm:top-full flex items-center sm:gap-2">
-          <div className="header-icon black-to-color">
-            <Link
-              href={'https://www.instagram.com/amaia.carrere'}
-              target="_blank"
-            >
-              <Image
-                src="/insta-icon.svg"
-                alt="instagram-icon"
-                width={100}
-                height={100}
-                className="size-full"
-                priority
-              />
-            </Link>
-          </div>
-          <div className="header-icon black-to-color">
-            <Link
-              href={'https://www.facebook.com/amaia.carrere'}
-              target="_blank"
-            >
-              <Image
-                src="/facebook-icon.svg"
-                alt="facebook-icon"
-                width={100}
-                height={100}
-                className="size-full"
-                priority
-              />
-            </Link>
-          </div>
-          <div className="header-icon black-to-color">
-            <Link
-              href={'https://www.linkedin.com/in/amaia-carrere-6302b7245'}
-              target="_blank"
-            >
-              <Image
-                src="/linkedin.svg"
-                alt="linkedin-icon"
-                width={100}
-                height={100}
-                className="size-full"
-                priority
-              />
-            </Link>
-          </div>
+          {socialsJSX}
         </div>
         <div>
-          <div className="relative w-12 aspect-square p-3 cursor-pointer group">
-            <Link href={'/shopping-cart'} className="relative">
-              <Image
-                src="/shopping-cart.png"
-                alt="shopping-cart-icon"
-                width={100}
-                height={100}
-                className="size-full"
-                priority
-              />
-              {
-                <span className="absolute top-3/4 left-3/4 text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
-                  {cartItemCount}
-                </span>
-              }
-            </Link>
-            {/* Infobulle */}
-            <div className="absolute right-0 flex flex-col gap-4 w-48 sm:w-80 mt-6 text-sm bg-gray-800 text-white rounded-lg shadow-lg p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:cursor-auto">
-              <p className="self-center text-base">
-                Total : {totalPrice.toFixed(2)} €
-              </p>
-              <Link
-                href="/shopping-cart"
-                className="self-center group transition-transform duration-300 hover:scale-105"
-              >
-                <Button className="flex items-center rounded-xl px-4 py-3">
-                  <Image
-                    src="/shopping-cart.png"
-                    alt="shopping-cart-icon"
-                    width={100}
-                    height={100}
-                    className="size-5"
-                    priority
-                  />
-                  <span className="ml-2">Voir mon panier</span>
-                </Button>
-              </Link>
-              <div className="flex flex-col gap-3">
-                <p>Articles présents :</p>
-                <ul className="max-h-56 sm:max-h-64 overflow-y-auto overflow-x-hidden">
-                  {cartItemJSX}
-                </ul>
-              </div>
-            </div>
-          </div>
+          <HeaderCart />
         </div>
       </div>
     </header>
