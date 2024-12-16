@@ -6,100 +6,80 @@ import Image from 'next/image';
 import { Trans, useTranslation } from 'react-i18next';
 import Button from '../components/Button';
 import Link from 'next/link';
+import HomeBubble from '@/components/HomeBubble';
+import { motion } from 'framer-motion';
+import useViewportWidth from '@/hooks/useViewportWidth';
+import { mobileBreakpoint } from '@/config/config';
+
+type bubbleType = {
+  x: string;
+  y: string;
+  delay: number;
+  initialRotate: number;
+};
+
+const bubblesData: bubbleType[] = [
+  {
+    x: 'sm:left-[10%] lg:left-[55%] xl:left-[27%] 3xl:left-[30%]',
+    y: 'sm:max-lg:top-[18%] lg:max-xl:bottom-[10%] xl:top-[20%]',
+    delay: 0.5,
+    initialRotate: -500,
+  },
+  {
+    x: 'sm:left-[45%]',
+    y: 'sm:top-[15%]',
+    delay: 1,
+    initialRotate: 800,
+  },
+  {
+    x: 'sm:max-lg:right-[12%] lg:max-xl:right-[8%] xl:left-[55%]',
+    y: 'sm:bottom-[22%] lg:bottom-[8%] xl:bottom-[10%]',
+    delay: 1.5,
+    initialRotate: -600,
+  },
+];
 
 const Home: React.FC = () => {
+  const windowWidth = useViewportWidth();
 
-  useTranslation();
-
-  const [is1TitleVisible, setIs1TitleVisible] = useState(false);
-  const [is2TitleVisible, setIs2TitleVisible] = useState(false);
-  const [is3TitleVisible, setIs3TitleVisible] = useState(false);
-
-  useEffect(() => {
-    const timer1 = setTimeout(() => {
-      setIs1TitleVisible(true);
-    }, 500);
-    const timer2 = setTimeout(() => {
-      setIs2TitleVisible(true);
-    }, 1200);
-    const timer3 = setTimeout(() => {
-      setIs3TitleVisible(true);
-    }, 1900);
-
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-    };
-  }, []);
+  const bubbles = bubblesData.map((bubble, i) => (
+    <motion.div
+      key={i}
+      initial={{ scale: 0, rotate: bubble.initialRotate }}
+      animate={{ scale: 1, rotate: 0 }}
+      transition={{ delay: bubble.delay, duration: 1.5, type: 'spring' }}
+      className={`sm:absolute ${bubble.x} ${bubble.y}`}
+    >
+      <HomeBubble idx={i} />
+    </motion.div>
+  ));
 
   return (
-    <Section className='h-screen pb-safe-bottom border-none bg-[url("/home-mobile.webp")] sm:bg-[url("/home.webp")] bg-cover bg-top'>
-      <div className="relative h-full flex flex-col luckiest-guy">
-        <div className="relative text-surface-900 flex-1 flex flex-col justify-between">
-          <div>
-            <div className="inline-block sm:licorice-font sm:thickening">
-              {/* <h1 className="text-3xl sm:text-6xl xl:text-8xl text-center m-10">
-              Amaia Carrere
-            </h1> */}
-              <h1 className="h-4/5 min-w-36 mb-10">
-                <Image
-                  src="/amaia-logo.webp"
-                  alt="Site logo - Amaia Carrere"
-                  width={483}
-                  height={141}
-                  className="size-full"
-                  priority
-                />
-              </h1>
-              <p className="max-sm:py-2 text-2xl sm:text-5xl xl:text-6xl text-center">
-                <Trans
-                  i18nKey="common:home.tagline"
-                  components={{ break: <br /> }}
-                />
-              </p>
-            </div>
-          </div>
-          <Link href="/gallery" className='self-center transition-transform duration-300 hover:scale-105 hover:rotate-3'>
-            <Button className="text-2xl rounded-3xl px-8 py-4">
-              Entrer
-            </Button>
-          </Link>
-          <h2 className="flex justify-end items-end text-xl xs:text-2xl sm:text-3xl 3xl:text-4xl sm:text-center">
-            <span
-              className={`${
-                is1TitleVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-              } sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-5 sm:px-7 mb-10 rounded-full flex items-center transition-all duration-700 sm:border-2 border-black`}
-            >
-              <Trans
-                i18nKey="common:home.title1"
-                components={{ strong: <strong /> }}
-              />
-            </span>
-            <span
-              className={`${
-                is2TitleVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-              } sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-5 sm:px-7 mb-6 -ml-10 rounded-full flex items-center transition-all duration-700 sm:border-2 border-black`}
-            >
-              <Trans
-                i18nKey="common:home.title2"
-                components={{ strong: <strong /> }}
-              />
-            </span>
-            <span
-              className={`${
-                is3TitleVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-              } sm:aspect-square sm:bg-white/30 sm:backdrop-blur-sm sm:py-5 sm:px-7 -ml-6 rounded-full flex items-center transition-all duration-700 sm:border-2 border-black`}
-            >
-              <Trans
-                i18nKey="common:home.title3"
-                components={{ strong: <strong /> }}
-              />
-            </span>
-          </h2>
-        </div>
-      </div>
-    </Section>
+    <div className='relative h-screen text-surface-900 luckiest-guy border-none bg-[url("/home-mobile.webp")] sm:bg-[url("/home.webp")] bg-cover bg-top p-10 sm:p-16 max-sm:pb-safe-bottom flex max-sm:flex-col-reverse justify-center items-center max-sm:gap-6'>
+      <h1 className="absolute z-50 top-10 lg:top-20 left-2 sm:left-10 lg:left-20 w-72 sm:w-96 lg:w-80 3xl:w-[500px] transition-all duration-[1500ms]">
+        <Image
+          src="/amaia-logo.webp"
+          alt="Site logo - Amaia Carrere"
+          width={483}
+          height={141}
+          className="size-full"
+          priority
+        />
+      </h1>
+      <Link
+        href="/gallery"
+        className="relative z-10 transition-transform duration-300 hover:scale-105 hover:rotate-3"
+      >
+        <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-4 sm:py-5 lg:py-4">
+          Entrer
+        </Button>
+      </Link>
+      {windowWidth < mobileBreakpoint ? (
+        <div className="w-screen">{bubbles}</div>
+      ) : (
+        bubbles
+      )}
+    </div>
   );
 };
 

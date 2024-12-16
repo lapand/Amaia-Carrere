@@ -30,7 +30,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 max-sm:mb-8">
       <Link href={`/shop/articles/${titleSlug}/${id}`} className="group">
         <div className="relative w-full aspect-square border border-gray-500 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
@@ -47,7 +47,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
         </div>
       </Link>
       <Link href={`/shop/articles/${titleSlug}/${id}`}>
-        <h2 className="h-5 font-bold line-clamp-1 text-ellipsis break-words hover:text-primary-300">
+        <h2 className="h-5 max-sm:text-sm font-bold line-clamp-1 text-ellipsis break-words hover:text-accent">
           {title}
         </h2>
       </Link>
@@ -64,7 +64,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
         ) : (
           <>
             <p className="text-sm font-bold">
-              {price} € <span className="text-xs">TTC</span>
+              {price} € <span className="text-xs sm:text-xs">TTC</span>
             </p>
             <QuantitySelector id={id} size={'sm'} />
           </>

@@ -2,9 +2,18 @@
   "menu": ["Galerie", "Boutique", "A propos", "Contact"],
   "home": {
     "tagline": "Bienvenue dans mon atelier,<br/> source de rêves crayonnés",
-    "title1": "<strong>Illustratrice<br/>jeunesse</strong>",
-    "title2": "Fantasy",
-    "title3": "<strong>Bande<br/>dessinée</strong>"
+    "bubbles": {
+      "desktop": [
+        "<strong>Illustratrice<br/>jeunesse</strong>",
+        "Fantasy",
+        "<strong>Bande<br/>dessinée</strong>"
+      ],
+      "mobile": [
+        "<strong>Illustratrice jeunesse</strong>",
+        "Fantasy",
+        "<strong>Bande dessinée</strong>"
+      ]
+    }
   },
   "gallery": {
     "alt": {
@@ -84,6 +93,9 @@
       },
       "submit": "Envoyer"
     },
-    "copyright": "2024 - <strong>Amaia Carrere</strong> - Auteur <strong>illustratrice</strong> - Tous droits réservés"
+    "copyright": {
+      "desktop": "2024 - <strong>Amaia Carrere</strong> - Auteur <strong>illustratrice</strong> - Tous droits réservés",
+      "mobile": "2024 - <strong>Amaia Carrere</strong> - Auteur <strong>illustratrice</strong><br/>Tous droits réservés"
+    }
   }
 }

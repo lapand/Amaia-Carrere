@@ -50,8 +50,8 @@ const Gallery: React.FC = () => {
 
   return (
     <div className='flex-1 flex flex-col'>
-      <div className='flex-1 flex flex-col gap-24'>
-        <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
+      <div className='flex-1 flex flex-col gap-10 sm:gap-16'>
+        <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font sm:thickening text-right">
           Galerie
         </h1>
         <div className="columns-2 lg:columns-3 gap-4 sm:gap-5">
@@ -72,7 +72,7 @@ const Gallery: React.FC = () => {
       </div>
       <AnimatePresence>
         {isPageScrolling && (
-          <ScrollProgressBtn className="fixed z-30 bottom-10 right-10" />
+          <ScrollProgressBtn className="fixed z-50 bottom-10 right-10" />
         )}
       </AnimatePresence>
     </div>

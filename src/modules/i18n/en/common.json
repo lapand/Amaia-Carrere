@@ -2,9 +2,18 @@
   "menu": ["Gallery", "Shop", "About", "Contact"],
   "home": {
     "tagline": "Welcome to my studio,<br/> source of penciled dreams",
-    "title1": "<strong>Children's<br/>illustrator</strong>",
-    "title2": "Fantasy",
-    "title3": "<strong>Comic</strong>"
+    "bubbles": {
+      "desktop": [
+        "<strong>Children's<br/>illustrator</strong>",
+        "Fantasy",
+        "<strong>Comic</strong>"
+      ],
+      "mobile": [
+        "<strong>Children's illustrator</strong>",
+        "Fantasy",
+        "<strong>Comic</strong>"
+      ]
+    }
   },
   "gallery": {
     "alt": {
@@ -84,6 +93,9 @@
       },
       "submit": "Send"
     },
-    "copyright": "2024 - <strong>Amaia Carrere</strong> - Author <strong>illustrator</strong> - All rights reserved"
+    "copyright": {
+      "desktop": "2024 - <strong>Amaia Carrere</strong> - Author <strong>illustrator</strong> - All rights reserved",
+      "mobile": "2024 - <strong>Amaia Carrere</strong> - Author <strong>illustrator</strong><br/>All rights reserved"
+    }
   }
 }

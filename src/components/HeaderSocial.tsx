@@ -5,7 +5,7 @@ import { SocialType } from '@/types/social';
 
 const HeaderSocial: React.FC<SocialType> = ({ href, src, alt }) => {
   return (
-    <li className="header-icon black-to-color list-none">
+    <li className="header-icon sm:black-to-color list-none">
       <Link href={href} target="_blank">
         <Image
           src={src}

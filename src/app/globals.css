@@ -33,7 +33,7 @@
   --about-section-mt: 10rem;
   --safe-area-bottom: env(safe-area-inset-bottom);
 }
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
   :root {
     --header-height: 80px;
     --about-section-mt: 14rem;
@@ -155,7 +155,7 @@ strong {
     );
   }
   .section-padding {
-    @apply px-2 md:pb-10 md:px-10 xl:pb-16 xl:px-24 pt-[var(--header-height)];
+    @apply px-2 md:px-10 xl:px-24 md:pb-10 xl:pb-16 pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];

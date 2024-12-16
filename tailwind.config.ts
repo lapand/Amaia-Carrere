@@ -13,10 +13,12 @@ const config: Config = {
         '3xl': '1800px',
       },
       fontSize: {
+        "2.5xl": ['1.75rem', '2.08rem'],
         "3.5xl": ['2rem', '2.35rem'],
         "4.5xl": ['2.5rem', '2.6rem'],
         "4.8xl": ['2.75rem', '3rem'],
         "5.5xl": ['3.4rem', '3.3rem'],
+        "6.5xl": ['4.1rem', '3.3rem'],
       },
       colors: {
         primary: {

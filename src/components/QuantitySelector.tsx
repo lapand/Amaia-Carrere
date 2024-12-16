@@ -27,7 +27,7 @@ const QuantitySelector: React.FC<QuantitySelectorType> = ({
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1 sm:gap-2">
       {quantity && quantity > 0 && (
         <Button
           onClick={() => dispatch(decrementQuantity(id))}

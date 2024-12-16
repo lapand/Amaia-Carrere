@@ -1,4 +1,3 @@
-import { LanguageType } from "@/types/language";
 import { SocialType } from "@/types/social";
 
 // Variables d'env exposées au navigateur
@@ -21,32 +20,7 @@ export const SUCCESS_URL = `${FRONT_BASE_URL}/success`;
 export const CANCEL_URL = `${FRONT_BASE_URL}/cancel`;
 export const getArticlesEndpoint = `${STRAPI_API_BASE_URL}/api/articles?populate=gallery`;
 
-export const langData: LanguageType[] = [
-  {
-    langName: 'euskadi',
-    languageCode: 'eus',
-    iconUri: '/basco-flag.png',
-    posX: 'translate-x-[50px]',
-    posY: 'translate-y-[60px] sm:translate-y-[50px]',
-    delay: 0,
-  },
-  {
-    langName: 'french',
-    languageCode: 'fr',
-    iconUri: '/french-flag.png',
-    posX: '',
-    posY: 'translate-y-[60px]',
-    delay: 100,
-  },
-  {
-    langName: 'english',
-    languageCode: 'en',
-    iconUri: '/english-flag.png',
-    posX: 'translate-x-[60px]',
-    posY: '',
-    delay: 200,
-  },
-];
+
 
 export const socials: SocialType[] = [
   {
@@ -65,3 +39,6 @@ export const socials: SocialType[] = [
     alt: 'linkedin-icon',
   },
 ];
+
+export const mobileBreakpoint = 640;
+
