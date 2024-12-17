@@ -13,8 +13,8 @@ export default function SuccessPage() {
 
   return (
     <div className="flex-1 flex flex-col justify-center items-center gap-20">
-      <h1 className="text-xl">Commande validée !</h1>
-      <p className="text-lg">
+      <h1 className="text-xl sm:text-2xl lg:text-xl">Commande validée !</h1>
+      <p className="text-lg sm:text-xl lg:text-lg text-center">
         Merci pour votre achat. Vous recevrez un email de confirmation sous peu.
       </p>
     </div>

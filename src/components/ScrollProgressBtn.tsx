@@ -44,7 +44,10 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({ className }) => {
       transition={{
         type: 'spring',
         stiffness: 300,
-        damping: 20,
+        damping: 10,
+      }}
+      whileTap={{
+        scale: 0.95,
       }}
     >
       <button

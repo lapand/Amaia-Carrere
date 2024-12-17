@@ -68,7 +68,7 @@ const Home: React.FC = () => {
       </h1>
       <Link
         href="/gallery"
-        className="relative z-10 transition-transform duration-300 hover:scale-105 hover:rotate-3"
+        className="relative z-10 transition-transform duration-300 hover:rotate-3"
       >
         <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-4 sm:py-5 lg:py-4">
           Entrer

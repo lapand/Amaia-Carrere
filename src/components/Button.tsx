@@ -1,7 +1,8 @@
 import { ButtonHTMLAttributes } from 'react';
+import { motion } from 'framer-motion';
 
 type ButtonProps = {
-  ariaLabel?: string,
+  ariaLabel?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,19 +18,30 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
 }) => {
   return (
-    <button
+    <motion.button
       onClick={onClick}
       onMouseOver={onMouseOver}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`${className} relative overflow-hidden py-3 px-4 bg-gradient-to-b from-blue-500 to-primary-500 rounded-xl text-white shadow-btn transition focus-visible:ring-2 ring-offset-2 ring-gray-950 before:content-[''] before:absolute before:size-full before:top-0 before:-left-full hover:before:animate-shine before:shine-bg after:absolute after:inset-0 hover:after:bg-black/10 active:after:bg-gradient-to-b active:after:from-transparent active:after:to-black/20 active:transform-onclick active:shadow-active-btn`}
+      className={`${className} relative overflow-hidden py-3 px-4 bg-gradient-to-b from-blue-500 to-primary-500 rounded-xl text-white shadow-btn focus-visible:ring-2 ring-offset-2 ring-gray-950 before:content-[''] before:absolute before:size-full before:top-0 before:-left-full hover:before:animate-shine before:shine-bg after:absolute after:inset-0 hover:after:bg-black/10 active:after:bg-gradient-to-b active:after:from-transparent active:after:to-black/20 active:transform-onclick active:shadow-active-btn`}
       style={style}
       aria-label={ariaLabel}
       type={type}
       disabled={disabled}
+      whileHover={{
+        scale: 1.1,
+        transition: {
+          type: 'spring',
+          stiffness: 300,
+          damping: 10,
+        },
+      }}
+      whileTap={{
+        scale: 0.95,
+      }}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };
 

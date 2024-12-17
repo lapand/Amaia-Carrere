@@ -9,17 +9,18 @@ import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
 import HeaderCart from './HeaderCart';
 import HeaderSocial from './HeaderSocial';
-import { mobileBreakpoint, socials } from '@/config/config';
+import { lgBreakpoint, mobileBreakpoint, socials } from '@/config/config';
 import { LanguageType } from '@/types/language';
 import useViewportWidth from '@/hooks/useViewportWidth';
+import { motion } from 'framer-motion';
 
 const langData: LanguageType[] = [
   {
     langName: 'euskadi',
     languageCode: 'eus',
     iconUri: '/basco-flag.png',
-    posX: 'sm:translate-x-12',
-    posY: 'sm:translate-y-12',
+    posX: 'lg:translate-x-12',
+    posY: 'lg:translate-y-12',
     delay: 0,
   },
   {
@@ -27,14 +28,14 @@ const langData: LanguageType[] = [
     languageCode: 'fr',
     iconUri: '/french-flag.png',
     posX: '',
-    posY: 'sm:translate-y-14',
+    posY: 'lg:translate-y-14',
     delay: 100,
   },
   {
     langName: 'english',
     languageCode: 'en',
     iconUri: '/english-flag.png',
-    posX: 'sm:translate-x-14',
+    posX: 'lg:translate-x-14',
     posY: '',
     delay: 200,
   },
@@ -109,20 +110,30 @@ const Header: React.FC = () => {
   }
 
   const JSXLanguages = langData.map((lang, i: number) => {
-    console.log(lang);
 
     return (
       <TransitionDOM
         key={i}
         visible={isLanguagesVisible}
         delay={lang.delay}
-        className={`sm:absolute left-0 top-0 ${lang.posX} ${lang.posY}`}
+        className={`lg:absolute left-0 top-0 ${lang.posX} ${lang.posY}`}
       >
-        <button
+        <motion.button
           ref={langIconRefs.current[i]}
-          className="size-12 p-2 cursor-pointer transition-transform max-sm:scale-90 hover:scale-105 sm:hover:scale-110"
+          className="size-12 p-2 cursor-pointer"
           onClick={() => handleToggle(lang.languageCode)}
           aria-label={`Switch to ${lang.langName} language`}
+          whileHover={{
+            scale: 1.2,
+            transition: {
+              type: 'spring',
+              stiffness: 300,
+              damping: 10,
+            },
+          }}
+          whileTap={{
+            scale: 0.95,
+          }}
         >
           <Image
             src={`${lang.iconUri}`}
@@ -131,7 +142,7 @@ const Header: React.FC = () => {
             height={100}
             className="size-full"
           />
-        </button>
+        </motion.button>
       </TransitionDOM>
     );
   });
@@ -141,7 +152,7 @@ const Header: React.FC = () => {
   ));
 
   let headerStyle = '';
-  if (whiteHeaderStyle) {
+  if (whiteHeaderStyle || windowWidth < mobileBreakpoint) {
     headerStyle = 'border-slate-500 bg-slate-100';
   } else {
     headerStyle = 'border-transparent';
@@ -153,10 +164,21 @@ const Header: React.FC = () => {
     >
       <div className="h-full flex items-center gap-6 sm:gap-10 xl:gap-12 2xl:gap-32">
         <div className="relative">
-          <button
-            className="block header-icon black-to-color"
+          <motion.button
+            className="block w-12 aspect-square p-3 cursor-pointer black-to-color"
             onClick={() => setIsLanguagesVisible((v) => !v)}
             aria-label="Toggle language panel"
+            whileHover={{
+              scale: 1.2,
+              transition: {
+                type: 'spring',
+                stiffness: 300,
+                damping: 10,
+              },
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
           >
             <Image
               src="/language-icon.svg"
@@ -166,8 +188,8 @@ const Header: React.FC = () => {
               className="size-full"
               priority
             />
-          </button>
-          {windowWidth < mobileBreakpoint ? (
+          </motion.button>
+          {windowWidth < lgBreakpoint ? (
             <div
               className={`fixed top-20 left-0 flex flex-col gap-1 transition-transform ${
                 isLanguagesVisible ? '-translate-x-0' : '-translate-x-16'

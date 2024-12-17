@@ -137,9 +137,6 @@ strong {
   .main-bg {
     @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-fixed bg-cover bg-center;
   }
-  .header-icon {
-    @apply w-12 aspect-square p-3 cursor-pointer transition-transform hover:scale-110;
-  }
   .black-to-color {
     @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
   }

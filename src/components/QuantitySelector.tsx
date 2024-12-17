@@ -31,7 +31,7 @@ const QuantitySelector: React.FC<QuantitySelectorType> = ({
       {quantity && quantity > 0 && (
         <Button
           onClick={() => dispatch(decrementQuantity(id))}
-          className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl hover:scale-110 flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
+          className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
           style={{ color: 'black' }}
         >
           -
@@ -53,7 +53,7 @@ const QuantitySelector: React.FC<QuantitySelectorType> = ({
       </div>
       <Button
         onClick={() => dispatch(addToCart(id))}
-        className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl hover:scale-110 flex justify-center items-center`}
+        className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl flex justify-center items-center`}
       >
         +
       </Button>

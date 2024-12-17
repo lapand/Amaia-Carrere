@@ -7,15 +7,11 @@ import GallerySlider from '../../../components/GallerySlider';
 import { draws } from '../../../data/draws';
 import { useTranslation } from 'react-i18next';
 import { getPrevIdx, getNextIdx } from '../../../utils/getIndex';
-import ScrollProgressBtn from '../../../components/ScrollProgressBtn';
-import { AnimatePresence } from 'framer-motion';
-import usePageScrolling from '../../../hooks/usePageScrolling';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const { t } = useTranslation('common');
-  const isPageScrolling = usePageScrolling(200);
 
   const imgAltObj: any = t('gallery.alt', {
     returnObjects: true,
@@ -49,32 +45,25 @@ const Gallery: React.FC = () => {
   ));
 
   return (
-    <div className='flex-1 flex flex-col'>
-      <div className='flex-1 flex flex-col gap-10 sm:gap-16'>
-        <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font sm:thickening text-right">
-          Galerie
-        </h1>
-        <div className="columns-2 lg:columns-3 gap-4 sm:gap-5">
-          {galleryItems}
-        </div>
-        <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
-          {activeIdx !== null && (
-            <GallerySlider
-              activeDraw={{
-                ...draws[activeIdx],
-                alt: imgAltObj[(activeIdx + 1).toString()],
-              }}
-              changePrevIdx={changePrevIdx}
-              changeNextIdx={changeNextIdx}
-            />
-          )}
-        </ModalWithTransition>
+    <div className="flex-1 flex flex-col gap-10 sm:gap-16">
+      <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
+        Galerie
+      </h1>
+      <div className="columns-2 md:columns-3 xl:columns-4 gap-3 lg:gap-5">
+        {galleryItems}
       </div>
-      <AnimatePresence>
-        {isPageScrolling && (
-          <ScrollProgressBtn className="fixed z-50 bottom-10 right-10" />
+      <ModalWithTransition visible={isModalOpened} closeModal={closeModal}>
+        {activeIdx !== null && (
+          <GallerySlider
+            activeDraw={{
+              ...draws[activeIdx],
+              alt: imgAltObj[(activeIdx + 1).toString()],
+            }}
+            changePrevIdx={changePrevIdx}
+            changeNextIdx={changeNextIdx}
+          />
         )}
-      </AnimatePresence>
+      </ModalWithTransition>
     </div>
   );
 };

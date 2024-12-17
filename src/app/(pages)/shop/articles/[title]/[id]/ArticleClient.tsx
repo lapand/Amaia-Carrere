@@ -56,7 +56,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         <p className="text-xl">Article non trouvé</p>
         <Link
           href="/shop"
-          className="transition-transform duration-300 hover:scale-105 hover:rotate-3"
+          className="transition-transform duration-300 hover:rotate-3"
         >
           <Button className="text-xl rounded-3xl px-8 py-4">
             Retour à la boutique
@@ -80,7 +80,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           <div className="sm:sticky top-24 xl:top-36 3xl:top-40 flex flex-col gap-6 lg:gap-10 3xl:gap-20">
             <Link
               href="/shop"
-              className="max-sm:fixed max-sm:z-30 self-start group transition-transform duration-300 hover:scale-105"
+              className="max-sm:fixed max-sm:z-30 self-start group"
             >
               <Button className="flex items-center rounded-xl px-4 py-2 sm:py-3">
                 <span className="text-2xl sm:text-xl transition-transform group-hover:-translate-x-1">
@@ -98,7 +98,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         </div>
         <div className="sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-10">
           <div>
-            <h1 className="inspiration-font text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
+            <h1 className="inspiration-font thickening text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
               {title}
             </h1>
             <p>

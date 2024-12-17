@@ -115,7 +115,7 @@ const HeaderCart = () => {
               </p>
               <Link
                 href="/shopping-cart"
-                className="self-center transition-transform duration-300 hover:scale-105"
+                className="self-center"
               >
                 <Button className="flex items-center rounded-xl px-4 py-3">
                   <Image

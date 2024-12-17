@@ -74,10 +74,10 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
   };
 
   return (
-    <div className="transition-transform duration-300 hover:scale-105 text-center">
+    <div className="text-center">
       <Button
         onClick={() => handleCheckout(validationData)}
-        className="text-base rounded-[.3rem] px-8 py-3"
+        className="max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg max-lg:m-2 rounded-[.3rem] px-8 sm:py-5 lg:py-3"
       >
         {loading ? 'En attente...' : 'Valider mon panier'}
       </Button>
