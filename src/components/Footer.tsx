@@ -8,13 +8,14 @@ import { usePathname } from 'next/navigation';
 import { Trans } from 'react-i18next';
 
 const Footer: React.FC = () => {
+
+  const windowWidth = useViewportWidth();
+
   // Pages sans footer
   const pathname = usePathname();
   if (pathname === '/') {
     return null;
   }
-
-  const windowWidth = useViewportWidth();
 
   return (
     <footer className="absolute z-30 bottom-0 w-full flex flex-col justify-center items-center gap-3 p-2 sm:p-4 bg-slate-100 border-t border-black">

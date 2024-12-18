@@ -64,7 +64,7 @@ export default function CartPage() {
             {cartArticlesJSX}
           </div>
           <div className="relative flex flex-col gap-20 3xl:gap-40">
-            <h1 className="text-7xl sm:licorice-font sm:thickening text-right">
+            <h1 className="text-7xl licorice-font thickening text-right">
               Panier
             </h1>
             <div

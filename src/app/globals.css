@@ -54,6 +54,10 @@ body {
 strong {
   font-weight: inherit;
 }
+::selection {
+  background-color: #ffcc00;
+  color: #000;
+}
 .nav-link {
   cursor: pointer;
   position: relative;
