@@ -53,7 +53,7 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
           />
         </div>
       ) : (
-        <div className="text-[15px] text-red-600 font-bold">
+        <div className="max-sm:self-end text-[15px] lg:max-2xl:text-sm text-red-600 font-bold">
           Article indisponible
         </div>
       )}

@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       disabled={disabled}
       whileHover={{
-        scale: 1.1,
+        scale: disabled ? 1 : 1.05,
         transition: {
           type: 'spring',
           stiffness: 300,

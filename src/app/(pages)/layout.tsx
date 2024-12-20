@@ -15,7 +15,7 @@ const Layout = ({
 
   return (
     <Section className="min-h-screen flex flex-col">
-      <div className="flex-1 flex flex-col gap-24 mx-1 sm:mx-4 lg:mx-6 xl:mx-16 2xl:mx-24 3xl:mx-56 mt-10 3xl:mt-16 mb-32 sm:mb-24">
+      <div className="flex-1 flex flex-col gap-24 mx-1 sm:mx-4 lg:mx-6 xl:mx-12 2xl:mx-24 3xl:mx-56 mt-10 3xl:mt-16 mb-32 sm:mb-24">
         {children}
       </div>
       <AnimatePresence>

@@ -4,18 +4,20 @@ import { APIArticleType, ArticleCardType } from '@/types';
 export function formatArticle(article: APIArticleType): ArticleCardType {
   const {
     documentId,
-    title,
-    description,
-    gallery,
-    price,
+    titre,
+    descriptionCourte,
+    galerie,
+    prix,
+    fraisLivraison,
     updatedAt,
-    about,
-    available,
+    descriptionComplete,
+    disponibilite,
   } = article;
+// console.log(article);
 
-  const formattedGallery = !gallery
+  const formattedGallery = !galerie
     ? []
-    : gallery.map((img: any) => ({
+    : galerie.map((img: any) => ({
         src: img.url ? `${STRAPI_API_BASE_URL}${img.url}` : '',
         alt: img.alternativeText || 'Image indisponible',
         width: img.width || 0,
@@ -26,10 +28,11 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     id: documentId,
     updatedAt,
     gallery: formattedGallery,
-    title,
-    description: description || '',
-    price: price.toFixed(2),
-    about: about || '',
-    available,
+    title: titre,
+    description: descriptionCourte || '',
+    price: prix.toFixed(2),
+    shippingCost: fraisLivraison,
+    about: descriptionComplete || '',
+    available: disponibilite,
   };
 }

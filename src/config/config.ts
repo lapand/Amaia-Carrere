@@ -1,4 +1,20 @@
-import { SocialType } from "@/types/social";
+import { SocialType } from '@/types/social';
+
+export const emailParts = {
+  part1: 'carrereamaia',
+  part2: '@outlook',
+  part3: '.fr',
+};
+export const addressParts = {
+  part1: '44, ',
+  part2: 'Rue Victor Hugo, ',
+  part3: '64100 Bayonne, France',
+};
+export const telParts = {
+  part1: '078',
+  part2: '834',
+  part3: '2728',
+};
 
 // Variables d'env exposées au navigateur
 export const FRONT_BASE_URL = process.env.NEXT_PUBLIC_FRONT_BASE_URL;
@@ -18,9 +34,7 @@ export const {
 // export const ALLOWED_COUNTRIES = ['FR'];
 export const SUCCESS_URL = `${FRONT_BASE_URL}/success`;
 export const CANCEL_URL = `${FRONT_BASE_URL}/cancel`;
-export const getArticlesEndpoint = `${STRAPI_API_BASE_URL}/api/articles?populate=gallery`;
-
-
+export const getArticlesEndpoint = `${STRAPI_API_BASE_URL}/api/articles?populate=galerie`;
 
 export const socials: SocialType[] = [
   {
@@ -43,4 +57,3 @@ export const socials: SocialType[] = [
 export const mobileBreakpoint = 640;
 export const lgBreakpoint = 1024;
 export const xlBreakpoint = 1280;
-

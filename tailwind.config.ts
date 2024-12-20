@@ -30,6 +30,7 @@ const config: Config = {
         secondary: '#9333EA',
         accent: '#F59E0B',
         accent2: '#ff5500',
+        accent3: 'rgb(253,186,116)',
         surface: {
           100: '#F3F4F6',
           200: '#E5E7EB',

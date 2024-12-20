@@ -7,6 +7,7 @@ import GallerySlider from '../../../components/GallerySlider';
 import { draws } from '../../../data/draws';
 import { useTranslation } from 'react-i18next';
 import { getPrevIdx, getNextIdx } from '../../../utils/getIndex';
+import UnderlineAnimation from '@/components/UnderlineAnimation';
 
 const Gallery: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -46,9 +47,12 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="flex-1 flex flex-col gap-10 sm:gap-16">
-      <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
-        Galerie
-      </h1>
+      <div className='relative'>
+        <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
+          Galerie
+        </h1>
+        {/* <UnderlineAnimation className={'absolute -right-5 -bottom-10 transform  -rotate-3'}/> */}
+      </div>
       <div className="columns-2 md:columns-3 xl:columns-4 gap-3 lg:gap-5">
         {galleryItems}
       </div>

@@ -8,12 +8,19 @@ import {
   syncArticles,
 } from '@/store/slices/articleSlice';
 import { NewDataType } from '@/types/bddValidation';
+import Link from 'next/link';
 
 type CartValidationType = {
   validationData: TcartSchema;
+  shippingCost: number;
 };
 
-const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
+const CartValidation: React.FC<CartValidationType> = ({
+  validationData,
+  shippingCost,
+}) => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   // console.log(validationData);
@@ -34,7 +41,10 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
     dispatch(syncArticles(newData.updatedArticles));
   };
 
-  const handleCheckout = async (cartData: TcartSchema) => {
+  const handleCheckout = async (
+    cartData: TcartSchema,
+    shippingCost: number
+  ) => {
     if (cartData.length === 0) {
       alert('Panier vide !');
       return;
@@ -45,7 +55,7 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
     try {
       const res = await fetch('/api/validate-cart', {
         method: 'POST',
-        body: JSON.stringify(cartData),
+        body: JSON.stringify({ cartData, shippingCost }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -74,13 +84,57 @@ const CartValidation: React.FC<CartValidationType> = ({ validationData }) => {
   };
 
   return (
-    <div className="text-center">
-      <Button
-        onClick={() => handleCheckout(validationData)}
-        className="max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg max-lg:m-2 rounded-[.3rem] px-8 sm:py-5 lg:py-3"
-      >
-        {loading ? 'En attente...' : 'Valider mon panier'}
-      </Button>
+    <div className="flex flex-col gap-3 xl:gap-5 max-lg:m-2">
+      <div className="flex gap-3 max-sm:items-center items-start justify-center my-1">
+        <input
+          type="checkbox"
+          id="cgv"
+          name="cgv"
+          required
+          className="size-6 lg:size-4 flex-shrink-0 cursor-pointer hover:bg-slate-100 hover:shadow-inner sm:mt-1"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setIsDisabled(false);
+              setShowError(false);
+            } else {
+              setIsDisabled(true);
+            }
+          }}
+        />
+        <label
+          htmlFor="cgv"
+          className="relative max-sm:text-sm sm:max-lg:text-lg"
+        >
+          J'accepte les{' '}
+          <Link
+            href="/terms-and-conditions"
+            target="_blank"
+            className="underline underline-offset-2 text-blue-900"
+          >
+            Conditions Générales de Vente
+          </Link>
+          . <span className={`${showError ? 'text-red-600' : ''}`}>*</span>
+        </label>
+      </div>
+      <div className="text-center">
+        <Button
+          onClick={() => {
+            if (isDisabled) {
+              setShowError(true);
+            } else {
+              handleCheckout(validationData, shippingCost);
+            }
+          }}
+          className={`max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg rounded-[.3rem] px-8 sm:py-5 lg:py-3 ${
+            isDisabled ? 'scale-100' : ''
+          }`}
+        >
+          {loading ? 'En attente...' : 'Valider mon panier'}
+        </Button>
+      </div>
+      <p className="lg:h-4 sm:text-lg lg:text-sm text-center text-red-600">
+        {showError && 'Veuillez accepter les CGV pour continuer.'}
+      </p>
     </div>
   );
 };

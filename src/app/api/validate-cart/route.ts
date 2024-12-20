@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { cartSchema } from '@/schemas/cartItemSchema';
+import { validateCartSchema } from '@/schemas/cartItemSchema';
 import { StripeEmbeddedCheckoutLineItem } from '@stripe/stripe-js';
 import {
   CANCEL_URL,
@@ -18,7 +18,7 @@ export const POST = async (req: NextRequest) => {
   try {
     const cartData: unknown = await req.json();
     console.log(1, cartData);
-    const result = cartSchema.safeParse(cartData);
+    const result = validateCartSchema.safeParse(cartData);
     if (!result.success) {
       console.error('Erreur de validation : ', result.error.errors);
       return NextResponse.json(
@@ -36,12 +36,13 @@ export const POST = async (req: NextRequest) => {
     };
 
     const validatedCart = await Promise.all(
-      result.data.map(async (item) => {
+      result.data.cartData.map(async (item) => {
         const res = await fetch(
-          `${STRAPI_API_BASE_URL}/api/articles/${item.id}?populate=gallery`
+          `${STRAPI_API_BASE_URL}/api/articles/${item.id}?populate=galerie`
         );
         const product = await res.json();
         const { data } = product;
+        const { prix, disponibilite, titre } = data;
 
         if (!data) {
           newData.deletedArticles.push({ id: item.id, title: item.title });
@@ -50,20 +51,14 @@ export const POST = async (req: NextRequest) => {
           );
           return null;
         }
-        if (data.available !== item.available) {
-          console.log(10);
+        if (disponibilite !== item.available) {
           newData.updatedArticles.push(formatArticle(data));
           newData.alertMsg.push(
             `Le produit ${item.title} n'est actuellement plus disponible.`
           );
           return null;
         }
-        // if (data.stock < item.quantity) {
-        // bddValidations.push(itemValidation);
-        //   return null;
-        // }
-        if (data.price !== item.price) {
-          console.log(11);
+        if (prix !== item.price) {
           newData.updatedArticles.push(formatArticle(data));
           newData.alertMsg.push(
             `Le prix du produit ${item.title} a changé, veillez à revérifier votre panier avant de valider à nouveau la commande.`
@@ -74,8 +69,8 @@ export const POST = async (req: NextRequest) => {
         return {
           price_data: {
             currency: 'eur',
-            product_data: { name: data.title },
-            unit_amount: Math.round(data.price * 100),
+            product_data: { name: titre },
+            unit_amount: Math.round(prix * 100),
           },
           quantity: item.quantity,
         };
@@ -98,7 +93,7 @@ export const POST = async (req: NextRequest) => {
       display_name: 'Ground shipping',
       type: 'fixed_amount',
       fixed_amount: {
-        amount: 500,
+        amount: result.data.shippingCost * 100,
         currency: 'eur',
       },
       delivery_estimate: {
@@ -119,7 +114,7 @@ export const POST = async (req: NextRequest) => {
       mode: 'payment',
       billing_address_collection: 'required',
       shipping_address_collection: {
-        allowed_countries: ['FR'],
+        allowed_countries: ['FR', 'ES', 'BE', 'GB'],
       },
       shipping_options: [
         {
@@ -131,19 +126,6 @@ export const POST = async (req: NextRequest) => {
       line_items: validatedCart.filter(
         Boolean
       ) as NonNullable<StripeEmbeddedCheckoutLineItem>[],
-      // line_items: [
-      //   ...(validatedCart.filter(
-      //     Boolean
-      //   ) as NonNullable<StripeEmbeddedCheckoutLineItem>[]),
-      //   {
-      //     price_data: {
-      //       currency: 'eur',
-      //       product_data: { name: 'Frais de livraison' },
-      //       unit_amount: livraisonMontant * 100,
-      //     },
-      //     quantity: 1,
-      //   },
-      // ],
     });
 
     console.log(4, checkOutSession.url);
