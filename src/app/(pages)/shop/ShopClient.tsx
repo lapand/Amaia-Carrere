@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 // import { useTranslation } from 'react-i18next';
-import Section from '../../../components/Section';
 import ArticleCard from '../../../components/ArticleCard';
 import { ArticleCardType } from '@/types';
 import {

@@ -2,7 +2,7 @@
 
 import { useSelector } from 'react-redux';
 import CartArticle from '../../../components/CartArticle';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Button from '../../../components/Button';
 import CartValidation from '../../../components/CartValidation';
@@ -101,7 +101,7 @@ export default function CartPage() {
                       </span>{' '}
                       {cartSubTotal.toFixed(2)} €
                     </p>
-                    <p>Frais de livraison : {shippingCost} €</p>
+                    <p>Frais de livraison : {shippingCost.toFixed(2)} €</p>
                   </div>
                   <p className="max-sm:flex-1 max-lg:flex max-sm:flex-col max-lg:items-center max-lg:gap-2 text-lg sm:text-2xl lg:text-lg 3xl:text-xl text-center">
                     <span>Total :</span>

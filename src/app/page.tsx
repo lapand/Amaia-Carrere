@@ -1,7 +1,5 @@
 'use client';
 
-import Section from '../components/Section';
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Trans, useTranslation } from 'react-i18next';
 import Button from '../components/Button';

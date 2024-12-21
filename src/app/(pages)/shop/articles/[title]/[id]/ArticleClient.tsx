@@ -2,7 +2,6 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import Section from '@/components/Section';
 import ShopSlider from '@/components/ShopSlider';
 import Button from '@/components/Button';
 import { useEffect } from 'react';

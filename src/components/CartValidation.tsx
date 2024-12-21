@@ -9,6 +9,7 @@ import {
 } from '@/store/slices/articleSlice';
 import { NewDataType } from '@/types/bddValidation';
 import Link from 'next/link';
+import Modal from '@/components/Modal';
 
 type CartValidationType = {
   validationData: TcartSchema;
@@ -23,11 +24,29 @@ const CartValidation: React.FC<CartValidationType> = ({
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  // console.log(validationData);
+  const [alertMsg, setAlertMsg] = useState<null | React.JSX.Element[] | string>(
+    null
+  );
+
+  console.log(validationData);
 
   const mismatchHandler = (newData: NewDataType) => {
     // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
-    alert(newData.alertMsg.map((msg) => msg + '\n').join(''));
+    setAlertMsg(
+      newData.alertMsg.map((msg, i: number) => {
+        return (
+          <React.Fragment key={i}>
+            {msg}
+            {i < newData.alertMsg.length - 1 && (
+              <>
+                <br />
+                <br />
+              </>
+            )}
+          </React.Fragment>
+        );
+      })
+    );
 
     // Stocke la date de la mise à jour des données en vue de la comparer avec la fraicheur des données statiques reçues par SSG ISR dans les composants ShopClient & ArticleClient et afficher ainsi les données les plus récentes.
     dispatch(setDynamicUpdatedAt(Date.now()));
@@ -46,7 +65,7 @@ const CartValidation: React.FC<CartValidationType> = ({
     shippingCost: number
   ) => {
     if (cartData.length === 0) {
-      alert('Panier vide !');
+      setAlertMsg('Panier vide !');
       return;
     }
 
@@ -68,7 +87,13 @@ const CartValidation: React.FC<CartValidationType> = ({
           mismatchHandler(data.newData);
         } else {
           console.log(6, data.error);
-          alert(data.error);
+          setAlertMsg([
+            <>
+              Une erreur est survenue lors de la validation du panier,
+              <br />
+              veuillez réessayer ou contacter l'administrateur du site.
+            </>,
+          ]);
         }
       }
 
@@ -77,7 +102,14 @@ const CartValidation: React.FC<CartValidationType> = ({
       }
     } catch (error) {
       console.error('Error: ,' + error);
-      alert('Une erreur est survenue, le serveur ne répond pas.');
+      setAlertMsg([
+        <>
+          Une erreur est survenue, le serveur ne répond pas.
+          <br />
+          Veuillez réessayer ultérieurement ou contacter l'administrateur du
+          site.
+        </>,
+      ]);
     } finally {
       setLoading(false);
     }
@@ -135,6 +167,14 @@ const CartValidation: React.FC<CartValidationType> = ({
       <p className="lg:h-4 sm:text-lg lg:text-sm text-center text-red-600">
         {showError && 'Veuillez accepter les CGV pour continuer.'}
       </p>
+      <Modal
+        isOpen={alertMsg !== null}
+        closeModal={() => setAlertMsg(null)}
+        closeBtn={{ show: false }}
+        className=" sm:max-lg:text-lg"
+      >
+        {alertMsg}
+      </Modal>
     </div>
   );
 };

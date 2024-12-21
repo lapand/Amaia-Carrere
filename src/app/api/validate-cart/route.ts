@@ -42,7 +42,6 @@ export const POST = async (req: NextRequest) => {
         );
         const product = await res.json();
         const { data } = product;
-        const { prix, disponibilite, titre } = data;
 
         if (!data) {
           newData.deletedArticles.push({ id: item.id, title: item.title });
@@ -51,7 +50,10 @@ export const POST = async (req: NextRequest) => {
           );
           return null;
         }
-        if (disponibilite !== item.available) {
+
+        const { prix, disponibilite, titre } = data;
+
+        if (!disponibilite) {
           newData.updatedArticles.push(formatArticle(data));
           newData.alertMsg.push(
             `Le produit ${item.title} n'est actuellement plus disponible.`
@@ -110,7 +112,7 @@ export const POST = async (req: NextRequest) => {
 
     // Création d'une session Stripe Checkout
     const checkOutSession = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ['card',],
       mode: 'payment',
       billing_address_collection: 'required',
       shipping_address_collection: {

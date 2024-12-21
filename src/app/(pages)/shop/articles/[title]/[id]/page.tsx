@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 async function getArticle(id: string) {
   try {
     const res = await fetch(
-      `${STRAPI_API_BASE_URL}/api/articles/${id}?populate=gallery`
+      `${STRAPI_API_BASE_URL}/api/articles/${id}?populate=galerie`
     );
     const article = await res.json();
     // console.log(article);

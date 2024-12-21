@@ -155,8 +155,8 @@ strong {
       rgba(255, 255, 255, 0) 70%
     );
   }
-  .section-padding {
-    @apply px-2 md:px-10 xl:px-24 md:pb-10 xl:pb-16 pt-[var(--header-height)];
+  .page-pt {
+    @apply  pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import ContactForm from '../../../components/Form';
 import { useTranslation } from 'react-i18next';
 import removeContextMenu from '../../../utils/removeContextMenu';
-import Section from '../../../components/Section';
 
 const Contact: React.FC = () => {
   useTranslation();

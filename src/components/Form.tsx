@@ -173,11 +173,11 @@ const ContactForm: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="self-end">
+      <div className="self-center sm:self-end">
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="text-sm 2xl:text-base px-8 py-4 disabled:bg-none disabled:bg-gray-500"
+          className="sm:text-sm 2xl:text-base px-9 sm:px-8 py-3 xl:py-4 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg"
         >
           {t('contact.form.submit')}
         </Button>

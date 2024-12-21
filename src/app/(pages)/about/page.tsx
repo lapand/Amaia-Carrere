@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import removeContextMenu from '../../../utils/removeContextMenu';
-import Section from '../../../components/Section';
 
 const dwarfCtnTop = 40;
 const dwarfCtnHeight = 2000;

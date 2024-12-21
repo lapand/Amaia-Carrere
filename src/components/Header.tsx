@@ -109,8 +109,10 @@ const Header: React.FC = () => {
     return null;
   }
 
-  const JSXLanguages = langData.map((lang, i: number) => {
+  const hideSocialLinks =
+    pathname.startsWith('/shop') || pathname === '/shopping-cart';
 
+  const JSXLanguages = langData.map((lang, i: number) => {
     return (
       <TransitionDOM
         key={i}
@@ -160,7 +162,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed z-30 w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-12 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
+      className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-12 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
     >
       <div className="h-full flex items-center gap-6 sm:gap-10 xl:gap-12 2xl:gap-32">
         <div className="relative">
@@ -218,9 +220,19 @@ const Header: React.FC = () => {
         <div>
           <Menu />
         </div>
-        <div className="max-sm:fixed max-sm:left-0 max-sm:bottom-[15%] flex max-sm:flex-col items-center sm:gap-2 max-sm:bg-slate-100 max-sm:rounded-r-lg max-sm:border max-sm:border-y-slate-500 max-sm:border-r-slate-500 max-sm:shadow-sm max-sm:shadow-slate-950">
-          {socialsJSX}
-        </div>
+        {windowWidth < mobileBreakpoint && hideSocialLinks ? (
+          ''
+        ) : (
+          <div
+            className={`max-sm:fixed ${
+              pathname === '/contact'
+                ? 'max-sm:right-0 max-sm:rounded-l-lg max-sm:border-l-slate-500'
+                : 'max-sm:left-0 max-sm:rounded-r-lg max-sm:border-r-slate-500'
+            } max-sm:bottom-[15%] flex max-sm:flex-col items-center sm:gap-2 max-sm:bg-slate-100 max-sm:border max-sm:border-y-slate-500 max-sm:shadow-sm max-sm:shadow-slate-950`}
+          >
+            {socialsJSX}
+          </div>
+        )}
         <div>
           <HeaderCart />
         </div>

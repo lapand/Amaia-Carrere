@@ -48,18 +48,6 @@ const Menu: React.FC = () => {
     windowWidth > menuIconBreakpoint && setIsSideMenuOpened(false);
   }, [windowWidth]);
 
-  //Pb : A t0 windowWidth = 0 et menuIconRef (icone du menu) est présente, on ne rentre donc jamais dans la condition au montage
-  // useEffect(() => {
-  //   if (windowWidth > menuIconBreakpoint) {
-  //     const timer = setTimeout(() => {
-  //       setIsMenuVisible(true);
-  //     }, 100);
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }
-  // }, []);
-
   const closeLateralMenu = () => {
     windowWidth <= menuIconBreakpoint && setIsSideMenuOpened((prev) => !prev);
   };
@@ -81,6 +69,7 @@ const Menu: React.FC = () => {
 
   return (
     <nav className="luckiest-guy flex items-center">
+      {/* Icone menu */}
       {windowWidth <= menuIconBreakpoint && (
         <button
           onClick={closeLateralMenu}
@@ -97,11 +86,15 @@ const Menu: React.FC = () => {
           />
         </button>
       )}
+
+      {/* Items du menu (laptop et +) */}
       {windowWidth > menuIconBreakpoint && (
         <ul className="flex gap-5 lg:gap-6 xl:gap-10 2xl:gap-14 3xl:gap-20 lg:text-lg 2xl:text-xl">
           {liJSX}
         </ul>
       )}
+
+      {/* Volet latéral (mobile & tablette) */}
       <TransitionDOM
         className="fixed side-nav w-72 p-10 bg-surface-200/70 border-2 border-l-surface-300"
         from={{ x: 300 }}
