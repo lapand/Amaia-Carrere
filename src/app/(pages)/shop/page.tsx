@@ -15,6 +15,7 @@ export default async function ShopPage() {
 
     // Stocke la date de la mise à jour des données des articles en vue de la comparer avec la date des données dynamiques reçues lors de l'invalidation du panier, permettant ainsi de toujours afficher les données les plus récentes.
     const fetchTimestamp = Date.now();
+    // console.log(1, fetchTimestamp);
 
     const formattedData = data.data.map((article: APIArticleType) =>
       formatArticle(article)

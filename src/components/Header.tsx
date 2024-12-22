@@ -162,9 +162,9 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-12 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
+      className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
     >
-      <div className="h-full flex items-center gap-6 sm:gap-10 xl:gap-12 2xl:gap-32">
+      <div className="h-full flex items-center gap-6 xl:gap-12 2xl:gap-32">
         <div className="relative">
           <motion.button
             className="block w-12 aspect-square p-3 cursor-pointer black-to-color"
@@ -216,7 +216,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </div>
-      <div className="flex items-center max-xl:flex-row-reverse gap-6 md:gap-12 lg:gap-16 xl:gap-24">
+      <div className="flex items-center max-lg:flex-row-reverse gap-6 md:gap-12 lg:gap-10 xl:gap-16 2xl:gap-24">
         <div>
           <Menu />
         </div>
@@ -228,7 +228,7 @@ const Header: React.FC = () => {
               pathname === '/contact'
                 ? 'max-sm:right-0 max-sm:rounded-l-lg max-sm:border-l-slate-500'
                 : 'max-sm:left-0 max-sm:rounded-r-lg max-sm:border-r-slate-500'
-            } max-sm:bottom-[15%] flex max-sm:flex-col items-center sm:gap-2 max-sm:bg-slate-100 max-sm:border max-sm:border-y-slate-500 max-sm:shadow-sm max-sm:shadow-slate-950`}
+            } max-sm:bottom-[15%] flex max-sm:flex-col items-center xl:gap-2 max-sm:bg-slate-100 max-sm:border max-sm:border-y-slate-500 max-sm:shadow-sm max-sm:shadow-slate-950`}
           >
             {socialsJSX}
           </div>

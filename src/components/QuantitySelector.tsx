@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Button from './Button';
 import { addToCart, decrementQuantity } from '../store/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store/store';
+import { AppDispatch, RootState } from '../store/configureStore';
 
 type QuantitySelectorType = {
   id: string;
@@ -19,8 +19,8 @@ const QuantitySelector: React.FC<QuantitySelectorType> = ({
     return !article ? undefined : article.quantity;
   });
 
-  let btnSize = 'w-10';
-  let iconSize = 'size-7';
+  let btnSize = 'w-9';
+  let iconSize = 'size-6';
   if (size === 'sm') {
     btnSize = 'w-8';
     iconSize = 'size-5';

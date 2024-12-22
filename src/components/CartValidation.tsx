@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import {
   setDynamicUpdatedAt,
   setUnavailable,
-  syncArticles,
+  updateArticles,
 } from '@/store/slices/articleSlice';
 import { NewDataType } from '@/types/bddValidation';
 import Link from 'next/link';
@@ -28,7 +28,7 @@ const CartValidation: React.FC<CartValidationType> = ({
     null
   );
 
-  console.log(validationData);
+  // console.log(validationData);
 
   const mismatchHandler = (newData: NewDataType) => {
     // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
@@ -57,7 +57,7 @@ const CartValidation: React.FC<CartValidationType> = ({
     });
 
     // Mise à jour des données des articles du panier.
-    dispatch(syncArticles(newData.updatedArticles));
+    dispatch(updateArticles(newData.updatedArticles));
   };
 
   const handleCheckout = async (

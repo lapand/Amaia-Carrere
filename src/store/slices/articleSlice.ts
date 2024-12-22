@@ -17,8 +17,42 @@ const articleSlice = createSlice({
   name: 'articles',
   initialState,
   reducers: {
-    // Ajouter un ou plusieurs articles
     syncArticles(state, action: PayloadAction<ArticleCardType[]>) {
+      const incomingArticles = action.payload;
+
+      // Construire un Set contenant les IDs des articles entrants
+      const incomingIds = new Set(
+        incomingArticles.map((article) => article.id)
+      );
+
+      // Filtrer les articles existants pour ne conserver que ceux présents dans les articles entrants
+      state.articles = state.articles.filter((article) =>
+        incomingIds.has(article.id)
+      );
+
+      // Ajouter ou mettre à jour les articles entrants
+      incomingArticles.forEach((newArticle) => {
+        const existingIndex = state.articles.findIndex(
+          (article) => article.id === newArticle.id
+        );
+
+        if (existingIndex === -1) {
+          // Si l'article n'existe pas, on l'ajoute
+          state.articles.push(newArticle);
+        } else {
+          // Si l'article existe, on vérifie updatedAt
+          if (
+            new Date(newArticle.updatedAt) >
+            new Date(state.articles[existingIndex].updatedAt)
+          ) {
+            state.articles[existingIndex] = newArticle;
+          }
+        }
+      });
+    },
+
+    // Ajouter un ou plusieurs articles
+    updateArticles(state, action: PayloadAction<ArticleCardType[]>) {
       action.payload.forEach((newArticle) => {
         const existingIndex = state.articles.findIndex(
           (article) => article.id === newArticle.id
@@ -38,31 +72,7 @@ const articleSlice = createSlice({
         }
       });
     },
-    // Supprimer un article par son id
-    removeArticle(state, action: PayloadAction<string>) {
-      state.articles = state.articles.filter(
-        (article) => article.id !== action.payload
-      );
-    },
-    // Réinitialiser la liste des articles
-    resetArticles(state) {
-      state.articles = [];
-    },
-    // Mettre à jour un article par son titre
-    updateArticle(
-      state,
-      action: PayloadAction<{ id: string; data: Partial<ArticleCardType> }>
-    ) {
-      const index = state.articles.findIndex(
-        (article) => article.id === action.payload.id
-      );
-      if (index !== -1) {
-        state.articles[index] = {
-          ...state.articles[index],
-          ...action.payload.data,
-        };
-      }
-    },
+
     // Rendre l'article indisponible par son id
     setUnavailable(state, action: PayloadAction<string>) {
       const article = state.articles.find((item) => item.id === action.payload);
@@ -70,9 +80,11 @@ const articleSlice = createSlice({
         article.available = false;
       }
     },
+
     setStaticUpdatedAt(state, action: PayloadAction<number | null>) {
       state.staticUpdatedAt = action.payload;
     },
+
     setDynamicUpdatedAt(state, action: PayloadAction<number | null>) {
       state.dynamicUpdatedAt = action.payload;
     },
@@ -81,9 +93,7 @@ const articleSlice = createSlice({
 
 export const {
   syncArticles,
-  removeArticle,
-  resetArticles,
-  updateArticle,
+  updateArticles,
   setUnavailable,
   setStaticUpdatedAt,
   setDynamicUpdatedAt,

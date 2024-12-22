@@ -1,7 +1,7 @@
 'use client';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { RootState } from '@/store/configureStore';
 import ShopSlider from '@/components/ShopSlider';
 import Button from '@/components/Button';
 import { useEffect } from 'react';
@@ -34,14 +34,16 @@ const ArticleClient: React.FC<ArticleClientType> = ({
   // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
   // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
   useEffect(() => {
-    if (staticArticle) {
+    if (staticArticle && fetchTimestamp) {
       const { staticUpdatedAt, dynamicUpdatedAt } = shop;
+      const shouldSyncArticles =
+        (!staticUpdatedAt && !dynamicUpdatedAt) ||
+        (!dynamicUpdatedAt && fetchTimestamp > (staticUpdatedAt || 0)) ||
+        (!staticUpdatedAt && fetchTimestamp > (dynamicUpdatedAt || 0)) ||
+        (fetchTimestamp > (dynamicUpdatedAt || 0) &&
+          fetchTimestamp > (staticUpdatedAt || 0));
 
-      if (
-        !staticUpdatedAt ||
-        !dynamicUpdatedAt ||
-        staticUpdatedAt > dynamicUpdatedAt
-      ) {
+      if (shouldSyncArticles) {
         dispatch(syncArticles([staticArticle]));
         dispatch(setStaticUpdatedAt(fetchTimestamp));
       }
@@ -81,8 +83,8 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               href="/shop"
               className="max-sm:fixed max-sm:z-30 self-start group"
             >
-              <Button className="flex items-center rounded-xl px-4 py-2 sm:py-3">
-                <span className="text-2xl sm:text-xl transition-transform group-hover:-translate-x-1">
+              <Button className="flex items-center rounded-full px-5 py-1 sm:py-3">
+                <span className="text-3xl sm:text-xl transition-transform group-hover:-translate-x-1">
                   &#8592;
                 </span>
                 {windowWidth >= mobileBreakpoint && (
@@ -90,12 +92,12 @@ const ArticleClient: React.FC<ArticleClientType> = ({
                 )}
               </Button>
             </Link>
-            <div className="max-sm:w-full max-sm:aspect-square sm:size-[500px] lg:size-80 xl:size-[400px] 3xl:size-[550px] flex justify-center items-center overflow-hidden">
+            <div className="max-sm:w-full max-sm:aspect-square sm:size-[430px] lg:size-80 xl:size-[400px] 3xl:size-[500px] flex justify-center items-center overflow-hidden">
               <ShopSlider gallery={gallery} />
             </div>
           </div>
         </div>
-        <div className="sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-10">
+        <div className="w-full sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-6 sm:gap-10">
           <div>
             <h1 className="inspiration-font thickening text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
               {title}
@@ -119,7 +121,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               </div>
             ) : (
               <>
-                <p className="text-xl">
+                <p className="text-lg xl:text-xl">
                   {price} € <span className="text-sm">TTC</span>
                 </p>
                 <QuantitySelector id={id} size={'md'} />
@@ -127,14 +129,14 @@ const ArticleClient: React.FC<ArticleClientType> = ({
             )}
           </div>
           <hr className="border border-gray-400" />
-          <div className='max-lg:text-lg'>{aboutJSX}</div>
+          <div className="max-lg:text-lg">{aboutJSX}</div>
         </div>
       </>
     );
   }
 
   return (
-    <div className="flex-1 flex max-lg:flex-col justify-center max-lg:items-center gap-6 sm:gap-10 lg:gap-16 xl:gap-20 3xl:gap-36">
+    <div className="flex-1 flex max-lg:flex-col justify-center max-lg:items-center gap-6 sm:gap-10 lg:gap-20 xl:gap-28 3xl:gap-36">
       {content}
     </div>
   );

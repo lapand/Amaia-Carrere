@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { RootState } from '../store';
+import { RootState } from '../configureStore';
 
 // Sélecteurs de base
 const selectShopArticles = (state: RootState) => state.shop.articles;

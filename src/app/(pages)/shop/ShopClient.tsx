@@ -9,7 +9,7 @@ import {
   syncArticles,
 } from '../../../store/slices/articleSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../../store/store';
+import { RootState, AppDispatch } from '../../../store/configureStore';
 
 type ShopClientType = {
   staticArticles: ArticleCardType[];
@@ -34,15 +34,19 @@ const ShopClient: React.FC<ShopClientType> = ({
   // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
   // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
   useEffect(() => {
-    const { staticUpdatedAt, dynamicUpdatedAt } = shop;
+    if (fetchTimestamp) {
+      const { staticUpdatedAt, dynamicUpdatedAt } = shop;
+      const shouldSyncArticles =
+        (!staticUpdatedAt && !dynamicUpdatedAt) ||
+        (!dynamicUpdatedAt && fetchTimestamp > (staticUpdatedAt || 0)) ||
+        (!staticUpdatedAt && fetchTimestamp > (dynamicUpdatedAt || 0)) ||
+        (fetchTimestamp > (dynamicUpdatedAt || 0) &&
+          fetchTimestamp > (staticUpdatedAt || 0));
 
-    if (
-      !staticUpdatedAt ||
-      !dynamicUpdatedAt ||
-      staticUpdatedAt > dynamicUpdatedAt
-    ) {
-      dispatch(syncArticles(staticArticles));
-      dispatch(setStaticUpdatedAt(fetchTimestamp));
+      if (shouldSyncArticles) {
+        dispatch(syncArticles(staticArticles));
+        dispatch(setStaticUpdatedAt(fetchTimestamp));
+      }
     }
   }, [dispatch, staticArticles, shop]);
 
@@ -55,7 +59,7 @@ const ShopClient: React.FC<ShopClientType> = ({
       <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
         Boutique
       </h1>
-      <div className="grid grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-4 sm:gap-12">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-12">
         {articlesError}
         {articlesJSX}
       </div>

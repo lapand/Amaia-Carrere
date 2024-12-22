@@ -52,7 +52,7 @@ export default function CartPage() {
   });
 
   return (
-    <div className="flex-1 flex flex-col max-lg:mb-16">
+    <div className="flex-1 flex flex-col max-lg:mb-28">
       {cartArticlesJSX.length === 0 ? (
         <>
           <h1 className="text-7xl inspiration-font thickening text-right">
@@ -87,7 +87,7 @@ export default function CartPage() {
               }
               className="flex-1 relative max-lg:fixed max-lg:z-50 max-lg:bottom-0 max-lg:left-0 max-lg:w-full max-lg:bg-slate-100"
             >
-              <div className="lg:sticky lg:top-56 xl:top-48 3xl:top-[300px] flex flex-col lg:gap-12 3xl:gap-16 border-l lg:border-l-gray-500 lg:p-10">
+              <div className="lg:sticky lg:top-56 xl:top-48 3xl:top-[300px] flex flex-col lg:gap-12 3xl:gap-16 border-l lg:border-l-gray-500 lg:p-4 xl:p-10">
                 <div className="flex sm:max-lg:justify-between lg:flex-col lg:gap-12 3xl:gap-20 py-4 sm:py-5 lg:py-0 px-3 sm:px-10 lg:px-0 max-lg:border-y-[1px] border-slate-900">
                   <div className="flex flex-col max-lg:justify-center gap-2 lg:gap-6 text-sm sm:text-xl lg:text-base 2xl:text-lg whitespace-nowrap">
                     <p>
