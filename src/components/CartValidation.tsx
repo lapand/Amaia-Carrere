@@ -87,7 +87,7 @@ const CartValidation: React.FC<CartValidationType> = ({
             <>
               Une erreur est survenue lors de la validation du panier,
               <br />
-              veuillez réessayer ou contacter l'administrateur du site.
+              veuillez réessayer ou contacter l&#39;administrateur du site.
             </>,
           ]);
         }
@@ -102,7 +102,7 @@ const CartValidation: React.FC<CartValidationType> = ({
         <>
           Une erreur est survenue, le serveur ne répond pas.
           <br />
-          Veuillez réessayer ultérieurement ou contacter l'administrateur du
+          Veuillez réessayer ultérieurement ou contacter l&#39;administrateur du
           site.
         </>,
       ]);
@@ -133,7 +133,7 @@ const CartValidation: React.FC<CartValidationType> = ({
           htmlFor="cgv"
           className="relative max-sm:text-sm sm:max-lg:text-lg"
         >
-          J'accepte les{' '}
+          J&#39;accepte les{' '}
           <Link
             href="/terms-and-conditions"
             target="_blank"

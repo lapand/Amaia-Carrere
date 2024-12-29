@@ -7,7 +7,10 @@ import Button from '@/components/Button';
 import { useEffect } from 'react';
 import { ArticleCardType } from '@/types';
 import Link from 'next/link';
-import { setStaticUpdatedAt, updateArticles } from '@/store/slices/articleSlice';
+import {
+  setStaticUpdatedAt,
+  updateArticles,
+} from '@/store/slices/articleSlice';
 import QuantitySelector from '@/components/QuantitySelector';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { mobileBreakpoint } from '@/config/config';
@@ -35,7 +38,6 @@ const ArticleClient: React.FC<ArticleClientType> = ({
   // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
   useEffect(() => {
     if (staticArticle && fetchTimestamp) {
-      
       const { staticUpdatedAt, dynamicUpdatedAt } = shop;
       const shouldSyncArticles =
         (!staticUpdatedAt && !dynamicUpdatedAt) ||
@@ -49,7 +51,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         dispatch(setStaticUpdatedAt(fetchTimestamp));
       }
     }
-  }, [dispatch, staticArticle, shop]);
+  }, [dispatch, staticArticle, fetchTimestamp, shop]);
 
   let content;
   if (!currentArticle) {
@@ -103,7 +105,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
             </h1>
             <p>
               <span className="text-xl lg:text-lg underline">
-                Description de l'article :
+                Description de l&#39;article :
               </span>
               <br />
               <br />

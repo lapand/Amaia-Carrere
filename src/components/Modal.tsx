@@ -66,7 +66,7 @@ const Modal: React.FC<ModalProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
 
   // Désactive le défilement de la page si la modale est ouverte
-  isWindowScrollDisabled && useDisableBodyScroll(isOpen, duration);
+  // isWindowScrollDisabled && useDisableBodyScroll(isOpen, duration); // Err : pas de hook dans une condition
 
   // Gestion de la fermeture de la modale
   const handleClose = useCallback(() => {

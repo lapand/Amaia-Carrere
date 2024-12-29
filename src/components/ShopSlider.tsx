@@ -78,7 +78,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
         className={`w-3 h-3 rounded-full border-[1px] border-white opacity-90  ${
           i === currentIdx ? 'bg-white' : 'bg-primary-800'
         } hover:bg-white`}
-        aria-current={`${i === currentIdx ? 'true' : 'false'}`}
+        aria-current={i === currentIdx ? true : false}
         aria-label={`Slide ${i + 1}`}
         onClick={() => onSelectImg(i)}
       ></button>

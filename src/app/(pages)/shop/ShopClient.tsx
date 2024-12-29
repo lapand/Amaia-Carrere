@@ -47,7 +47,7 @@ const ShopClient: React.FC<ShopClientType> = ({
         dispatch(setStaticUpdatedAt(fetchTimestamp));
       }
     }
-  }, [dispatch, staticArticles, shop]);
+  }, [dispatch, staticArticles, fetchTimestamp, shop]);
 
   const articlesJSX = shop.articles.map((article, i) => {
     return <ArticleCard key={i} {...article} />;

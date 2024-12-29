@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
           3. Partage des données
         </h2>
         <p className="text-sm sm:text-base lg:text-lg mb-2">
-          Nous ne partageons vos données personnelles qu'avec :
+          Nous ne partageons vos données personnelles qu&#39;avec :
         </p>
         <ul className="list-disc ml-6 text-sm sm:text-base lg:text-lg">
           <li>
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
           technologies nous permettent de :
         </p>
         <ul className="list-disc ml-6 text-sm sm:text-base lg:text-lg">
-          <li>Mémoriser vos préférences et votre panier d'achat.</li>
+          <li>Mémoriser vos préférences et votre panier d&#39;achat.</li>
           <li>
             Conserver temporairement des données liées à votre session pour
             améliorer les performances du site.
@@ -100,7 +100,7 @@ export default function PrivacyPolicy() {
         <p className="text-sm sm:text-base lg:text-lg">
           Nous prenons des mesures raisonnables pour protéger vos informations
           personnelles contre tout accès, modification ou divulgation non
-          autorisés. Toutefois, aucun système n'est entièrement sécurisé, et
+          autorisés. Toutefois, aucun système n&#39;est entièrement sécurisé, et
           nous ne pouvons garantir la sécurité absolue des données.
         </p>
       </section>

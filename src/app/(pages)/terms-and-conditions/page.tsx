@@ -35,12 +35,12 @@ export default function TermsAndConditions() {
           2. Commandes
         </h2>
         <p className="mb-2 text-sm sm:text-base lg:text-lg">
-          Toute commande passée sur notre site implique l'acceptation des CGV.
+          Toute commande passée sur notre site implique l&#39;acceptation des CGV.
           Les informations contractuelles seront confirmées par email après
           validation de la commande.
         </p>
         <p className="text-sm sm:text-base lg:text-lg">
-          Nous nous réservons le droit d'annuler ou de refuser une commande en
+          Nous nous réservons le droit d&#39;annuler ou de refuser une commande en
           cas de litige existant avec le client.
         </p>
       </section>

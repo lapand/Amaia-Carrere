@@ -19,7 +19,7 @@ export default function LegalNotice() {
       </h1>
       <p className="mb-6 text-sm sm:text-base lg:text-lg">
         Ces mentions légales sont fournies conformément aux obligations légales
-        françaises (article 6 de la Loi pour la Confiance dans l'Économie
+        françaises (article 6 de la Loi pour la Confiance dans l&#39;Économie
         Numérique du 21 juin 2004).
       </p>
 
@@ -93,7 +93,7 @@ export default function LegalNotice() {
           Hébergeur du site
         </h2>
         <p className="mb-2 text-sm sm:text-base lg:text-lg">
-          <strong>Nom de l'hébergeur :</strong> Hébergeur Fictif
+          <strong>Nom de l&#39;hébergeur :</strong> Hébergeur Fictif
         </p>
         <p className="mb-2 text-sm sm:text-base lg:text-lg">
           <strong>Adresse :</strong> 456, Avenue Virtuelle, 69000 Lyon, France
@@ -109,7 +109,7 @@ export default function LegalNotice() {
         </h2>
         <p className="text-sm sm:text-base lg:text-lg">
           Le contenu de ce site (textes, images, logos, vidéos, etc.) est
-          protégé par le droit d'auteur. Toute reproduction, distribution,
+          protégé par le droit d&#39;auteur. Toute reproduction, distribution,
           modification ou exploitation non autorisée est strictement interdite.
         </p>
       </section>
@@ -120,8 +120,8 @@ export default function LegalNotice() {
         </h2>
         <p className="text-sm sm:text-base lg:text-lg">
           Les informations présentes sur ce site sont fournies à titre
-          informatif. L'éditeur ne saurait être tenu responsable des erreurs ou
-          omissions. L'utilisation de ce site se fait sous votre seule
+          informatif. L&#39;éditeur ne saurait être tenu responsable des erreurs ou
+          omissions. L&#39;utilisation de ce site se fait sous votre seule
           responsabilité.
         </p>
       </section>
@@ -133,7 +133,7 @@ export default function LegalNotice() {
         <p className="text-sm sm:text-base lg:text-lg">
           <span>
             Pour toute question relative à ces mentions légales, vous pouvez
-            nous contacter à l'adresse email suivante :{' '}
+            nous contacter à l&#39;adresse email suivante :{' '}
           </span>
           {!isEmailVisible ? (
             <button
