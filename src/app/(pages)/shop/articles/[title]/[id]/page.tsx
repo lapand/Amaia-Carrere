@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     ).then((res) => res.json());
 
     if (!articles || !articles.data) {
-      throw new Error(`No data returned from API ${articles}`);
+      throw new Error('No data returned from API');
     }
 
     return articles.data.map((article: { [key: string]: any }) => ({
@@ -22,6 +22,7 @@ export async function generateStaticParams() {
     }));
   } catch (error) {
     console.error('Erreur:', error);
+    return [];
   }
 }
 
