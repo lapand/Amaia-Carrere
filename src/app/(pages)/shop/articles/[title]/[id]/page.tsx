@@ -3,7 +3,7 @@ import ArticleClient from './ArticleClient';
 import { STRAPI_API_BASE_URL } from '@/config/config';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
-export const revalidate = 30;
+export const revalidate = 15;
 
 // Génération des routes dynamiques pour SSG sous forme /[title]/[id] avec encodage du titre pour un URL valide
 export async function generateStaticParams() {
@@ -32,7 +32,6 @@ async function getArticle(id: string) {
       `${STRAPI_API_BASE_URL}/api/articles/${id}?populate=galerie`
     );
     const article = await res.json();
-    // console.log(article);
 
     return formatArticle(article.data);
   } catch (error) {

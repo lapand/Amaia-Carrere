@@ -7,7 +7,7 @@ import Button from '@/components/Button';
 import { useEffect } from 'react';
 import { ArticleCardType } from '@/types';
 import Link from 'next/link';
-import { setStaticUpdatedAt, syncArticles } from '@/store/slices/articleSlice';
+import { setStaticUpdatedAt, updateArticles } from '@/store/slices/articleSlice';
 import QuantitySelector from '@/components/QuantitySelector';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { mobileBreakpoint } from '@/config/config';
@@ -35,6 +35,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
   // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
   useEffect(() => {
     if (staticArticle && fetchTimestamp) {
+      
       const { staticUpdatedAt, dynamicUpdatedAt } = shop;
       const shouldSyncArticles =
         (!staticUpdatedAt && !dynamicUpdatedAt) ||
@@ -44,7 +45,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           fetchTimestamp > (staticUpdatedAt || 0));
 
       if (shouldSyncArticles) {
-        dispatch(syncArticles([staticArticle]));
+        dispatch(updateArticles([staticArticle]));
         dispatch(setStaticUpdatedAt(fetchTimestamp));
       }
     }
@@ -68,12 +69,10 @@ const ArticleClient: React.FC<ArticleClientType> = ({
   } else {
     const { id, gallery, title, description, price, about, available } =
       currentArticle;
-    // console.log(about);
 
     const aboutJSX = about
       .split('\n')
       .map((line, index) => <div key={index}>{line || <br />}</div>);
-    // console.log(aboutJSX);
 
     content = (
       <>
@@ -92,7 +91,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
                 )}
               </Button>
             </Link>
-            <div className="max-sm:w-full max-sm:aspect-square sm:size-[430px] lg:size-80 xl:size-[400px] 3xl:size-[500px] flex justify-center items-center overflow-hidden">
+            <div className="max-sm:w-full max-sm:aspect-square sm:size-[430px] lg:size-80 xl:size-[400px] 3xl:size-[430px] flex justify-center items-center overflow-hidden">
               <ShopSlider gallery={gallery} />
             </div>
           </div>
@@ -116,7 +115,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           <hr className="border border-gray-400" />
           <div className="flex justify-between items-center">
             {!available ? (
-              <div className="text-lg sm:text-xl lg:text-lg text-red-600 font-bold">
+              <div className="text-lg sm:text-xl lg:text-base 2xl:text-[17px] text-red-600 font-bold">
                 Actuellement indisponible
               </div>
             ) : (

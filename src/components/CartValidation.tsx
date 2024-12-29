@@ -28,8 +28,6 @@ const CartValidation: React.FC<CartValidationType> = ({
     null
   );
 
-  // console.log(validationData);
-
   const mismatchHandler = (newData: NewDataType) => {
     // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
     setAlertMsg(
@@ -83,10 +81,8 @@ const CartValidation: React.FC<CartValidationType> = ({
 
       if (data.error) {
         if (data.error === 'discordance') {
-          console.log(6, data.error, data.newData);
           mismatchHandler(data.newData);
         } else {
-          console.log(6, data.error);
           setAlertMsg([
             <>
               Une erreur est survenue lors de la validation du panier,

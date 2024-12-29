@@ -3,7 +3,7 @@ interface LoaderProps {
   height?: number;
 }
 
-const Loader2: React.FC<LoaderProps> = ({ width = 50, height = 40 }) => {
+const Loader2: React.FC<LoaderProps> = () => {
   return (
     <div className="flex flex-col gap-16">
       <div className="relative flex items-center justify-center">
@@ -16,5 +16,3 @@ const Loader2: React.FC<LoaderProps> = ({ width = 50, height = 40 }) => {
 };
 
 export default Loader2;
-
-// style={{ width: `${width}px`, height: `${height}px` }}

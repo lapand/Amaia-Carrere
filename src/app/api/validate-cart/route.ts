@@ -17,7 +17,6 @@ export const POST = async (req: NextRequest) => {
   // Zod validation : vérification du type de données entrantes
   try {
     const cartData: unknown = await req.json();
-    console.log(1, cartData);
     const result = validateCartSchema.safeParse(cartData);
     if (!result.success) {
       console.error('Erreur de validation : ', result.error.errors);
@@ -26,7 +25,6 @@ export const POST = async (req: NextRequest) => {
         { status: 400 }
       );
     }
-    console.log(2, result);
 
     // Validation avec Strapi : concordance données panier et source de vérité
     const newData: NewDataType = {
@@ -89,8 +87,6 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    console.log(3, validatedCart);
-
     const shippingRate = await stripe.shippingRates.create({
       display_name: 'Ground shipping',
       type: 'fixed_amount',
@@ -129,8 +125,6 @@ export const POST = async (req: NextRequest) => {
         Boolean
       ) as NonNullable<StripeEmbeddedCheckoutLineItem>[],
     });
-
-    console.log(4, checkOutSession.url);
 
     if (!checkOutSession || !checkOutSession.url) {
       return NextResponse.json(

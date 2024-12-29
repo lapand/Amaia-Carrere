@@ -13,7 +13,6 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     descriptionComplete,
     disponibilite,
   } = article;
-// console.log(article);
 
   const formattedGallery = !galerie
     ? []

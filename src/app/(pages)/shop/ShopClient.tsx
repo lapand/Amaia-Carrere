@@ -28,7 +28,6 @@ const ShopClient: React.FC<ShopClientType> = ({
 
   // Mise à jour du rendu à partir du store et non à partir des props statiques car les données des articles peuvent être modifiées après la validation du panier si il y a discordance avec les données de la bdd.
   const shop = useSelector((state: RootState) => state.shop);
-  // console.log(articles);
 
   // Synchronisation du store avec les props statiques uniquement si les props contiennent des données plus récentes que celles du store
   // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
