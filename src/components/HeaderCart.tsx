@@ -77,7 +77,7 @@ const HeaderCart = () => {
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative w-12 aspect-square p-3 cursor-pointer"
+        className="relative size-12 p-3 cursor-pointer"
       >
         <Link href={'/shopping-cart'} className="relative">
           <Image

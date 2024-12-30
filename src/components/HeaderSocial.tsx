@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const HeaderSocial: React.FC<SocialType> = ({ href, src, alt }) => {
   return (
     <motion.li
-      className="w-12 aspect-square p-3 cursor-pointer sm:black-to-color list-none"
+      className="size-12 p-3 cursor-pointer sm:black-to-color list-none"
       whileHover={{
         scale: 1.2,
         transition: {

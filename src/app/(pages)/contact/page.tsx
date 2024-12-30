@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
       <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
         Contact
       </h1>
-      <div className='flex max-lg:flex-col justify-center items-center lg:items-end gap-12 xl:gap-20 3xl:gap-32'>
+      <div className='flex max-lg:flex-col justify-center items-center lg:items-start gap-12 xl:gap-20 3xl:gap-32'>
         <div className="relative z-10 w-full sm:w-[450px] lg:w-[400px] 2xl:w-[450px]">
           <ContactForm />
         </div>

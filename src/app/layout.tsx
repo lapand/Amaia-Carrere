@@ -23,13 +23,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`relative ${inter.className}`}>
+      <body className={`relative overflow-y-scroll ${inter.className}`}>
         <PreloadResources />
         <PageLoader>
           <ReduxProvider>
             <ClientI18nProvider>
               <Header />
-              <main className="flex min-h-screen flex-col main-bg">
+              <main className="relative flex min-h-screen flex-col">
+                {/* Le bg global du site est attribué à une div fixed car "background-attachment: fixed" n'est pas supporté par Safari sur iOS */}
+                <div className="fixed z-[-1] size-full main-bg" />
                 {children}
               </main>
               <Footer />

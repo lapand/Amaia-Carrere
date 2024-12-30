@@ -139,7 +139,7 @@ strong {
     @apply top-[var(--header-height)] right-0;
   }
   .main-bg {
-    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-fixed bg-cover bg-center;
+    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-center bg-cover sm:bg-[length:300%] lg:bg-[length:250%] xl:bg-[length:200%] 2xl:bg-[length:150%] 3xl:bg-[length:120%];
   }
   .black-to-color {
     @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
@@ -156,7 +156,7 @@ strong {
     );
   }
   .page-pt {
-    @apply  pt-[var(--header-height)];
+    @apply pt-[var(--header-height)];
   }
   .about-section-mt {
     @apply mt-[var(--about-section-mt)];

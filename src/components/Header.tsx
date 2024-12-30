@@ -164,7 +164,7 @@ const Header: React.FC = () => {
     <header
       className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
     >
-      <div className="h-full flex items-center gap-6 xl:gap-12 2xl:gap-32">
+      <div className="h-full flex items-center gap-2 sm:gap-6 xl:gap-12 2xl:gap-32">
         <div className="relative">
           <motion.button
             className="block w-12 aspect-square p-3 cursor-pointer black-to-color"
@@ -216,7 +216,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </div>
-      <div className="flex items-center max-lg:flex-row-reverse gap-6 md:gap-12 lg:gap-10 xl:gap-16 2xl:gap-24">
+      <div className="flex items-center max-lg:flex-row-reverse gap-2 sm:gap-6 md:gap-12 lg:gap-10 xl:gap-16 2xl:gap-24">
         <div>
           <Menu />
         </div>
