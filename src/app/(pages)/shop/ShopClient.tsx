@@ -55,7 +55,7 @@ const ShopClient: React.FC<ShopClientType> = ({
 
   return (
     <div className="flex-1 flex flex-col gap-10 sm:gap-16">
-      <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening text-right">
+      <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening-2 sm:text-right max-sm:ml-10 sm:mr-20">
         Boutique
       </h1>
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-12">

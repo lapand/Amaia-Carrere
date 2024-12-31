@@ -47,11 +47,6 @@ export const socials: SocialType[] = [
     src: '/facebook-icon.svg',
     alt: 'facebook-icon',
   },
-  {
-    href: 'https://www.linkedin.com/in/amaia-carrere-6302b7245',
-    src: '/linkedin.svg',
-    alt: 'linkedin-icon',
-  },
 ];
 
 export const mobileBreakpoint = 640;

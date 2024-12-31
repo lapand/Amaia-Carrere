@@ -55,7 +55,7 @@ export default function CartPage() {
     <div className="flex-1 flex flex-col max-lg:mb-28">
       {cartArticlesJSX.length === 0 ? (
         <>
-          <h1 className="text-7xl inspiration-font thickening text-right">
+          <h1 className="text-7xl inspiration-font thickening-2 sm:text-right max-sm:ml-10 sm:mr-20">
             Panier
           </h1>
           <div className="flex-1 flex flex-col justify-center gap-16">
@@ -76,7 +76,7 @@ export default function CartPage() {
             {cartArticlesJSX}
           </div>
           <div className="flex flex-col">
-            <h1 className="text-7xl licorice-font thickening text-right">
+            <h1 className="text-7xl licorice-font thickening-2 text-right max-sm:mr-10">
               Panier
             </h1>
             <div

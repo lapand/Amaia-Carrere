@@ -6,6 +6,7 @@ import {
 } from '@/utils/encodeToHtmlEntities';
 import { useState } from 'react';
 import { emailParts, addressParts, telParts } from '@/config/config';
+import Link from 'next/link';
 
 export default function LegalNotice() {
   const [isEmailVisible, setIsEmailVisible] = useState(false);
@@ -92,15 +93,51 @@ export default function LegalNotice() {
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-4">
           Hébergeur du site
         </h2>
-        <p className="mb-2 text-sm sm:text-base lg:text-lg">
-          <strong>Nom de l&#39;hébergeur :</strong> Hébergeur Fictif
-        </p>
-        <p className="mb-2 text-sm sm:text-base lg:text-lg">
-          <strong>Adresse :</strong> 456, Avenue Virtuelle, 69000 Lyon, France
-        </p>
-        <p className="text-sm sm:text-base lg:text-lg">
-          <strong>Téléphone :</strong> +33 4 56 78 90 12
-        </p>
+        <h3 className="text-sm sm:text-base lg:text-lg underline underline-offset-2 my-2">
+          Hébergement Frontend :
+        </h3>
+        <ul className="text-sm sm:text-base lg:text-lg">
+          <li className="mb-2">
+            <strong>Nom de l&#39;hébergeur :</strong> Vercel Inc.
+          </li>
+          <li className="mb-2">
+            <strong>Adresse :</strong> 340 S Lemon Ave #4133, Walnut, CA 91789,
+            USA
+          </li>
+          <li>
+            <strong>Site web :</strong>{' '}
+            <Link
+              href="https://vercel.com"
+              target="_blank"
+              className="text-blue-700 hover:underline"
+            >
+              https://vercel.com
+            </Link>
+          </li>
+        </ul>
+        <h3 className="text-sm sm:text-base lg:text-lg underline underline-offset-2 my-2">
+          Hébergement Backend :
+        </h3>
+        <ul className="text-sm sm:text-base lg:text-lg">
+          <li className="mb-2">
+            <strong>Nom de l&#39;hébergeur :</strong> Hostinger International
+            Ltd.
+          </li>
+          <li className="mb-2">
+            <strong>Adresse :</strong> 61 Lordou Vironos Street, 6023 Larnaca,
+            Cyprus
+          </li>
+          <li>
+            <strong>Site web :</strong>{' '}
+            <Link
+              href="https://www.hostinger.com"
+              target="_blank"
+              className="text-blue-700 hover:underline"
+            >
+              https://www.hostinger.com
+            </Link>
+          </li>
+        </ul>
       </section>
 
       <section className="mb-8">
@@ -120,8 +157,8 @@ export default function LegalNotice() {
         </h2>
         <p className="text-sm sm:text-base lg:text-lg">
           Les informations présentes sur ce site sont fournies à titre
-          informatif. L&#39;éditeur ne saurait être tenu responsable des erreurs ou
-          omissions. L&#39;utilisation de ce site se fait sous votre seule
+          informatif. L&#39;éditeur ne saurait être tenu responsable des erreurs
+          ou omissions. L&#39;utilisation de ce site se fait sous votre seule
           responsabilité.
         </p>
       </section>

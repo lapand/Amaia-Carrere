@@ -100,7 +100,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         </div>
         <div className="w-full sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-6 sm:gap-10">
           <div>
-            <h1 className="inspiration-font thickening text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
+            <h1 className="inspiration-font thickening-2 text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
               {title}
             </h1>
             <p>

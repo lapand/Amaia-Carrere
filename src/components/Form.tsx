@@ -75,10 +75,10 @@ const ContactForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-1 sm:gap-3 lg:gap-6"
+      className="flex flex-col gap-1 sm:gap-2"
     >
       <p className="text-center leading-3 max-md:leading-7">
-        <span className="block text-5xl sm:text-5.5xl lg:text-4.5xl xl:text-5xl 2xl:text-5.5xl 3xl:text-6xl licorice-font">
+        <span className="block text-4.5xl xl:text-5xl 3xl:text-6xl licorice-font thickening-1 xl:thickening-2">
           <Trans
             i18nKey="common:contact.form.formTitle"
             components={{ strong: <strong /> }}
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
             onBlur={() => setIsFocused2(false)}
           />
           <p className="h-5 text-red-500">
-            {errors.email && errors.email.message}
+            {errors.subject && errors.subject.message}
           </p>
         </div>
         <div className="flex flex-col gap-1 text-sm">
@@ -169,7 +169,7 @@ const ContactForm: React.FC = () => {
             onBlur={() => setIsFocused3(false)}
           />
           <p className="h-5 text-red-500">
-            {errors.email && errors.email.message}
+            {errors.content && errors.content.message}
           </p>
         </div>
       </div>

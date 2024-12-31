@@ -43,7 +43,10 @@ const Home: React.FC = () => {
   const bubbles = bubblesData.map((bubble, i) => (
     <motion.div
       key={i}
-      initial={{ scale: 0, rotate: bubble.initialRotate }}
+      initial={{
+        scale: 0,
+        rotate: windowWidth < mobileBreakpoint ? 0 : bubble.initialRotate,
+      }}
       animate={{ scale: 1, rotate: 0 }}
       transition={{ delay: bubble.delay, duration: 1.5, type: 'spring' }}
       className={`sm:absolute ${bubble.x} ${bubble.y}`}
@@ -68,7 +71,7 @@ const Home: React.FC = () => {
         href="/gallery"
         className="relative z-10 transition-transform duration-300 hover:rotate-3"
       >
-        <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-4 sm:py-5 lg:py-4">
+        <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4">
           Entrer
         </Button>
       </Link>
