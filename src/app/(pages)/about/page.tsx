@@ -45,9 +45,8 @@ const About: React.FC = () => {
 
   const drawsComponents = aboutSectionDraws.map((draw, i) => {
     return (
-      <div className="h-full relative flex lg:justify-center items-end">
+      <div key={i} className="h-full relative flex lg:justify-center items-end">
         <Image
-          key={i}
           {...draw}
           // className="size-full object-contain"
           className="h-[45%] sm:h-2/3 w-auto"
