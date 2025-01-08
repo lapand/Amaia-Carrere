@@ -43,7 +43,7 @@ const langData: LanguageType[] = [
 
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
-  const [whiteHeaderStyle, setWhiteHeaderStyle] = useState(false);
+  const [whiteHeaderStyle, setWhiteHeaderStyle] = useState(true);
   const { i18n } = useTranslation();
   const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
   const windowWidth = useViewportWidth();
@@ -86,22 +86,23 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const shouldAddStyle = window.scrollY > 50;
-      if (shouldAddStyle && !whiteHeaderStyle) {
-        setWhiteHeaderStyle(true);
-      } else if (!shouldAddStyle && whiteHeaderStyle) {
-        setWhiteHeaderStyle(false);
-      }
-    };
+  // Changement du style du header en fonction de la hauteur du scrollY
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const shouldAddStyle = window.scrollY > 50;
+  //     if (shouldAddStyle && !whiteHeaderStyle) {
+  //       setWhiteHeaderStyle(true);
+  //     } else if (!shouldAddStyle && whiteHeaderStyle) {
+  //       setWhiteHeaderStyle(false);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [whiteHeaderStyle]);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [whiteHeaderStyle]);
 
   // Pages sans header
   const pathname = usePathname();
