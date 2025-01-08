@@ -52,7 +52,7 @@ const About: React.FC = () => {
           onContextMenu={removeContextMenu}
           quality={100}
         />
-        <div className="absolute top-0 right-0 w-[380px] sm:w-[450px] lg:w-[400px] h-[280px] sm:h-[330px] lg:h-[300px] px-10 sm:px-6 pb-24 pt-9 sm:pt-7 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat">
+        <div className="absolute top-0 right-0 w-[380px] sm:w-[450px] lg:w-[400px] h-[280px] sm:h-[330px] lg:h-[300px] px-14 sm:px-6 pb-24 pt-9 sm:pt-7 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat">
           <p className="licorice-font text-2.5xl sm:text-4xl lg:text-3xl font-semibold text-center text-pretty">
             {draw.text}
           </p>
