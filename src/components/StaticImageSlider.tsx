@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ArrowBtn from './ArrowBtn';
+import IconBtn from './IconBtn';
 
 type StaticImageSliderProps = {
   children: React.ReactNode;
@@ -25,15 +25,25 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
     <div className={`flex items-center justify-between`}>
       {/* Left arrow */}
       {isArrowsVisible && (
-        <ArrowBtn
+        <IconBtn
           onClick={handlePrev}
+          position={arrowsPosition === 'under' ? 'absolute' : 'relative'}
           className={`${
-            arrowsPosition === 'under' ? 'absolute bottom-0 left-1/4' : ''
-          } w-[10%] h-20 flex items-center justify-center opacity-70 transition hover:scale-110 hover:opacity-90 duration-300 cursor-pointer`}
+            arrowsPosition === 'under'
+              ? 'size-14 -bottom-5 left-1/4'
+              : 'w-[10%] h-20'
+          } opacity-70 transition hover:scale-110 hover:opacity-90 duration-300`}
+          icon={{
+            src: '/forSale/forSaleSlider/black-arrow.svg',
+            alt: 'left arrow',
+            size: 0.8,
+            rotate: 180,
+          }}
           ariaLabel="Previous slide"
         />
       )}
 
+      {/* Content */}
       <div className={`${className}`}>
         {React.Children.map(children, (child, index) => (
           <div
@@ -50,11 +60,20 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
 
       {/* Right arrow */}
       {isArrowsVisible && (
-        <ArrowBtn
+        <IconBtn
           onClick={handleNext}
+          position={arrowsPosition === 'under' ? 'absolute' : 'relative'}
           className={`${
-            arrowsPosition === 'under' ? 'absolute bottom-0 right-1/4' : ''
-          } w-[10%] h-20 rotate-180 flex items-center justify-center opacity-70 transition hover:scale-110 hover:opacity-90 duration-300 cursor-pointer`}
+            arrowsPosition === 'under'
+              ? 'size-14 -bottom-5 right-1/4'
+              : 'w-[10%] h-20'
+          } rotate-180 opacity-70 transition hover:scale-110 hover:opacity-90 duration-300`}
+          icon={{
+            src: '/forSale/forSaleSlider/black-arrow.svg',
+            alt: 'right arrow',
+            size: 0.8,
+            rotate: 180,
+          }}
           ariaLabel="Previous slide"
         />
       )}

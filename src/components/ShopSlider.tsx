@@ -51,7 +51,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
           <span
             style={{ backgroundImage: `url(${arrowIconUri})` }}
             className="size-full rotate-180 bg-no-repeat bg-[length:20px_20px] bg-center"
-          ></span>
+          />
         </span>
       </button>
       <button
@@ -63,7 +63,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
           <span
             style={{ backgroundImage: `url(${arrowIconUri})` }}
             className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
-          ></span>
+          />
         </span>
       </button>
     </>
@@ -81,7 +81,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
         aria-current={i === currentIdx ? true : false}
         aria-label={`Slide ${i + 1}`}
         onClick={() => onSelectImg(i)}
-      ></button>
+      />
     );
   }
 

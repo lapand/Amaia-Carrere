@@ -70,7 +70,7 @@ const Menu: React.FC = () => {
   return (
     <nav className="luckiest-guy flex items-center">
       {/* Icone menu */}
-      {windowWidth <= menuIconBreakpoint && (
+      {windowWidth < menuIconBreakpoint && (
         <button
           onClick={closeLateralMenu}
           className="w-11 2xl:w-12 aspect-square"
@@ -88,7 +88,7 @@ const Menu: React.FC = () => {
       )}
 
       {/* Items du menu (laptop et +) */}
-      {windowWidth > menuIconBreakpoint && (
+      {windowWidth >= menuIconBreakpoint && (
         <ul className="flex gap-5 lg:gap-6 xl:gap-10 2xl:gap-14 3xl:gap-20 lg:text-lg 2xl:text-xl">
           {liJSX}
         </ul>

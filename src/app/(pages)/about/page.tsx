@@ -1,7 +1,6 @@
 'use client';
 
 import Image, { ImageProps } from 'next/image';
-import { useEffect, useRef, useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import removeContextMenu from '../../../utils/removeContextMenu';
 import StaticImageSlider from '@/components/StaticImageSlider';
@@ -15,7 +14,7 @@ interface aboutSectionDrawsType extends ImageProps {
 const aboutSectionDraws: aboutSectionDrawsType[] = [
   {
     src: '/about/lutin.png',
-    alt: 'lutin poilu au chapeau pointu tenant un crayon',
+    alt: 'lutin barbu au chapeau pointu tenant un crayon',
     width: 1323,
     height: 1389,
     text: (
@@ -27,7 +26,7 @@ const aboutSectionDraws: aboutSectionDrawsType[] = [
   },
   {
     src: '/about/lutin.png',
-    alt: 'lutin poilu au chapeau pointu tenant un crayon',
+    alt: 'lutin barbu au chapeau pointu tenant un crayon',
     width: 1323,
     height: 1389,
     text: (
@@ -54,7 +53,7 @@ const About: React.FC = () => {
           quality={100}
         />
         <div className="absolute top-0 right-0 w-[380px] sm:w-[450px] lg:w-[400px] h-[280px] sm:h-[330px] lg:h-[300px] px-4 sm:px-6 pb-24 pt-9 sm:pt-7 flex justify-center items-center bg-[url('/about/bulle1.png')] bg-contain bg-center bg-no-repeat">
-          <p className="licorice-font text-3xl sm:text-4xl lg:text-3xl font-semibold text-center text-pretty">
+          <p className="licorice-font text-3xl sm:text-4xl lg:text-3xl font-semibold text-center text-balance">
             {draw.text}
           </p>
         </div>
@@ -70,7 +69,7 @@ const About: React.FC = () => {
       <div className="relative sm:absolute sm:top-0 sm:left-1/2 sm:-translate-x-1/2 max-sm:flex-1 sm:h-full flex justify-center items-center">
         {aboutSectionDraws.length > 0 && (
           <StaticImageSlider
-            className="w-screen lg:w-[1000px] h-[430px] sm:h-[550px] lg:h-[430px]"
+            className="w-screen sm:w-[600px] lg:w-[1000px] h-[430px] sm:h-[550px] lg:h-[430px]"
             isArrowsVisible={aboutSectionDraws.length > 1}
             arrowsPosition={
               windowWidth < mobileBreakpoint ? 'under' : 'lateral'
