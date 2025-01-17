@@ -1,4 +1,4 @@
-import { mobileBreakpoint } from '@/config/config';
+import { mobileBreakpoint } from '@/data/breakpoints';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { t } from 'i18next';
 import React, { useEffect, useState } from 'react';

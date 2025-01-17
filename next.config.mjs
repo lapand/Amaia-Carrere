@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -8,12 +11,16 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-      // {
-      //   protocol: 'http',
-      //   hostname: 'localhost',
-      //   port: '1337',
-      //   pathname: '/**',
-      // },
+      ...(isDevelopment
+        ? [
+            {
+              protocol: 'http',
+              hostname: 'localhost',
+              port: '1337',
+              pathname: '/**',
+            },
+          ]
+        : []),
     ],
   },
   webpack(config) {

@@ -2,27 +2,38 @@
 
 import { useSelector } from 'react-redux';
 import CartArticle from '../../../components/CartArticle';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Button from '../../../components/Button';
 import CartValidation from '../../../components/CartValidation';
 import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { lgBreakpoint } from '@/config/config';
+import { lgBreakpoint } from '@/data/breakpoints';
 
 export default function CartPage() {
   const detailedCartProducts = useSelector(selectDetailedCartProducts);
   const windowWidth = useViewportWidth();
 
+  // Les produits devenus indisponibles après leur ajout dans le panier et avant le paiement sont retirés des données à envoyer à la validation du panier. Ils restent tout de même sur la page avec la mention "indisponible".
   const availableCartProducts = detailedCartProducts.filter((p) => p.available);
 
   // Au cas où un produit devient indisponible après avoir été ajouté dans le panier, on l'enlève de la validation du panier mais on le laisse sur le rendu de la page
   const validationData = availableCartProducts.map(
-    ({ updatedAt, gallery, price, shippingCost, description, ...rest }) => {
+    ({
+      updatedAt,
+      gallery,
+      shippingCost,
+      description,
+      languages,
+      available,
+      about,
+      price,
+      ...rest
+    }) => {
       const priceInNb = parseFloat(price);
       return {
-        ...rest,
         price: priceInNb,
+        ...rest,
       };
     }
   );
@@ -32,7 +43,7 @@ export default function CartPage() {
     (item) => (cartSubTotal += item.quantity * parseFloat(item.price))
   );
 
-  // Les frais de livraison seront égals aux frais de livraison les plus élevés parmi l'ensemble des articles dans le panier disponibles à la vente.
+  // Les frais de livraison seront égaux aux frais de livraison les plus élevés parmi l'ensemble des articles dans le panier disponibles à la vente.
   const shippingCost: number =
     availableCartProducts.length === 0
       ? 0

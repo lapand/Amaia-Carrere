@@ -1,11 +1,8 @@
 'use client';
 
-import {
-  concatObjectValues,
-  encodeToHtmlEntities,
-} from '@/utils/encodeToHtmlEntities';
+import { concatObjectValues } from '@/utils/encodeToHtmlEntities';
 import { useState } from 'react';
-import { emailParts, addressParts, telParts } from '@/config/config';
+import { emailParts, addressParts, telParts } from '@/data/contact';
 import Link from 'next/link';
 
 export default function LegalNotice() {

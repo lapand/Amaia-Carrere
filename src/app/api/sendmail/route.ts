@@ -2,11 +2,11 @@ import { contactSchema } from '@/schemas/formSchema';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import {
+  MYMAIL,
   SENDGRID_USER,
   SENDGRID_API_KEY,
-  MYMAIL,
   CONTACT_FORM_RECIPIENT,
-} from '@/config/config';
+} from '@/config/config.server';
 
 export async function POST(req: Request) {
   const body: unknown = await req.json();

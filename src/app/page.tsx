@@ -7,7 +7,7 @@ import Link from 'next/link';
 import HomeBubble from '@/components/HomeBubble';
 import { motion } from 'framer-motion';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint } from '@/config/config';
+import { mobileBreakpoint } from '@/data/breakpoints';
 
 type bubbleType = {
   x: string;

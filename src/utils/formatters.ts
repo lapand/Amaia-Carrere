@@ -1,4 +1,4 @@
-import { STRAPI_API_BASE_URL } from '@/config/config';
+import { STRAPI_API_BASE_URL } from '@/config/config.server';
 import { APIArticleType, ArticleCardType } from '@/types';
 
 export function formatArticle(article: APIArticleType): ArticleCardType {
@@ -12,6 +12,7 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     updatedAt,
     descriptionComplete,
     disponibilite,
+    languages,
   } = article;
 
   const formattedGallery = !galerie
@@ -33,5 +34,6 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     shippingCost: fraisLivraison,
     about: descriptionComplete || '',
     available: disponibilite,
+    languages,
   };
 }

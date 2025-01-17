@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArticleCardType } from '@/types';
-import QuantitySelector from './QuantitySelector';
 
 const ArticleCard: React.FC<ArticleCardType> = ({
   id,
@@ -30,7 +29,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   }
 
   return (
-    <div className="flex flex-col gap-3 max-sm:mb-8">
+    <div className="flex flex-col gap-2 max-sm:mb-8">
       <Link href={`/shop/articles/${titleSlug}/${id}`} className="group">
         <div className="relative w-full aspect-square border border-gray-500 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
@@ -56,18 +55,15 @@ const ArticleCard: React.FC<ArticleCardType> = ({
           {description}
         </p>
       </div>
-      <div className="h-8 flex justify-between items-center">
+      <div className="h-7 flex justify-between items-center">
         {!available ? (
-          <div className="text-sm text-red-600 font-bold">
+          <p className="text-sm text-red-600 font-bold">
             Actuellement indisponible
-          </div>
+          </p>
         ) : (
-          <>
-            <p className="text-sm font-bold">
-              {price} € <span className="text-xs sm:text-xs">TTC</span>
-            </p>
-            <QuantitySelector id={id} size={'sm'} />
-          </>
+          <p className="text-sm font-bold">
+            {price} € <span className="text-xs sm:text-xs">TTC</span>
+          </p>
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@ type deletedArticles = {
   title: string;
 };
 
-export type NewDataType = {
+export type RefreshedDataType = {
   updatedArticles: ArticleCardType[];
   deletedArticles: deletedArticles[];
   alertMsg: string[];

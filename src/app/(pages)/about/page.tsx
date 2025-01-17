@@ -5,7 +5,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import removeContextMenu from '../../../utils/removeContextMenu';
 import StaticImageSlider from '@/components/StaticImageSlider';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint } from '@/config/config';
+import { mobileBreakpoint } from '@/data/breakpoints';
 
 interface aboutSectionDrawsType extends ImageProps {
   text: React.ReactNode;

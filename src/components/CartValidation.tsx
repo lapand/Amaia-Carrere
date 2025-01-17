@@ -7,7 +7,7 @@ import {
   setUnavailable,
   updateArticles,
 } from '@/store/slices/articleSlice';
-import { NewDataType } from '@/types/bddValidation';
+import { RefreshedDataType } from '@/types/bddValidation';
 import Link from 'next/link';
 import Modal from '@/components/Modal';
 
@@ -28,14 +28,14 @@ const CartValidation: React.FC<CartValidationType> = ({
     null
   );
 
-  const mismatchHandler = (newData: NewDataType) => {
+  const mismatchHandler = (refreshedData: RefreshedDataType) => {
     // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
     setAlertMsg(
-      newData.alertMsg.map((msg, i: number) => {
+      refreshedData.alertMsg.map((msg, i: number) => {
         return (
           <React.Fragment key={i}>
             {msg}
-            {i < newData.alertMsg.length - 1 && (
+            {i < refreshedData.alertMsg.length - 1 && (
               <>
                 <br />
                 <br />
@@ -50,12 +50,12 @@ const CartValidation: React.FC<CartValidationType> = ({
     dispatch(setDynamicUpdatedAt(Date.now()));
 
     // Affiche les articles retirés de la bdd comme étant indisponibles le temps que de nouvelles props statiques retire l'article du site à la prochaine session utilisateur ouverte.
-    newData.deletedArticles.forEach((article) => {
+    refreshedData.deletedArticles.forEach((article) => {
       dispatch(setUnavailable(article.id));
     });
 
     // Mise à jour des données des articles du panier.
-    dispatch(updateArticles(newData.updatedArticles));
+    dispatch(updateArticles(refreshedData.updatedArticles));
   };
 
   const handleCheckout = async (
@@ -81,7 +81,7 @@ const CartValidation: React.FC<CartValidationType> = ({
 
       if (data.error) {
         if (data.error === 'discordance') {
-          mismatchHandler(data.newData);
+          mismatchHandler(data.refreshedData);
         } else {
           setAlertMsg([
             <>

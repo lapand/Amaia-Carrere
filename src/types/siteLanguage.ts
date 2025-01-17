@@ -1,4 +1,4 @@
-export type LanguageType = {
+export type SiteLanguageType = {
   langName: string;
   languageCode: string;
   iconUri: string;

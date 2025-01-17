@@ -177,7 +177,7 @@ const ContactForm: React.FC = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="sm:text-sm 2xl:text-base px-9 sm:px-8 py-3 xl:py-4 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg"
+          className="sm:text-sm 3xl:text-base px-9 sm:px-6 py-3 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg"
         >
           {t('contact.form.submit')}
         </Button>

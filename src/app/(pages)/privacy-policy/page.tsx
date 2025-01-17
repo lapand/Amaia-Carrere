@@ -1,6 +1,6 @@
 'use client';
 
-import { emailParts, telParts } from '@/config/config';
+import { emailParts, telParts } from '@/data/contact';
 import { concatObjectValues } from '@/utils/encodeToHtmlEntities';
 import { useState } from 'react';
 

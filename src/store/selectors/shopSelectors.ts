@@ -9,10 +9,18 @@ const selectCartItems = (state: RootState) => state.cart.articles;
 export const selectDetailedCartProducts = createSelector(
   [selectShopArticles, selectCartItems],
   (articles, cartItems) =>
-    articles
-      .filter((item) => cartItems.some((article) => item.id === article.id))
-      .map((article) => {
-        const cartItem = cartItems.find((item) => item.id === article.id);
-        return { ...article, quantity: cartItem?.quantity || 0 };
+    cartItems
+      .map((item) => {
+        const matchingArticle = articles.find(
+          (article) => article.id === item.id
+        );
+        if (matchingArticle) {
+          return {
+            ...matchingArticle,
+            quantity: item?.quantity || 0,
+            selectedLanguage: item?.selectedLanguage || undefined,
+          };
+        }
       })
+      .filter((item) => item !== undefined)
 );

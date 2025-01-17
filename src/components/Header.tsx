@@ -9,12 +9,13 @@ import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
 import HeaderCart from './HeaderCart';
 import HeaderSocial from './HeaderSocial';
-import { lgBreakpoint, mobileBreakpoint, socials } from '@/config/config';
-import { LanguageType } from '@/types/language';
+import { lgBreakpoint, mobileBreakpoint } from '@/data/breakpoints';
+import { socials } from '@/data/contact';
+import { SiteLanguageType } from '@/types/siteLanguage';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { motion } from 'framer-motion';
 
-const langData: LanguageType[] = [
+const langData: SiteLanguageType[] = [
   {
     langName: 'euskadi',
     languageCode: 'eus',

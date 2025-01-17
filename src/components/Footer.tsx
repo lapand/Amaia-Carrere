@@ -1,6 +1,6 @@
 'use client';
 
-import { mobileBreakpoint } from '@/config/config';
+import { mobileBreakpoint } from '@/data/breakpoints';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import Image from 'next/image';
 import Link from 'next/link';

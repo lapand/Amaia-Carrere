@@ -17,6 +17,7 @@ const articleSlice = createSlice({
   name: 'articles',
   initialState,
   reducers: {
+    // Met à jour l'état avec les articles entrants en supprimant les articles de l'état qui n'ont pas le même id que les articles entrants.
     syncArticles(state, action: PayloadAction<ArticleCardType[]>) {
       const incomingArticles = action.payload;
 
@@ -37,10 +38,10 @@ const articleSlice = createSlice({
         );
 
         if (existingIndex === -1) {
-          // Si l'article n'existe pas, on l'ajoute
+          // Si l'article entrant n'existe pas dans l'état, on l'ajoute
           state.articles.push(newArticle);
         } else {
-          // Si l'article existe, on vérifie updatedAt
+          // Si l'article entrant existe dans l'état et si sa dernière mise à jour en BDD est plus récente que celle de l'article de l'état, on le stocke à la place de l'ancien.
           if (
             new Date(newArticle.updatedAt) >
             new Date(state.articles[existingIndex].updatedAt)
@@ -51,7 +52,7 @@ const articleSlice = createSlice({
       });
     },
 
-    // Ajouter un ou plusieurs articles
+    // Met à jour l'état avec les articles entrants en conservant les articles de l'état qui n'ont pas le même id que les articles entrants.
     updateArticles(state, action: PayloadAction<ArticleCardType[]>) {
       action.payload.forEach((newArticle) => {
         const existingIndex = state.articles.findIndex(
@@ -81,10 +82,12 @@ const articleSlice = createSlice({
       }
     },
 
+    // Définit la date de mise à jour de l'état par les props statiques (SSG avec ISR)
     setStaticUpdatedAt(state, action: PayloadAction<number | null>) {
       state.staticUpdatedAt = action.payload;
     },
 
+    // Définit la date de mise à jour de l'état après vérification invalide auprès de la source de vérité (BDD de Strapi)
     setDynamicUpdatedAt(state, action: PayloadAction<number | null>) {
       state.dynamicUpdatedAt = action.payload;
     },

@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import Button from './Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
-import { updateQuantity } from '@/store/slices/cartSlice';
 import { AnimatePresence, motion } from 'framer-motion';
+import useRemoveFromCart from '@/hooks/useRemoveFromCart';
 
 const HeaderCart = () => {
-  const dispatch = useDispatch();
-
-  const detailedCartProducts = useSelector(selectDetailedCartProducts);
-
   const [isHovered, setIsHovered] = useState(false);
+  const detailedCartProducts = useSelector(selectDetailedCartProducts);
 
   let cartItemCount = 0;
   detailedCartProducts.forEach((item) => (cartItemCount += item.quantity));
@@ -21,23 +18,34 @@ const HeaderCart = () => {
     .filter((p) => p.available)
     .forEach((item) => (totalPrice += item.quantity * parseFloat(item.price)));
 
+  const handleRemoveFromCart = useRemoveFromCart();
+
   const cartItemJSX =
     detailedCartProducts.length === 0
       ? 'Panier vide'
       : detailedCartProducts.map((item, i: number) => {
+          const {
+            id,
+            available,
+            title,
+            gallery,
+            quantity,
+            price,
+            selectedLanguage,
+          } = item;
           return (
             <li
               key={i}
               className="flex justify-between items-center gap-4 mb-2"
             >
               <div className="size-16">
-                {!item.gallery[0] ? (
+                {!gallery[0] ? (
                   <div className="size-full flex justify-center items-center text-xs text-center">
                     Image Introuvable
                   </div>
                 ) : (
                   <Image
-                    {...item.gallery[0]}
+                    {...gallery[0]}
                     className="size-full object-contain"
                     priority
                   />
@@ -45,11 +53,12 @@ const HeaderCart = () => {
               </div>
               <div className="flex-1 flex flex-col gap-2">
                 <p className="text-xs font-bold line-clamp-1 text-ellipsis break-words">
-                  {item.title}
+                  {title}
                 </p>
-                {item.available ? (
+                {available ? (
                   <p className="text-xs line-clamp-1 text-ellipsis break-words">
-                    {item.quantity} x {item.price} €
+                    {quantity} x {price} €
+                    {selectedLanguage && ` (${selectedLanguage.code})`}
                   </p>
                 ) : (
                   <div className="text-xs text-red-600 font-bold">
@@ -59,7 +68,7 @@ const HeaderCart = () => {
               </div>
               <Image
                 onClick={() =>
-                  dispatch(updateQuantity({ id: item.id, quantity: 0 }))
+                  handleRemoveFromCart(id, selectedLanguage || undefined)
                 }
                 src="/cross.svg"
                 alt="Retirer l'article du panier"
@@ -113,10 +122,7 @@ const HeaderCart = () => {
               <p className="self-center text-base">
                 Total : {totalPrice.toFixed(2)} €
               </p>
-              <Link
-                href="/shopping-cart"
-                className="self-center"
-              >
+              <Link href="/shopping-cart" className="self-center">
                 <Button className="flex items-center rounded-xl px-4 py-3">
                   <Image
                     src="/shopping-cart.png"

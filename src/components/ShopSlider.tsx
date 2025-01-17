@@ -3,16 +3,10 @@ import { useState } from 'react';
 import { getPrevIdx, getNextIdx } from '../utils/getIndex';
 import removeContextMenu from '../utils/removeContextMenu';
 import Loader from './Loader';
-
-type ImageType = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
+import { ImageProps } from 'next/image';
 
 type ShopSliderProps = {
-  gallery: ImageType[];
+  gallery: ImageProps[];
 };
 
 const arrowIconUri = '/forSale/forSaleSlider/black-arrow.svg';

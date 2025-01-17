@@ -11,9 +11,9 @@ import {
   setStaticUpdatedAt,
   updateArticles,
 } from '@/store/slices/articleSlice';
-import QuantitySelector from '@/components/QuantitySelector';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint } from '@/config/config';
+import { mobileBreakpoint } from '@/data/breakpoints';
+import ProductSelection from '@/components/ProductSelection';
 
 type ArticleClientType = {
   staticArticle?: ArticleCardType;
@@ -33,9 +33,8 @@ const ArticleClient: React.FC<ArticleClientType> = ({
 
   const currentArticle = shop.articles.find((a) => a.id === staticArticle?.id);
 
-  // Synchronisation du store avec les props statiques uniquement si les props contiennent des données plus récentes que celles du store
-  // Un nouveau rendu SSG ISR provoquera ainsi une mise à jour du store tandis que des données modifiées dynamiquement dans le store (par exemple, par l'invalidation d'un article d'un panier après comparaison à la bdd) seront rendues prioritairement.
-  // Cela permet ainsi de profiter des optimisations SSG/ISR (SEO, performances) en mettant à jour les données en temps réel lors d'une action utilisateur (comme la discordance d'informations entre le panier utilisateur et les articles correspondants en base de données).
+  // Synchronisation du store avec les props statiques uniquement si les props contiennent des données plus récentes que celles du store.
+  // Une vérification de la fraicheur des données sera faite à chaque nouveau rendu SSG ISR afin de savoir si une mise à jour doit être effectuée avec les nouvelles props statiques.
   useEffect(() => {
     if (staticArticle && fetchTimestamp) {
       const { staticUpdatedAt, dynamicUpdatedAt } = shop;
@@ -69,8 +68,16 @@ const ArticleClient: React.FC<ArticleClientType> = ({
       </div>
     );
   } else {
-    const { id, gallery, title, description, price, about, available } =
-      currentArticle;
+    const {
+      id,
+      gallery,
+      title,
+      description,
+      price,
+      about,
+      available,
+      languages,
+    } = currentArticle;
 
     const aboutJSX = about
       .split('\n')
@@ -100,7 +107,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         </div>
         <div className="w-full sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-6 sm:gap-10">
           <div>
-            <h1 className="inspiration-font thickening-2 text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center">
+            <h1 className="inspiration-font thickening-2 text-7xl sm:text-6.5xl xl:text-7xl mb-6 sm:mb-10 max-lg:text-center line-clamp-3 text-ellipsis break-words">
               {title}
             </h1>
             <p>
@@ -115,20 +122,13 @@ const ArticleClient: React.FC<ArticleClientType> = ({
             </p>
           </div>
           <hr className="border border-gray-400" />
-          <div className="flex justify-between items-center">
-            {!available ? (
-              <div className="text-lg sm:text-xl lg:text-base 2xl:text-[17px] text-red-600 font-bold">
-                Actuellement indisponible
-              </div>
-            ) : (
-              <>
-                <p className="text-lg xl:text-xl">
-                  {price} € <span className="text-sm">TTC</span>
-                </p>
-                <QuantitySelector id={id} size={'md'} />
-              </>
-            )}
-          </div>
+          {!available ? (
+            <div className="text-lg sm:text-xl lg:text-base 2xl:text-[17px] text-red-600 font-bold">
+              Actuellement indisponible
+            </div>
+          ) : (
+            <ProductSelection id={id} price={price} languages={languages} />
+          )}
           <hr className="border border-gray-400" />
           <div className="max-lg:text-lg">{aboutJSX}</div>
         </div>

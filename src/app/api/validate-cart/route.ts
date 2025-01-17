@@ -3,12 +3,14 @@ import Stripe from 'stripe';
 import { validateCartSchema } from '@/schemas/cartItemSchema';
 import { StripeEmbeddedCheckoutLineItem } from '@stripe/stripe-js';
 import {
-  CANCEL_URL,
-  STRAPI_API_BASE_URL,
-  SUCCESS_URL,
   STRIPE_SECRET,
-} from '@/config/config';
-import { NewDataType } from '@/types/bddValidation';
+  generateArticleUrl,
+  CANCEL_URL,
+  SUCCESS_URL,
+  ALLOWED_COUNTRIES,
+  DEFAULT_CURRENCY,
+} from '@/config/config.server';
+import { RefreshedDataType } from '@/types/bddValidation';
 import { formatArticle } from '@/utils/formatters';
 
 const stripe = new Stripe(STRIPE_SECRET as string);
@@ -27,7 +29,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     // Validation avec Strapi : concordance données panier et source de vérité
-    const newData: NewDataType = {
+    const refreshedData: RefreshedDataType = {
       updatedArticles: [],
       deletedArticles: [],
       alertMsg: [],
@@ -35,15 +37,16 @@ export const POST = async (req: NextRequest) => {
 
     const validatedCart = await Promise.all(
       result.data.cartData.map(async (item) => {
-        const res = await fetch(
-          `${STRAPI_API_BASE_URL}/api/articles/${item.id}?populate=galerie`
-        );
+        const res = await fetch(generateArticleUrl(item.id));
         const product = await res.json();
         const { data } = product;
 
         if (!data) {
-          newData.deletedArticles.push({ id: item.id, title: item.title });
-          newData.alertMsg.push(
+          refreshedData.deletedArticles.push({
+            id: item.id,
+            title: item.title,
+          });
+          refreshedData.alertMsg.push(
             `Le produit ${item.title} a été retiré de la vente récemment.`
           );
           return null;
@@ -52,24 +55,35 @@ export const POST = async (req: NextRequest) => {
         const { prix, disponibilite, titre } = data;
 
         if (!disponibilite) {
-          newData.updatedArticles.push(formatArticle(data));
-          newData.alertMsg.push(
+          refreshedData.updatedArticles.push(formatArticle(data));
+          refreshedData.alertMsg.push(
             `Le produit ${item.title} n'est actuellement plus disponible.`
           );
           return null;
         }
         if (prix !== item.price) {
-          newData.updatedArticles.push(formatArticle(data));
-          newData.alertMsg.push(
+          refreshedData.updatedArticles.push(formatArticle(data));
+          refreshedData.alertMsg.push(
             `Le prix du produit ${item.title} a changé, veillez à revérifier votre panier avant de valider à nouveau la commande.`
           );
           return null;
         }
 
+        const productData: {
+          name: any;
+          description?: string;
+        } = {
+          name: titre,
+        };
+
+        if (item.selectedLanguage) {
+          productData.description = `Language: ${item.selectedLanguage.name} (${item.selectedLanguage.code})`;
+        }
+
         return {
           price_data: {
             currency: 'eur',
-            product_data: { name: titre },
+            product_data: productData,
             unit_amount: Math.round(prix * 100),
           },
           quantity: item.quantity,
@@ -78,11 +92,11 @@ export const POST = async (req: NextRequest) => {
     );
 
     if (
-      newData.deletedArticles.length > 0 ||
-      newData.updatedArticles.length > 0
+      refreshedData.deletedArticles.length > 0 ||
+      refreshedData.updatedArticles.length > 0
     ) {
       return NextResponse.json(
-        { error: 'discordance', newData },
+        { error: 'discordance', refreshedData },
         { status: 400 }
       );
     }
@@ -92,27 +106,28 @@ export const POST = async (req: NextRequest) => {
       type: 'fixed_amount',
       fixed_amount: {
         amount: result.data.shippingCost * 100,
-        currency: 'eur',
+        currency: DEFAULT_CURRENCY,
       },
-      delivery_estimate: {
-        minimum: {
-          unit: 'business_day',
-          value: 5, // Délai de livraison à modifier
-        },
-        maximum: {
-          unit: 'business_day',
-          value: 7, // Délai de livraison à modifier
-        },
-      },
+      // Délai de livraison
+      // delivery_estimate: {
+      //   minimum: {
+      //     unit: 'business_day',
+      //     value: 5,
+      //   },
+      //   maximum: {
+      //     unit: 'business_day',
+      //     value: 7,
+      //   },
+      // },
     });
 
     // Création d'une session Stripe Checkout
     const checkOutSession = await stripe.checkout.sessions.create({
-      payment_method_types: ['card',],
+      payment_method_types: ['card'],
       mode: 'payment',
       billing_address_collection: 'required',
       shipping_address_collection: {
-        allowed_countries: ['FR', 'ES', 'BE', 'GB'],
+        allowed_countries: ALLOWED_COUNTRIES,
       },
       shipping_options: [
         {
