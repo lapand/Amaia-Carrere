@@ -23,7 +23,7 @@ export type APIArticleType = {
   updatedAt: Date;
   disponibilite: boolean;
   descriptionComplete?: string;
-  languages: ArticleLanguageType[];
+  langages: ArticleLanguageType[];
 };
 
 export type ArticleCardType = {

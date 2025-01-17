@@ -12,7 +12,7 @@ export const FRONT_BASE_URL = process.env.FRONT_BASE_URL;
 export const STRAPI_API_BASE_URL = process.env.STRAPI_API_BASE_URL;
 export const ARTICLES_ENDPOINT_BASE = '/api/articles';
 export const ARTICLES_POPULATE_PARAMS =
-  '?populate[0]=languages&populate[1]=galerie';
+  '?populate[0]=langages&populate[1]=galerie';
 // --- Fetch GET URLs ---
 export const ARTICLES_FETCH_URL = `${STRAPI_API_BASE_URL}${ARTICLES_ENDPOINT_BASE}${ARTICLES_POPULATE_PARAMS}`;
 export const ARTICLES_FETCH_FOR_STATIC_PARAMS = `${STRAPI_API_BASE_URL}${ARTICLES_ENDPOINT_BASE}?fields=documentId,title`;

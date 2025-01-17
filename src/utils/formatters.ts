@@ -12,7 +12,7 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     updatedAt,
     descriptionComplete,
     disponibilite,
-    languages,
+    langages,
   } = article;
 
   const formattedGallery = !galerie
@@ -34,6 +34,6 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     shippingCost: fraisLivraison,
     about: descriptionComplete || '',
     available: disponibilite,
-    languages,
+    languages: langages,
   };
 }
