@@ -3,6 +3,7 @@ import ArticleClient from './ArticleClient';
 import {
   ARTICLES_FETCH_FOR_STATIC_PARAMS,
   generateArticleUrl,
+  STRAPI_API_KEY,
 } from '@/config/config.server';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
@@ -11,9 +12,13 @@ export const revalidate = 15;
 // Génération des routes dynamiques pour SSG sous forme /[title]/[id] avec encodage du titre pour un URL valide
 export async function generateStaticParams() {
   try {
-    let articles = await fetch(ARTICLES_FETCH_FOR_STATIC_PARAMS).then((res) =>
-      res.json()
-    );
+    let articles = await fetch(ARTICLES_FETCH_FOR_STATIC_PARAMS, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${STRAPI_API_KEY}`,
+      },
+    }).then((res) => res.json());
 
     if (!articles || !articles.data) {
       throw new Error('No data returned from API');
@@ -32,7 +37,13 @@ export async function generateStaticParams() {
 // Retrieve article data from Strapi API
 async function getArticle(id: string) {
   try {
-    const res = await fetch(generateArticleUrl(id));
+    const res = await fetch(generateArticleUrl(id), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${STRAPI_API_KEY}`,
+      },
+    });
     const article = await res.json();
 
     return formatArticle(article.data);

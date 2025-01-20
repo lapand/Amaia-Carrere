@@ -1,6 +1,6 @@
 import { formatArticle } from '@/utils/formatters';
 import ShopClient from './ShopClient';
-import { ARTICLES_FETCH_URL } from '@/config/config.server';
+import { ARTICLES_FETCH_URL, STRAPI_API_KEY } from '@/config/config.server';
 import { APIArticleType } from '@/types';
 
 // Invalide le cache toutes les heures générant ainsi une nouvelle ShopPage statique avec des données mises à jour
@@ -9,12 +9,18 @@ export const revalidate = 15;
 // Récupération des données et transfert au Client Component
 export default async function ShopPage() {
   try {
-    const response = await fetch(ARTICLES_FETCH_URL);
+    const response = await fetch(ARTICLES_FETCH_URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${STRAPI_API_KEY}`,
+      },
+    });
     const data = await response.json();
 
     // Stocke la date de la mise à jour des données des articles en vue de la comparer avec la date des données dynamiques reçues lors de l'invalidation du panier, permettant ainsi de toujours afficher les données les plus récentes.
     const fetchTimestamp = Date.now();
-    
+
     const formattedData = data.data.map((article: APIArticleType) =>
       formatArticle(article)
     );

@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { validateCartSchema } from '@/schemas/cartItemSchema';
 import { StripeEmbeddedCheckoutLineItem } from '@stripe/stripe-js';
 import {
+  STRAPI_API_KEY,
   STRIPE_SECRET,
   generateArticleUrl,
   CANCEL_URL,
@@ -37,7 +38,13 @@ export const POST = async (req: NextRequest) => {
 
     const validatedCart = await Promise.all(
       result.data.cartData.map(async (item) => {
-        const res = await fetch(generateArticleUrl(item.id));
+        const res = await fetch(generateArticleUrl(item.id), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${STRAPI_API_KEY}`,
+          },
+        });
         const product = await res.json();
         const { data } = product;
 
