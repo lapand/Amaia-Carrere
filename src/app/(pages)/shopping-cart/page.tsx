@@ -9,6 +9,7 @@ import CartValidation from '../../../components/CartValidation';
 import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { lgBreakpoint } from '@/data/breakpoints';
+import { routes } from '@/config/config.global';
 
 export default function CartPage() {
   const detailedCartProducts = useSelector(selectDetailedCartProducts);
@@ -72,7 +73,7 @@ export default function CartPage() {
           <div className="flex-1 flex flex-col justify-center gap-16">
             <div className="text-lg text-center">Votre panier est vide</div>
             <Link
-              href="/shop"
+              href={routes.shop}
               className="transition-transform duration-300 hover:rotate-1 text-center"
             >
               <Button className="text-lg rounded-3xl px-6 py-3">

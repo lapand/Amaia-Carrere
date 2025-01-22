@@ -14,6 +14,7 @@ import {
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { mobileBreakpoint } from '@/data/breakpoints';
 import ProductSelection from '@/components/ProductSelection';
+import { routes } from '@/config/config.global';
 
 type ArticleClientType = {
   staticArticle?: ArticleCardType;
@@ -58,7 +59,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
       <div className="flex flex-col justify-center items-center gap-20">
         <p className="text-xl">Article non trouvé</p>
         <Link
-          href="/shop"
+          href={routes.shop}
           className="transition-transform duration-300 hover:rotate-3"
         >
           <Button className="text-xl rounded-3xl px-8 py-4">
@@ -88,7 +89,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         <div className="relative">
           <div className="sm:sticky top-24 xl:top-36 3xl:top-40 flex flex-col gap-6 lg:gap-10 3xl:gap-20">
             <Link
-              href="/shop"
+              href={routes.shop}
               className="max-sm:fixed max-sm:z-30 self-start group"
             >
               <Button className="flex items-center rounded-full px-5 py-1 sm:py-3">

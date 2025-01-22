@@ -14,6 +14,7 @@ import { socials } from '@/data/contact';
 import { SiteLanguageType } from '@/types/siteLanguage';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { motion } from 'framer-motion';
+import { routes } from '@/config/config.global';
 
 const langData: SiteLanguageType[] = [
   {
@@ -44,7 +45,6 @@ const langData: SiteLanguageType[] = [
 
 const Header: React.FC = () => {
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
-  const [whiteHeaderStyle, setWhiteHeaderStyle] = useState(true);
   const { i18n } = useTranslation();
   const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
   const windowWidth = useViewportWidth();
@@ -86,24 +86,6 @@ const Header: React.FC = () => {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
-  // Changement du style du header en fonction de la hauteur du scrollY
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const shouldAddStyle = window.scrollY > 50;
-  //     if (shouldAddStyle && !whiteHeaderStyle) {
-  //       setWhiteHeaderStyle(true);
-  //     } else if (!shouldAddStyle && whiteHeaderStyle) {
-  //       setWhiteHeaderStyle(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [whiteHeaderStyle]);
 
   // Pages sans header
   const pathname = usePathname();
@@ -155,16 +137,9 @@ const Header: React.FC = () => {
     <HeaderSocial key={i} {...social} />
   ));
 
-  let headerStyle = '';
-  if (whiteHeaderStyle || windowWidth < mobileBreakpoint) {
-    headerStyle = 'border-slate-500 bg-slate-100';
-  } else {
-    headerStyle = 'border-transparent';
-  }
-
   return (
     <header
-      className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 border-b transition-all duration-500 ease-in-out ${headerStyle}`}
+      className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 border-b transition-all duration-500 ease-in-out border-slate-500 bg-slate-100`}
     >
       <div className="h-full flex items-center gap-2 sm:gap-6 xl:gap-12 2xl:gap-32">
         <div className="relative">
@@ -206,7 +181,7 @@ const Header: React.FC = () => {
           )}
         </div>
         <div className="h-4/5 min-w-36 cursor-pointer">
-          <Link href="/" aria-label="Homepage" tabIndex={0}>
+          <Link href={routes.home} aria-label="Homepage" tabIndex={0}>
             <Image
               src="/amaia-logo.webp"
               alt="Site logo - Amaia Carrere"

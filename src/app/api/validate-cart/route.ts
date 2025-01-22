@@ -5,12 +5,11 @@ import { StripeEmbeddedCheckoutLineItem } from '@stripe/stripe-js';
 import {
   STRAPI_API_KEY,
   STRIPE_SECRET,
-  generateArticleUrl,
-  CANCEL_URL,
-  SUCCESS_URL,
+  buildArticleApiUrl,
   ALLOWED_COUNTRIES,
   DEFAULT_CURRENCY,
 } from '@/config/config.server';
+import { routes } from '@/config/config.global';
 import { RefreshedDataType } from '@/types/bddValidation';
 import { formatArticle } from '@/utils/formatters';
 
@@ -38,7 +37,7 @@ export const POST = async (req: NextRequest) => {
 
     const validatedCart = await Promise.all(
       result.data.cartData.map(async (item) => {
-        const res = await fetch(generateArticleUrl(item.id), {
+        const res = await fetch(buildArticleApiUrl(item.id), {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -141,8 +140,8 @@ export const POST = async (req: NextRequest) => {
           shipping_rate: shippingRate.id,
         },
       ],
-      success_url: SUCCESS_URL,
-      cancel_url: CANCEL_URL,
+      success_url: routes.stripe.success,
+      cancel_url: routes.stripe.cancel,
       line_items: validatedCart.filter(
         Boolean
       ) as NonNullable<StripeEmbeddedCheckoutLineItem>[],

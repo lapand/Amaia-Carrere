@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArticleCardType } from '@/types';
+import { routes } from '@/config/config.global';
 
 const ArticleCard: React.FC<ArticleCardType> = ({
   id,
@@ -10,8 +11,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   price,
   available,
 }) => {
-  // Formatage du titre de l'article afin qu'il soit valide dans l'URL
-  const titleSlug = encodeURIComponent(title.toLowerCase().replace(/ /g, '-'));
+  const articleURL = routes.article(title, id);
 
   let imgPlaceholder;
   if (gallery.length === 0) {
@@ -30,7 +30,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
 
   return (
     <div className="flex flex-col gap-2 max-sm:mb-8">
-      <Link href={`/shop/articles/${titleSlug}/${id}`} className="group">
+      <Link href={articleURL} className="group">
         <div className="relative w-full aspect-square border border-gray-500 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
@@ -45,7 +45,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
           </div>
         </div>
       </Link>
-      <Link href={`/shop/articles/${titleSlug}/${id}`}>
+      <Link href={articleURL}>
         <h2 className="h-5 max-sm:text-sm font-bold line-clamp-1 text-ellipsis break-words hover:text-accent">
           {title}
         </h2>

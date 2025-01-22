@@ -12,7 +12,6 @@ const Menu: React.FC = () => {
   const [isSideMenuOpened, setIsSideMenuOpened] = useState(false);
   const sideNavRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLButtonElement>(null);
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   const { t } = useTranslation('common');
   const menuArray: string[] = t('menu', { returnObjects: true }) as string[];
@@ -54,14 +53,7 @@ const Menu: React.FC = () => {
 
   const liJSX = menuArray.map((item, i) => {
     return (
-      <li
-        key={item}
-        className={`${
-          isMenuVisible
-            ? '-translate-x-0 opacity-100'
-            : '-translate-x-10 opacity-0'
-        }`}
-      >
+      <li key={item}>
         <LinkNavigation i={i} content={item} onClick={closeLateralMenu} />
       </li>
     );

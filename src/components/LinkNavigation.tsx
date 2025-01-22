@@ -1,7 +1,8 @@
+import { routes } from '@/config/config.global';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const pages: string[] = ['gallery', 'shop', 'about', 'contact'];
+const menuTags: string[] = ['gallery', 'shop', 'about', 'contact'];
 
 type LinkNavigationProps = {
   i: number;
@@ -15,16 +16,16 @@ const LinkNavigation: React.FC<LinkNavigationProps> = ({
   onClick,
 }) => {
   const pathname = usePathname();
-  const activeSection = pathname === '/' ? 'Home' : pathname.slice(1);
+  const activeSection = (
+    pathname === routes.home ? 'Home' : pathname.slice(1)
+  ).toLowerCase();
 
   return (
     <Link
-      href={`/${pages[i]}`}
+      href={`/${menuTags[i]}`}
       onClick={onClick}
-      className={`nav-link ${
-        activeSection.toLowerCase() === pages[i] ? 'active' : ''
-      }`}
-      aria-label={`Go to ${pages[i]}`}
+      className={`nav-link ${activeSection === menuTags[i] ? 'active' : ''}`}
+      aria-label={`Go to ${menuTags[i]}`}
       tabIndex={0}
     >
       {content}

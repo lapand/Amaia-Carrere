@@ -8,6 +8,7 @@ import HomeBubble from '@/components/HomeBubble';
 import { motion } from 'framer-motion';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { mobileBreakpoint } from '@/data/breakpoints';
+import { routes } from '@/config/config.global';
 
 type bubbleType = {
   x: string;
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
         />
       </h1>
       <Link
-        href="/gallery"
+        href={routes.gallery}
         className="relative z-10 transition-transform duration-300 hover:rotate-3"
       >
         <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4">

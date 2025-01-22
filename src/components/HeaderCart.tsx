@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 import { AnimatePresence, motion } from 'framer-motion';
 import useRemoveFromCart from '@/hooks/useRemoveFromCart';
+import { routes } from '@/config/config.global';
 
 const HeaderCart = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -88,7 +89,7 @@ const HeaderCart = () => {
         onHoverEnd={() => setIsHovered(false)}
         className="relative size-12 p-3 cursor-pointer"
       >
-        <Link href={'/shopping-cart'} className="relative">
+        <Link href={routes.shoppingCart} className="relative">
           <Image
             src="/shopping-cart.png"
             alt="shopping-cart-icon"
@@ -97,7 +98,7 @@ const HeaderCart = () => {
             className="size-full"
             priority
           />
-          <span className="absolute top-3/4 left-3/4 text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
+          <span className="absolute top-5 left-4 text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
             {cartItemCount}
           </span>
         </Link>
@@ -122,7 +123,7 @@ const HeaderCart = () => {
               <p className="self-center text-base">
                 Total : {totalPrice.toFixed(2)} €
               </p>
-              <Link href="/shopping-cart" className="self-center">
+              <Link href={routes.shoppingCart} className="self-center">
                 <Button className="flex items-center rounded-xl px-4 py-3">
                   <Image
                     src="/shopping-cart.png"
