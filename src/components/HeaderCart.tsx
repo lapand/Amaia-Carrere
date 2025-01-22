@@ -98,7 +98,7 @@ const HeaderCart = () => {
             className="size-full"
             priority
           />
-          <span className="absolute top-5 left-4 text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
+          <span className="absolute top-[20px] left-[16px] text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
             {cartItemCount}
           </span>
         </Link>
