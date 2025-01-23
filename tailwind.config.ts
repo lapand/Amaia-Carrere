@@ -18,7 +18,9 @@ const config: Config = {
         "4.5xl": ['2.5rem', '2.6rem'],
         "4.8xl": ['2.75rem', '3rem'],
         "5.5xl": ['3.4rem', '3.3rem'],
-        "6.5xl": ['4.1rem', '3.3rem'],
+        "6.5xl": ['4.1rem', '1'],
+        "h1-sm": ['3.5rem', '3.8rem'],
+        "h1-xl": ['3.7rem', '4.3rem'],
       },
       colors: {
         primary: {

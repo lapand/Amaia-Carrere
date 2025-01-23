@@ -13,11 +13,10 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
   available,
   selectedLanguage,
 }) => {
-
   const handleRemoveFromCart = useRemoveFromCart();
 
   return (
-    <li className="relative lg:w-[600px] xl:w-[650px] 3xl:w-[700px] h-60 sm:h-40 flex max-sm:flex-wrap justify-between items-center gap-4 sm:gap-2 lg:gap-4">
+    <li className="relative lg:w-[600px] xl:w-[650px] 3xl:w-[700px] max-sm:max-h-80 sm:h-40 flex max-sm:flex-wrap justify-between items-center gap-4 sm:gap-2 lg:gap-4">
       {/* Image */}
       <div className="size-40">
         {!gallery[0] ? (

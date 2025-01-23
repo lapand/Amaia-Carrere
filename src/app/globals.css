@@ -103,6 +103,9 @@ strong {
   .text-balance {
     text-wrap: balance;
   }
+  h1 {
+    @apply text-h1-sm xl:text-h1-xl py-1;
+  }
   .header-height {
     @apply h-[var(--header-height)];
   }

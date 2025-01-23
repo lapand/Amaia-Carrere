@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { contactSchema, TcontactSchema } from '../schemas/formSchema';
 import { useTranslation, Trans } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 const ContactForm: React.FC = () => {
@@ -85,7 +85,7 @@ const ContactForm: React.FC = () => {
           />
         </span>
       </p>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 sm:gap-3">
         <div className="flex flex-col gap-1 text-sm">
           <label htmlFor="email">{t('contact.form.input1.label')}</label>
           <motion.input
@@ -111,9 +111,18 @@ const ContactForm: React.FC = () => {
             onFocus={() => setIsFocused1(true)}
             onBlur={() => setIsFocused1(false)}
           />
-          <p className="h-5 text-red-500">
-            {errors.email && errors.email.message}
-          </p>
+          <AnimatePresence>
+            {errors.email && (
+              <motion.p
+                initial={{ height: 0 }}
+                animate={{ height: '1.25rem' }}
+                exit={{ height: 0 }}
+                className="text-red-500"
+              >
+                {errors.email.message}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
         <div className="flex flex-col gap-1 text-sm">
           <label htmlFor="subject">{t('contact.form.input2.label')}</label>
@@ -140,9 +149,18 @@ const ContactForm: React.FC = () => {
             onFocus={() => setIsFocused2(true)}
             onBlur={() => setIsFocused2(false)}
           />
-          <p className="h-5 text-red-500">
-            {errors.subject && errors.subject.message}
-          </p>
+          <AnimatePresence>
+            {errors.subject && (
+              <motion.p
+                initial={{ height: 0 }}
+                animate={{ height: '1.25rem' }}
+                exit={{ height: 0 }}
+                className="text-red-500"
+              >
+                {errors.subject.message}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
         <div className="flex flex-col gap-1 text-sm">
           <label htmlFor="message">{t('contact.form.input3.label')}</label>
@@ -168,12 +186,21 @@ const ContactForm: React.FC = () => {
             onFocus={() => setIsFocused3(true)}
             onBlur={() => setIsFocused3(false)}
           />
-          <p className="h-5 text-red-500">
-            {errors.content && errors.content.message}
-          </p>
+          <AnimatePresence>
+            {errors.content && (
+              <motion.p
+                initial={{ height: 0 }}
+                animate={{ height: '1.25rem' }}
+                exit={{ height: 0 }}
+                className="text-red-500"
+              >
+                {errors.content.message}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       </div>
-      <div className="self-center sm:self-end">
+      <div className="self-center sm:self-end mt-2">
         <Button
           type="submit"
           disabled={isSubmitting}

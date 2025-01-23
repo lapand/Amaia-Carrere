@@ -15,7 +15,7 @@ const HomeBubble = ({ idx }: { idx: number }) => {
   const mobileBubbleText = bubbles.mobile[idx];
 
   return (
-    <div className="sm:aspect-square flex items-center text-xl xs:text-2xl sm:text-2.5xl xl:text-2.5xl 3xl:text-3.5xl text-center sm:bg-white/30 sm:backdrop-blur-sm sm:border-2 border-black rounded-lg sm:rounded-full py-4 sm:py-5 px-7 transition-all duration-[1500ms]">
+    <div className="sm:aspect-square flex items-center text-xl xs:text-2xl sm:text-2.5xl xl:text-2.5xl 3xl:text-3.5xl text-center text-slate-800 sm:bg-white/30 sm:backdrop-blur-sm sm:border-2 border-slate-800 rounded-lg sm:rounded-full py-4 sm:py-5 px-7 transition-all duration-[1500ms]">
       {windowWidth < mobileBreakpoint ? (
         <Trans i18nKey={mobileBubbleText} components={{ strong: <strong /> }} />
       ) : (

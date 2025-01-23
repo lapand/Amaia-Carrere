@@ -94,7 +94,7 @@ const AddToCart: React.FC<AddToCartType> = ({
       </div>
       <Button
         onClick={handleAddToCart}
-        className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl flex justify-center items-center`}
+        className={`${btnSize} aspect-square rounded-full py-3 px-4 text-xl flex justify-center items-center`}
       >
         +
       </Button>

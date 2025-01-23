@@ -43,7 +43,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
       {quantity && quantity > 0 && (
         <Button
           onClick={() => dispatch(decrementQuantity({ id, language }))}
-          className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
+          className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
           style={{ color: 'black' }}
         >
           -
@@ -65,7 +65,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
       </div>
       <Button
         onClick={() => dispatch(addToCart({ id, language, quantity: 1 }))}
-        className={`${btnSize} aspect-square rounded-full py-0 px-0 text-xl flex justify-center items-center`}
+        className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center`}
       >
         +
       </Button>
