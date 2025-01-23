@@ -62,9 +62,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           href={routes.shop}
           className="transition-transform duration-300 hover:rotate-2"
         >
-          <Button className="text-xl px-8 py-4">
-            Retour à la boutique
-          </Button>
+          <Button className="text-xl px-8 py-4">Retour à la boutique</Button>
         </Link>
       </div>
     );
@@ -130,7 +128,9 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               Actuellement indisponible
             </div>
           ) : (
-            <ProductSelection id={id} price={price} languages={languages} />
+            <div className="max-sm:mr-3">
+              <ProductSelection id={id} price={price} languages={languages} />
+            </div>
           )}
           <hr className="border border-gray-400" />
           <div className="max-lg:text-lg">{aboutJSX}</div>

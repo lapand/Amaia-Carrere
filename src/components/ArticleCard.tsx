@@ -46,7 +46,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
         </div>
       </Link>
       <Link href={articleURL}>
-        <h2 className="h-5 max-sm:text-sm font-bold line-clamp-1 text-ellipsis break-words hover:text-accent">
+        <h2 className="h-5 max-sm:text-sm font-bold line-clamp-1 text-ellipsis break-words hover:text-[#d9860a]">
           {title}
         </h2>
       </Link>
