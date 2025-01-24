@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Amaia Carrere - Illustratrice jeunesse, fantasy, bande dessinée',
   description:
-    "Portfolio d'Amaia Carrere, présentation de mon travail de dessinatrice",
+    "Bienvenue dans mon atelier, source de rêves crayonnés. Bandes dessinées, illustrations jeunesse et oeuvres fantasy. Amaia Carrere, auteur illustratrice.",
 };
 
 export default function RootLayout({
