@@ -116,6 +116,17 @@ strong {
   .main-bg {
     @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-center bg-cover sm:bg-[length:300%] lg:bg-[length:250%] xl:bg-[length:200%] 2xl:bg-[length:150%] 3xl:bg-[length:120%];
   }
+  .hero-bg {
+    @apply bg-cover bg-center bg-no-repeat;
+    background-image: var(--bg-url-mobile);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+  }
+  @media (min-width: 640px) {
+    .hero-bg {
+      background-image: var(--bg-url-desktop);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
+    }
+  }
   .black-to-color {
     @apply grayscale brightness-0 hover:grayscale-0 hover:brightness-100;
   }

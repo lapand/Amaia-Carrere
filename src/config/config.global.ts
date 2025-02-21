@@ -21,3 +21,9 @@ export const routes = {
   about: '/about',
   contact: '/contact',
 };
+
+export const homeSectionIds = {
+  firstSection: 'first-section',
+  secondSection: 'second-section',
+  contact: 'home-contact',
+};
