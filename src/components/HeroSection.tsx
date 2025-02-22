@@ -10,6 +10,8 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 import { mobileBreakpoint } from '@/data/breakpoints';
 import { homeSectionIds, routes } from '@/config/config.global';
 import { BackgroundImage } from '@/lib/api';
+import ArrowDownAnimation from './ArrowDownAnimation ';
+import scrollToSection from '@/utils/scrollToSection';
 
 type bubbleType = {
   x: string;
@@ -77,8 +79,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="h-[110vh] sm:h-[140vh] hero-bg text-surface-900 luckiest-guy"
     >
-      <div className='relative h-screen p-10 sm:p-16 max-sm:pb-safe-bottom flex max-sm:flex-col-reverse justify-center items-center max-sm:gap-6'>
-        <h1 className="absolute z-50 top-10 lg:top-20 left-2 sm:left-10 lg:left-20 w-72 sm:w-96 lg:w-80 3xl:w-[500px] transition-all duration-[1500ms]">
+      <div className="relative h-screen p-10 sm:p-16 max-sm:pb-safe-bottom flex max-sm:flex-col-reverse flex-col justify-center items-center gap-6 xl:gap-10">
+        {/* <h1 className="absolute z-50 top-10 lg:top-20 left-2 sm:left-10 lg:left-20 w-72 sm:w-96 lg:w-80 3xl:w-[500px] transition-all duration-[1500ms]">
           <Image
             src="/amaia-logo.webp"
             alt="Site logo - Amaia Carrere"
@@ -87,23 +89,49 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
             className="size-full"
             priority
           />
+        </h1> */}
+        <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem]">
+          Amaia Carrere
         </h1>
-        <Link
-          href={routes.gallery}
-          className="relative z-10 transition-transform duration-300 hover:rotate-3"
-        >
-          <Button className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4">
-            Entrer
-          </Button>
-        </Link>
-        {windowWidth < mobileBreakpoint ? (
+        <div className="flex flex-col items-center">
+          <Link
+            href={routes.gallery}
+            className="relative z-10 transition-transform duration-300 hover:rotate-2"
+          >
+            <Button
+              className="text-2xl sm:text-3xl lg:text-2xl rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4"
+              onClick={(e) => scrollToSection(e, homeSectionIds.secondSection)}
+              aria-label={`Scroll down to the next section`}
+              tabIndex={0}
+            >
+              Entrer
+            </Button>
+          </Link>
+
+          <ArrowDownAnimation />
+        </div>
+        {/* {windowWidth < mobileBreakpoint ? (
           <div className="w-screen">{bubbles}</div>
         ) : (
           bubbles
-        )}
+        )} */}
       </div>
     </section>
   );
 };
 
 export default HeroSection;
+
+// Blur black local
+{
+  /* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-1 rounded-3xl px-6 py-2 border border-black text-white bg-black/30 backdrop-blur-sm"> */
+}
+// Blur white local
+{
+  /* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-1 bg-white/30 sm:backdrop-blur-sm rounded-3xl px-6 py-2"> */
+}
+// Overlay black global
+{/* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-2 text-white"> */}
+// .hero-bg {
+//   @apply bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-black/40;
+

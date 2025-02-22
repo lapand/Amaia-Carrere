@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   AnimatePresence,
   motion,
@@ -10,7 +10,27 @@ import {
   useTransform,
 } from 'framer-motion';
 import ArrowIcon from '/public/arrow.svg';
+import { restrictedPaths } from '@/config/config.global';
+import useRestrictedPaths from '@/hooks/useRestrictedPaths';
 
+/**
+ * Composant `ScrollProgressBtn`
+ *
+ * Ce composant affiche un bouton de progression de défilement qui devient visible
+ * lorsque l'utilisateur fait défiler la page au-delà d'un certain seuil.
+ * Le bouton permet à l'utilisateur de revenir en haut de la page lorsqu'il est cliqué.
+ *
+ * Le composant utilise les hooks `useScroll`, `useMotionValueEvent`, `useSpring` et `useTransform`
+ * pour afficher une barre de progression animée.
+ * Il est conditionnellement masqué sur certaines routes (par exemple : panier, galerie, etc.)
+ * en utilisant `useRestrictedPaths`.
+ *
+ * @param {Object} props - Propriétés du composant
+ * @param {number} [props.scrollYTrigger=200] - Seuil de défilement à partir duquel le bouton devient visible.
+ * @param {string} [props.className] - Classes CSS supplémentaires pour personnaliser l'apparence du bouton.
+ *
+ * @returns {JSX.Element|null} Le bouton de progression ou null si la route est restreinte.
+ */
 type ScrollProgressBtnType = {
   scrollYTrigger?: number;
   className?: string;
@@ -22,10 +42,15 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // Définit les routes qui ne devront pas afficher le ScrollProgressBtn
+  const { isCurrentPathRestricted } = useRestrictedPaths(
+    restrictedPaths.scrollProgressBtn
+  );
+
   // MotionValues indiquant la progression(scrollYProgress) et position(scrollY) du scroll vertical
   const { scrollYProgress, scrollY } = useScroll();
 
-  // Ecoute les changements de scrollY et déclenche l'apparition du composant lorsqu'il dépasse
+  // Ecoute les changements de scrollY et déclenche l'apparition du composant lorsqu'il dépasse le seuil scrollYTrigger
   useMotionValueEvent(scrollY, 'change', (currentY) => {
     setIsVisible(currentY > scrollYTrigger);
   });
@@ -45,9 +70,13 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
     (progress) => circumference - progress * circumference
   );
 
-  const handleScrollToTop = () => {
+  // Fonction de scroll vers le haut de la page
+  const handleScrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
+
+  // Si la route est restreinte, le composant n'est pas rendu
+  if (isCurrentPathRestricted) return null;
 
   return (
     <AnimatePresence>

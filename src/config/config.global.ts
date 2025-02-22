@@ -4,8 +4,7 @@
 
 import { slugify } from '@/utils/slugify';
 
-// Front site parameters
-export const FRONT_BASE_URL = process.env.FRONT_BASE_URL;
+// Ensemble des routes de navigation de l'application
 export const routes = {
   home: '/',
   gallery: '/gallery',
@@ -15,15 +14,20 @@ export const routes = {
   shoppingCart: '/shopping-cart',
   stripe: {
     // URLs de redirection après paiement Stripe
-    success: `${FRONT_BASE_URL}/success`,
-    cancel: `${FRONT_BASE_URL}/cancel`,
+    success: `/success`,
+    cancel: `/cancel`,
   },
   about: '/about',
   contact: '/contact',
 };
 
+// Liste des chemins de navigation restreints pour différents composants
+export const restrictedPaths: { [key: string]: string[] } = {
+  scrollProgressBtn: [routes.shoppingCart, ...Object.values(routes.stripe)],
+};
+
+// IDs des sections de la page d'accueil vers lesquelles un scroll est nécessaire
 export const homeSectionIds = {
   firstSection: 'first-section',
   secondSection: 'second-section',
-  contact: 'home-contact',
 };

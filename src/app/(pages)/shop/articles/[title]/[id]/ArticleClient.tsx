@@ -83,7 +83,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
       .map((line, index) => <div key={index}>{line || <br />}</div>);
 
     const titleJSX = (
-      <h1 className="inspiration-font thickening-2 lg:mb-10 max-lg:text-center line-clamp-2 text-ellipsis break-words">
+      <h1 className="inspiration-font text-h1-sm xl:text-h1-xl thickening-2 lg:mb-10 max-lg:text-center line-clamp-2 text-ellipsis break-words">
         {title}
       </h1>
     );

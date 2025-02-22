@@ -8,6 +8,7 @@ import {
   buildArticleApiUrl,
   ALLOWED_COUNTRIES,
   DEFAULT_CURRENCY,
+  FRONT_BASE_URL,
 } from '@/config/config.server';
 import { routes } from '@/config/config.global';
 import { RefreshedDataType } from '@/types/bddValidation';
@@ -140,8 +141,8 @@ export const POST = async (req: NextRequest) => {
           shipping_rate: shippingRate.id,
         },
       ],
-      success_url: routes.stripe.success,
-      cancel_url: routes.stripe.cancel,
+      success_url: `${FRONT_BASE_URL}${routes.stripe.success}`,
+      cancel_url: `${FRONT_BASE_URL}${routes.stripe.cancel}`,
       line_items: validatedCart.filter(
         Boolean
       ) as NonNullable<StripeEmbeddedCheckoutLineItem>[],
