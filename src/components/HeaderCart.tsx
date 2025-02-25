@@ -130,7 +130,7 @@ const HeaderCart = () => {
                     alt="shopping-cart-icon"
                     width={100}
                     height={100}
-                    className="size-5 invert"
+                    className="size-5"
                     priority
                   />
                   <span className="ml-2">Voir mon panier</span>

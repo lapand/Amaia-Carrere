@@ -17,6 +17,12 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Regards';
+  src: url('../../fonts/Regards/regards.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap'); */
@@ -40,7 +46,7 @@
 }
 @media (min-width: 1280px) {
   :root {
-    --header-height: 80px;
+    --header-height: 70px;
   }
 }
 
@@ -61,7 +67,7 @@ strong {
   position: relative;
 }
 .nav-link:focus-visible {
-  outline: 2px solid #000;
+  outline: 2px solid #fff;
 }
 .nav-link::after {
   content: '';
@@ -69,7 +75,8 @@ strong {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: black;
+  background-color: #f1f5f9;
+  border-radius: 50%;
   transform: scale(0);
   transition: transform 0.2s ease-in-out;
 }
@@ -98,6 +105,9 @@ strong {
   .londrina-shadow {
     font-family: 'Londrina Shadow', sans-serif;
   }
+  .regards {
+    font-family: 'Regards', cursive;
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -114,12 +124,24 @@ strong {
   .hero-bg {
     @apply bg-cover bg-center bg-no-repeat;
     background-image: var(--bg-url-mobile);
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 0)
+    );
   }
   @media (min-width: 640px) {
     .hero-bg {
       background-image: var(--bg-url-desktop);
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0));
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 1) 10%,
+        rgba(0, 0, 0, 1) 90%,
+        rgba(0, 0, 0, 0)
+      );
     }
   }
   .bg-mask {
@@ -201,7 +223,6 @@ strong {
     transform: scaleY(1);
   }
 }
-
 
 /**** Start **** Scroll down button ****/
 

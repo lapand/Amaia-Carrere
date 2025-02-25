@@ -47,7 +47,7 @@ const Gallery: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col gap-10 sm:gap-16">
       <div className="relative">
-        <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening-2 sm:text-right max-sm:ml-10 sm:mr-20">
+        <h1 className="sm:text-right max-sm:ml-10 sm:mr-20 text-surface-900 regards text-6xl">
           Galerie
         </h1>
       </div>

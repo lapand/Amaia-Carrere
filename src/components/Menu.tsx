@@ -81,7 +81,7 @@ const Menu: React.FC = () => {
 
       {/* Items du menu (laptop et +) */}
       {windowWidth >= menuIconBreakpoint && (
-        <ul className="flex gap-5 lg:gap-6 xl:gap-10 2xl:gap-14 3xl:gap-20 lg:text-lg 2xl:text-xl">
+        <ul className="flex gap-5 lg:gap-6 xl:gap-10 lg:text-lg">
           {liJSX}
         </ul>
       )}

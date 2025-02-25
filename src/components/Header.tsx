@@ -49,7 +49,7 @@ const langData: SiteLanguageType[] = [
 ];
 
 const Header: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isLanguagesVisible, setIsLanguagesVisible] = useState(false);
   const { i18n } = useTranslation();
   const langIconRefs = useRef<RefObject<HTMLButtonElement>[]>([]);
@@ -60,16 +60,16 @@ const Header: React.FC = () => {
   const { scrollY } = useScroll();
 
   // Ecoute les changements de scrollY et déclenche l'apparition du composant lorsqu'il dépasse le seuil sur la page d'accueil
-  useMotionValueEvent(scrollY, 'change', (currentY) => {
-    if (pathname === '/') {
-      setIsVisible(currentY > 500);
-    }
-  });
+  // useMotionValueEvent(scrollY, 'change', (currentY) => {
+  //   if (pathname === '/') {
+  //     setIsVisible(currentY > 500);
+  //   }
+  // });
 
   // Maintenir la présence du header dans le DOM sur les pages autres que la page d'accueil
-  useEffect(() => {
-    setIsVisible(pathname !== '/');
-  }, [pathname]);
+  // useEffect(() => {
+  //   setIsVisible(pathname !== '/');
+  // }, [pathname]);
 
   // Assure que langIconRefs.current est toujours un tableau de la bonne longueur
   langIconRefs.current = langData.map(
@@ -157,7 +157,7 @@ const Header: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.header
-          className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 border-b border-slate-500 bg-slate-100`}
+          className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 bg-gray-800`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -165,7 +165,7 @@ const Header: React.FC = () => {
           <div className="h-full flex items-center gap-2 sm:gap-6 xl:gap-12 2xl:gap-32">
             <div className="relative">
               <motion.button
-                className="block w-12 aspect-square p-3 cursor-pointer black-to-color"
+                className="block w-12 aspect-square p-3 cursor-pointer"
                 onClick={() => setIsLanguagesVisible((v) => !v)}
                 aria-label="Toggle language panel"
                 whileHover={{
@@ -201,7 +201,7 @@ const Header: React.FC = () => {
                 JSXLanguages
               )}
             </div>
-            <div className="h-4/5 min-w-36 cursor-pointer">
+            <div className="w-44 cursor-pointer">
               <Link href={routes.home} aria-label="Homepage" tabIndex={0}>
                 <Image
                   src="/amaia-logo.webp"
