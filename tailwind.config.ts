@@ -24,15 +24,18 @@ const config: Config = {
       },
       colors: {
         primary: {
+          200: 'rgb(251,241,225)',
           300: '#6528F7',
           400: '#501BCE',
           500: '#3B1791',
+          600: 'rgb(44,38,34)',
           800: '#211F38',
         },
         secondary: '#9333EA',
         accent: '#F59E0B',
         accent2: '#ff5500',
         accent3: 'rgb(253,186,116)',
+        accent4: 'rgb(224,155,43)',
         surface: {
           100: '#F3F4F6',
           200: '#E5E7EB',

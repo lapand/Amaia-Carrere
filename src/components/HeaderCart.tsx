@@ -90,7 +90,7 @@ const HeaderCart = () => {
         className="relative size-12 p-3 cursor-pointer"
       >
         <Link href={routes.shoppingCart} className="relative">
-          <span className="absolute top-5 left-4 text-xs bg-accent rounded-full size-5 flex justify-center items-center border border-black">
+          <span className="absolute top-5 left-4 flex justify-center items-center text-xs bg-primary-200 rounded-full size-4 text-primary-800">
             {cartItemCount}
           </span>
           <Image
@@ -119,7 +119,7 @@ const HeaderCart = () => {
             transition={{ duration: 0.3 }}
             className="fixed right-0 pt-5"
           >
-            <div className=" flex flex-col gap-4 w-48 sm:w-80 text-sm bg-gray-800 text-white rounded-l-lg shadow-lg p-5">
+            <div className=" flex flex-col gap-4 w-48 sm:w-80 text-sm bg-gray-800 text-primary-200 rounded-l-lg shadow-lg p-5">
               <p className="self-center text-base">
                 Total : {totalPrice.toFixed(2)} €
               </p>

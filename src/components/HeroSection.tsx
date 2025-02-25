@@ -77,7 +77,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
     <section
       id={homeSectionIds.firstSection}
       style={bgStyle}
-      className="h-[130vh] sm:h-[160vh] flex flex-col px-10 pb-16 section-pt text-surface-900"
+      className="h-[130vh] sm:h-[160vh] flex flex-col px-10 pb-16 section-pt"
     >
       <div className="relative flex max-sm:flex-col-reverse flex-col justify-center items-center gap-6 xl:gap-10 py-10">
         <div className="flex flex-col gap-4 regards">

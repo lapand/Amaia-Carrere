@@ -24,7 +24,7 @@ const LinkNavigation: React.FC<LinkNavigationProps> = ({
     <Link
       href={`/${menuTags[i]}`}
       onClick={onClick}
-      className={`nav-link text-slate-100 ${activeSection === menuTags[i] ? 'active' : ''}`}
+      className={`nav-link ${activeSection === menuTags[i] ? 'active' : ''}`}
       aria-label={`Go to ${menuTags[i]}`}
       tabIndex={0}
     >

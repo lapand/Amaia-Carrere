@@ -157,7 +157,7 @@ const Header: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.header
-          className={`fixed z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 bg-gray-800`}
+          className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-4 px-4 sm:px-6 xl:px-20 bg-primary-600 text-primary-200`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

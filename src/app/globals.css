@@ -33,7 +33,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 44, 38, 34;
   --background-rgb: 255, 255, 255;
   --header-height: 60px;
   --section-pt: calc(var(--header-height) + 30px);
@@ -75,7 +75,7 @@ strong {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #f1f5f9;
+  background-color: rgb(251, 241, 225);
   border-radius: 50%;
   transform: scale(0);
   transition: transform 0.2s ease-in-out;
@@ -119,7 +119,7 @@ strong {
     @apply top-[var(--header-height)] right-0;
   }
   .main-bg {
-    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-center bg-cover sm:bg-[length:300%] lg:bg-[length:250%] xl:bg-[length:200%] 2xl:bg-[length:150%] 3xl:bg-[length:120%];
+    @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-center sm:bg-[length:300%] lg:bg-[length:250%] xl:bg-[length:200%] 2xl:bg-[length:150%] 3xl:bg-[length:120%];
   }
   .hero-bg {
     @apply bg-cover bg-center bg-no-repeat;
