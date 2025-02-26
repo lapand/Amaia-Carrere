@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`relative overflow-y-scroll bg-orange-200 ${inter.className}`}
+        className={`relative overflow-y-scroll bg-amber-200 ${inter.className}`}
       >
         {/* rgb(44,38,34) */}
         {/* rgb(240,208,154) */}

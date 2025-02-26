@@ -75,10 +75,14 @@ strong {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: rgb(251, 241, 225);
+  background-color: rgb(252, 211, 77);
   border-radius: 50%;
   transform: scale(0);
   transition: transform 0.2s ease-in-out;
+}
+.active,
+.nav-link:hover {
+  color: rgb(252, 211, 77);
 }
 .nav-link:hover::after,
 .active::after {
