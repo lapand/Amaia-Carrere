@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { Trans, useTranslation } from 'react-i18next';
 import Button from './Button';
 import Link from 'next/link';
@@ -12,6 +12,14 @@ import { homeSectionIds, routes } from '@/config/config.global';
 import { BackgroundImage } from '@/lib/api';
 import ArrowDownAnimation from './ArrowDownAnimation ';
 import scrollToSection from '@/utils/scrollToSection';
+import removeContextMenu from '@/utils/removeContextMenu';
+
+const dwarfImg: ImageProps = {
+  src: '/about/lutin.png',
+  alt: 'lutin barbu au chapeau pointu tenant un crayon',
+  width: 1323,
+  height: 1389,
+};
 
 type bubbleType = {
   x: string;
@@ -79,8 +87,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="h-[130vh] sm:h-[160vh] flex flex-col pb-16 section-pt"
     >
-      <div className="relative flex max-sm:flex-col-reverse flex-col justify-center items-center gap-6 xl:gap-10 py-10">
-        <div className="flex flex-col gap-6 regards">
+      <div className="relative flex max-sm:flex-col-reverse flex-col justify-center items-center gap-6 xl:gap-20 py-10">
+        <div className="flex flex-col gap-10 regards">
           <p className="text-7xl">
             Bienvenue dans mon atelier,
             <br />
@@ -91,19 +99,31 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           </h1>
         </div>
         <div className="flex flex-col items-center">
-          <Link
-            href={routes.gallery}
-            className="relative z-10 transition-transform duration-300 hover:rotate-1"
-          >
-            <Button
-              className="rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4 luckiest-guy text-2xl sm:text-3xl lg:text-2xl"
-              onClick={(e) => scrollToSection(e, homeSectionIds.secondSection)}
-              aria-label={`Scroll down to the next section`}
-              tabIndex={0}
+          <div className="relative">
+            <Link
+              href={''}
+              className="relative z-10 transition-transform duration-300 hover:rotate-1"
             >
-              Découvrir
-            </Button>
-          </Link>
+              <Button
+                className="rounded-3xl px-8 sm:px-10 lg:px-8 py-3 sm:py-5 lg:py-4 luckiest-guy text-2xl sm:text-3xl lg:text-2xl"
+                onClick={(e) =>
+                  scrollToSection(e, homeSectionIds.secondSection)
+                }
+                aria-label={`Scroll down to the next section`}
+                tabIndex={0}
+              >
+                Découvrir
+              </Button>
+            </Link>
+            <div className="absolute right-[150%] -bottom-9 w-60">
+              <Image
+                {...dwarfImg}
+                className="size-full object-contain"
+                onContextMenu={removeContextMenu}
+                quality={100}
+              />
+            </div>
+          </div>
           <ArrowDownAnimation />
         </div>
         {/* {windowWidth < mobileBreakpoint ? (
@@ -112,7 +132,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           bubbles
         )} */}
       </div>
-      <div className="flex-1 hero-bg"></div>
+      <div className="flex-1 hero-bg gray-to-color"></div>
     </section>
   );
 };

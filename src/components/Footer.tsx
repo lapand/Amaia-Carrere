@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   const windowWidth = useViewportWidth();
 
   return (
-    <footer className="absolute z-30 bottom-0 w-full flex flex-col justify-center items-center gap-3 p-2 sm:p-4 bg-primary-600 text-primary-200">
+    <footer className="flex flex-col justify-center items-center gap-3 p-2 sm:p-4 bg-primary-600 text-primary-200">
       <p className="text-center text-sm 2xl:text-base">
         <span className="inline-block size-[18px] mr-1">
           <Image
