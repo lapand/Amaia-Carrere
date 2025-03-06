@@ -85,12 +85,14 @@ const PagesOverview = () => {
     <div id={homeSectionIds.secondSection}>
       {galleryOverviewSections}
       <section className="flex flex-col section-pt">
-        <div className="bg-primary-600">
-          <div className="m-6 border-t border-primary-200" />
-        </div>
         <div className="m-6 border border-primary-200">
           <h2 className="py-8 pl-16 regards text-4xl">Qui suis-je ?</h2>
-          <div className="flex max-sm:flex-col justify-center sm:justify-around items-center gap-5"></div>
+          <div className="flex max-sm:flex-col justify-center sm:justify-around items-center gap-5">
+            <p>
+              Dessinatrice près de Bayonne et du pays basque, je crée des
+              illustrations jeunesse, fantasy, ainsi que des bandes dessinées.
+            </p>
+          </div>
         </div>
       </section>
       <section className="flex flex-col section-pt">

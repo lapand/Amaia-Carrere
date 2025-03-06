@@ -12,7 +12,7 @@ import {
   updateArticles,
 } from '@/store/slices/articleSlice';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint, lgBreakpoint } from '@/data/breakpoints';
+import { smBreakpoint, lgBreakpoint } from '@/data/breakpoints';
 import ProductSelection from '@/components/ProductSelection';
 import { routes } from '@/config/config.global';
 
@@ -97,7 +97,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
                 <span className="text-3xl sm:text-xl transition-transform group-hover:-translate-x-1 invert">
                   &#8592;
                 </span>
-                {windowWidth >= mobileBreakpoint && (
+                {windowWidth >= smBreakpoint && (
                   <span className="ml-2 invert">Boutique</span>
                 )}
               </Button>

@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
 import HeaderCart from './HeaderCart';
 import HeaderSocial from './HeaderSocial';
-import { lgBreakpoint, mobileBreakpoint } from '@/data/breakpoints';
+import { lgBreakpoint, smBreakpoint } from '@/data/breakpoints';
 import { socials } from '@/data/contact';
 import { SiteLanguageType } from '@/types/siteLanguage';
 import useViewportWidth from '@/hooks/useViewportWidth';
@@ -218,7 +218,7 @@ const Header: React.FC = () => {
             <div>
               <Menu />
             </div>
-            {windowWidth < mobileBreakpoint && hideSocialLinks ? (
+            {windowWidth < smBreakpoint && hideSocialLinks ? (
               ''
             ) : (
               <div

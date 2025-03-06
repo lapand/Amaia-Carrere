@@ -5,7 +5,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import removeContextMenu from '../../../utils/removeContextMenu';
 import StaticImageSlider from '@/components/StaticImageSlider';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint } from '@/data/breakpoints';
+import { smBreakpoint } from '@/data/breakpoints';
 
 interface aboutSectionDrawsType extends ImageProps {
   text: React.ReactNode;
@@ -72,7 +72,7 @@ const About: React.FC = () => {
             className="w-screen sm:w-[600px] lg:w-[1000px] h-[430px] sm:h-[550px] lg:h-[430px]"
             isArrowsVisible={aboutSectionDraws.length > 1}
             arrowsPosition={
-              windowWidth < mobileBreakpoint ? 'under' : 'lateral'
+              windowWidth < smBreakpoint ? 'under' : 'lateral'
             }
           >
             {drawsComponents}

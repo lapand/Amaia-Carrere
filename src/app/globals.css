@@ -148,6 +148,15 @@ strong {
       );
     }
   }
+  .mask-image-x {
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0)
+    );
+  }
   .bg-mask {
     @apply bg-[linear-gradient(to_top,transparent_0%,rgba(255,255,255,0.1)_10%,rgba(255,255,255,0.3)_50%,rgba(255,255,255,0.1)_90%,transparent_100%),linear-gradient(to_left,transparent_0%,rgba(255,255,255,0.3)_10%,rgba(255,255,255,0.3)_90%,transparent_100%)];
   }

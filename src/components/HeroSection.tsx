@@ -7,7 +7,7 @@ import Link from 'next/link';
 import HomeBubble from '@/components/HomeBubble';
 import { motion } from 'framer-motion';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { mobileBreakpoint } from '@/data/breakpoints';
+import { smBreakpoint } from '@/data/breakpoints';
 import { homeSectionIds, routes } from '@/config/config.global';
 import { BackgroundImage } from '@/lib/api';
 import ArrowDownAnimation from './ArrowDownAnimation ';
@@ -71,7 +71,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       key={i}
       initial={{
         scale: 0,
-        rotate: windowWidth < mobileBreakpoint ? 0 : bubble.initialRotate,
+        rotate: windowWidth < smBreakpoint ? 0 : bubble.initialRotate,
       }}
       animate={{ scale: 1, rotate: 0 }}
       transition={{ delay: bubble.delay, duration: 1.5, type: 'spring' }}
@@ -126,7 +126,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           </div>
           <ArrowDownAnimation />
         </div>
-        {/* {windowWidth < mobileBreakpoint ? (
+        {/* {windowWidth < smBreakpoint ? (
           <div className="w-screen">{bubbles}</div>
         ) : (
           bubbles

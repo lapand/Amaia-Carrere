@@ -1,6 +1,6 @@
 'use client';
 
-import { mobileBreakpoint } from '@/data/breakpoints';
+import { smBreakpoint } from '@/data/breakpoints';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
             style={{ verticalAlign: 'sub' }}
           />
         </span>
-        {windowWidth < mobileBreakpoint ? (
+        {windowWidth < smBreakpoint ? (
           <Trans
             i18nKey="common:contact.copyright.mobile"
             components={{ strong: <strong /> }}
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         <div className="w-[1px] h-5 bg-black"></div>
         <li className="hover:scale-105 transition-transform duration-300">
           <Link href="/privacy-policy">
-            {windowWidth < mobileBreakpoint
+            {windowWidth < smBreakpoint
               ? 'Confidentialité'
               : 'Politique de confidentialité'}
           </Link>
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
         <div className="w-[1px] h-5 bg-black"></div>
         <li className="hover:scale-105 transition-transform duration-300">
           <Link href="/terms-and-conditions">
-            {windowWidth < mobileBreakpoint
+            {windowWidth < smBreakpoint
               ? 'CGV'
               : 'Conditions générales de vente'}
           </Link>
