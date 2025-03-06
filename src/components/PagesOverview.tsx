@@ -1,8 +1,10 @@
 'use client';
 
-import { homeSectionIds } from '@/config/config.global';
+import { homeSectionIds, routes } from '@/config/config.global';
 import { ImageProps } from 'next/image';
 import GalleryOverview from './GalleryOverview';
+import Link from 'next/link';
+import Button from './Button';
 
 const galleryOverviewData: { title: string; images: ImageProps[] }[] = [
   {
@@ -84,18 +86,31 @@ const PagesOverview = () => {
   return (
     <div id={homeSectionIds.secondSection}>
       {galleryOverviewSections}
-      <section className="flex flex-col section-pt">
-        <div className="m-6 border border-primary-200">
-          <h2 className="py-8 pl-16 regards text-4xl">Qui suis-je ?</h2>
-          <div className="flex max-sm:flex-col justify-center sm:justify-around items-center gap-5">
-            <p>
+      <section className="flex flex-col border-t-2 border-primary-600">
+        <div className="m-6">
+          <h2 className="py-8 max-sm:text-center sm:pl-16 regards text-4xl">
+            Qui suis-je ?
+          </h2>
+          <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
+            <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[35rem] text-pretty font-bold">
               Dessinatrice près de Bayonne et du pays basque, je crée des
               illustrations jeunesse, fantasy, ainsi que des bandes dessinées.
             </p>
+            <Link
+              href={routes.gallery}
+              className="transition-transform duration-300 hover:rotate-1"
+            >
+              <Button
+                className="rounded-3xl px-6 py-3 luckiest-guy text-lg"
+                aria-label={`to gallery page`}
+              >
+                En savoir plus
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
-      <section className="flex flex-col section-pt">
+      <section className="flex flex-col mt-10 sm:mt-16 lg:mt-20">
         <div className="bg-primary-600">
           <div className="m-6 border border-primary-200">
             <h2 className="py-8 pl-16 regards text-4xl bg-primary-600 text-primary-200">
