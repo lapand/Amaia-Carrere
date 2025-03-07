@@ -11,12 +11,17 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 type GalleryOverviewProps = {
   title: string;
   images: ImageProps[];
+  isLast?: boolean;
 };
 
 const timeToDeroule = 'duration-700';
 const externalMargin = 'm-4 sm:m-6';
 
-const GalleryOverview: React.FC<GalleryOverviewProps> = ({ title, images }) => {
+const GalleryOverview: React.FC<GalleryOverviewProps> = ({
+  title,
+  images,
+  isLast = false,
+}) => {
   const [activeImg, setActiveImg] = useState<number | null>(null);
 
   const windowWidth = useViewportWidth();
@@ -146,7 +151,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({ title, images }) => {
       <div className="bg-primary-600">
         <div className={`${externalMargin} border-t border-primary-200`} />
       </div>
-      {!isViewportOverXl && (
+      {!isViewportOverXl && !isLast && (
         <div className="h-40 sm:h-60 place-content-center mx-auto">
           {toGalleryBtn}
         </div>

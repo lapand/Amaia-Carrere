@@ -79,7 +79,12 @@ const galleryOverviewData: { title: string; images: ImageProps[] }[] = [
 ];
 
 const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
-  <GalleryOverview key={i} title={obj.title} images={obj.images} />
+  <GalleryOverview
+    key={i}
+    title={obj.title}
+    images={obj.images}
+    isLast={i === galleryOverviewData.length - 1}
+  />
 ));
 
 const PagesOverview = () => {
