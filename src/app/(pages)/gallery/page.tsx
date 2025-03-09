@@ -47,8 +47,10 @@ const Gallery: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col gap-10 sm:gap-16">
       <div className="relative">
-        <h1 className="sm:text-right max-sm:ml-10 sm:mr-20 text-surface-900 regards text-6xl">
-          Galerie
+        <h1 className="text-center sm:text-right sm:mr-20 text-primary-600 annie-use-your-telescope thickening-1 text-6.5xl sm:text-7xl 2xl:text-8xl">
+          <span className="underline-custom after:h-[0.375rem]">
+            &nbsp;Galerie
+          </span>
         </h1>
       </div>
       <div className="columns-2 md:columns-3 xl:columns-4 gap-3 lg:gap-5">

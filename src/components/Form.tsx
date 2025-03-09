@@ -77,14 +77,6 @@ const ContactForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-1 sm:gap-2"
     >
-      <p className="text-center leading-3 max-md:leading-7">
-        <span className="block text-4.5xl xl:text-5xl 3xl:text-6xl licorice-font thickening-1 xl:thickening-2">
-          <Trans
-            i18nKey="common:contact.form.formTitle"
-            components={{ strong: <strong /> }}
-          />
-        </span>
-      </p>
       <div className="flex flex-col gap-2 sm:gap-3">
         <div className="flex flex-col gap-1 text-sm">
           <label htmlFor="email">{t('contact.form.input1.label')}</label>

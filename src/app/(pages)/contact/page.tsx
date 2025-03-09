@@ -10,10 +10,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="lg:relative flex-1 flex flex-col justify-center gap-14 lg:gap-0">
-      <h1 className="lg:absolute lg:top-0 lg:right-0 text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening-2 sm:text-right max-sm:ml-5 sm:mr-20">
-        Contact
+      <h1 className="lg:absolute lg:top-0 lg:right-0 sm:text-right max-sm:ml-5 sm:mr-20 text-primary-600 annie-use-your-telescope thickening-1 text-6.5xl sm:text-7xl 2xl:text-8xl">
+        <span className="underline-custom after:h-[0.375rem]">
+          &nbsp;Contact
+        </span>
       </h1>
-      <div className='flex max-lg:flex-col justify-center items-center lg:items-end gap-12 xl:gap-20 3xl:gap-32'>
+      <div className="flex max-lg:flex-col justify-center items-center lg:items-end gap-12 xl:gap-20 3xl:gap-32">
         <div className="relative z-10 w-full sm:w-[450px] lg:w-[400px] 2xl:w-[450px]">
           <ContactForm />
         </div>

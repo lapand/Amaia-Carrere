@@ -21,34 +21,6 @@ const dwarfImg: ImageProps = {
   height: 1389,
 };
 
-type bubbleType = {
-  x: string;
-  y: string;
-  delay: number;
-  initialRotate: number;
-};
-
-const bubblesData: bubbleType[] = [
-  {
-    x: 'sm:left-[10%] lg:left-[55%] xl:left-[27%] 3xl:left-[30%]',
-    y: 'sm:max-lg:top-[18%] lg:max-xl:bottom-[10%] xl:top-[20%]',
-    delay: 0.5,
-    initialRotate: -500,
-  },
-  {
-    x: 'sm:left-[45%]',
-    y: 'sm:top-[15%]',
-    delay: 1,
-    initialRotate: 800,
-  },
-  {
-    x: 'sm:max-lg:right-[12%] lg:max-xl:right-[8%] xl:left-[55%]',
-    y: 'sm:bottom-[22%] lg:bottom-[8%] xl:bottom-[10%]',
-    delay: 1.5,
-    initialRotate: -600,
-  },
-];
-
 interface HomeProps {
   backgroundImage: BackgroundImage | null;
 }
@@ -66,21 +38,6 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       : 'url(/home.webp)',
   };
 
-  const bubbles = bubblesData.map((bubble, i) => (
-    <motion.div
-      key={i}
-      initial={{
-        scale: 0,
-        rotate: windowWidth < smBreakpoint ? 0 : bubble.initialRotate,
-      }}
-      animate={{ scale: 1, rotate: 0 }}
-      transition={{ delay: bubble.delay, duration: 1.5, type: 'spring' }}
-      className={`sm:absolute ${bubble.x} ${bubble.y}`}
-    >
-      <HomeBubble idx={i} />
-    </motion.div>
-  ));
-
   return (
     <section
       id={homeSectionIds.firstSection}
@@ -88,14 +45,17 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       className="h-[130vh] sm:h-[160vh] flex flex-col pb-16 section-pt"
     >
       <div className="relative flex max-sm:flex-col-reverse flex-col justify-center items-center gap-6 xl:gap-20 py-10">
-        <div className="flex flex-col gap-10 regards">
-          <p className="text-7xl">
+        <div className="flex flex-col gap-10 annie-use-your-telescope thickening-1">
+          <p className="text-9xl">
             Bienvenue dans mon atelier,
             <br />
             source de rêves crayonnés.
           </p>
-          <h1 className="text-right text-4.5xl underline decoration-4 underline-offset-4">
-            Amaia Carrere
+          <h1 className="text-right text-6xl">
+            <span className="underline-custom after:h-1">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amaia
+              Carrere
+            </span>
           </h1>
         </div>
         <div className="flex flex-col items-center">
@@ -115,7 +75,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 Découvrir
               </Button>
             </Link>
-            <div className="absolute right-[150%] -bottom-9 w-60">
+            <div className="absolute right-[105%] -bottom-9 w-[15.3rem]">
               <Image
                 {...dwarfImg}
                 className="size-full object-contain"
@@ -126,13 +86,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           </div>
           <ArrowDownAnimation />
         </div>
-        {/* {windowWidth < smBreakpoint ? (
-          <div className="w-screen">{bubbles}</div>
-        ) : (
-          bubbles
-        )} */}
       </div>
-      <div className="flex-1 hero-bg gray-to-color"></div>
+      <div className="flex-1 hero-bg gray-to-color" />
     </section>
   );
 };

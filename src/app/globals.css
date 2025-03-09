@@ -23,6 +23,13 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'AnnieUseYourTelescope';
+  src: url('../../fonts/Annie_Use_Your_Telescope/AnnieUseYourTelescope-Regular.ttf')
+    format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /* @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap'); */
@@ -62,32 +69,6 @@ strong {
   background-color: #ffcc00;
   color: #000;
 }
-.nav-link {
-  cursor: pointer;
-  position: relative;
-}
-.nav-link:focus-visible {
-  outline: 2px solid #fff;
-}
-.nav-link::after {
-  content: '';
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: rgb(252, 211, 77);
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform 0.2s ease-in-out;
-}
-.active,
-.nav-link:hover {
-  color: rgb(252, 211, 77);
-}
-.nav-link:hover::after,
-.active::after {
-  transform: scale(1);
-}
 .out-view {
   @apply opacity-0 transition duration-500;
 }
@@ -112,8 +93,14 @@ strong {
   .regards {
     font-family: 'Regards', cursive;
   }
+  .annie-use-your-telescope {
+    font-family: 'AnnieUseYourTelescope', cursive;
+  }
   .text-balance {
     text-wrap: balance;
+  }
+  .underline-custom {
+    @apply relative after:content-[''] after:block after:absolute after:left-0 after:w-full after:h-0.5 after:bg-primary-600 after:rounded-[50%];
   }
   .header-height {
     @apply h-[var(--header-height)];

@@ -24,7 +24,7 @@ const LinkNavigation: React.FC<LinkNavigationProps> = ({
     <Link
       href={`/${menuTags[i]}`}
       onClick={onClick}
-      className={`nav-link ${activeSection === menuTags[i] ? 'active' : ''}`}
+      className={`cursor-pointer transition-colors duration-200 hover:text-amber-300 underline-custom after:transition-transform after:duration-200 after:bg-amber-300 after:scale-0 hover:after:scale-100 ${activeSection === menuTags[i] ? 'text-amber-300 after:scale-100' : ''}`}
       aria-label={`Go to ${menuTags[i]}`}
       tabIndex={0}
     >

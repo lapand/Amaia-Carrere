@@ -63,17 +63,17 @@ const About: React.FC = () => {
 
   return (
     <div className="relative flex-1 max-sm:flex max-sm:flex-col">
-      <h1 className="text-6xl sm:text-6.5xl xl:text-7xl inspiration-font thickening-2 max-sm:ml-10">
-        Qui suis je ?
+      <h1 className="max-sm:text-center text-primary-600 annie-use-your-telescope thickening-1 text-6.5xl sm:text-7xl 2xl:text-8xl">
+        <span className="underline-custom after:h-[0.375rem] after:bottom-4">
+          Qui suis je ?&nbsp;
+        </span>
       </h1>
       <div className="relative sm:absolute sm:top-0 sm:left-1/2 sm:-translate-x-1/2 max-sm:flex-1 sm:h-full flex justify-center items-center">
         {aboutSectionDraws.length > 0 && (
           <StaticImageSlider
             className="w-screen sm:w-[600px] lg:w-[1000px] h-[430px] sm:h-[550px] lg:h-[430px]"
             isArrowsVisible={aboutSectionDraws.length > 1}
-            arrowsPosition={
-              windowWidth < smBreakpoint ? 'under' : 'lateral'
-            }
+            arrowsPosition={windowWidth < smBreakpoint ? 'under' : 'lateral'}
           >
             {drawsComponents}
           </StaticImageSlider>

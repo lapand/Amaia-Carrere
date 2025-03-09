@@ -102,10 +102,10 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
     <section className="flex flex-col xl:section-pt">
       <div className="z-10 bg-primary-600">
         <div className={`${externalMargin} border border-primary-200`}>
-          <h2 className="py-2 xl:py-8 xl:pl-16 max-xl:text-center regards text-2.5xl sm:text-4xl bg-primary-600 text-primary-200">
+          <h2 className="py-2 xl:py-8 xl:pl-16 max-xl:text-center regards text-2.5xl sm:text-4xl text-primary-200">
             {title}
           </h2>
-          <div className="relative h-12 sm:h-32 flex justify-center items-start bg-primary-600">
+          <div className="relative h-12 sm:h-32 flex justify-center items-start">
             <div className="flex flex-col gap-2">
               <div className="h-2">
                 <AnimatePresence>
