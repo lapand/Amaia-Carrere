@@ -84,13 +84,14 @@ const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
     key={i}
     title={obj.title}
     images={obj.images}
+    isFirst={i === 0}
     isLast={i === galleryOverviewData.length - 1}
   />
 ));
 
 const PagesOverview = () => {
   return (
-    <div id={homeSectionIds.secondSection}>
+    <div>
       {galleryOverviewSections}
       <section className="flex flex-col m-6">
         <h2 className="py-8 max-sm:text-center sm:pl-16 regards text-4xl">

@@ -17,6 +17,8 @@ import ArrowDownAnimation from './ArrowDownAnimation ';
 import scrollToSection from '@/utils/scrollToSection';
 import removeContextMenu from '@/utils/removeContextMenu';
 import { useRef } from 'react';
+import useViewportWidth from '@/hooks/useViewportWidth';
+import { smBreakpoint } from '@/data/breakpoints';
 
 const dwarfImg: ImageProps = {
   src: '/about/lutin.png',
@@ -30,6 +32,8 @@ interface HomeProps {
 }
 
 const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
+  const windowWidth = useViewportWidth();
+  const isMobileViewport = windowWidth < smBreakpoint;
   const heroBgRef = useRef<HTMLDivElement>(null);
 
   const bgStyle: React.CSSProperties & { [key: string]: string } = {
@@ -55,34 +59,33 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
     restDelta: 0.001,
   });
 
-  const maskImageProgress = useTransform(
-    smoothProgress,
-    [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-    [
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 15%), rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0) 15%), rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 100%`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 85%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%)`,
-      `linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 1) 100%, rgba(0, 0, 0, 1) 100%)`,
-    ]
+  const maskImageProgress = useTransform(smoothProgress, (progress) => {
+    const start = progress * 100;
+    let startOpacity = 0;
+    if (progress < 0.1) {
+      startOpacity = progress / 0.1;
+    } else {
+      startOpacity = 1;
+    }
+
+    return `linear-gradient(to top left, rgba(0, 0, 0, ${startOpacity}), rgba(0, 0, 0, ${startOpacity}) ${start}%, rgba(0, 0, 0, 0) ${
+      start + 5
+    }%)`;
+  });
+
+  const pointerEventsMotionValue = useTransform(smoothProgress, (progress) =>
+    progress < 0.3 ? 'none' : 'auto'
   );
 
-  useMotionValueEvent(maskImageProgress, 'change', (latest) => {
-    console.log('maskImageProgress: ', latest);
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    console.log('scrollYProgress: ', latest);
   });
 
   return (
     <section
       id={homeSectionIds.firstSection}
       style={bgStyle}
-      // className="h-[130vh] sm:h-[160vh] flex flex-col pb-16 section-pt"
-      className="flex flex-col pb-16"
+      className="flex flex-col"
     >
       <div className="sticky top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 p-2">
         <div className="flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
@@ -99,7 +102,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           <div className="relative">
             <Link
               href={''}
-              className="relative z-10 transition-transform duration-300 hover:rotate-1"
+              className="relative transition-transform duration-300 hover:rotate-1"
             >
               <Button
                 className="rounded-3xl px-8 lg:px-8 py-3 lg:py-4 luckiest-guy text-xl lg:text-2xl"
@@ -126,22 +129,24 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
         <motion.div
           className="absolute top-0 left-0 hero-height w-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `var(--bg-url-desktop)`,
+            backgroundImage: isMobileViewport
+              ? `var(--bg-url-mobile)`
+              : `var(--bg-url-desktop)`,
             maskImage: maskImageProgress,
+            pointerEvents: pointerEventsMotionValue,
           }}
         />
       </div>
-      <div ref={heroBgRef} className="hero-height" />
+      <div
+        ref={heroBgRef}
+        id={homeSectionIds.secondSection}
+        className="hero-height"
+      />
     </section>
   );
 };
 
 export default HeroSection;
-
-// const heroBgX = useTransform(smoothProgress, [0, 1], ['100%', '0%']);
-// useMotionValueEvent(heroBgX, 'change', (latest) => {
-//   console.log('heroBgX: ', latest);
-// });
 
 // Blur black local
 {

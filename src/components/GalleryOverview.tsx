@@ -11,6 +11,7 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 type GalleryOverviewProps = {
   title: string;
   images: ImageProps[];
+  isFirst?: boolean;
   isLast?: boolean;
 };
 
@@ -20,6 +21,7 @@ const externalMargin = 'm-4 sm:m-6';
 const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   title,
   images,
+  isFirst = false,
   isLast = false,
 }) => {
   const [activeImg, setActiveImg] = useState<number | null>(null);
@@ -99,7 +101,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   ));
 
   return (
-    <section className="flex flex-col xl:section-pt">
+    <section className={`flex flex-col ${isFirst ? '' : 'xl:section-pt'}`}>
       <div className="z-10 bg-primary-600">
         <div className={`${externalMargin} border border-primary-200`}>
           <h2 className="py-2 xl:py-8 xl:pl-16 max-xl:text-center regards text-2.5xl sm:text-4xl text-primary-200">
