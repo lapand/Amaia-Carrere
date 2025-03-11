@@ -1,28 +1,28 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       screens: {
-        'xs': '350px',
+        xs: '350px',
         '3xl': '1800px',
       },
       fontSize: {
-        "2.5xl": ['1.75rem', '2.08rem'],
-        "3.5xl": ['2rem', '2.35rem'],
-        "4.5xl": ['2.5rem', '2.6rem'],
-        "4.8xl": ['2.75rem', '3rem'],
-        "5.5xl": ['3.4rem', '3.3rem'],
-        "6.5xl": ['4.1rem', '1'],
-        "8xl": ['5rem', '1'],
-        "9xl": ['6rem', '1'],
-        "h1-sm": ['3.5rem', '3.8rem'],
-        "h1-xl": ['3.7rem', '4.3rem'],
+        '2.5xl': ['1.75rem', '2.08rem'],
+        '3.5xl': ['2rem', '2.35rem'],
+        '4.5xl': ['2.5rem', '2.6rem'],
+        '4.8xl': ['2.75rem', '3rem'],
+        '5.5xl': ['3.4rem', '3.3rem'],
+        '6.5xl': ['4.1rem', '1'],
+        '8xl': ['5rem', '1'],
+        '9xl': ['6rem', '1'],
+        'h1-sm': ['3.5rem', '3.8rem'],
+        'h1-xl': ['3.7rem', '4.3rem'],
       },
       colors: {
         primary: {
@@ -49,29 +49,40 @@ const config: Config = {
           800: '#1F2937',
           900: '#111827',
         },
+        terracotta: {
+          100: '#f4d1c9',
+          200: '#e9b2a5',
+          300: '#dc8f7d',
+          400: '#cf6e5d',
+          500: '#ba4a39',
+          600: '#9f3d30',
+          700: '#832f26',
+          800: '#68241d',
+          900: '#4d1914',
+        },
       },
       animation: {
-        shine: "shine 2s linear",
-        bounce2: "bounce2 .8s 1 forwards"
+        shine: 'shine 2s linear',
+        bounce2: 'bounce2 .8s 1 forwards',
       },
       keyframes: {
         shine: {
-          '0%': {left: '-100px'},
-          '20%': {left: '100%'},
-          '100%': {left: '100%'},
+          '0%': { left: '-100px' },
+          '20%': { left: '100%' },
+          '100%': { left: '100%' },
         },
         bounce2: {
-            '0%': {
-                transform: "translate(50%, 0)",
-                "animation-timing-function": "cubic-bezier(0.8,0,1,1)",
-            },
-            '50%': {
-                transform: "translate(50%, 25%)",
-                "animation-timing-function": "cubic-bezier(0,0,0.2,1)",
-            },
-            '100%': {
-                transform: "translate(50%, 0)",
-            },
+          '0%': {
+            transform: 'translate(50%, 0)',
+            'animation-timing-function': 'cubic-bezier(0.8,0,1,1)',
+          },
+          '50%': {
+            transform: 'translate(50%, 25%)',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)',
+          },
+          '100%': {
+            transform: 'translate(50%, 0)',
+          },
         },
       },
       backgroundSize: {

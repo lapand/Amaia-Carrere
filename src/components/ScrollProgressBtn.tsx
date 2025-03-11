@@ -102,7 +102,7 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
           }}
         >
           <button
-            className={`relative size-12 flex justify-center items-center bg-accent text-white font-bold rounded-full border border-black`}
+            className={`relative size-12 flex justify-center items-center bg-terracotta-500 text-white font-bold rounded-full border border-black`}
             onClick={handleScrollToTop}
           >
             <motion.svg
@@ -110,7 +110,8 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
               viewBox="0 0 100 100"
             >
               <motion.circle
-                className="text-accent2"
+                // className="text-accent2"
+                className="text-terracotta-800"
                 stroke="currentColor"
                 strokeWidth="5"
                 fill="transparent"

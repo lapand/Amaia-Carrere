@@ -101,7 +101,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   ));
 
   return (
-    <section className={`flex flex-col ${isFirst ? '' : 'xl:section-pt'}`}>
+    <section className={`flex flex-col xl:section-pt`}>
       <div className="z-10 bg-primary-600">
         <div className={`${externalMargin} border border-primary-200`}>
           <h2 className="py-2 xl:py-8 xl:pl-16 max-xl:text-center regards text-2.5xl sm:text-4xl text-primary-200">
@@ -112,22 +112,28 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
               <div className="h-2">
                 <AnimatePresence>
                   {activeImg !== null && (
-                    <div
-                      className={`h-full place-items-center transition-transform ${timeToDeroule}`}
-                      style={{
+                    <motion.div
+                      className={`h-full place-items-center`}
+                      animate={{
                         width: `${itemWidth}rem`,
                         transform: `translateX(${
                           activeImg * (itemGap + itemWidth)
                         }rem)`,
                       }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 130,
+                        damping: 12,
+                        mass: 1,
+                      }}
                     >
                       <motion.div
-                        className="h-full w-10 sm:w-16 rounded-full bg-amber-400"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        className="h-full w-10 sm:w-16 rounded-full bg-terracotta-500"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
                       />
-                    </div>
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </div>

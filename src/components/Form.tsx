@@ -79,27 +79,32 @@ const ContactForm: React.FC = () => {
     >
       <div className="flex flex-col gap-2 sm:gap-3">
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="email">{t('contact.form.input1.label')}</label>
-          <motion.input
-            {...register('email')}
-            type="email"
-            id="email"
-            placeholder={t('contact.form.input1.placeholder')}
-            className="p-2 rounded-md border-[1px] outline-none placeholder:text-orange-900 placeholder:italic "
-            aria-invalid={errors.email ? 'true' : 'false'}
-            aria-describedby={
-              errors.email ? `${errors.email.message}` : undefined
-            }
+          <motion.label
+            htmlFor="email"
+            className="px-2 py-1 rounded-md font-bold"
             animate={{
-              background: isFocused1
-                ? 'linear-gradient(90deg, rgb(251 146 60 / 0) 40%, rgb(251 146 60 / 1))'
-                : 'linear-gradient(90deg, rgb(253 186 116 / 1) 0%, rgb(253 186 116 / 0))',
-              borderColor: isFocused1 ? 'rgb(251 146 60)' : '',
+              background: !isFocused1
+                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
+                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+              color: isFocused1 ? 'white' : '',
             }}
             transition={{
               duration: 0.5,
               ease: 'easeInOut',
             }}
+          >
+            {t('contact.form.input1.label')}
+          </motion.label>
+          <motion.input
+            {...register('email')}
+            type="email"
+            id="email"
+            placeholder={t('contact.form.input1.placeholder')}
+            className="p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            aria-invalid={errors.email ? 'true' : 'false'}
+            aria-describedby={
+              errors.email ? `${errors.email.message}` : undefined
+            }
             onFocus={() => setIsFocused1(true)}
             onBlur={() => setIsFocused1(false)}
           />
@@ -117,27 +122,32 @@ const ContactForm: React.FC = () => {
           </AnimatePresence>
         </div>
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="subject">{t('contact.form.input2.label')}</label>
-          <motion.input
-            {...register('subject')}
-            type="text"
-            id="subject"
-            placeholder={t('contact.form.input2.placeholder')}
-            className="p-2 rounded-md border-[1px] outline-none placeholder:text-orange-900 placeholder:italic"
-            aria-invalid={errors.subject ? 'true' : 'false'}
-            aria-describedby={
-              errors.subject ? `${errors.subject.message}` : undefined
-            }
+          <motion.label
+            htmlFor="subject"
+            className="px-2 py-1 rounded-md font-bold"
             animate={{
-              background: isFocused2
-                ? 'linear-gradient(90deg, rgb(251 146 60 / 0) 40%, rgb(251 146 60 / 1))'
-                : 'linear-gradient(90deg, rgb(253 186 116 / 1) 0%, rgb(253 186 116 / 0))',
-              borderColor: isFocused2 ? 'rgb(251 146 60)' : '',
+              background: !isFocused2
+                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
+                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+              color: isFocused2 ? 'white' : '',
             }}
             transition={{
               duration: 0.5,
               ease: 'easeInOut',
             }}
+          >
+            {t('contact.form.input2.label')}
+          </motion.label>
+          <motion.input
+            {...register('subject')}
+            type="text"
+            id="subject"
+            placeholder={t('contact.form.input2.placeholder')}
+            className="p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            aria-invalid={errors.subject ? 'true' : 'false'}
+            aria-describedby={
+              errors.subject ? `${errors.subject.message}` : undefined
+            }
             onFocus={() => setIsFocused2(true)}
             onBlur={() => setIsFocused2(false)}
           />
@@ -155,26 +165,31 @@ const ContactForm: React.FC = () => {
           </AnimatePresence>
         </div>
         <div className="flex flex-col gap-1 text-sm">
-          <label htmlFor="message">{t('contact.form.input3.label')}</label>
-          <motion.textarea
-            {...register('content')}
-            id="message"
-            placeholder={t('contact.form.input3.placeholder')}
-            className="h-32 p-2 rounded-md border-[1px] outline-none placeholder:text-orange-900 placeholder:italic"
-            aria-invalid={errors.content ? 'true' : 'false'}
-            aria-describedby={
-              errors.content ? `${errors.content.message}` : undefined
-            }
+          <motion.label
+            htmlFor="message"
+            className="px-2 py-1 rounded-md font-bold"
             animate={{
-              background: isFocused3
-                ? 'linear-gradient(90deg, rgb(251 146 60 / 0) 40%, rgb(251 146 60 / 1))'
-                : 'linear-gradient(90deg, rgb(253 186 116 / 1) 0%, rgb(253 186 116 / 0))',
-              borderColor: isFocused3 ? 'rgb(251 146 60)' : '',
+              background: !isFocused3
+                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
+                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+              color: isFocused3 ? 'white' : '',
             }}
             transition={{
               duration: 0.5,
               ease: 'easeInOut',
             }}
+          >
+            {t('contact.form.input3.label')}
+          </motion.label>
+          <motion.textarea
+            {...register('content')}
+            id="message"
+            placeholder={t('contact.form.input3.placeholder')}
+            className="h-32 p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            aria-invalid={errors.content ? 'true' : 'false'}
+            aria-describedby={
+              errors.content ? `${errors.content.message}` : undefined
+            }
             onFocus={() => setIsFocused3(true)}
             onBlur={() => setIsFocused3(false)}
           />
@@ -196,7 +211,7 @@ const ContactForm: React.FC = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="sm:text-sm 3xl:text-base px-9 sm:px-6 py-3 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg"
+          className="sm:text-sm 3xl:text-base px-9 sm:px-6 py-3 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg font-bold"
         >
           {t('contact.form.submit')}
         </Button>

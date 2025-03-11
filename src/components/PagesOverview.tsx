@@ -91,10 +91,12 @@ const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
 
 const PagesOverview = () => {
   return (
-    <div>
-      {galleryOverviewSections}
-      <section className="flex flex-col m-6">
-        <h2 className="py-8 max-sm:text-center sm:pl-16 regards text-4xl">
+    <div className="flex flex-col">
+      <div className="bg-primary-600">
+        <div className={`m-4 sm:m-6 border-t border-primary-200`} />
+      </div>
+      <section className="flex flex-col gap-10 sm:gap-16 m-6 sm:m-10 lg:m-20">
+        <h2 className="text-center regards text-4xl">
           Qui suis-je ?
         </h2>
         <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
@@ -117,6 +119,7 @@ const PagesOverview = () => {
           </div>
         </div>
       </section>
+      {galleryOverviewSections}
       <section className="flex flex-col mt-10 sm:mt-16 lg:mt-20 text-primary-200">
         <div className="bg-primary-600">
           <div className="m-6 border border-primary-200">
