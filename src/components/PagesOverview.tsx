@@ -99,12 +99,12 @@ const PagesOverview = () => {
         <h2 className="text-center regards text-4xl">
           Qui suis-je ?
         </h2>
-        <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-pretty annie-use-your-telescope text-3xl font-bold">
+        <div className="flex flex-col justify-center items-center gap-8 sm:gap-12">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold">
             Dessinatrice près de Bayonne et du pays basque, je crée des
             illustrations jeunesse, fantasy, ainsi que des bandes dessinées.
           </p>
-          <div className="w-full sm:w-[450px] lg:w-[400px] 2xl:w-[450px] flex justify-center">
+          <div className="flex justify-center">
             <Link
               href={routes.gallery}
               className="transition-transform duration-300 hover:rotate-1"
