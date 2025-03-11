@@ -1,7 +1,7 @@
 const ArrowDownAnimation = () => {
   return (
     <span
-      className="absolute max-sm:right-5 max-sm:bottom-28 sm:relative w-10 h-20"
+      className="relative w-10 h-20"
     >
       <span className="scroll-down-btn scroll-down-btn1">
         <span></span>

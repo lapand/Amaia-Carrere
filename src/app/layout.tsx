@@ -27,18 +27,15 @@ export default function RootLayout({
       <body
         className={`relative overflow-y-scroll bg-amber-200 ${inter.className}`}
       >
-        {/* rgb(44,38,34) */}
-        {/* rgb(240,208,154) */}
-        {/* #62564e */}
         <PreloadResources />
         <PageLoader>
           <ReduxProvider>
             <ClientI18nProvider>
-              {/* Le bg global du site est attribué à une div fixed car "background-attachment: fixed" n'est pas supporté par Safari sur iOS */}
-              <div className="relative min-h-screen flex flex-col m-4 sm:m-6 border border-gray-800">
+              <div className="relative min-h-screen flex flex-col page-margin border border-gray-800">
                 <Header />
                 <main className="relative flex-1 flex flex-col">
-                  {children}{' '}
+                  {children}
+                  {/* Le bg global du site est attribué à une div fixed car "background-attachment: fixed" n'est pas supporté par Safari sur iOS */}
                   <div className="absolute z-[-1] size-full main-bg" />
                 </main>
                 <Footer />

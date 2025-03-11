@@ -44,11 +44,13 @@
   --background-rgb: 255, 255, 255;
   --header-height: 60px;
   --section-pt: calc(var(--header-height) + 30px);
+  --page-margin: 1.5rem;
   --safe-area-bottom: env(safe-area-inset-bottom);
 }
 @media (max-width: 767px) {
   :root {
     --header-height: 70px;
+    --page-margin: 1rem;
   }
 }
 @media (min-width: 1280px) {
@@ -102,12 +104,19 @@ strong {
   .underline-custom {
     @apply relative after:content-[''] after:block after:absolute after:left-0 after:w-full after:h-0.5 after:bg-primary-600 after:rounded-[50%];
   }
+  .page-margin {
+    @apply m-[var(--page-margin)];
+  }
   .header-height {
     @apply h-[var(--header-height)];
   }
   .side-nav {
     height: calc(100vh - var(--header-height));
-    @apply top-[var(--header-height)] right-0;
+    top: 100%;
+    right: 0;
+  }
+  .hero-height {
+    height: calc(100vh - var(--header-height) - var(--page-margin));
   }
   .main-bg {
     @apply bg-[url('/bg-toile-mobile.jpg')] sm:bg-[url('/bg-toile.jpg')] bg-center sm:bg-[length:300%] lg:bg-[length:250%] xl:bg-[length:200%] 2xl:bg-[length:150%] 3xl:bg-[length:120%];

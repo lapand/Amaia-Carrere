@@ -88,7 +88,7 @@ const Menu: React.FC = () => {
 
       {/* Volet latéral (mobile & tablette) */}
       <TransitionDOM
-        className="fixed side-nav w-72 p-10 bg-surface-200/70 border-2 border-l-surface-300"
+        className="absolute side-nav w-72 p-10 bg-primary-600/80 border-2 border-primary-600"
         from={{ x: 300 }}
         style={{ transform: `translate3d(0, 0, 0)` }}
         visible={windowWidth <= menuIconBreakpoint && isSideMenuOpened}
