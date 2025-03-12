@@ -11,6 +11,7 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 type GalleryOverviewProps = {
   title: string;
   images: ImageProps[];
+  colorTheme?: 'light' | 'dark';
   isFirst?: boolean;
   isLast?: boolean;
 };
@@ -21,6 +22,7 @@ const externalMargin = 'm-4 sm:m-6';
 const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   title,
   images,
+  colorTheme = 'dark',
   isFirst = false,
   isLast = false,
 }) => {
@@ -38,6 +40,17 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   let hauteurImgDeroulante = 15;
   if (windowWidth >= breakpoints.xs) hauteurImgDeroulante = 18;
   if (windowWidth >= breakpoints.sm) hauteurImgDeroulante = 40;
+
+  const colors = {
+    bg: 'bg-primary-600',
+    text: 'text-primary-200',
+    border: 'border-primary-200',
+  };
+  if (colorTheme === 'light') {
+    colors.bg = '';
+    colors.text = 'text-primary-600';
+    colors.border = 'border-primary-600';
+  }
 
   const toGalleryBtn = (
     <Link
@@ -57,10 +70,12 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
     <div
       key={i}
       style={{ width: `${itemWidth}rem`, height: `${itemWidth}rem` }}
-      className="bg-primary-600 border border-primary-200 p-3"
+      className={`${colors.border} ${
+        colorTheme === 'light' ? 'border-2' : 'border'
+      } ${colorTheme === 'light' ? 'bg-amber-50' : colors.bg} p-3`}
     >
       <button
-        className="size-full border border-primary-200"
+        className={`${colors.border} size-full border`}
         onClick={() => (activeImg === i ? setActiveImg(null) : setActiveImg(i))}
       >
         <Image
@@ -101,10 +116,16 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   ));
 
   return (
-    <section className={`flex flex-col xl:section-pt`}>
-      <div className="z-10 bg-primary-600">
-        <div className={`${externalMargin} border border-primary-200`}>
-          <h2 className="py-2 xl:py-8 xl:pl-16 max-xl:text-center regards text-2.5xl sm:text-4xl text-primary-200">
+    <section className={`flex flex-col`}>
+      <div className={`${colors.bg} z-10`}>
+        <div
+          className={`${externalMargin} ${colors.border} ${
+            colorTheme === 'light' ? 'border-2' : 'border'
+          } flex flex-col sm:gap-6`}
+        >
+          <h2
+            className={`${colors.text} py-2 xl:py-8 text-center regards text-2.5xl sm:text-4xl`}
+          >
             {title}
           </h2>
           <div className="relative h-12 sm:h-32 flex justify-center items-start">
@@ -156,8 +177,12 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
           }}
         />
       </div>
-      <div className="bg-primary-600">
-        <div className={`${externalMargin} border-t border-primary-200`} />
+      <div className={`${colors.bg}`}>
+        <div
+          className={`${externalMargin} ${colors.border} ${
+            colorTheme === 'light' ? 'border-t-2' : 'border-t'
+          }`}
+        />
       </div>
       {!isViewportOverXl && !isLast && (
         <div className="h-40 sm:h-60 place-content-center mx-auto">

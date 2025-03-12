@@ -6,6 +6,7 @@ import GalleryOverview from './GalleryOverview';
 import Link from 'next/link';
 import Button from './Button';
 import ContactForm from './Form';
+import Separator from './Separator';
 
 const galleryOverviewData: { title: string; images: ImageProps[] }[] = [
   {
@@ -84,6 +85,7 @@ const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
     key={i}
     title={obj.title}
     images={obj.images}
+    colorTheme={i % 2 !== 0 ? 'light' : 'dark'}
     isFirst={i === 0}
     isLast={i === galleryOverviewData.length - 1}
   />
@@ -91,18 +93,16 @@ const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
 
 const PagesOverview = () => {
   return (
-    <div className="flex flex-col">
-      <div className="bg-primary-600">
-        <div className={`m-4 sm:m-6 border-t border-primary-200`} />
-      </div>
-      <section className="flex flex-col gap-10 sm:gap-16 m-6 sm:m-10 lg:m-20">
-        <h2 className="text-center regards text-4xl">
-          Qui suis-je ?
-        </h2>
+    <div className="flex flex-col gap-6 sm:gap-10 lg:gap-20">
+      <Separator size="sm" />
+      <section className="flex flex-col gap-10 sm:gap-16">
+        <h2 className="text-center regards text-4xl">Qui suis-je ?</h2>
         <div className="flex flex-col justify-center items-center gap-8 sm:gap-12">
           <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold">
-            Dessinatrice près de Bayonne et du pays basque, je crée des
-            illustrations jeunesse, fantasy, ainsi que des bandes dessinées.
+            Dessinatrice près de Bayonne et du pays basque.
+            <br />
+            Je crée des illustrations jeunesse, fantasy, ainsi que des bandes
+            dessinées.
           </p>
           <div className="flex justify-center">
             <Link
@@ -120,35 +120,33 @@ const PagesOverview = () => {
         </div>
       </section>
       {galleryOverviewSections}
-      <section className="flex flex-col mt-10 sm:mt-16 lg:mt-20 text-primary-200">
-        <div className="bg-primary-600">
-          <div className="m-6 border border-primary-200">
-            <h2 className="py-8 sm:pl-16 max-sm:text-center regards text-4xl">
-              Ma boutique en ligne
-            </h2>
-            <div className="h-12 sm:h-32 flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
-              <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] annie-use-your-telescope text-3xl font-bold">
-                Découvrez mes articles en vente ici =&gt;
-              </p>
-              <div className="ml-40">
-                <Link
-                  href={routes.shop}
-                  className="transition-transform duration-300 hover:rotate-1"
-                >
-                  <Button
-                    className="rounded-3xl px-6 py-3 luckiest-guy text-lg"
-                    aria-label={`to shop page`}
-                  >
-                    Voir les produits
-                  </Button>
-                </Link>
-              </div>
-            </div>
+      <section className="flex flex-col gap-10 sm:gap-16 mt-8">
+        <h2 className="text-center regards text-4xl">Ma boutique</h2>
+        <div className="flex flex-col justify-center items-center gap-6">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold">
+            Découvrez mes articles en vente ici
+          </p>
+          <span className="inline-block rotate-90 text-4xl font-bold annie-use-your-telescope">
+            =&gt;
+          </span>
+          <div className="flex justify-center">
+            <Link
+              href={routes.shop}
+              className="transition-transform duration-300 hover:rotate-1"
+            >
+              <Button
+                className="rounded-3xl px-6 py-3 luckiest-guy text-lg"
+                aria-label={`to shop page`}
+              >
+                Voir les produits
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
-      <section className="flex flex-col pb-10 xl:pb-12 3xl:pb-16">
-        <h2 className="m-6 py-8 pl-16 regards text-4xl">Me contacter</h2>
+      <Separator size="sm" />
+      <section className="flex flex-col gap-10 sm:gap-16 pb-10 xl:pb-12 3xl:pb-16">
+        <h2 className="text-center regards text-4xl">Me contacter</h2>
         <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
           <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] annie-use-your-telescope text-3xl font-bold">
             Si vous êtes intéressés par des projets d'illustrations, vous pouvez
