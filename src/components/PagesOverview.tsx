@@ -93,12 +93,12 @@ const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
 
 const PagesOverview = () => {
   return (
-    <div className="flex flex-col gap-6 sm:gap-10 lg:gap-20">
+    <div className="flex flex-col gap-10 sm:gap-12 lg:gap-20">
       <Separator size="sm" />
       <section className="flex flex-col gap-10 sm:gap-16">
         <h2 className="text-center regards text-4xl">Qui suis-je ?</h2>
         <div className="flex flex-col justify-center items-center gap-8 sm:gap-12">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold max-sm:px-4">
             Dessinatrice près de Bayonne et du pays basque.
             <br />
             Je crée des illustrations jeunesse, fantasy, ainsi que des bandes
@@ -123,7 +123,7 @@ const PagesOverview = () => {
       <section className="flex flex-col gap-10 sm:gap-16 mt-8">
         <h2 className="text-center regards text-4xl">Ma boutique</h2>
         <div className="flex flex-col justify-center items-center gap-6">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold max-sm:px-4">
             Découvrez mes articles en vente ici
           </p>
           <span className="inline-block rotate-90 text-4xl font-bold annie-use-your-telescope">
@@ -148,7 +148,7 @@ const PagesOverview = () => {
       <section className="flex flex-col gap-10 sm:gap-16 pb-10 xl:pb-12 3xl:pb-16">
         <h2 className="text-center regards text-4xl">Me contacter</h2>
         <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] annie-use-your-telescope text-3xl font-bold">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] annie-use-your-telescope text-3xl font-bold max-sm:px-4">
             Si vous êtes intéressés par des projets d'illustrations, vous pouvez
             m'en faire part via le formulaire de contact.
             <br />

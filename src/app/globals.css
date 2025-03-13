@@ -102,7 +102,7 @@ strong {
     text-wrap: balance;
   }
   .underline-custom {
-    @apply relative after:content-[''] after:block after:absolute after:left-0 after:w-full after:h-0.5 after:bg-primary-600 after:rounded-[50%];
+    @apply relative after:content-[''] after:block after:absolute after:right-0 after:w-full after:h-0.5 after:bg-primary-600 after:rounded-[50%];
   }
   .page-margin {
     @apply m-[var(--page-margin)];

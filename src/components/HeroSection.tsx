@@ -87,15 +87,15 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="flex flex-col"
     >
-      <div className="sticky top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 p-2">
+      <div className="sticky top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 p-2 max-sm:-mt-10">
         <div className="flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
-          <p className="text-center text-5xl xs:text-5.5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
+          <p className="text-center text-4.5xl xs:text-5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
             Bienvenue dans mon atelier,
-            <br />
+            {!isMobileViewport ? <br /> : ' '}
             source de rêves crayonnés.
           </p>
-          <h1 className="text-right text-4.5xl sm:text-5xl lg:text-5.5xl xl:text-6xl">
-            <span className="underline-custom after:h-1">Amaia Carrere</span>
+          <h1 className="text-right text-4.5xl sm:text-5xl lg:text-5.5xl xl:text-6xl underline-custom after:h-1 after:w-52 sm:after:w-[32rem] lg:after:w-[37.6rem]">
+            Amaia Carrere
           </h1>
         </div>
         <div className="flex flex-col items-center">
@@ -115,7 +115,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 Découvrir
               </Button>
             </Link>
-            <div className="absolute right-[145%] lg:right-[145%] 3xl:right-[105%] -bottom-9 w-[13.3rem] lg:w-[15.3rem]">
+            <div className="absolute right-[50%] xs:right-[65%] sm:right-[145%] lg:right-[164%] xl:right-[145%] 3xl:right-[105%] bottom-[-3.2rem] sm:-bottom-9 lg:-bottom-10 w-[12rem] sm:w-[14rem] lg:w-[15.3rem]">
               <Image
                 {...dwarfImg}
                 className="size-full object-contain"
