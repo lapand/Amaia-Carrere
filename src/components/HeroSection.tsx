@@ -12,13 +12,13 @@ import {
   useTransform,
 } from 'framer-motion';
 import { homeSectionIds } from '@/config/config.global';
-import { BackgroundImage } from '@/lib/api';
 import ArrowDownAnimation from './ArrowDownAnimation ';
 import scrollToSection from '@/utils/scrollToSection';
 import removeContextMenu from '@/utils/removeContextMenu';
 import { useRef } from 'react';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { smBreakpoint } from '@/data/breakpoints';
+import { HeroBg } from '@/types';
 
 const dwarfImg: ImageProps = {
   src: '/about/lutin.png',
@@ -28,7 +28,7 @@ const dwarfImg: ImageProps = {
 };
 
 interface HomeProps {
-  backgroundImage: BackgroundImage | null;
+  backgroundImage: HeroBg;
 }
 
 const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
@@ -37,13 +37,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
   const heroBgRef = useRef<HTMLDivElement>(null);
 
   const bgStyle: React.CSSProperties & { [key: string]: string } = {
-    '--bg-url-mobile': backgroundImage?.bgImageMobile
-      ? `url(${backgroundImage.bgImageMobile})`
-      : 'url(/home-mobile.webp)',
-
-    '--bg-url-desktop': backgroundImage?.bgImageDesktop
-      ? `url(${backgroundImage.bgImageDesktop})`
-      : 'url(/home.webp)',
+    '--bg-url-mobile': `url(${backgroundImage.heroMobile})`,
+    '--bg-url-desktop': `url(${backgroundImage.heroDesktop})`,
   };
 
   // MotionValues indiquant la progression(scrollYProgress) et position(scrollY) du scroll vertical
@@ -147,18 +142,3 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
 };
 
 export default HeroSection;
-
-// Blur black local
-{
-  /* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-1 rounded-3xl px-6 py-2 border border-black text-white bg-black/30 backdrop-blur-sm"> */
-}
-// Blur white local
-{
-  /* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-1 bg-white/30 sm:backdrop-blur-sm rounded-3xl px-6 py-2"> */
-}
-// Overlay black global
-{
-  /* <h1 className="inspiration-font text-6xl sm:text-6.5xl xl:text-[8rem] thickening-2 text-white"> */
-}
-// .hero-bg {
-//   @apply bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-black/40;

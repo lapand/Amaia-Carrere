@@ -1,97 +1,33 @@
 'use client';
 
 import { homeSectionIds, routes } from '@/config/config.global';
-import { ImageProps } from 'next/image';
 import GalleryOverview from './GalleryOverview';
 import Link from 'next/link';
 import Button from './Button';
 import ContactForm from './Form';
 import Separator from './Separator';
+import { PagesOverviewData } from '@/types';
+import { camelToKebab } from '@/utils/camelToKebab';
 
-const galleryOverviewData: { title: string; images: ImageProps[] }[] = [
-  {
-    title: 'Illustration Jeunesse',
-    images: [
-      {
-        src: '/gallery/19.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/20.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/26.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-    ],
-  },
-  {
-    title: 'Bande dessinée',
-    images: [
-      {
-        src: '/gallery/19.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/20.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/26.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-    ],
-  },
-  {
-    title: 'Fantasy',
-    images: [
-      {
-        src: '/gallery/19.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/20.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-      {
-        src: '/gallery/26.webp',
-        alt: 'test',
-        width: 2500,
-        height: 2350,
-      },
-    ],
-  },
-];
+type PagesOverviewProps = {
+  data: PagesOverviewData;
+};
 
-const galleryOverviewSections = galleryOverviewData.map((obj, i: number) => (
-  <GalleryOverview
-    key={i}
-    title={obj.title}
-    images={obj.images}
-    colorTheme={i % 2 !== 0 ? 'light' : 'dark'}
-    isFirst={i === 0}
-    isLast={i === galleryOverviewData.length - 1}
-  />
-));
+const PagesOverview: React.FC<PagesOverviewProps> = ({ data }) => {
+  // console.log(data);
+  
+  const entries = Object.entries(data);
+  const galleryOverviewSections = entries.map((arr, i: number) => (
+    <GalleryOverview
+      key={i}
+      title={camelToKebab(arr[0])}
+      images={arr[1]}
+      colorTheme={i % 2 !== 0 ? 'light' : 'dark'}
+      isFirst={i === 0}
+      isLast={i === entries.length - 1}
+    />
+  ));
 
-const PagesOverview = () => {
   return (
     <div className="flex flex-col gap-10 sm:gap-12 lg:gap-20">
       <Separator size="sm" />

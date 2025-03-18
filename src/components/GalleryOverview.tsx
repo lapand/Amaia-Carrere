@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import Link from 'next/link';
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 import removeContextMenu from '@/utils/removeContextMenu';
 import { routes } from '@/config/config.global';
 import { AnimatePresence, motion } from 'framer-motion';
 import { breakpoints } from '@/data/breakpoints';
 import useViewportWidth from '@/hooks/useViewportWidth';
+import { FormattedImage } from '@/types';
 
 type GalleryOverviewProps = {
   title: string;
-  images: ImageProps[];
+  images: FormattedImage[];
   colorTheme?: 'light' | 'dark';
   isFirst?: boolean;
   isLast?: boolean;
@@ -66,54 +67,71 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
     </Link>
   );
 
-  const JSXImages = images.map((img, i: number) => (
-    <div
-      key={i}
-      style={{ width: `${itemWidth}rem`, height: `${itemWidth}rem` }}
-      className={`${colors.border} ${
-        colorTheme === 'light' ? 'border-2' : 'border'
-      } ${colorTheme === 'light' ? 'bg-amber-50' : colors.bg} p-3`}
-    >
-      <button
-        className={`${colors.border} size-full border`}
-        onClick={() => (activeImg === i ? setActiveImg(null) : setActiveImg(i))}
+  const JSXImages = images.map((img, i: number) => {
+    const { src, alt, width, height, formats } = img;
+    console.log(formats);
+
+    return (
+      <div
+        key={i}
+        style={{ width: `${itemWidth}rem`, height: `${itemWidth}rem` }}
+        className={`${colors.border} ${
+          colorTheme === 'light' ? 'border-2' : 'border'
+        } ${colorTheme === 'light' ? 'bg-amber-50' : colors.bg} p-3`}
+      >
+        <button
+          className={`${colors.border} size-full border`}
+          onClick={() =>
+            activeImg === i ? setActiveImg(null) : setActiveImg(i)
+          }
+        >
+          <Image
+            className={`size-full object-cover ${
+              activeImg === i ? '' : 'gray-to-color'
+            }`}
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes="(max-width: 1024px) 30vw, 15vw"
+            quality={100}
+            placeholder={formats?.thumbnail?.url ? 'blur' : undefined}
+            blurDataURL={formats?.thumbnail?.url}
+            onContextMenu={removeContextMenu}
+          />
+        </button>
+      </div>
+    );
+  });
+
+  const JSXBigImages = images.map((img, i: number) => {
+    const { src, alt, width, height, formats } = img;
+
+    return (
+      <div
+        key={i}
+        className={`${timeToDeroule} absolute transition-transform`}
+        style={{
+          height: `${hauteurImgDeroulante}rem`,
+          transform:
+            activeImg === i ? '' : `translateY(-${hauteurImgDeroulante}rem)`,
+        }}
       >
         <Image
-          {...img}
-          sizes="(max-width: 1024px) 30vw, 15vw"
+          className="size-full object-contain mask-image-x"
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          sizes="(max-width: 640px) 90vw, 80vw"
           quality={100}
-          className={`size-full object-cover ${
-            activeImg === i ? '' : 'gray-to-color'
-          }`}
+          placeholder={formats?.thumbnail?.url ? 'blur' : undefined}
+          blurDataURL={formats?.thumbnail?.url}
           onContextMenu={removeContextMenu}
-          // placeholder={placeholder}
-          // blurDataURL={blurDataURL}
         />
-      </button>
-    </div>
-  ));
-
-  const JSXBigImages = images.map((img, i: number) => (
-    <div
-      key={i}
-      className={`${timeToDeroule} absolute transition-transform`}
-      style={{
-        height: `${hauteurImgDeroulante}rem`,
-        transform:
-          activeImg === i ? '' : `translateY(-${hauteurImgDeroulante}rem)`,
-      }}
-    >
-      <Image
-        {...img}
-        sizes="(max-width: 640px) 90vw, 80vw"
-        quality={100}
-        className="size-full object-contain mask-image-x"
-        onContextMenu={removeContextMenu}
-        // placeholder={placeholder}
-        // blurDataURL={blurDataURL}
-      />
-    </div>
-  ));
+      </div>
+    );
+  });
 
   return (
     <section className={`flex flex-col`}>

@@ -15,7 +15,7 @@ export const ARTICLES_ENDPOINT_BASE = '/api/articles';
 export const ARTICLES_POPULATE_PARAMS =
   '?populate[0]=langages&populate[1]=galerie';
 export const HOMEPAGE_ENDPOINT_BASE = '/api/page-accueil';
-export const HOMEPAGE_POPULATE_PARAMS = '?populate[0]=bgImageMobile&populate[1]=bgImageDesktop';
+export const HOMEPAGE_POPULATE_PARAMS = '?populate=*';
 // --- Fetch GET URLs ---
 export const ARTICLES_FETCH_URL = `${STRAPI_API_BASE_URL}${ARTICLES_ENDPOINT_BASE}${ARTICLES_POPULATE_PARAMS}`;
 export const ARTICLES_FETCH_FOR_STATIC_PARAMS = `${STRAPI_API_BASE_URL}${ARTICLES_ENDPOINT_BASE}?fields=documentId,titre`;

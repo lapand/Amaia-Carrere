@@ -1,42 +1,36 @@
-import {
-  HOMEPAGE_FETCH_URL,
-  STRAPI_API_KEY,
-  STRAPI_API_BASE_URL,
-} from '@/config/config.server';
+import { HOMEPAGE_FETCH_URL, STRAPI_API_KEY } from '@/config/config.server';
+import { FormattedHomePage } from '@/types';
+import { formatHomeData } from '@/utils/formatters';
+import { fallbackHomePageData } from '@/data/homePageFallback';
 
-export interface BackgroundImage {
-  bgImageMobile: string | null;
-  bgImageDesktop: string | null;
-}
-
-export async function getHomepageData(): Promise<BackgroundImage | null> {
+export async function getHomePageData(): Promise<FormattedHomePage> {
   try {
     const res = await fetch(HOMEPAGE_FETCH_URL, {
       headers: {
         Authorization: `Bearer ${STRAPI_API_KEY}`,
       },
-      cache: 'no-cache', // remettre le cache en prod et webhook strapi déclenchera une invalidation du cache
     });
 
     if (!res.ok) {
       throw new Error(
-        `Erreur HTTP ${res.status}: Impossible de récupérer les données`
+        `Erreur HTTP ${res.status}: Impossible de récupérer les données de la page Home`
       );
     }
 
     const data = await res.json();
 
-    const getFullUrl = (imageUrl?: string) =>
-      imageUrl ? `${STRAPI_API_BASE_URL}${imageUrl}` : null;
+    // Retourne des données de secours au cas où data serait falsy
+    if (!data?.data) {
+      return fallbackHomePageData;
+    }
 
-    const backgroundImage = {
-      bgImageMobile: getFullUrl(data?.data?.bgImageMobile?.url),
-      bgImageDesktop: getFullUrl(data?.data?.bgImageDesktop?.url),
-    };
+    const formattedData = formatHomeData(data.data);
+    // console.log(formattedData);
 
-    return backgroundImage;
+    return formattedData;
   } catch (error) {
-    console.error('Erreur dans getHomepageData :', error);
-    return null;
+    console.error('Erreur dans getHomePageData :', error);
+    // Retourne des données de secours au cas où l'API de Strapi renvoie une erreur
+    return fallbackHomePageData;
   }
 }
