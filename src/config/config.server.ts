@@ -10,6 +10,7 @@ export const FRONT_BASE_URL = process.env.FRONT_BASE_URL;
 // Strapi API
 // --- Base URLs ---
 export const STRAPI_API_KEY = process.env.STRAPI_API_KEY;
+export const STRAPI_WEBHOOK_REVALIDATE_TOKEN = process.env.STRAPI_WEBHOOK_REVALIDATE_TOKEN;
 export const STRAPI_API_BASE_URL = process.env.STRAPI_API_BASE_URL;
 export const ARTICLES_ENDPOINT_BASE = '/api/articles';
 export const ARTICLES_POPULATE_PARAMS =
