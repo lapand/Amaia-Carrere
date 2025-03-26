@@ -7,6 +7,8 @@ import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 import { AnimatePresence, motion } from 'framer-motion';
 import useRemoveFromCart from '@/hooks/useRemoveFromCart';
 import { routes } from '@/config/config.global';
+import CrossIcon from '@/assets/cross.svg';
+import Button2 from './Button2';
 
 const HeaderCart = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -67,17 +69,15 @@ const HeaderCart = () => {
                   </div>
                 )}
               </div>
-              <Image
+              <Button2
                 onClick={() =>
                   handleRemoveFromCart(id, selectedLanguage || undefined)
                 }
-                src="/cross.svg"
-                alt="Retirer l'article du panier"
-                width={20}
-                height={20}
-                className="size-9 p-3 object-contain transition-transform hover:scale-125 cursor-pointer"
-                priority
-              />
+                className="size-7 flex justify-center items-center border border-amber-50 transition-colors bg-none group hover:bg-amber-200"
+                aria-label="Retirer l'article du panier"
+              >
+                <CrossIcon className="size-[0.7rem] transition-colors group-hover:text-primary-600" />
+              </Button2>
             </li>
           );
         });
@@ -87,19 +87,26 @@ const HeaderCart = () => {
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className="relative size-12 p-3 cursor-pointer"
+        className={`relative size-12 p-3 cursor-pointer group hover:scale-110 transition-transform ${
+          isHovered ? 'scale-110' : ''
+        }`}
       >
-        <Link href={routes.shoppingCart} className="relative">
+        <Link href={routes.shoppingCart} className="relative flex items-center">
           <span className="absolute top-5 left-4 flex justify-center items-center text-xs bg-primary-200 rounded-full size-4 text-primary-800">
             {cartItemCount}
           </span>
-          <Image
+          {/* <Image
             src="/shopping-cart.png"
             alt="shopping-cart-icon"
             width={100}
             height={100}
             className="size-full"
             priority
+          /> */}
+          <span
+            className={`inline-block size-7 cart-icon-mask transition-colors duration-300 ${
+              isHovered ? 'bg-amber-300' : 'bg-amber-50'
+            } group-hover:bg-amber-300`}
           />
         </Link>
       </motion.div>
@@ -119,20 +126,16 @@ const HeaderCart = () => {
             transition={{ duration: 0.3 }}
             className="fixed right-0 pt-5"
           >
-            <div className=" flex flex-col gap-4 w-48 sm:w-80 text-sm bg-gray-800 text-primary-200 rounded-l-lg shadow-lg p-5">
+            <div className=" flex flex-col gap-4 w-48 sm:w-80 text-sm bg-primary-600 text-primary-200 rounded-l-lg shadow-lg p-5">
               <p className="self-center text-base">
                 Total : {totalPrice.toFixed(2)} €
               </p>
               <Link href={routes.shoppingCart} className="self-center">
-                <Button className="flex items-center rounded-xl px-4 py-3">
-                  <Image
-                    src="/shopping-cart.png"
-                    alt="shopping-cart-icon"
-                    width={100}
-                    height={100}
-                    className="size-5"
-                    priority
-                  />
+                <Button
+                  className="flex items-center px-4 py-3 group"
+                  aria-label="Vers le panier"
+                >
+                  <span className="inline-block size-5 cart-icon-mask transition-colors duration-300 bg-amber-50 group-hover:bg-primary-600" />
                   <span className="ml-2">Voir mon panier</span>
                 </Button>
               </Link>

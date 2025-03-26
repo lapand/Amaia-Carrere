@@ -4,3 +4,5 @@ export * from './homepage';
 export * from './selectOptions';
 export * from './siteLanguage';
 export * from './social';
+export * from './gallery';
+export * from './about';

@@ -20,6 +20,7 @@ import {
   useScroll,
 } from 'framer-motion';
 import { routes } from '@/config/config.global';
+import LanguageIcon from '@/assets/language-icon.svg';
 
 const langData: SiteLanguageType[] = [
   {
@@ -126,11 +127,11 @@ const Header: React.FC = () => {
           onClick={() => handleToggle(lang.languageCode)}
           aria-label={`Switch to ${lang.langName} language`}
           whileHover={{
-            scale: 1.2,
+            scale: 1.1,
             transition: {
               type: 'spring',
               stiffness: 300,
-              damping: 10,
+              damping: 7,
             },
           }}
           whileTap={{
@@ -157,7 +158,8 @@ const Header: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.header
-          className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-1 xs:gap-2 px-2 sm:px-6 xl:px-20 bg-primary-600 text-primary-200`}
+          // className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-1 xs:gap-2 px-2 sm:px-6 xl:px-20 text-primary-200 bg-gradient-to-r from-aubergine-600 from-5% via-primary-600 via-30% to-primary-600`}
+          className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-1 xs:gap-2 px-2 sm:px-6 xl:px-20 text-primary-200 bg-primary-600`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -165,11 +167,12 @@ const Header: React.FC = () => {
           <div className="h-full flex items-center gap-1 xs:gap-2 sm:gap-6 xl:gap-12 2xl:gap-32">
             <div className="relative">
               <motion.button
-                className="block w-12 aspect-square p-3 cursor-pointer"
+                className="block w-12 aspect-square p-3 cursor-pointer group"
                 onClick={() => setIsLanguagesVisible((v) => !v)}
                 aria-label="Toggle language panel"
+                initial={{ scale: isLanguagesVisible ? 1.15 : 1 }}
                 whileHover={{
-                  scale: 1.2,
+                  scale: 1.15,
                   transition: {
                     type: 'spring',
                     stiffness: 300,
@@ -180,13 +183,10 @@ const Header: React.FC = () => {
                   scale: 0.95,
                 }}
               >
-                <Image
-                  src="/language-icon.svg"
-                  alt="language-icon"
-                  width={100}
-                  height={100}
-                  className="size-full"
-                  priority
+                <LanguageIcon
+                  className={`size-full transition-colors duration-300 ${
+                    isLanguagesVisible ? 'text-amber-300' : 'text-amber-50'
+                  } group-hover:text-amber-300`}
                 />
               </motion.button>
               {windowWidth < lgBreakpoint ? (
@@ -201,16 +201,11 @@ const Header: React.FC = () => {
                 JSXLanguages
               )}
             </div>
+
+            {/* logo du site */}
             <div className="w-32 xs:w-40 sm:w-44 cursor-pointer">
               <Link href={routes.home} aria-label="Homepage" tabIndex={0}>
-                <Image
-                  src="/amaia-logo.webp"
-                  alt="Site logo - Amaia Carrere"
-                  width={483}
-                  height={141}
-                  className="size-full"
-                  priority
-                />
+                <div className="h-16 w-44 logo-mask transition-colors duration-300 bg-white hover:bg-amber-300" />
               </Link>
             </div>
           </div>

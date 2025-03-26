@@ -153,7 +153,7 @@ const CartValidation: React.FC<CartValidationType> = ({
               handleCheckout(validationData, shippingCost);
             }
           }}
-          className={`max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg rounded-[.3rem] px-8 py-3 sm:py-5 lg:py-3 ${
+          className={`max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg px-8 py-3 sm:py-5 lg:py-3 ${
             isDisabled ? 'scale-100' : ''
           }`}
         >

@@ -1,37 +1,39 @@
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 import { useState } from 'react';
 import Loader from './Loader';
 import removeContextMenu from '../utils/removeContextMenu';
+import { FormattedImage } from '@/types';
+import { getNextIdx, getPrevIdx } from '@/utils/getIndex';
 
 type GallerySliderProps = {
-  activeDraw: ImageProps;
+  images: FormattedImage[];
+  imgIdx: number;
   slideDuration?: number;
-  changePrevIdx: () => void;
-  changeNextIdx: () => void;
 };
 
-const arrowIconUri = '/arrow.svg';
+const arrowIconUri = '/assets/arrow.svg';
 
 const GallerySlider: React.FC<GallerySliderProps> = ({
-  activeDraw,
+  images,
+  imgIdx,
   slideDuration = 300,
-  changePrevIdx,
-  changeNextIdx,
 }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeIdx, setActiveIdx] = useState<number>(imgIdx);
+  const { src, alt, width, height, formats } = images[activeIdx];
 
   const handlePrev = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      changePrevIdx();
+      setActiveIdx(getPrevIdx(images, activeIdx));
       setIsLoading(true);
     }, slideDuration);
   };
   const handleNext = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      changeNextIdx();
+      setActiveIdx(getNextIdx(images, activeIdx));
       setIsLoading(true);
     }, slideDuration);
   };
@@ -56,8 +58,13 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
         }`}
       >
         <Image
-          {...activeDraw}
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
           quality={100}
+          placeholder={formats?.thumbnail?.url ? 'blur' : undefined}
+          blurDataURL={formats?.thumbnail?.url}
           className="size-full object-contain"
           onLoad={handleImgLoad}
           onContextMenu={removeContextMenu}

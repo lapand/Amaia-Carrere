@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Button from './Button';
+import Button2 from './Button2';
 import {
   addToCart,
   decrementQuantity,
@@ -41,13 +41,13 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
   return (
     <div className="flex items-center gap-1 sm:gap-2">
       {quantity && quantity > 0 && (
-        <Button
+        <Button2
           onClick={() => dispatch(decrementQuantity({ id, language }))}
           className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
           style={{ color: 'black' }}
         >
           -
-        </Button>
+        </Button2>
       )}
       <div className={`${contentSize}`}>
         {!quantity || quantity === 0 ? (
@@ -63,12 +63,12 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
           <p className="text-center">{quantity}</p>
         )}
       </div>
-      <Button
+      <Button2
         onClick={() => dispatch(addToCart({ id, language, quantity: 1 }))}
-        className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center`}
+        className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center border hover:bg-none hover:bg-yellow-500`}
       >
         +
-      </Button>
+      </Button2>
     </div>
   );
 };

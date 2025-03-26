@@ -59,7 +59,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
       className="transition-transform duration-300 hover:rotate-1"
     >
       <Button
-        className="rounded-3xl px-6 py-3 luckiest-guy text-lg"
+        className="px-6 py-3 luckiest-guy text-lg"
         aria-label={`to gallery page`}
       >
         Voir la galerie
@@ -69,7 +69,6 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
 
   const JSXImages = images.map((img, i: number) => {
     const { src, alt, width, height, formats } = img;
-    console.log(formats);
 
     return (
       <div
@@ -77,7 +76,11 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
         style={{ width: `${itemWidth}rem`, height: `${itemWidth}rem` }}
         className={`${colors.border} ${
           colorTheme === 'light' ? 'border-2' : 'border'
-        } ${colorTheme === 'light' ? 'bg-amber-50' : colors.bg} p-3`}
+        } ${
+          colorTheme === 'light' ? 'bg-amber-50' : colors.bg
+        } relative before:duration-300 p-3 before:content-[''] before:absolute before:size-1/12 ${
+          activeImg === i ? 'before:bg-aubergine-400' : 'before:bg-aubergine-500'
+        } before:bottom-full before:left-full before:-translate-x-1/2 before:translate-y-1/2 before:border before:border-aubergine-300 before:rounded-full before:transition-colors before:z-[-1] hover:before:bg-aubergine-400`}
       >
         <button
           className={`${colors.border} size-full border`}
@@ -148,7 +151,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
           </h2>
           <div className="relative h-12 sm:h-32 flex justify-center items-start">
             <div className="flex flex-col gap-2">
-              <div className="h-2">
+              {/* <div className="h-2">
                 <AnimatePresence>
                   {activeImg !== null && (
                     <motion.div
@@ -161,13 +164,13 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
                       }}
                       transition={{
                         type: 'spring',
-                        stiffness: 130,
-                        damping: 12,
-                        mass: 1,
+                        stiffness: 150,
+                        damping: 15,
+                        mass: .8,
                       }}
                     >
                       <motion.div
-                        className="h-full w-10 sm:w-16 rounded-full bg-terracotta-500"
+                        className="h-full w-10 sm:w-16 rounded-full bg-aubergine-400"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0 }}
@@ -175,7 +178,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </div> */}
               <div className="flex" style={{ gap: `${itemGap}rem` }}>
                 {JSXImages}
               </div>

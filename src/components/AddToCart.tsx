@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Button from './Button';
 import { addToCart } from '../store/slices/cartSlice';
 import { useDispatch } from 'react-redux';
@@ -7,6 +6,7 @@ import { LanguageOptionType } from '@/types/selectOptions';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ValidationIcon from './ValidationIcon';
+import Button2 from './Button2';
 
 type AddToCartType = {
   id: string;
@@ -92,12 +92,12 @@ const AddToCart: React.FC<AddToCartType> = ({
           )}
         </AnimatePresence>
       </div>
-      <Button
+      <Button2
         onClick={handleAddToCart}
-        className={`${btnSize} aspect-square rounded-full py-3 px-4 text-xl flex justify-center items-center`}
+        className={`${btnSize} aspect-square rounded-full py-3 px-4 text-xl flex justify-center items-center border hover:bg-none hover:bg-yellow-500`}
       >
         +
-      </Button>
+      </Button2>
     </div>
   );
 };

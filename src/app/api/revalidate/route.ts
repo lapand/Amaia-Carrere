@@ -35,18 +35,18 @@ export async function POST(request: Request) {
     }
 
     // Revalidation des chemins : invalidation des caches des segments correspondants et pré-génération de nouvelles pages statiques avec des données fetchées mises à jour
-    const { event, model, entry }: WebhookRequest = await request.json();
-
-    // 204 No Content : aucune revalidation n’a eu lieu pour les évènements update et create
-    if (['entry.update', 'entry.create'].includes(event)) {
-      console.log(`ℹ️ No revalidation triggered for event: ${event}`);
-      return new NextResponse(null, { status: 204 });
-    }
+    const { model, entry }: WebhookRequest = await request.json();
 
     if (model === 'page-accueil') {
       const homePath = routes.home;
       revalidatePath(homePath);
       revalidatedPaths.push(homePath);
+    }
+
+    if (model === 'galerie-image') {
+      const galleryPath = routes.gallery;
+      revalidatePath(galleryPath);
+      revalidatedPaths.push(galleryPath);
     }
 
     if (model === 'article') {
@@ -66,6 +66,12 @@ export async function POST(request: Request) {
         revalidatePath(articlePath);
         revalidatedPaths.push(articlePath);
       }
+    }
+
+    if (model === 'a-propos-image') {
+      const aboutPath = routes.about;
+      revalidatePath(aboutPath);
+      revalidatedPaths.push(aboutPath);
     }
 
     return NextResponse.json({

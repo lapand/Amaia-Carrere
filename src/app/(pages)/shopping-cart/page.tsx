@@ -76,7 +76,7 @@ export default function CartPage() {
               href={routes.shop}
               className="transition-transform duration-300 hover:rotate-1 text-center"
             >
-              <Button className="text-lg rounded-3xl px-6 py-3">
+              <Button className="text-lg px-6 py-3">
                 Retour à la boutique
               </Button>
             </Link>

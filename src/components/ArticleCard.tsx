@@ -36,7 +36,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <Image
-              src="/forSale/eye-icon.webp"
+              src="/eye-icon.webp"
               alt="eye-icon"
               width={100}
               height={100}

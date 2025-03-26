@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion';
-import ArrowIcon from '/public/arrow.svg';
+import ArrowIcon from '@/assets/arrow.svg';
 import { restrictedPaths } from '@/config/config.global';
 import useRestrictedPaths from '@/hooks/useRestrictedPaths';
 
@@ -102,7 +102,7 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
           }}
         >
           <button
-            className={`relative size-12 flex justify-center items-center bg-terracotta-500 text-white font-bold rounded-full border border-black`}
+            className={`relative size-12 flex justify-center items-center bg-aubergine-400 font-bold rounded-full border border-black`}
             onClick={handleScrollToTop}
           >
             <motion.svg
@@ -110,8 +110,7 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
               viewBox="0 0 100 100"
             >
               <motion.circle
-                // className="text-accent2"
-                className="text-terracotta-800"
+                className="text-aubergine-600"
                 stroke="currentColor"
                 strokeWidth="5"
                 fill="transparent"
@@ -125,11 +124,10 @@ const ScrollProgressBtn: React.FC<ScrollProgressBtnType> = ({
               />
             </motion.svg>
             <ArrowIcon
-              fill="white"
               stroke="black"
               strokeWidth={3}
               viewBox="-5 -5 53.728 92.485"
-              className="-rotate-90 size-6"
+              className="-rotate-90 size-6 text-amber-100"
             />
           </button>
         </motion.div>

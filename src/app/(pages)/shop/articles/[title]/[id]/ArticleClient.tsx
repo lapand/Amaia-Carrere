@@ -93,12 +93,15 @@ const ArticleClient: React.FC<ArticleClientType> = ({
         <div className="relative">
           <div className="sm:sticky top-24 xl:top-36 3xl:top-40 flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
             <Link href={routes.shop} className="self-start group">
-              <Button className="flex items-center px-4 sm:px-5 py-1 sm:py-3 bg-none outline outline-1 outline-slate-800 group-hover:bg-gradient-to-br group-hover:from-slate-500 group-hover:to-slate-600 group-hover:text-black">
-                <span className="text-3xl sm:text-xl transition-transform group-hover:-translate-x-1 invert">
+              <Button
+                className="flex items-center px-4 sm:px-5 py-1 sm:py-3"
+                aria-label={`to shop page`}
+              >
+                <span className="text-3xl sm:text-xl transition-transform group-hover:-translate-x-1">
                   &#8592;
                 </span>
                 {windowWidth >= smBreakpoint && (
-                  <span className="ml-2 invert">Boutique</span>
+                  <span className="ml-2">Boutique</span>
                 )}
               </Button>
             </Link>

@@ -1,5 +1,6 @@
 import { STRAPI_API_BASE_URL } from '@/config/config.server';
 import {
+  APIAboutType,
   APIArticleType,
   APIHomePageType,
   ArticleCardType,
@@ -8,36 +9,30 @@ import {
   ImageData,
 } from '@/types';
 import { adjustArray } from './adjustArray';
-import { fallbackHomePageData } from '@/data/homePageFallback';
+import { fallbackHomePageData } from '@/data/homepage/homePageFallback';
+import { APIGalleryType } from '@/types';
 
 const getFullUrl = (imageUrl?: string) =>
   imageUrl ? `${STRAPI_API_BASE_URL}${imageUrl}` : '';
 
-const formatImgArr = (
-  arr: ImageData[],
-  fallbackHomePageArr: [FormattedImage, FormattedImage, FormattedImage]
-): FormattedImage[] => {
-  const result = arr.map(
-    ({ url, alternativeText, width, height, formats }) => ({
-      src: url ? `${STRAPI_API_BASE_URL}${url}` : '',
-      alt: alternativeText || '',
-      width: width || 0,
-      height: height || 0,
-      formats: Object.keys(formats || {}).reduce((acc, key) => {
-        const format = formats?.[key];
-        if (format) {
-          acc[key] = {
-            width: format.width,
-            height: format.height,
-            url: getFullUrl(format.url) || '',
-          };
-        }
-        return acc;
-      }, {} as Record<string, { width: number; height: number; url: string }>),
-    })
-  );
-  return adjustArray(result, fallbackHomePageArr);
-};
+const formatAPIImg = (arr: ImageData[]): FormattedImage[] =>
+  arr.map(({ url, alternativeText, width, height, formats }) => ({
+    src: getFullUrl(url),
+    alt: alternativeText || '',
+    width: width || 0,
+    height: height || 0,
+    formats: Object.keys(formats || {}).reduce((acc, key) => {
+      const format = formats?.[key];
+      if (format) {
+        acc[key] = {
+          width: format.width,
+          height: format.height,
+          url: getFullUrl(format.url),
+        };
+      }
+      return acc;
+    }, {} as Record<string, { width: number; height: number; url: string }>),
+  }));
 
 export function formatHomeData(data: APIHomePageType): FormattedHomePage {
   const {
@@ -51,16 +46,24 @@ export function formatHomeData(data: APIHomePageType): FormattedHomePage {
   return {
     heroMobile: getFullUrl(heroMobile.url),
     heroDesktop: getFullUrl(heroDesktop.url),
-    illustrationsJeunesse: formatImgArr(
-      illustrationsJeunesse,
+    illustrationsJeunesse: adjustArray(
+      formatAPIImg(illustrationsJeunesse),
       fallbackHomePageData.illustrationsJeunesse
     ),
-    bandesDessinees: formatImgArr(
-      bandesDessinees,
+    bandesDessinees: adjustArray(
+      formatAPIImg(bandesDessinees),
       fallbackHomePageData.bandesDessinees
     ),
-    fantasy: formatImgArr(fantasy, fallbackHomePageData.fantasy),
+    fantasy: adjustArray(formatAPIImg(fantasy), fallbackHomePageData.fantasy),
   };
+}
+
+export function formatGallery(data: APIGalleryType): FormattedImage[] {
+  return formatAPIImg(data.map((obj) => obj.image));
+}
+
+export function formatAboutData(data: APIAboutType): FormattedImage[] {
+  return formatAPIImg(data.map((obj) => obj.image));
 }
 
 export function formatArticle(article: APIArticleType): ArticleCardType {

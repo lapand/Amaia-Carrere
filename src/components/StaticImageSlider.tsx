@@ -34,7 +34,7 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
               : 'w-[10%] h-20'
           } opacity-70 transition hover:scale-110 hover:opacity-90 duration-300`}
           icon={{
-            src: '/forSale/forSaleSlider/black-arrow.svg',
+            src: '/black-arrow.svg',
             alt: 'left arrow',
             size: 0.8,
             rotate: 180,
@@ -69,7 +69,7 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
               : 'w-[10%] h-20'
           } rotate-180 opacity-70 transition hover:scale-110 hover:opacity-90 duration-300`}
           icon={{
-            src: '/forSale/forSaleSlider/black-arrow.svg',
+            src: '/black-arrow.svg',
             alt: 'right arrow',
             size: 0.8,
             rotate: 180,

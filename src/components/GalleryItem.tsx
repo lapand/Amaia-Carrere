@@ -1,37 +1,24 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { PlaceholderValue } from 'next/dist/shared/lib/get-img-props';
 import Loader from './Loader';
 import removeContextMenu from '../utils/removeContextMenu';
+import { FormattedImage } from '@/types';
 
 type GalleryItemProps = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
+  image: FormattedImage;
   openModal: (imgIdx: number) => void;
   imgIdx: number;
-  // blurDataURL: string;
 };
 
-type DataUris = {
-  [key: string]: string;
-}
-
 const GalleryItem: React.FC<GalleryItemProps> = ({
-  src,
-  alt,
-  width,
-  height,
+  image,
   openModal,
   imgIdx,
-  // blurDataURL,
 }) => {
-
   const galleryItemRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataUris, setDataUris] = useState<DataUris>({});
+  const { src, alt, width, height, formats } = image;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,35 +28,13 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
           observer.unobserve(galleryItemRef.current);
         }
       },
-      { threshold: .05 }
+      { threshold: 0.05 }
     );
 
     if (galleryItemRef.current) {
       observer.observe(galleryItemRef.current);
     }
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/dataUris.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const jsonData = await response.json();
-        setDataUris(jsonData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
   }, []);
-
-  let placeholder: PlaceholderValue | undefined = undefined;
-  let blurDataURL = undefined;
-  if (Object.keys(dataUris).length !== 0) {
-    blurDataURL = dataUris[`${imgIdx + 1}.webp`];
-    if(blurDataURL) placeholder = "blur";
-  }
 
   return (
     <div
@@ -83,13 +48,13 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
         alt={alt}
         width={width}
         height={height}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 25vw"
+        sizes="(max-width: 768px) 50vw, (max-width: 1280px) 30vw, 20vw"
         quality={100}
         className="w-full h-auto object-cover transition duration-500 ease-in-out hover:scale-105 hover:opacity-60"
         onLoad={() => setIsLoading(false)}
         onContextMenu={removeContextMenu}
-        placeholder={placeholder}
-        blurDataURL={blurDataURL}
+        placeholder={formats?.thumbnail?.url ? 'blur' : undefined}
+        blurDataURL={formats?.thumbnail?.url}
       />
     </div>
   );

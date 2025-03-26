@@ -60,6 +60,17 @@ const config: Config = {
           800: '#68241d',
           900: '#4d1914',
         },
+        aubergine: {
+          100: '#e5d8ed',
+          200: '#c9addb',
+          300: '#ac82c8',
+          400: '#8f5db4',
+          500: '#5b2d6e',
+          600: '#4d265e',
+          700: '#3e1e4d',
+          800: '#2f163b',
+          900: '#210f2a',
+        },        
       },
       animation: {
         shine: 'shine 2s linear',

@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { DetailedCartProduct } from '../types';
 import QuantityAdjuster from './QuantityAdjuster';
 import useRemoveFromCart from '@/hooks/useRemoveFromCart';
+import Button2 from './Button2';
+import CrossIcon from '@/assets/cross.svg';
 
 const CartArticle: React.FC<DetailedCartProduct> = ({
   id,
@@ -33,7 +35,7 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
       </div>
 
       {/* Description & prix & quantité */}
-      <div className="max-sm:order-3 max-sm:w-full sm:w-1/2 flex gap-2 bg-gradient-to-r from-[rgb(253,186,116)] to-transparent p-3 xl:p-4 rounded-lg text-orange-950 overflow-hidden">
+      <div className="max-sm:order-3 max-sm:w-full sm:w-1/2 flex gap-2 bg-gradient-to-r from-amber-200 to-transparent p-3 xl:p-4 rounded-lg text-orange-950 overflow-hidden">
         <div className="flex-1 flex flex-col gap-2 text-sm line-clamp-2 text-ellipsis break-words">
           <p className="max-2xl:text-sm font-bold line-clamp-1 text-ellipsis break-words text-base">
             {title}
@@ -66,18 +68,14 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
       )}
 
       {/* Btn supprimer l'article */}
-      <div
-        onClick={() => handleRemoveFromCart(id, selectedLanguage)}
-        className="absolute top-0 right-0 size-8 p-[.6rem] border border-white invert rounded-full cursor-pointer transition-transform hover:scale-110 hover:invert-0 hover:bg-gray-800"
-      >
-        <Image
-          src="/cross.svg"
-          alt="Retirer l'article du panier"
-          width={20}
-          height={20}
-          className="size-full object-contain"
-          priority
-        />
+      <div className="absolute top-0 right-0">
+        <Button2
+          onClick={() => handleRemoveFromCart(id, selectedLanguage)}
+          className="size-8 flex justify-center items-center bg-none outline outline-1 outline-gray-500"
+          aria-label="Retirer l'article du panier"
+        >
+          <CrossIcon className="size-[0.8rem] transition-colors duration-300 text-primary-600" />
+        </Button2>
       </div>
     </li>
   );

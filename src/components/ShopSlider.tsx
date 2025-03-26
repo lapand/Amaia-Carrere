@@ -9,7 +9,7 @@ type ShopSliderProps = {
   gallery: ImageProps[];
 };
 
-const arrowIconUri = '/forSale/forSaleSlider/black-arrow.svg';
+const arrowIconUri = '/black-arrow.svg';
 
 const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
   const [currentIdx, setCurrentIdx] = useState(0);

@@ -21,7 +21,7 @@ import { smBreakpoint } from '@/data/breakpoints';
 import { HeroBg } from '@/types';
 
 const dwarfImg: ImageProps = {
-  src: '/about/lutin.png',
+  src: '/lutin-violet.webp',
   alt: 'lutin barbu au chapeau pointu tenant un crayon',
   width: 1323,
   height: 1389,
@@ -72,9 +72,9 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
     progress < 0.3 ? 'none' : 'auto'
   );
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    console.log('scrollYProgress: ', latest);
-  });
+  // useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  //   console.log('scrollYProgress: ', latest);
+  // });
 
   return (
     <section
@@ -83,7 +83,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       className="flex flex-col"
     >
       <div className="sticky top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 p-2 max-sm:-mt-10">
-        <div className="flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
+        <div className="relative flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
           <p className="text-center text-4.5xl xs:text-5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
             Bienvenue dans mon atelier,
             {!isMobileViewport ? <br /> : ' '}
@@ -92,6 +92,28 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           <h1 className="text-right text-4.5xl sm:text-5xl lg:text-5.5xl xl:text-6xl underline-custom after:h-1 after:w-52 sm:after:w-[32rem] lg:after:w-[37.6rem]">
             Amaia Carrere
           </h1>
+          <div className="absolute bottom-[95%] -left-48 w-44">
+            <Image
+              src="/test3.png"
+              alt=""
+              width={612}
+              height={695}
+              className="size-full object-contain"
+              onContextMenu={removeContextMenu}
+              quality={100}
+            />
+            <div className="absolute top-full right-full w-16">
+              <Image
+                src="/test.png"
+                alt=""
+                width={261}
+                height={373}
+                className="size-full object-contain"
+                onContextMenu={removeContextMenu}
+                quality={100}
+              />
+            </div>
+          </div>
         </div>
         <div className="flex flex-col items-center">
           <div className="relative">
@@ -100,7 +122,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
               className="relative transition-transform duration-300 hover:rotate-1"
             >
               <Button
-                className="rounded-3xl px-8 lg:px-8 py-3 lg:py-4 luckiest-guy text-xl lg:text-2xl"
+                className="px-8 lg:px-8 py-3 lg:py-4 luckiest-guy text-xl lg:text-2xl"
                 onClick={(e) =>
                   scrollToSection(e, homeSectionIds.secondSection)
                 }
@@ -113,6 +135,28 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
             <div className="absolute right-[50%] xs:right-[65%] sm:right-[145%] lg:right-[164%] xl:right-[145%] 3xl:right-[105%] bottom-[-3.2rem] sm:-bottom-9 lg:-bottom-10 w-[12rem] sm:w-[14rem] lg:w-[15.3rem]">
               <Image
                 {...dwarfImg}
+                className="size-full object-contain"
+                onContextMenu={removeContextMenu}
+                quality={100}
+              />
+            </div>
+            <div className="absolute top-[105%] left-[350%] w-36">
+              <Image
+                src="/test2.webp"
+                alt=""
+                width={247}
+                height={269}
+                className="size-full object-contain"
+                onContextMenu={removeContextMenu}
+                quality={100}
+              />
+            </div>
+            <div className="absolute top-[105%] left-[250%] w-20 scale-x-[-1]">
+              <Image
+                src="/test4.webp"
+                alt=""
+                width={370}
+                height={200}
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}

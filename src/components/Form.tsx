@@ -84,8 +84,8 @@ const ContactForm: React.FC = () => {
             className="px-2 py-1 rounded-md font-bold"
             animate={{
               background: !isFocused1
-                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
-                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+                ? 'linear-gradient(90deg, rgb(91 45 110 / 0) 60%, rgb(91 45 110 / 0.8))'
+                : 'linear-gradient(90deg, rgb(91 45 110 / 1) 0%, rgb(91 45 110 / 0))',
               color: isFocused1 ? 'white' : '',
             }}
             transition={{
@@ -100,7 +100,7 @@ const ContactForm: React.FC = () => {
             type="email"
             id="email"
             placeholder={t('contact.form.input1.placeholder')}
-            className="p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            className="p-2 rounded-md bg-transparent border-[1px] border-primary-600 outline-none placeholder:text-primary-600 placeholder:italic"
             aria-invalid={errors.email ? 'true' : 'false'}
             aria-describedby={
               errors.email ? `${errors.email.message}` : undefined
@@ -127,8 +127,8 @@ const ContactForm: React.FC = () => {
             className="px-2 py-1 rounded-md font-bold"
             animate={{
               background: !isFocused2
-                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
-                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+                ? 'linear-gradient(90deg, rgb(91 45 110 / 0) 60%, rgb(91 45 110 / 0.8))'
+                : 'linear-gradient(90deg, rgb(91 45 110 / 1) 0%, rgb(91 45 110 / 0))',
               color: isFocused2 ? 'white' : '',
             }}
             transition={{
@@ -143,7 +143,7 @@ const ContactForm: React.FC = () => {
             type="text"
             id="subject"
             placeholder={t('contact.form.input2.placeholder')}
-            className="p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            className="p-2 rounded-md bg-transparent border-[1px] border-primary-600 outline-none placeholder:text-primary-600 placeholder:italic"
             aria-invalid={errors.subject ? 'true' : 'false'}
             aria-describedby={
               errors.subject ? `${errors.subject.message}` : undefined
@@ -170,8 +170,8 @@ const ContactForm: React.FC = () => {
             className="px-2 py-1 rounded-md font-bold"
             animate={{
               background: !isFocused3
-                ? 'linear-gradient(90deg, rgb(186 74 57 / 0) 60%, rgb(186 74 57 / 0.8))'
-                : 'linear-gradient(90deg, rgb(186 74 57 / 1) 0%, rgb(186 74 57 / 0))',
+                ? 'linear-gradient(90deg, rgb(91 45 110 / 0) 60%, rgb(91 45 110 / 0.8))'
+                : 'linear-gradient(90deg, rgb(91 45 110 / 1) 0%, rgb(91 45 110 / 0))',
               color: isFocused3 ? 'white' : '',
             }}
             transition={{
@@ -185,7 +185,7 @@ const ContactForm: React.FC = () => {
             {...register('content')}
             id="message"
             placeholder={t('contact.form.input3.placeholder')}
-            className="h-32 p-2 rounded-md bg-transparent border-[1px] border-terracotta-500 outline-none placeholder:text-primary-600 placeholder:italic"
+            className="h-32 p-2 rounded-md bg-transparent border-[1px] border-primary-600 outline-none placeholder:text-primary-600 placeholder:italic"
             aria-invalid={errors.content ? 'true' : 'false'}
             aria-describedby={
               errors.content ? `${errors.content.message}` : undefined
@@ -211,7 +211,7 @@ const ContactForm: React.FC = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="sm:text-sm 3xl:text-base px-9 sm:px-6 py-3 disabled:bg-none disabled:bg-gray-500 max-xl:rounded-lg font-bold"
+          className="sm:text-sm 3xl:text-base px-9 sm:px-6 py-3 disabled:bg-none disabled:bg-gray-500 font-bold"
         >
           {t('contact.form.submit')}
         </Button>

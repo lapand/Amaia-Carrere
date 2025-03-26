@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
       <p className="text-center text-sm 2xl:text-base">
         <span className="inline-block size-[18px] mr-1">
           <Image
-            src="/contact/copyright.png"
+            src="/copyright.png"
             alt="copyright"
             width={50}
             height={50}

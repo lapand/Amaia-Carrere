@@ -39,7 +39,10 @@ export default function RootLayout({
                   <div className="absolute z-[-1] size-full main-bg" />
                 </main>
                 <Footer />
-                <ScrollProgressBtn className="fixed z-40 bottom-24 right-5 sm:right-10" />
+                <ScrollProgressBtn
+                  className="fixed z-40 bottom-24 right-5 sm:right-10"
+                  scrollYTrigger={1000}
+                />
               </div>
             </ClientI18nProvider>
           </ReduxProvider>
