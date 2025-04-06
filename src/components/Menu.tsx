@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import LinkNavigation from './LinkNavigation';
 import TransitionDOM from './TransitionDOM';
+import MenuIcon from '@/assets/menu.svg';
+import { socials } from '@/data/contact';
+import HeaderSocial from './HeaderSocial';
 
 // menuIconBreakpoint <=> Tailwind breakpoint max-lg
 const menuIconBreakpoint: number = 1024;
@@ -44,11 +47,11 @@ const Menu: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    windowWidth > menuIconBreakpoint && setIsSideMenuOpened(false);
+    windowWidth >= menuIconBreakpoint && setIsSideMenuOpened(false);
   }, [windowWidth]);
 
   const closeLateralMenu = () => {
-    windowWidth <= menuIconBreakpoint && setIsSideMenuOpened((prev) => !prev);
+    windowWidth < menuIconBreakpoint && setIsSideMenuOpened((prev) => !prev);
   };
 
   const liJSX = menuArray.map((item, i) => {
@@ -59,45 +62,46 @@ const Menu: React.FC = () => {
     );
   });
 
+  const socialsJSX = socials.map((social, i: number) => (
+    <div key={i} className="size-14 p-3">
+      <HeaderSocial key={i} {...social} />
+    </div>
+  ));
+
   return (
     <nav className="luckiest-guy flex items-center">
       {/* Icone menu */}
       {windowWidth < menuIconBreakpoint && (
         <button
           onClick={closeLateralMenu}
-          className="w-11 2xl:w-12 aspect-square"
-          aria-label="Toggle menu"
+          className="w-12 sm:w-[3.5rem] aspect-square group p-2"
+          aria-label="Toggle menu panel"
           ref={menuIconRef}
         >
-          <Image
-            src="/menu.svg"
-            alt="menu-icon"
-            width={100}
-            height={100}
-            className="size-full"
+          <MenuIcon
+            className={`size-full transition-colors duration-300 ${
+              isSideMenuOpened ? 'text-amber-300' : 'text-amber-50'
+            } group-hover:text-amber-300`}
           />
         </button>
       )}
 
       {/* Items du menu (laptop et +) */}
       {windowWidth >= menuIconBreakpoint && (
-        <ul className="flex gap-5 lg:gap-6 xl:gap-10 lg:text-lg">
-          {liJSX}
-        </ul>
+        <ul className="flex gap-5 lg:gap-6 xl:gap-10 lg:text-lg">{liJSX}</ul>
       )}
 
       {/* Volet latéral (mobile & tablette) */}
       <TransitionDOM
-        className="absolute side-nav w-72 p-10 bg-primary-600/80 border-2 border-primary-600"
+        className="absolute side-nav w-72 flex flex-col justify-center gap-12 p-10 bg-primary-600/80 border-2 border-primary-600"
         from={{ x: 300 }}
         style={{ transform: `translate3d(0, 0, 0)` }}
-        visible={windowWidth <= menuIconBreakpoint && isSideMenuOpened}
+        visible={windowWidth < menuIconBreakpoint && isSideMenuOpened}
         duration={300}
         ref={sideNavRef}
       >
-        <ul className="size-full flex flex-col justify-center gap-6 text-4xl">
-          {liJSX}
-        </ul>
+        <ul className="flex flex-col justify-center gap-6 text-4xl">{liJSX}</ul>
+        <div className="flex gap-6">{socialsJSX}</div>
       </TransitionDOM>
     </nav>
   );

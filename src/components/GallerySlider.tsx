@@ -11,7 +11,7 @@ type GallerySliderProps = {
   slideDuration?: number;
 };
 
-const arrowIconUri = '/assets/arrow.svg';
+const arrowIconUri = '/arrow.svg';
 
 const GallerySlider: React.FC<GallerySliderProps> = ({
   images,

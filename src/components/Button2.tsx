@@ -19,7 +19,7 @@ const Button2: React.FC<Button2Props> = ({
 }) => {
   return (
     <motion.button
-      className={`${className} relative transition-colors duration-300 overflow-hidden border-transparent bg-gradient-to-br from-[#62564e] to-primary-600 hover:text-primary-600 hover:border-primary-600 rounded-3xl text-primary-200 shadow-btn focus-visible:ring-2 ring-offset-2 ring-gray-950 active:shadow-active-btn`}
+      className={`${className} relative transition-colors duration-300 overflow-hidden border-transparent bg-gradient-to-br from-aubergine-400 to-aubergine-700 rounded-3xl text-primary-200 shadow-btn focus-visible:ring-2 ring-offset-2 ring-aubergine-600 active:shadow-active-btn`}
       onClick={onClick}
       onMouseOver={onMouseOver}
       onMouseEnter={onMouseEnter}
@@ -29,7 +29,7 @@ const Button2: React.FC<Button2Props> = ({
       type={type}
       disabled={disabled}
       whileHover={{
-        scale: disabled ? 1 : 1.05,
+        scale: disabled ? 1 : 1.1,
         transition: {
           type: 'spring',
           stiffness: 300,

@@ -35,7 +35,7 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
       </div>
 
       {/* Description & prix & quantité */}
-      <div className="max-sm:order-3 max-sm:w-full sm:w-1/2 flex gap-2 bg-gradient-to-r from-amber-200 to-transparent p-3 xl:p-4 rounded-lg text-orange-950 overflow-hidden">
+      <div className="overflow-hidden max-sm:order-3 max-sm:w-full sm:w-1/2 flex gap-2 p-3 xl:p-4 rounded-lg border border-aubergine-400">
         <div className="flex-1 flex flex-col gap-2 text-sm line-clamp-2 text-ellipsis break-words">
           <p className="max-2xl:text-sm font-bold line-clamp-1 text-ellipsis break-words text-base">
             {title}
@@ -71,10 +71,10 @@ const CartArticle: React.FC<DetailedCartProduct> = ({
       <div className="absolute top-0 right-0">
         <Button2
           onClick={() => handleRemoveFromCart(id, selectedLanguage)}
-          className="size-8 flex justify-center items-center bg-none outline outline-1 outline-gray-500"
+          className="size-8 flex justify-center items-center bg-none outline outline-1 outline-gray-500 hover:outline-none hover:bg-neutral-700 group"
           aria-label="Retirer l'article du panier"
         >
-          <CrossIcon className="size-[0.8rem] transition-colors duration-300 text-primary-600" />
+          <CrossIcon className="size-[0.8rem] transition-colors duration-300 text-primary-600 group-hover:text-amber-50" />
         </Button2>
       </div>
     </li>

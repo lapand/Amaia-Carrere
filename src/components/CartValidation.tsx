@@ -10,6 +10,8 @@ import {
 import { RefreshedDataType } from '@/types/bddValidation';
 import Link from 'next/link';
 import Modal from '@/components/Modal';
+import { breakpoints } from '@/data/breakpoints';
+import useViewportWidth from '@/hooks/useViewportWidth';
 
 type CartValidationType = {
   validationData: TcartSchema;
@@ -27,6 +29,8 @@ const CartValidation: React.FC<CartValidationType> = ({
   const [alertMsg, setAlertMsg] = useState<null | React.JSX.Element[] | string>(
     null
   );
+  const windowWidth = useViewportWidth();
+  const mobileBreakpoint = windowWidth < breakpoints.sm;
 
   const mismatchHandler = (refreshedData: RefreshedDataType) => {
     // Indique à l'utilisateur des informations sur les changements des données des articles du panier.
@@ -113,13 +117,13 @@ const CartValidation: React.FC<CartValidationType> = ({
 
   return (
     <div className="flex flex-col gap-3 xl:gap-5 max-lg:m-2">
-      <div className="flex gap-3 max-sm:items-center items-start justify-center my-1">
+      <div className="flex gap-5 sm:gap-3 max-sm:items-center items-start justify-center my-1 max-sm:mx-2">
         <input
           type="checkbox"
           id="cgv"
           name="cgv"
           required
-          className="size-6 lg:size-4 flex-shrink-0 cursor-pointer hover:bg-slate-100 hover:shadow-inner sm:mt-1"
+          className="size-6 lg:size-[1.12rem] flex-shrink-0 overflow-hidden cursor-pointer hover:shadow-inner sm:mt-[0.30rem] appearance-none border border-gray-500 rounded bg-white checked:bg-aubergine-400 before:content-[''] before:size-full before:flex before:items-center before:justify-center checked:before:content-['✔'] checked:before:text-white checked:before:font-bold checked:before:text-xs"
           onChange={(e) => {
             if (e.target.checked) {
               setIsDisabled(false);
@@ -131,7 +135,7 @@ const CartValidation: React.FC<CartValidationType> = ({
         />
         <label
           htmlFor="cgv"
-          className="relative max-sm:text-sm sm:max-lg:text-lg"
+          className="relative annie-use-your-telescope font-bold text-2xl sm:text-2.5xl lg:text-xl 2xl:text-xl"
         >
           J&#39;accepte les{' '}
           <Link
@@ -139,7 +143,7 @@ const CartValidation: React.FC<CartValidationType> = ({
             target="_blank"
             className="underline underline-offset-2 text-blue-900"
           >
-            Conditions Générales de Vente
+            {mobileBreakpoint ? 'CGV' : 'Conditions Générales de Vente'}
           </Link>
           . <span className={`${showError ? 'text-red-600' : ''}`}>*</span>
         </label>
@@ -153,7 +157,7 @@ const CartValidation: React.FC<CartValidationType> = ({
               handleCheckout(validationData, shippingCost);
             }
           }}
-          className={`max-lg:w-11/12 text-lg sm:text-xl lg:text-base 3xl:text-lg px-8 py-3 sm:py-5 lg:py-3 ${
+          className={`w-11/12 sm:w-3/4 md:w-1/2 lg:w-fit text-xl sm:text-1.5xl lg:text-base 3xl:text-lg px-8 py-3 sm:py-5 lg:py-3 ${
             isDisabled ? 'scale-100' : ''
           }`}
         >

@@ -17,7 +17,7 @@ import scrollToSection from '@/utils/scrollToSection';
 import removeContextMenu from '@/utils/removeContextMenu';
 import { useRef } from 'react';
 import useViewportWidth from '@/hooks/useViewportWidth';
-import { smBreakpoint } from '@/data/breakpoints';
+import { lgBreakpoint, smBreakpoint } from '@/data/breakpoints';
 import { HeroBg } from '@/types';
 
 const dwarfImg: ImageProps = {
@@ -34,6 +34,7 @@ interface HomeProps {
 const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
   const windowWidth = useViewportWidth();
   const isMobileViewport = windowWidth < smBreakpoint;
+  const isViewportAboveLg = windowWidth >= lgBreakpoint;
   const heroBgRef = useRef<HTMLDivElement>(null);
 
   const bgStyle: React.CSSProperties & { [key: string]: string } = {
@@ -82,32 +83,21 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="flex flex-col"
     >
-      <div className="sticky top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 p-2 max-sm:-mt-10">
-        <div className="relative flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
-          <p className="text-center text-4.5xl xs:text-5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
+      <div className="sticky overflow-hidden top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 px-2 xs:px-4 sm:px-0 max-sm:-mt-10">
+        <div className="relative z-10 flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
+          <p className="text-center text-4.5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
             Bienvenue dans mon atelier,
             {!isMobileViewport ? <br /> : ' '}
             source de rêves crayonnés.
           </p>
-          <h1 className="text-right text-4.5xl sm:text-5xl lg:text-5.5xl xl:text-6xl underline-custom after:h-1 after:w-52 sm:after:w-[32rem] lg:after:w-[37.6rem]">
-            Amaia Carrere
-          </h1>
-          <div className="absolute bottom-[95%] -left-48 w-44">
-            <Image
-              src="/test3.png"
-              alt=""
-              width={612}
-              height={695}
-              className="size-full object-contain"
-              onContextMenu={removeContextMenu}
-              quality={100}
-            />
-            <div className="absolute top-full right-full w-16">
+          <div className="self-end relative w-[70%] sm:w-[25rem] lg:w-[30rem] xl:w-[32rem] 3xl:w-[36rem]">
+            <h1 className="text-right text-4.5xl sm:text-5xl lg:text-5.5xl xl:text-6xl underline-custom after:h-1">
+              Amaia Carrere
+            </h1>
+            {/* dwarf image */}
+            <div className="absolute pointer-events-none w-[10rem] xs:w-[11rem] sm:w-[14rem] lg:w-[15.3rem] -top-[0.4rem] xs:-top-[0.7rem] sm:-top-[1.2rem] lg:-top-[1.3rem] xl:-top-[0.9rem] -left-[7.6rem] xs:-left-[8.4rem] sm:-left-[10.6rem] lg:-left-[11.6rem]">
               <Image
-                src="/test.png"
-                alt=""
-                width={261}
-                height={373}
+                {...dwarfImg}
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}
@@ -115,6 +105,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
             </div>
           </div>
         </div>
+
         <div className="flex flex-col items-center">
           <div className="relative">
             <Link
@@ -122,7 +113,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
               className="relative transition-transform duration-300 hover:rotate-1"
             >
               <Button
-                className="px-8 lg:px-8 py-3 lg:py-4 luckiest-guy text-xl lg:text-2xl"
+                className="px-8 lg:px-8 py-3 lg:py-4 luckiest-guy xs:text-xl lg:text-2xl"
                 onClick={(e) =>
                   scrollToSection(e, homeSectionIds.secondSection)
                 }
@@ -132,29 +123,52 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 Découvrir
               </Button>
             </Link>
-            <div className="absolute right-[50%] xs:right-[65%] sm:right-[145%] lg:right-[164%] xl:right-[145%] 3xl:right-[105%] bottom-[-3.2rem] sm:-bottom-9 lg:-bottom-10 w-[12rem] sm:w-[14rem] lg:w-[15.3rem]">
+          </div>
+          <ArrowDownAnimation />
+        </div>
+
+        {/* Astronaute + lune */}
+        {isViewportAboveLg && (
+          <div className="absolute -top-6 sm:top-0 3xl:top-10 left-40 sm:left-24 lg:left-8 xl:left-32 3xl:left-64 w-32 sm:w-40 xl:w-44">
+            <Image
+              src="/ttinka.webp"
+              alt="Personnage de Ttinka endormi sur la Lune"
+              width={612}
+              height={695}
+              className="size-full object-contain"
+              onContextMenu={removeContextMenu}
+              quality={100}
+            />
+            <div className="absolute top-1/2 sm:top-[80%] lg:top-full right-[130%] sm:right-full lg:right-3/4 xl:right-full w-12 sm:w-16 max-sm:rotate-[45deg]">
               <Image
-                {...dwarfImg}
+                src="/astronaute.webp"
+                alt="Un astronaute s'élance dans l'espace"
+                width={261}
+                height={373}
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}
               />
             </div>
-            <div className="absolute top-[105%] left-[350%] w-36">
+          </div>
+        )}
+
+        {/* Astronaute + souris */}
+        {!isMobileViewport && (
+          <div className="absolute pointer-events-none bottom-10 sm:bottom-28 lg:bottom-20 xl:bottom-20 2xl:bottom-10 3xl:bottom-28 right-10 sm:right-20 lg:right-12 xl:right-20 3xl:right-56 w-28 sm:w-32 lg:w-36">
+            <Image
+              src="/astronaute2.webp"
+              alt="Un astronaute s'échappe en courant"
+              width={247}
+              height={269}
+              className="size-full object-contain"
+              onContextMenu={removeContextMenu}
+              quality={100}
+            />
+            <div className="absolute top-5 sm:top-0 -left-40 sm:-left-48 lg:-left-36 xl:-left-56 w-16 sm:w-20 scale-x-[-1]">
               <Image
-                src="/test2.webp"
-                alt=""
-                width={247}
-                height={269}
-                className="size-full object-contain"
-                onContextMenu={removeContextMenu}
-                quality={100}
-              />
-            </div>
-            <div className="absolute top-[105%] left-[250%] w-20 scale-x-[-1]">
-              <Image
-                src="/test4.webp"
-                alt=""
+                src="/souris-abeille.webp"
+                alt="Une souris abeille"
                 width={370}
                 height={200}
                 className="size-full object-contain"
@@ -163,10 +177,11 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
               />
             </div>
           </div>
-          <ArrowDownAnimation />
-        </div>
+        )}
+
+        {/* Background full screen et transition d'apparition au scroll */}
         <motion.div
-          className="absolute top-0 left-0 hero-height w-full bg-cover bg-center bg-no-repeat"
+          className="absolute z-20 top-0 left-0 hero-height w-full bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: isMobileViewport
               ? `var(--bg-url-mobile)`
@@ -176,6 +191,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
           }}
         />
       </div>
+
+      {/* Hauteur de heroSection supplémentaire pour permettre le scroll et l'affichage du bg full screen en absolute */}
       <div
         ref={heroBgRef}
         id={homeSectionIds.secondSection}

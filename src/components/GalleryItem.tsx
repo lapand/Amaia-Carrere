@@ -28,7 +28,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
           observer.unobserve(galleryItemRef.current);
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0 }
     );
 
     if (galleryItemRef.current) {
@@ -38,7 +38,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
 
   return (
     <div
-      className={`out-view translate-y-40 relative flex justify-center items-center overflow-hidden bg-black mb-3 lg:mb-5 cursor-pointer rounded-md after:absolute after:pointer-events-none after:text-white after:luckiest-guy after:text-xl hover:after:content-["OUVRIR"]`}
+      className={`relative flex justify-center items-center overflow-hidden out-view translate-y-40 bg-black mb-3 lg:mb-5 cursor-pointer rounded-md after:absolute after:pointer-events-none after:text-white after:luckiest-guy after:text-xl hover:after:content-["OUVRIR"]`}
       ref={galleryItemRef}
       onClick={() => openModal(imgIdx)}
     >

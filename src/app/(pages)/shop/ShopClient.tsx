@@ -54,13 +54,13 @@ const ShopClient: React.FC<ShopClientType> = ({
   });
 
   return (
-    <div className="flex-1 flex flex-col gap-10 sm:gap-16">
-      <h1 className="text-center sm:text-right sm:mr-20 text-primary-600 annie-use-your-telescope thickening-1 text-6.5xl sm:text-7xl 2xl:text-8xl">
-        <span className="underline-custom after:h-[0.325rem] after:bottom-4">
+    <div className="flex-1 flex flex-col items-center gap-10 sm:gap-16">
+      <h1 className="text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl">
+        <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
           Boutique
         </span>
       </h1>
-      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-12">
+      <div className="sm:w-[35rem] lg:w-[50rem] xl:w-[65rem] 2xl:w-[75rem] 3xl:w-[85rem] grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8 lg:gap-10">
         {articlesError}
         {articlesJSX}
       </div>

@@ -31,7 +31,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
   return (
     <div className="flex flex-col gap-2 max-sm:mb-8">
       <Link href={articleURL} className="group">
-        <div className="relative w-full aspect-square border border-gray-500 min-w-0 min-h-0 overflow-hidden">
+        <div className="relative w-full aspect-square border border-neutral-400 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

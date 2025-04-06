@@ -1,6 +1,6 @@
 'use client';
 
-import { homeSectionIds, routes } from '@/config/config.global';
+import { routes } from '@/config/config.global';
 import GalleryOverview from './GalleryOverview';
 import Link from 'next/link';
 import Button from './Button';
@@ -23,26 +23,27 @@ const PagesOverview: React.FC<PagesOverviewProps> = ({ data }) => {
       title={camelToSentence(arr[0])}
       images={arr[1]}
       colorTheme={i % 2 !== 0 ? 'light' : 'dark'}
-      isFirst={i === 0}
       isLast={i === entries.length - 1}
     />
   ));
 
   return (
-    <div className="flex flex-col gap-10 sm:gap-12 lg:gap-20">
+    <div className="flex flex-col gap-12 sm:gap-16 lg:gap-20">
       <Separator size="sm" />
-      <section className="flex flex-col gap-10 sm:gap-16">
-        <h2 className="text-center regards text-4xl">Qui suis-je ?</h2>
+      <section className="flex flex-col gap-16">
+        <h2 className="text-center regards text-3.5xl sm:text-4xl lg:text-4.5xl">
+          Qui suis-je ?
+        </h2>
         <div className="flex flex-col justify-center items-center gap-8 sm:gap-12">
-          <p className="relative w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold max-sm:px-4">
+          <p className="relative w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-2xl xs:text-2.5xl sm:text-3xl font-bold px-2 xs:px-4 sm:px-0">
             Dessinatrice près de Bayonne et du pays basque.
             <br />
             Je crée des illustrations jeunesse, fantasy, ainsi que des bandes
             dessinées.
-            <span className="absolute bottom-0 right-full w-40">
+            <span className="absolute bottom-full md:bottom-0 right-[70%] sm:right-[85%] md:right-full w-28 sm:w-32 md:w-40">
               <Image
-                src="/test5.webp"
-                alt=""
+                src="/alien.webp"
+                alt="Deux aliens en tenue d'astronaute"
                 width={321}
                 height={447}
                 className="size-full object-contain"
@@ -53,12 +54,12 @@ const PagesOverview: React.FC<PagesOverviewProps> = ({ data }) => {
           </p>
           <div className="flex justify-center">
             <Link
-              href={routes.gallery}
+              href={routes.about}
               className="transition-transform duration-300 hover:rotate-1"
             >
               <Button
                 className="px-6 py-3 luckiest-guy text-lg"
-                aria-label={`to gallery page`}
+                aria-label={`to about page`}
               >
                 En savoir plus
               </Button>
@@ -68,9 +69,11 @@ const PagesOverview: React.FC<PagesOverviewProps> = ({ data }) => {
       </section>
       {galleryOverviewSections}
       <section className="flex flex-col gap-10 sm:gap-16 mt-8">
-        <h2 className="text-center regards text-4xl">Ma boutique</h2>
+        <h2 className="text-center regards text-3.5xl sm:text-4xl lg:text-4.5xl">
+          Ma boutique
+        </h2>
         <div className="flex flex-col justify-center items-center gap-6">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-3xl font-bold max-sm:px-4">
+          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] text-center text-pretty annie-use-your-telescope text-2xl xs:text-2.5xl sm:text-3xl font-bold max-sm:px-4">
             Découvrez mes articles en vente ici
           </p>
           <span className="inline-block rotate-90 text-4xl font-bold annie-use-your-telescope">
@@ -92,30 +95,30 @@ const PagesOverview: React.FC<PagesOverviewProps> = ({ data }) => {
         </div>
       </section>
       <Separator size="sm" />
-      <section className="flex flex-col gap-10 sm:gap-40 pb-10 xl:pb-12 3xl:pb-16">
-        <div className="relative regards text-4xl mx-auto">
-          <h2 className="inline-block">
-            <span className="relative z-10">Me contacter</span>
-            <span className="absolute top-full -translate-y-[40%] right-1/2 w-[22rem]">
-              <Image
-                src="/lezard.webp"
-                alt=""
-                width={594}
-                height={488}
-                className="size-full object-contain"
-                onContextMenu={removeContextMenu}
-                quality={100}
-              />
-            </span>
+      <section className="flex flex-col gap-32 sm:gap-40 pb-10 xl:pb-12 3xl:pb-16 max-md:px-4">
+        <div className="relative self-center inline-block">
+          <h2 className="relative z-10 inline-block regards text-3.5xl sm:text-4xl lg:text-4.5xl">
+            Me contacter
           </h2>
+          <span className="absolute top-full -translate-y-[40%] right-0 xs:right-4 sm:right-1/2 w-[16rem] sm:w-[19rem] lg:w-[22rem]">
+            <Image
+              src="/lezard.webp"
+              alt="Deux lézards passe un coup de téléphone"
+              width={594}
+              height={488}
+              className="size-full object-contain"
+              onContextMenu={removeContextMenu}
+              quality={100}
+            />
+          </span>
         </div>
-        <div className="flex max-sm:flex-col justify-center items-center gap-8 sm:gap-12 lg:gap-20">
-          <p className="w-full sm:w-96 lg:w-[30rem] xl:w-[45rem] annie-use-your-telescope text-2.5xl font-bold max-sm:px-4">
-            Si vous êtes intéressés par des projets d'illustrations, vous pouvez
-            m'en faire part via le formulaire de contact.
+        <div className="flex max-lg:flex-col justify-center items-center gap-8 sm:gap-12 xl:gap-20">
+          <p className="w-full md:w-4/5 lg:w-[30rem] xl:w-[38rem] 2xl:w-[40rem] annie-use-your-telescope text-2xl sm:text-2.5xl font-bold">
+            Si vous êtes intéressés par des projets d&apos;illustrations, vous pouvez
+            m&apos;en faire part via le formulaire de contact.
             <br />
             <br />
-            N'hésitez pas à m'écrire pour une précision sur les produits en
+            N&apos;hésitez pas à m&apos;écrire pour une précision sur les produits en
             vente dans la section boutique.
             <br />
             <br />

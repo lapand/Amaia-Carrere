@@ -22,7 +22,7 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
     setActiveIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
 
   return (
-    <div className={`flex items-center justify-between`}>
+    <div className={`relative flex items-center justify-between`}>
       {/* Left arrow */}
       {isArrowsVisible && (
         <IconBtn

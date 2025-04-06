@@ -20,12 +20,27 @@ const LanguageSelector: React.FC<LanguageSelectorType> = ({
   const id = `language-select-${Date.now()}`;
   return (
     <div className={className}>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && (
+        <label
+          htmlFor={id}
+          className="annie-use-your-telescope font-bold text-2xl underline underline-offset-4"
+        >
+          {label}
+        </label>
+      )}
       <Select
         id={id}
         options={options}
         value={selectedLanguage}
         onChange={onLanguageChange}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary25: '#e5d8ed',
+            primary: '#754591',
+          },
+        })}
       />
     </div>
   );

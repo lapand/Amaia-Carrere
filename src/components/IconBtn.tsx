@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface IconBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -38,9 +39,11 @@ const IconBtn: React.FC<IconBtnProps> = ({
       style={style}
       {...rest}
     >
-      <img
+      <Image
         src={iconSrc}
         alt={iconAlt}
+        width={50}
+        height={50}
         style={{
           width: `100%`,
           height: 'auto', // Conserve les proportions intrinsèques

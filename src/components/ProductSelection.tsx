@@ -57,7 +57,7 @@ const ProductSelection: React.FC<ProductSelectionType> = ({
           className="flex justify-between items-center"
           selectedLanguage={selectedLanguage}
           onLanguageChange={handleLanguageChange}
-          label={'Sélection de la langue'}
+          label={'Sélection de la langue :'}
         />
       )}
       <QuantitySelector
@@ -68,7 +68,10 @@ const ProductSelection: React.FC<ProductSelectionType> = ({
       />
       <div className="flex justify-between items-center">
         <p className="text-lg xl:text-xl">
-          {price} € <span className="text-sm">TTC</span>
+          {price}{' '}
+          <span className="annie-use-your-telescope font-bold text-2xl">
+            € <span className='text-xl'>TTC</span>
+          </span>
         </p>
         <AddToCart
           id={id}

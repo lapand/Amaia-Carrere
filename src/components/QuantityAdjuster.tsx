@@ -1,9 +1,6 @@
 import Image from 'next/image';
 import Button2 from './Button2';
-import {
-  addToCart,
-  decrementQuantity,
-} from '../store/slices/cartSlice';
+import { addToCart, decrementQuantity } from '../store/slices/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/configureStore';
 import { ArticleLanguageType } from '@/types';
@@ -43,8 +40,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
       {quantity && quantity > 0 && (
         <Button2
           onClick={() => dispatch(decrementQuantity({ id, language }))}
-          className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center bg-none outline outline-1 outline-gray-500`}
-          style={{ color: 'black' }}
+          className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center bg-none text-primary-600 outline outline-1 outline-gray-500 hover:outline-none hover:bg-neutral-700 hover:text-amber-50`}
         >
           -
         </Button2>
@@ -52,7 +48,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
       <div className={`${contentSize}`}>
         {!quantity || quantity === 0 ? (
           <Image
-            src="/shopping-cart.png"
+            src="/shopping-cart.webp"
             alt="shopping-cart-icon"
             width={100}
             height={100}
@@ -65,7 +61,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterType> = ({
       </div>
       <Button2
         onClick={() => dispatch(addToCart({ id, language, quantity: 1 }))}
-        className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center border hover:bg-none hover:bg-yellow-500`}
+        className={`${btnSize} aspect-square py-3 px-4 text-xl flex justify-center items-center`}
       >
         +
       </Button2>

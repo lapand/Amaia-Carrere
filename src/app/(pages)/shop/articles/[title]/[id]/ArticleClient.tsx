@@ -83,7 +83,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
       .map((line, index) => <div key={index}>{line || <br />}</div>);
 
     const titleJSX = (
-      <h1 className="inspiration-font text-h1-sm xl:text-h1-xl thickening-2 lg:mb-10 max-lg:text-center line-clamp-2 text-ellipsis break-words">
+      <h1 className="text-primary-600 lg:mb-10 line-clamp-2 text-ellipsis break-words regards text-3xl sm:text-3.5xl 2xl:text-4xl">
         {title}
       </h1>
     );
@@ -91,7 +91,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
     content = (
       <>
         <div className="relative">
-          <div className="sm:sticky top-24 xl:top-36 3xl:top-40 flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
+          <div className="sm:sticky top-24 xl:top-36 3xl:top-40 sm:max-lg:w-3/4 mx-auto flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
             <Link href={routes.shop} className="self-start group">
               <Button
                 className="flex items-center px-4 sm:px-5 py-1 sm:py-3"
@@ -115,12 +115,12 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           <div>
             {windowWidth >= lgBreakpoint && titleJSX}
             <p>
-              <span className="text-xl lg:text-lg underline">
+              <span className="underline underline-offset-4 text-2xl annie-use-your-telescope font-bold">
                 Description de l&#39;article :
               </span>
               <br />
               <br />
-              <span className="text-lg line-clamp-2 text-ellipsis break-words">
+              <span className="max-lg:text-lg line-clamp-2 text-ellipsis break-words">
                 {description}
               </span>
             </p>

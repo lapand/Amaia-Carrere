@@ -69,7 +69,7 @@ const AddToCart: React.FC<AddToCartType> = ({
           {!isAdded ? (
             <motion.img
               key="shopping-cart"
-              src="/shopping-cart.png"
+              src="/shopping-cart.webp"
               alt="shopping-cart-icon"
               width={100}
               height={100}
@@ -94,7 +94,7 @@ const AddToCart: React.FC<AddToCartType> = ({
       </div>
       <Button2
         onClick={handleAddToCart}
-        className={`${btnSize} aspect-square rounded-full py-3 px-4 text-xl flex justify-center items-center border hover:bg-none hover:bg-yellow-500`}
+        className={`${btnSize} aspect-square rounded-full py-3 px-4 text-xl flex justify-center items-center`}
       >
         +
       </Button2>

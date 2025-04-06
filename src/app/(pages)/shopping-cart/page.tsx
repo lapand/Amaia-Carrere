@@ -64,14 +64,18 @@ export default function CartPage() {
   });
 
   return (
-    <div className="flex-1 flex flex-col max-lg:mb-28">
+    <div className="flex-1 flex flex-col items-center">
       {cartArticlesJSX.length === 0 ? (
         <>
-          <h1 className="text-7xl inspiration-font thickening-2 sm:text-right max-sm:ml-10 sm:mr-20">
-            Panier
+          <h1 className="regards text-4xl sm:text-4.5xl 2xl:text-5xl">
+            <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
+              Panier
+            </span>
           </h1>
           <div className="flex-1 flex flex-col justify-center gap-16">
-            <div className="text-lg text-center">Votre panier est vide</div>
+            <div className="text-center text-2.5xl sm:text-3xl lg:text-3.5xl 2xl:text-4xl annie-use-your-telescope font-bold">
+              Votre panier est vide
+            </div>
             <Link
               href={routes.shop}
               className="transition-transform duration-300 hover:rotate-1 text-center"
@@ -83,13 +87,15 @@ export default function CartPage() {
           </div>
         </>
       ) : (
-        <div className="flex-1 flex max-lg:flex-col-reverse justify-center gap-10 lg:gap-10 xl:gap-16 2xl:gap-32">
+        <div className="flex-1 flex max-lg:flex-col-reverse justify-end lg:justify-center gap-10 lg:gap-10 xl:gap-16 2xl:gap-32 max-lg:mb-28">
           <div className="max-lg:w-full self-center lg:self-start flex flex-col gap-8 sm:gap-4 p-3 sm:p-6 3xl:p-10 border border-gray-400 rounded-xl">
             {cartArticlesJSX}
           </div>
-          <div className="flex flex-col">
-            <h1 className="text-7xl licorice-font thickening-2 text-right max-sm:mr-10">
-              Panier
+          <div className="flex flex-col lg:max-xl:gap-6">
+            <h1 className="text-center regards text-4xl sm:text-4.5xl 2xl:text-5xl">
+              <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
+                Panier
+              </span>
             </h1>
             <div
               style={
@@ -100,26 +106,42 @@ export default function CartPage() {
               className="flex-1 relative max-lg:fixed max-lg:z-50 max-lg:bottom-0 max-lg:left-0 max-lg:w-full max-lg:bg-slate-100"
             >
               <div className="lg:sticky lg:top-56 xl:top-48 3xl:top-[300px] flex flex-col lg:gap-12 3xl:gap-16 border-l lg:border-l-gray-500 lg:p-4 xl:p-10">
-                <div className="flex sm:max-lg:justify-between lg:flex-col lg:gap-12 3xl:gap-20 py-4 sm:py-5 lg:py-0 px-3 sm:px-10 lg:px-0 max-lg:border-y-[1px] border-slate-900">
-                  <div className="flex flex-col max-lg:justify-center gap-2 lg:gap-6 text-sm sm:text-xl lg:text-base 2xl:text-lg whitespace-nowrap">
+                <div className="flex flex-col xs:flex-row lg:flex-col sm:max-lg:justify-between max-xs:gap-2 lg:gap-12 3xl:gap-20 py-4 sm:py-5 lg:py-0 px-3 sm:px-10 lg:px-0 max-lg:border-y-[1px] border-slate-900">
+                  <div className="flex flex-col max-lg:justify-center gap-2 lg:gap-6 whitespace-nowrap">
                     <p>
-                      <span>
+                      <span className="annie-use-your-telescope font-bold text-2xl sm:text-2.5xl lg:text-2xl 2xl:text-2.5xl">
                         Sous-total
-                        <span className="sm:text-lg lg:text-sm 3xl:text-base">
+                        <span className="text-xl sm:text-xl lg:text-xl 3xl:text-xl">
                           {' '}
-                          (TVA incluse)
+                          (avec TVA)
                         </span>{' '}
                         :
                       </span>{' '}
-                      {cartSubTotal.toFixed(2)} €
+                      <span className="text-lg sm:text-xl lg:text-base 2xl:text-xl">
+                        {cartSubTotal.toFixed(2)}
+                      </span>{' '}
+                      €
                     </p>
-                    <p>Frais de livraison : {shippingCost.toFixed(2)} €</p>
+                    <p className="text-sm sm:text-xl lg:text-base 2xl:text-lg">
+                      <span className="annie-use-your-telescope font-bold text-2xl sm:text-2xl lg:text-xl 2xl:text-2xl">
+                        Frais de livraison :
+                      </span>{' '}
+                      <span className="text-lg sm:text-xl lg:text-base 2xl:text-lg">
+                        {shippingCost.toFixed(2)}
+                      </span>{' '}
+                      €
+                    </p>
                   </div>
-                  <p className="max-sm:flex-1 max-lg:flex max-sm:flex-col max-lg:items-center max-lg:gap-2 text-lg sm:text-2xl lg:text-lg 3xl:text-xl text-center">
-                    <span>Total :</span>
-                    <span className="xl:text-xl font-bold">
+                  <p className="max-sm:flex-1 max-lg:flex xs:flex-col sm:flex-row max-lg:items-center max-lg:gap-2 text-center">
+                    <span className="annie-use-your-telescope font-bold text-2.5xl sm:text-4xl lg:text-2.5xl">
+                      Total :
+                    </span>
+                    <span className="text-xl xs:text-1.5xl sm:text-2xl xl:text-xl font-bold">
                       {' '}
-                      {cartTotal.toFixed(2)} €
+                      <span className="text-1.5xl sm:text-2.5xl lg:text-xl 2xl:text-xl">
+                        {cartTotal.toFixed(2)}
+                      </span>{' '}
+                      €
                     </span>
                   </p>
                 </div>

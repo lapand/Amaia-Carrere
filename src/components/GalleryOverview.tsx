@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import removeContextMenu from '@/utils/removeContextMenu';
 import { routes } from '@/config/config.global';
-import { AnimatePresence, motion } from 'framer-motion';
 import { breakpoints } from '@/data/breakpoints';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { FormattedImage } from '@/types';
@@ -13,59 +12,46 @@ type GalleryOverviewProps = {
   title: string;
   images: FormattedImage[];
   colorTheme?: 'light' | 'dark';
-  isFirst?: boolean;
   isLast?: boolean;
 };
 
 const timeToDeroule = 'duration-700';
 const externalMargin = 'm-4 sm:m-6';
 
+const toGalleryBtn = (
+  <Link
+    href={routes.gallery}
+    className="transition-transform duration-300 hover:rotate-1"
+  >
+    <Button
+      className="px-6 py-3 luckiest-guy text-lg"
+      aria-label={`to gallery page`}
+    >
+      Voir la galerie
+    </Button>
+  </Link>
+);
+
 const GalleryOverview: React.FC<GalleryOverviewProps> = ({
   title,
   images,
   colorTheme = 'dark',
-  isFirst = false,
   isLast = false,
 }) => {
   const [activeImg, setActiveImg] = useState<number | null>(null);
-
   const windowWidth = useViewportWidth();
   const isViewportOverXl = windowWidth >= breakpoints.xl;
 
-  let itemWidth = 6;
-  if (windowWidth >= breakpoints.sm) itemWidth = 9;
-  if (windowWidth >= breakpoints.md) itemWidth = 12;
-  if (windowWidth >= breakpoints.lg) itemWidth = 14;
-  let itemGap = 0.5;
-  if (windowWidth >= breakpoints.sm) itemGap = 2;
   let hauteurImgDeroulante = 15;
   if (windowWidth >= breakpoints.xs) hauteurImgDeroulante = 18;
   if (windowWidth >= breakpoints.sm) hauteurImgDeroulante = 40;
 
   const colors = {
-    bg: 'bg-primary-600',
-    text: 'text-primary-200',
-    border: 'border-primary-200',
+    bg: colorTheme === 'light' ? '' : 'bg-primary-600',
+    text: colorTheme === 'light' ? 'text-primary-600' : 'text-primary-200',
+    border:
+      colorTheme === 'light' ? 'border-primary-600' : 'border-primary-200',
   };
-  if (colorTheme === 'light') {
-    colors.bg = '';
-    colors.text = 'text-primary-600';
-    colors.border = 'border-primary-600';
-  }
-
-  const toGalleryBtn = (
-    <Link
-      href={routes.gallery}
-      className="transition-transform duration-300 hover:rotate-1"
-    >
-      <Button
-        className="px-6 py-3 luckiest-guy text-lg"
-        aria-label={`to gallery page`}
-      >
-        Voir la galerie
-      </Button>
-    </Link>
-  );
 
   const JSXImages = images.map((img, i: number) => {
     const { src, alt, width, height, formats } = img;
@@ -73,14 +59,13 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
     return (
       <div
         key={i}
-        style={{ width: `${itemWidth}rem`, height: `${itemWidth}rem` }}
         className={`${colors.border} ${
           colorTheme === 'light' ? 'border-2' : 'border'
-        } ${
-          colorTheme === 'light' ? 'bg-amber-50' : colors.bg
-        } relative before:duration-300 p-3 before:content-[''] before:absolute before:size-1/12 ${
-          activeImg === i ? 'before:bg-aubergine-400' : 'before:bg-aubergine-500'
-        } before:bottom-full before:left-full before:-translate-x-1/2 before:translate-y-1/2 before:border before:border-aubergine-300 before:rounded-full before:transition-colors before:z-[-1] hover:before:bg-aubergine-400`}
+        } ${colorTheme === 'light' ? 'bg-amber-50' : colors.bg} ${
+          activeImg === i
+            ? 'before:bg-aubergine-400'
+            : 'before:bg-aubergine-500'
+        } relative size-24 xs:size-[6.5rem] sm:size-40 md:size-48 lg:size-56 before:duration-300 p-1 xs:p-2 sm:p-3 before:content-[''] before:absolute before:size-4 sm:before:size-6 xl:before:size-5 before:bottom-full before:left-full before:-translate-x-1/2 before:translate-y-1/2 before:border before:border-aubergine-300 before:rounded-full before:transition-colors before:z-[-1] hover:before:bg-aubergine-400`}
       >
         <button
           className={`${colors.border} size-full border`}
@@ -145,44 +130,12 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
           } flex flex-col sm:gap-6`}
         >
           <h2
-            className={`${colors.text} py-2 xl:py-8 text-center regards text-2.5xl sm:text-4xl`}
+            className={`${colors.text} py-4 xl:py-8 text-center regards text-3.5xl sm:text-4xl`}
           >
             {title}
           </h2>
-          <div className="relative h-12 sm:h-32 flex justify-center items-start">
-            <div className="flex flex-col gap-2">
-              {/* <div className="h-2">
-                <AnimatePresence>
-                  {activeImg !== null && (
-                    <motion.div
-                      className={`h-full place-items-center`}
-                      animate={{
-                        width: `${itemWidth}rem`,
-                        transform: `translateX(${
-                          activeImg * (itemGap + itemWidth)
-                        }rem)`,
-                      }}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 150,
-                        damping: 15,
-                        mass: .8,
-                      }}
-                    >
-                      <motion.div
-                        className="h-full w-10 sm:w-16 rounded-full bg-aubergine-400"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0 }}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div> */}
-              <div className="flex" style={{ gap: `${itemGap}rem` }}>
-                {JSXImages}
-              </div>
-            </div>
+          <div className="relative h-10 xs:h-12 sm:h-16 md:h-20 lg:h-32 flex justify-center items-start">
+            <div className="flex gap-4 sm:gap-8">{JSXImages}</div>
             {isViewportOverXl && (
               <div className="relative z-10 ml-40">{toGalleryBtn}</div>
             )}
@@ -206,7 +159,7 @@ const GalleryOverview: React.FC<GalleryOverviewProps> = ({
         />
       </div>
       {!isViewportOverXl && !isLast && (
-        <div className="h-40 sm:h-60 place-content-center mx-auto">
+        <div className="mt-20 sm:mt-32 mb-2 xs:mb-6 sm:mb-8 place-content-center mx-auto">
           {toGalleryBtn}
         </div>
       )}

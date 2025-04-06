@@ -8,7 +8,7 @@ type ModalProps = {
   duration?: number,
 };
 
-const closeIconUri = '/pencil-cross.png';
+const closeIconUri = '/pencil-cross.webp';
 
 const ModalWithTransition: React.FC<ModalProps> = ({
   children,

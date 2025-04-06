@@ -73,41 +73,36 @@ const HeaderCart = () => {
                 onClick={() =>
                   handleRemoveFromCart(id, selectedLanguage || undefined)
                 }
-                className="size-7 flex justify-center items-center border border-amber-50 transition-colors bg-none group hover:bg-amber-200"
+                className="size-7 flex justify-center items-center border border-amber-100 transition-colors bg-none group hover:bg-amber-200"
                 aria-label="Retirer l'article du panier"
               >
-                <CrossIcon className="size-[0.7rem] transition-colors group-hover:text-primary-600" />
+                <CrossIcon className="size-[0.7rem] transition-colors text-amber-100 group-hover:text-primary-600" />
               </Button2>
             </li>
           );
         });
 
   return (
-    <>
+    <div>
       <motion.div
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
-        className={`relative size-12 p-3 cursor-pointer group hover:scale-110 transition-transform ${
+        className={`relative flex items-center cursor-pointer group hover:scale-110 transition-transform duration-300 ${
           isHovered ? 'scale-110' : ''
         }`}
       >
-        <Link href={routes.shoppingCart} className="relative flex items-center">
-          <span className="absolute top-5 left-4 flex justify-center items-center text-xs bg-primary-200 rounded-full size-4 text-primary-800">
-            {cartItemCount}
-          </span>
-          {/* <Image
-            src="/shopping-cart.png"
-            alt="shopping-cart-icon"
-            width={100}
-            height={100}
-            className="size-full"
-            priority
-          /> */}
+        <Link
+          href={routes.shoppingCart}
+          className="relative p-3 flex items-center"
+        >
           <span
-            className={`inline-block size-7 cart-icon-mask transition-colors duration-300 ${
+            className={`size-6 sm:size-7 cart-icon-mask transition-colors duration-300 ${
               isHovered ? 'bg-amber-300' : 'bg-amber-50'
             } group-hover:bg-amber-300`}
           />
+          <span className="absolute bottom-0 sm:bottom-1 right-1 sm:right-2 flex justify-center items-center text-xs bg-primary-200 rounded-full size-4 text-primary-800">
+            {cartItemCount}
+          </span>
         </Link>
       </motion.div>
 
@@ -126,7 +121,7 @@ const HeaderCart = () => {
             transition={{ duration: 0.3 }}
             className="fixed right-0 pt-5"
           >
-            <div className=" flex flex-col gap-4 w-48 sm:w-80 text-sm bg-primary-600 text-primary-200 rounded-l-lg shadow-lg p-5">
+            <div className=" flex flex-col gap-4 w-72 sm:w-80 text-sm bg-primary-600 text-primary-200 rounded-l-lg shadow-lg p-5">
               <p className="self-center text-base">
                 Total : {totalPrice.toFixed(2)} €
               </p>
@@ -141,7 +136,7 @@ const HeaderCart = () => {
               </Link>
               <div className="flex flex-col gap-3">
                 <p>Articles présents :</p>
-                <ul className="max-h-56 sm:max-h-64 overflow-y-auto overflow-x-hidden">
+                <ul className="max-h-56 sm:max-h-64 overflow-y-auto overflow-x-hidden pr-1">
                   {cartItemJSX}
                 </ul>
               </div>
@@ -149,7 +144,7 @@ const HeaderCart = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 };
 

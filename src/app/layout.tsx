@@ -31,7 +31,7 @@ export default function RootLayout({
         <PageLoader>
           <ReduxProvider>
             <ClientI18nProvider>
-              <div className="relative min-h-screen flex flex-col page-margin border border-gray-800">
+              <div className="relative page-min-h flex flex-col page-margin border border-gray-800">
                 <Header />
                 <main className="relative flex-1 flex flex-col">
                   {children}
