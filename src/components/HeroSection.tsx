@@ -83,14 +83,14 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="flex flex-col"
     >
-      <div className="sticky overflow-hidden top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 px-2 xs:px-4 sm:px-0 max-sm:-mt-10">
-        <div
-          className="relative z-10 flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1"
-          style={{
-            willChange: 'transform',
-            transform: 'translateZ(0)',
-          }}
-        >
+      <div
+        style={{
+          willChange: 'transform',
+          transform: 'translateZ(0)',
+        }}
+        className="sticky overflow-hidden top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 px-2 xs:px-4 sm:px-0 max-sm:-mt-10"
+      >
+        <div className="relative z-10 flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
           <p className="text-center text-4.5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
             Bienvenue dans mon atelier,
             {!isMobileViewport ? <br /> : ' '}
