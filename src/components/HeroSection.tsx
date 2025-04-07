@@ -192,8 +192,11 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
             backgroundImage: isMobileViewport
               ? `var(--bg-url-mobile)`
               : `var(--bg-url-desktop)`,
+            WebkitMaskImage: maskImageProgress,
             maskImage: maskImageProgress,
             pointerEvents: pointerEventsMotionValue,
+            willChange: 'mask-image',
+            transform: 'translateZ(0)',
           }}
         />
       </div>
