@@ -87,7 +87,8 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
         <div
           className="relative z-10 flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1"
           style={{
-            contain: 'layout',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         >
           <p className="text-center text-4.5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
