@@ -270,7 +270,7 @@ strong {
   transform: rotateZ(-45deg);
   box-sizing: border-box;
 }
-/* .scroll-down-btn1 span {
+.scroll-down-btn1 span {
   -webkit-animation: sdb 2s infinite;
   animation: sdb 2s infinite;
 }
@@ -290,6 +290,6 @@ strong {
     transform: rotateY(720deg) rotateZ(-45deg) translate(-2.3rem, 2.3rem);
     opacity: 0;
   }
-} */
+}
 
 /**** End **** Scroll down button ****/
