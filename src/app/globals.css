@@ -58,6 +58,8 @@
     --header-height: 70px;
   }
 }
+
+/* Suppression des hover sur dispositifs tactiles */
 @media (pointer: coarse) {
   .tactile-btn::before {
     width: 0;
@@ -78,6 +80,7 @@
     @apply group-hover:scale-105;
   }
 }
+/************/
 
 body {
   color: rgb(var(--foreground-rgb));
