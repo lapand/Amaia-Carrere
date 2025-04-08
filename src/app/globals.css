@@ -66,6 +66,12 @@
   .tactile-btn {
     @apply bg-none bg-yellow-500 text-primary-600 border border-primary-600;
   }
+  .article-card-tactile-opacity {
+    @apply group-hover:opacity-0;
+  }
+  .article-card-tactile-scale {
+    @apply group-hover:scale-100;
+  }
 }
 
 body {

@@ -22,7 +22,7 @@ const ArticleCard: React.FC<ArticleCardType> = ({
     );
   } else {
     imgPlaceholder = (
-      <div className="size-full group-hover:scale-105 transition-transform duration-300">
+      <div className="size-full group-hover:scale-105 article-card-tactile-scale transition-transform duration-300">
         <Image {...gallery[0]} className="size-full object-contain" />
       </div>
     );
@@ -33,14 +33,14 @@ const ArticleCard: React.FC<ArticleCardType> = ({
       <Link href={articleURL} className="group">
         <div className="relative w-full aspect-square border border-neutral-400 min-w-0 min-h-0 overflow-hidden">
           {imgPlaceholder}
-          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-opacity duration-300 article-card-tactile-opacity"></div>
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center article-card-tactile-opacity">
             <Image
               src="/eye-icon.webp"
               alt="eye-icon"
               width={100}
               height={100}
-              className="size-8 group-hover:opacity-100"
+              className="size-8 group-hover:opacity-100 article-card-tactile-opacity"
             />
           </div>
         </div>
