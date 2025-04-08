@@ -41,10 +41,8 @@ const AboutClient: React.FC<GalleryClientProps> = ({ images }) => {
 
   return (
     <div className="relative flex-1 flex flex-col items-center gap-5 sm:gap-10">
-      <h1 className="text-center text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl">
-        <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-2">
-          Qui suis je ?
-        </span>
+      <h1 className="text-center text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl underline-custom after:h-[0.28rem] after:bottom-0">
+        Qui suis je ?
       </h1>
       <div className="flex-1 flex items-center justify-center">
         {imagesJSX.length > 0 && (

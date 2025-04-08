@@ -67,10 +67,8 @@ export default function CartPage() {
     <div className="flex-1 flex flex-col items-center">
       {cartArticlesJSX.length === 0 ? (
         <>
-          <h1 className="regards text-4xl sm:text-4.5xl 2xl:text-5xl">
-            <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
-              Panier
-            </span>
+          <h1 className="regards text-4xl sm:text-4.5xl 2xl:text-5xl underline-custom after:h-[0.28rem] after:bottom-0">
+            Panier
           </h1>
           <div className="flex-1 flex flex-col justify-center gap-16">
             <div className="text-center text-2.5xl sm:text-3xl lg:text-3.5xl 2xl:text-4xl annie-use-your-telescope font-bold">
@@ -92,10 +90,8 @@ export default function CartPage() {
             {cartArticlesJSX}
           </div>
           <div className="flex flex-col lg:max-xl:gap-6">
-            <h1 className="text-center regards text-4xl sm:text-4.5xl 2xl:text-5xl">
-              <span className="underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
-                Panier
-              </span>
+            <h1 className="self-center regards text-4xl sm:text-4.5xl 2xl:text-5xl underline-custom after:h-[0.28rem] after:bottom-0">
+              Panier
             </h1>
             <div
               style={
