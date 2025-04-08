@@ -66,11 +66,16 @@
   .tactile-btn {
     @apply bg-none bg-yellow-500 text-primary-600 border border-primary-600;
   }
-  .article-card-tactile-opacity {
-    @apply group-hover:opacity-0;
+}
+@media (pointer: fine) {
+  .hover-article-opacity-30 {
+    @apply group-hover:opacity-30;
   }
-  .article-card-tactile-scale {
-    @apply group-hover:scale-100;
+  .hover-article-opacity-100 {
+    @apply group-hover:opacity-100;
+  }
+  .hover-article-scale-105 {
+    @apply group-hover:scale-105;
   }
 }
 

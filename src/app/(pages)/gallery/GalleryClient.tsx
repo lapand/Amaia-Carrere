@@ -31,8 +31,8 @@ console.log(images);
   return (
     <div className="flex-1 flex flex-col items-center gap-10 sm:gap-16">
       <div className="relative">
-        <h1 className="text-primary-600 text-4xl sm:text-4.5xl 2xl:text-5xl">
-          <span className="regards underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
+        <h1 className="text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl">
+          <span className="inline-block underline-custom after:h-[0.28rem] after:bottom-2 2xl:after:bottom-3">
             Galerie
           </span>
         </h1>
