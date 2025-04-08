@@ -58,7 +58,7 @@
     --header-height: 70px;
   }
 }
-/* @media (pointer: coarse) {
+@media (pointer: coarse) {
   *:hover {
     all: unset !important;
   }
@@ -69,7 +69,7 @@
   .tactile-btn {
     @apply bg-none bg-yellow-500 text-primary-600 border border-primary-600;
   }
-} */
+}
 
 body {
   color: rgb(var(--foreground-rgb));

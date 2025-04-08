@@ -3,6 +3,7 @@ const ArrowDownAnimation = () => {
     <span
       className="relative w-10 h-20"
       style={{
+        // Correction du rendu de l'animation sur iOS Safari
         willChange: 'transform, opacity',
         contain: 'paint',
         transform: 'translateZ(0)',
