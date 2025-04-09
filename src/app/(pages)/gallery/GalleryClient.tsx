@@ -12,7 +12,6 @@ type GalleryClientProps = {
 
 const GalleryClient: React.FC<GalleryClientProps> = ({ images }) => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
-console.log(images);
 
   const openModal = (imgIdx: number) => {
     setActiveIdx(imgIdx);
@@ -30,13 +29,9 @@ console.log(images);
 
   return (
     <div className="flex-1 flex flex-col items-center gap-10 sm:gap-16">
-      {/* <div className="relative"> */}
-        <h1 className="text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl underline-custom after:h-[0.28rem] after:bottom-0">
-          {/* <span className=""> */}
-            Galerie
-          {/* </span> */}
-        </h1>
-      {/* </div> */}
+      <h1 className="text-primary-600 regards text-4xl sm:text-4.5xl 2xl:text-5xl underline-custom after:h-[0.28rem] after:bottom-0">
+        Galerie
+      </h1>
       <div className="lg:w-[55rem] xl:w-[75rem] 2xl:w-[80rem] 3xl:w-[90rem] columns-2 md:columns-3 xl:columns-4 gap-3 lg:gap-5">
         {galleryItems}
       </div>

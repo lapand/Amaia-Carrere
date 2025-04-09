@@ -19,7 +19,6 @@ export type APIArticleType = {
   descriptionCourte?: string;
   galerie?: GalleryType[];
   prix: number;
-  fraisLivraison: number;
   updatedAt: Date;
   disponibilite: boolean;
   descriptionComplete?: string;
@@ -34,7 +33,6 @@ export type ArticleCardType = {
   title: string;
   description: string;
   price: string;
-  shippingCost: number;
   about: string;
   available: boolean;
   languages: ArticleLanguageType[];

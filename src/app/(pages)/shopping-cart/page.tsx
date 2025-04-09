@@ -23,7 +23,6 @@ export default function CartPage() {
     ({
       updatedAt,
       gallery,
-      shippingCost,
       description,
       languages,
       available,
