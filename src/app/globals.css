@@ -31,10 +31,6 @@
   font-style: normal;
 }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Luckiest+Guy&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap'); */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

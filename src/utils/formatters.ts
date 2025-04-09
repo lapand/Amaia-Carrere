@@ -78,6 +78,7 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     descriptionComplete,
     disponibilite,
     langages,
+    poidsEnGramme,
   } = article;
 
   const formattedGallery = !galerie
@@ -100,5 +101,6 @@ export function formatArticle(article: APIArticleType): ArticleCardType {
     about: descriptionComplete || '',
     available: disponibilite,
     languages: langages,
+    weight: poidsEnGramme,
   };
 }

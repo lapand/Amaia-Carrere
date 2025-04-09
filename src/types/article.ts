@@ -1,5 +1,5 @@
-import { Draft } from "@reduxjs/toolkit";
-import { ImageProps } from "next/image";
+import { Draft } from '@reduxjs/toolkit';
+import { ImageProps } from 'next/image';
 
 export type GalleryType = {
   url: string;
@@ -24,6 +24,7 @@ export type APIArticleType = {
   disponibilite: boolean;
   descriptionComplete?: string;
   langages: ArticleLanguageType[];
+  poidsEnGramme: number;
 };
 
 export type ArticleCardType = {
@@ -37,6 +38,7 @@ export type ArticleCardType = {
   about: string;
   available: boolean;
   languages: ArticleLanguageType[];
+  weight: number;
 };
 
 export type CartArticle = {

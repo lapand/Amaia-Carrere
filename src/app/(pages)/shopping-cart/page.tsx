@@ -10,6 +10,7 @@ import { selectDetailedCartProducts } from '@/store/selectors/shopSelectors';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { lgBreakpoint } from '@/data/breakpoints';
 import { routes } from '@/config/config.global';
+import getShippingCost from '@/utils/getShippingCost';
 
 export default function CartPage() {
   const detailedCartProducts = useSelector(selectDetailedCartProducts);
@@ -18,7 +19,6 @@ export default function CartPage() {
   // Les produits devenus indisponibles après leur ajout dans le panier et avant le paiement sont retirés des données à envoyer à la validation du panier. Ils restent tout de même sur la page avec la mention "indisponible".
   const availableCartProducts = detailedCartProducts.filter((p) => p.available);
 
-  // Au cas où un produit devient indisponible après avoir été ajouté dans le panier, on l'enlève de la validation du panier mais on le laisse sur le rendu de la page
   const validationData = availableCartProducts.map(
     ({
       updatedAt,
@@ -44,13 +44,12 @@ export default function CartPage() {
     (item) => (cartSubTotal += item.quantity * parseFloat(item.price))
   );
 
-  // Les frais de livraison seront égaux aux frais de livraison les plus élevés parmi l'ensemble des articles dans le panier disponibles à la vente.
-  const shippingCost: number =
-    availableCartProducts.length === 0
-      ? 0
-      : Math.max(
-          ...availableCartProducts.map((product) => product.shippingCost)
-        );
+  const totalWeight = availableCartProducts.reduce(
+    (total, product) => total + product.weight * product.quantity,
+    0
+  );
+
+  const shippingCost = getShippingCost(totalWeight);
 
   const cartTotal = cartSubTotal + shippingCost;
 
