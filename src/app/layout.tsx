@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={`relative overflow-y-scroll bg-amber-200 ${inter.className}`}
       >
-        <PreloadResources />
+        {/* <PreloadResources /> */}
         <PageLoader>
           <ReduxProvider>
             <ClientI18nProvider>
