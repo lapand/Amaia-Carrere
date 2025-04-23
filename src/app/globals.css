@@ -94,7 +94,7 @@ strong {
   @apply opacity-0 transition duration-500;
 }
 .in-view {
-  transform: translateX(0);
+  transform: translateY(0);
   opacity: 1;
 }
 

@@ -10,6 +10,8 @@ type GalleryClientProps = {
   images: FormattedImage[] | null;
 };
 
+export const GALLERY_SLIDER_SIZES = "80vw";
+
 const GalleryClient: React.FC<GalleryClientProps> = ({ images }) => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
@@ -45,3 +47,44 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ images }) => {
 };
 
 export default GalleryClient;
+
+
+// Exemple simplifié de ce que voit le navigateur :
+{/* <img
+  src="/_next/image?url=...&w=1200&q=100"
+  srcset="
+    /_next/image?url=...&w=640&q=100 640w,
+    /_next/image?url=...&w=750&q=100 750w,
+    /_next/image?url=...&w=1080&q=100 1080w,
+    /_next/image?url=...&w=1920&q=100 1920w
+  "
+  sizes="(max-width: 768px) 50vw, (max-width: 1280px) 30vw, 20vw"
+/> */}
+
+
+// const preloadOptimizedImage = (imageUrl: string, width: number = 1200, quality: number = 100) => {
+//   const url = new URL('/_next/image', window.location.origin);
+//   url.searchParams.set('url', imageUrl);
+//   url.searchParams.set('w', width.toString());
+//   url.searchParams.set('q', quality.toString());
+
+//   const img = new window.Image();
+//   img.src = url.toString();
+// };
+
+// Variante avec contrôle de window.innerWidth
+// const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+// const getIdealWidth = () => {
+//   if (viewportWidth < 768) return 600;
+//   if (viewportWidth < 1280) return 1000;
+//   return 1400;
+// };
+// Puis utiliser w=${getIdealWidth()} dans l’URL de préchargement
+// Comme tu le sais, tu peux générer toi-même cette URL avec les bons paramètres :
+// const nextOptimizedUrl = `/__next/image?url=${encodeURIComponent(image.src)}&w=${width}&q=${quality}`;
+// Mais attention, ce n’est fiable que si tu connais bien le fonctionnement de ton next.config.js, notamment :
+// les deviceSizes
+// les imageSizes
+// le loader utilisé
+// la qualité par défaut
+

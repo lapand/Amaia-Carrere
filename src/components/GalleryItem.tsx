@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Loader from './Loader';
 import removeContextMenu from '../utils/removeContextMenu';
 import { FormattedImage } from '@/types';
+import { preloadOptimizedImage } from '@/utils/preloadOptimizedImage';
+import { GALLERY_SLIDER_SIZES } from '@/app/(pages)/gallery/GalleryClient';
 
 type GalleryItemProps = {
   image: FormattedImage;
@@ -11,6 +13,14 @@ type GalleryItemProps = {
   imgIdx: number;
 };
 
+/**
+ * Composant d'affichage d'une image dans la galerie.
+ *
+ * - Utilise un `IntersectionObserver` pour détecter l'entrée dans le viewport.
+ * - Applique une animation CSS quand l'image entre dans la vue.
+ * - Déclenche l'ouverture du slider en plein écran au clic.
+ * - Préchargement de l'image HR quand l'image entre dans la vue afin de préparer l'ouverture potentielle de la modale contenant le slider d'img.
+ */
 const GalleryItem: React.FC<GalleryItemProps> = ({
   image,
   openModal,
@@ -25,6 +35,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
       (entries) => {
         if (galleryItemRef.current && entries[0].isIntersecting) {
           galleryItemRef.current.classList.add('in-view');
+          preloadOptimizedImage(src, { sizes: GALLERY_SLIDER_SIZES });
           observer.unobserve(galleryItemRef.current);
         }
       },
@@ -34,7 +45,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({
     if (galleryItemRef.current) {
       observer.observe(galleryItemRef.current);
     }
-  }, []);
+  }, [src]);
 
   return (
     <div

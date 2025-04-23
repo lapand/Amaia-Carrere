@@ -3,6 +3,7 @@
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const nextConfig = {
+  // reactStrictMode: false,
   images: {
     remotePatterns: [
       {

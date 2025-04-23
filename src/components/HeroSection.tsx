@@ -83,9 +83,9 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
       style={bgStyle}
       className="flex flex-col"
     >
-      <div className="sticky overflow-hidden top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 px-2 xs:px-4 sm:px-0 max-sm:-mt-10">
+      <div className="sticky overflow-hidden top-[var(--header-height)] hero-height flex flex-col justify-center items-center gap-10 sm:gap-20 px-2 xs:px-3 sm:px-0 max-sm:-mt-10">
         <div className="relative z-10 flex flex-col gap-6 2xl:gap-10 annie-use-your-telescope thickening-1">
-          <p className="text-center text-4.5xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
+          <p className="text-center text-4.5xl xs:text-4.8xl sm:text-6xl md:text-6.5xl lg:text-7xl xl:text-8xl 3xl:text-9xl">
             Bienvenue dans mon atelier,
             {!isMobileViewport ? <br /> : ' '}
             source de rêves crayonnés.
@@ -101,6 +101,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}
+                priority
               />
             </div>
           </div>
@@ -129,7 +130,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
 
         {/* Astronaute + lune */}
         {isViewportAboveLg && (
-          <div className="absolute -top-6 sm:top-0 3xl:top-10 left-40 sm:left-24 lg:left-8 xl:left-32 3xl:left-64 w-32 sm:w-40 xl:w-44">
+          <div className="absolute -top-6 sm:top-0 lg:top-14 xl:top-10 left-40 sm:left-24 lg:left-8 xl:left-24 2xl:left-32 3xl:left-64 w-32 sm:w-40 lg:w-44 xl:w-52 2xl:w-56 3xl:w-60">
             <Image
               src="/ttinka.webp"
               alt="Personnage de Ttinka endormi sur la Lune"
@@ -138,8 +139,9 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
               className="size-full object-contain"
               onContextMenu={removeContextMenu}
               quality={100}
+              priority
             />
-            <div className="absolute top-1/2 sm:top-[80%] lg:top-full right-[130%] sm:right-full lg:right-3/4 xl:right-full w-12 sm:w-16 max-sm:rotate-[45deg]">
+            <div className="absolute max-sm:rotate-[45deg] top-1/2 sm:top-[80%] lg:top-full right-[130%] sm:right-full lg:right-3/4 xl:right-full w-12 sm:w-16 2xl:w-[4.5rem] 3xl:w-20">
               <Image
                 src="/astronaute.webp"
                 alt="Un astronaute s'élance dans l'espace"
@@ -148,6 +150,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}
+                priority
               />
             </div>
           </div>
@@ -155,7 +158,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
 
         {/* Astronaute + souris */}
         {!isMobileViewport && (
-          <div className="absolute pointer-events-none bottom-10 sm:bottom-28 lg:bottom-20 xl:bottom-20 2xl:bottom-10 3xl:bottom-28 right-10 sm:right-20 lg:right-12 xl:right-20 3xl:right-56 w-28 sm:w-32 lg:w-36">
+          <div className="absolute pointer-events-none bottom-10 sm:bottom-28 lg:bottom-20 xl:bottom-20 2xl:bottom-10 3xl:bottom-28 right-10 sm:right-12 xl:right-20 3xl:right-56 w-28 sm:w-44 xl:w-48 3xl:w-52">
             <Image
               src="/astronaute2.webp"
               alt="Un astronaute s'échappe en courant"
@@ -164,8 +167,9 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
               className="size-full object-contain"
               onContextMenu={removeContextMenu}
               quality={100}
+              priority
             />
-            <div className="absolute top-5 sm:top-0 -left-40 sm:-left-48 lg:-left-36 xl:-left-56 w-16 sm:w-20 scale-x-[-1]">
+            <div className="absolute scale-x-[-1] top-5 sm:top-10 lg:top-0 -left-40 sm:-left-48 lg:-left-36 xl:-left-56 3xl:-left-64 w-16 sm:w-24 2xl:w-28">
               <Image
                 src="/souris-abeille.webp"
                 alt="Une souris abeille"
@@ -174,6 +178,7 @@ const HeroSection: React.FC<HomeProps> = ({ backgroundImage }) => {
                 className="size-full object-contain"
                 onContextMenu={removeContextMenu}
                 quality={100}
+                priority
               />
             </div>
           </div>
