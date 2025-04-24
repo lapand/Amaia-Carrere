@@ -7,6 +7,7 @@ import StaticImageSlider from '@/components/StaticImageSlider';
 import useViewportWidth from '@/hooks/useViewportWidth';
 import { smBreakpoint } from '@/data/breakpoints';
 import { FormattedImage } from '@/types';
+import LoadableImage from '@/components/LoadableImage';
 
 type GalleryClientProps = {
   images: FormattedImage[] | null;
@@ -16,24 +17,26 @@ const AboutClient: React.FC<GalleryClientProps> = ({ images }) => {
   useTranslation();
   const windowWidth = useViewportWidth();
 
+  // Seule la première image du slider, visible dès le chargement de la page,
+  // est marquée avec `priority={true}` pour que Next.js la précharge immédiatement (via <link rel="preload"> dans le <head>).
+  // Cela optimise le LCP (Largest Contentful Paint) et améliore les performances.
+  // Les autres images seront chargées de manière lazy par défaut (chargement de l'img lors de son premier rendu).
   const imagesJSX =
     images === null
       ? []
       : images.map((img, i) => {
-          const { src, alt, width, height, formats } = img;
+          const { formats, ...rest } = img;
           return (
             <div key={i} className="h-full">
-              <Image
+              <LoadableImage
                 className="size-full object-contain"
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
+                {...rest}
+                quality={100}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 37rem, 62rem"
+                priority={i === 0}
                 placeholder={formats?.thumbnail?.url ? 'blur' : undefined}
                 blurDataURL={formats?.thumbnail?.url}
                 onContextMenu={removeContextMenu}
-                quality={100}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 37rem, 62rem"
               />
             </div>
           );

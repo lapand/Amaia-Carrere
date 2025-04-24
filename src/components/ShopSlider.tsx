@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import { getPrevIdx, getNextIdx } from '../utils/getIndex';
 import removeContextMenu from '../utils/removeContextMenu';
-import Loader from './Loader';
 import { ImageProps } from 'next/image';
+import LoadableImage from './LoadableImage';
 
 type ShopSliderProps = {
   gallery: ImageProps[];
@@ -12,18 +11,18 @@ type ShopSliderProps = {
 const arrowIconUri = '/black-arrow.svg';
 
 const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   const onNextImg = () => {
-    setCurrentIdx(getNextIdx(gallery, currentIdx));
+    setActiveIdx(getNextIdx(gallery, activeIdx));
   };
 
   const onPrevImg = () => {
-    setCurrentIdx(getPrevIdx(gallery, currentIdx));
+    setActiveIdx(getPrevIdx(gallery, activeIdx));
   };
 
   const onSelectImg = (i: number) => {
-    setCurrentIdx(i);
+    setActiveIdx(i);
   };
 
   if (gallery.length === 0) {
@@ -41,7 +40,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
         onClick={() => onPrevImg()}
         aria-label="previous image"
       >
-        <span className="w-3/5 aspect-square flex items-center justify-center rounded-full bg-white/90 border-2 border-primary-800">
+        <span className="w-3/5 aspect-square flex items-center justify-center rounded-full bg-aubergine-100/90 border-2 border-aubergine-700">
           <span
             style={{ backgroundImage: `url(${arrowIconUri})` }}
             className="size-full rotate-180 bg-no-repeat bg-[length:20px_20px] bg-center"
@@ -53,7 +52,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
         onClick={() => onNextImg()}
         aria-label="next image"
       >
-        <span className="w-3/5 aspect-square flex items-center justify-center rounded-full bg-white/90 border-2 border-primary-800">
+        <span className="w-3/5 aspect-square flex items-center justify-center rounded-full bg-aubergine-100/90 border-2 border-aubergine-700">
           <span
             style={{ backgroundImage: `url(${arrowIconUri})` }}
             className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
@@ -69,32 +68,53 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
       <button
         key={i}
         type="button"
-        className={`w-3 h-3 rounded-full border-[1px] border-white opacity-90  ${
-          i === currentIdx ? 'bg-white' : 'bg-primary-800'
-        } hover:bg-white`}
-        aria-current={i === currentIdx ? true : false}
+        className="p-2 group"
+        aria-current={i === activeIdx ? true : false}
         aria-label={`Slide ${i + 1}`}
         onClick={() => onSelectImg(i)}
-      />
+      >
+        <span
+          className={`block size-4 rounded-full outline outline-aubergine-600 border border-aubergine-100 opacity-90 transition duration-300 ${
+            i !== activeIdx
+              ? 'bg-aubergine-400 outline-1 group-hover:scale-[1.3] group-hover:outline-1'
+              : 'bg-aubergine-450 outline-1 scale-[1.3]'
+          }`}
+        />
+      </button>
     );
   }
 
   const sliderIndicators = (
-    <div className="absolute flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+    <div className="absolute flex -translate-x-1/2 bottom-5 left-1/2 space-x-2 rtl:space-x-reverse">
       {indicators}
     </div>
   );
 
-  return (
-    <div className="relative size-full flex">
-      {/* {isLoading && <Loader width={60} height={48} />} */}
-      <div className={`w-full transition-opacity`}>
-        <Image
-          {...gallery[currentIdx]}
+  // Seule la première image du slider, visible dès le chargement de la page,
+  // est marquée avec `priority={true}` pour que Next.js la précharge immédiatement (via <link rel="preload"> dans le <head>).
+  // Cela optimise le LCP (Largest Contentful Paint) et améliore les performances.
+  // Les autres images seront chargées de manière lazy par défaut (chargement de l'img lors de son premier rendu).
+  const images = gallery.map((img, i) => {
+    return (
+      <div
+        key={i}
+        className={`absolute size-full transition-opacity duration-500 ${
+          i === activeIdx ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <LoadableImage
           className="size-full object-contain"
+          {...img}
+          priority={i === 0}
           onContextMenu={removeContextMenu}
         />
       </div>
+    );
+  });
+
+  return (
+    <div className="relative size-full flex">
+      <div className={`relative w-full`}>{images}</div>
       {gallery.length > 1 && sliderControls}
       {gallery.length > 1 && sliderIndicators}
     </div>

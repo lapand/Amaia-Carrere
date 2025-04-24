@@ -44,12 +44,14 @@ const StaticImageSlider: React.FC<StaticImageSliderProps> = ({
       )}
 
       {/* Content */}
-      <div className={`${className}`}>
+      <div className={`relative ${className}`}>
         {React.Children.map(children, (child, index) => (
           <div
-            className={`${arrowsPosition === 'under' ? 'h-[90%]' : 'h-full'}`}
+            className={`absolute w-full ${
+              arrowsPosition === 'under' ? 'h-[90%]' : 'h-full'
+            }`}
             style={{
-              display: index === activeIndex ? 'block' : 'none',
+              opacity: index === activeIndex ? 1 : 0,
               transition: 'opacity 0.5s ease-in-out',
             }}
           >
