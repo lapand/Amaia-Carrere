@@ -57,7 +57,7 @@ const ProductSelection: React.FC<ProductSelectionType> = ({
           className="flex justify-between items-center"
           selectedLanguage={selectedLanguage}
           onLanguageChange={handleLanguageChange}
-          label={'Sélection de la langue :'}
+          label={'Langue :'}
         />
       )}
       <QuantitySelector

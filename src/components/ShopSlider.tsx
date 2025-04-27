@@ -6,11 +6,12 @@ import LoadableImage from './LoadableImage';
 
 type ShopSliderProps = {
   gallery: ImageProps[];
+  controlArrows: boolean;
 };
 
 const arrowIconUri = '/black-arrow.svg';
 
-const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
+const ShopSlider: React.FC<ShopSliderProps> = ({ gallery, controlArrows }) => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   const onNextImg = () => {
@@ -33,10 +34,10 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
     );
   }
 
-  const sliderControls = (
-    <>
+  const sliderControls = {
+    leftArrow: (
       <button
-        className="absolute h-full start-0 w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
+        className="w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
         onClick={() => onPrevImg()}
         aria-label="previous image"
       >
@@ -47,8 +48,10 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
           />
         </span>
       </button>
+    ),
+    rightArrow: (
       <button
-        className="absolute h-full end-0 w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
+        className="w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
         onClick={() => onNextImg()}
         aria-label="next image"
       >
@@ -59,8 +62,8 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
           />
         </span>
       </button>
-    </>
-  );
+    ),
+  };
 
   const indicators = [];
   for (let i = 0; i < gallery.length; i++) {
@@ -85,7 +88,7 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
   }
 
   const sliderIndicators = (
-    <div className="absolute flex -translate-x-1/2 bottom-5 left-1/2 space-x-2 rtl:space-x-reverse">
+    <div className="flex bottom-5 left-1/2 space-x-2 rtl:space-x-reverse">
       {indicators}
     </div>
   );
@@ -113,9 +116,14 @@ const ShopSlider: React.FC<ShopSliderProps> = ({ gallery }) => {
   });
 
   return (
-    <div className="relative size-full flex">
-      <div className={`relative w-full`}>{images}</div>
-      {gallery.length > 1 && sliderControls}
+    <div className="w-full flex flex-col items-center gap-2">
+      <div className={`w-full flex`}>
+        {gallery.length > 1 && controlArrows && sliderControls.leftArrow}
+        <div className="relative flex-1 aspect-square border-x border-gray-400">
+          {images}
+        </div>
+        {gallery.length > 1 && controlArrows && sliderControls.rightArrow}
+      </div>
       {gallery.length > 1 && sliderIndicators}
     </div>
   );

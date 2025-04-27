@@ -21,6 +21,7 @@ const Contact: React.FC = () => {
             className="size-full object-contain"
             onContextMenu={removeContextMenu}
             quality={100}
+            priority
           />
         </span>
       </div>

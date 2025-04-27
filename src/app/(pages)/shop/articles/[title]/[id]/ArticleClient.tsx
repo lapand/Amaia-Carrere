@@ -94,7 +94,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
           <div className="sm:sticky top-24 xl:top-36 3xl:top-40 sm:max-lg:w-3/4 mx-auto flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
             <Link href={routes.shop} className="self-start group">
               <Button
-                className="flex items-center px-4 sm:px-5 py-1 sm:py-3"
+                className="flex items-center px-4 sm:px-5 py-1 sm:py-2"
                 aria-label={`to shop page`}
               >
                 <span className="text-3xl sm:text-xl transition-transform group-hover:-translate-x-1">
@@ -106,12 +106,15 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               </Button>
             </Link>
             {windowWidth < lgBreakpoint && titleJSX}
-            <div className="max-sm:w-full max-sm:aspect-square sm:size-[430px] lg:size-80 xl:size-[400px] 3xl:size-[430px] flex justify-center items-center overflow-hidden">
-              <ShopSlider gallery={gallery} />
+            <div className="w-[17rem] xs:w-[18rem] sm:w-[32rem] lg:w-[28rem] xl:w-[34rem] 3xl:w-[35rem] flex justify-center items-center overflow-hidden">
+              <ShopSlider
+                gallery={gallery}
+                controlArrows={windowWidth >= smBreakpoint}
+              />
             </div>
           </div>
         </div>
-        <div className="w-full sm:w-[500px] lg:w-96 xl:w-[500px] 2xl:w-[450px] 3xl:w-[550px] flex flex-col gap-6 sm:gap-10">
+        <div className="w-full sm:w-[32rem] lg:w-96 xl:w-[32rem] 3xl:w-[35rem] flex flex-col gap-6 sm:gap-10">
           <div>
             {windowWidth >= lgBreakpoint && titleJSX}
             <p>
@@ -143,7 +146,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
   }
 
   return (
-    <div className="flex-1 flex max-lg:flex-col justify-center max-lg:items-center gap-6 sm:gap-10 lg:gap-20 xl:gap-28 3xl:gap-36">
+    <div className="flex-1 flex max-lg:flex-col justify-center max-lg:items-center gap-6 sm:gap-10 xl:gap-28 3xl:gap-36">
       {content}
     </div>
   );
