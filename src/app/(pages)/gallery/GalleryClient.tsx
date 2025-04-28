@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import GalleryItem from '../../../components/GalleryItem';
 import ModalWithTransition from '../../../components/ModalWithTransition';
-import GallerySlider from '../../../components/GallerySlider';
+import DynamicSlider from '../../../components/DynamicSlider';
 import { FormattedImage } from '@/types';
 
 type GalleryClientProps = {
@@ -39,7 +39,7 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ images }) => {
       </div>
       <ModalWithTransition visible={activeIdx !== null} closeModal={closeModal}>
         {activeIdx !== null && images !== null && (
-          <GallerySlider images={images} imgIdx={activeIdx} />
+          <DynamicSlider images={images} imgIdx={activeIdx} />
         )}
       </ModalWithTransition>
     </div>

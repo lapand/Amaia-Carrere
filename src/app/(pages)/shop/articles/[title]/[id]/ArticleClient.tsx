@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/configureStore';
-import ShopSlider from '@/components/ShopSlider';
+import StaticSlider from '@/components/StaticSlider';
 import Button from '@/components/Button';
 import { useEffect } from 'react';
 import { ArticleCardType } from '@/types';
@@ -15,11 +15,15 @@ import useViewportWidth from '@/hooks/useViewportWidth';
 import { smBreakpoint, lgBreakpoint } from '@/data/breakpoints';
 import ProductSelection from '@/components/ProductSelection';
 import { routes } from '@/config/config.global';
+import LoadableImage from '@/components/LoadableImage';
+import removeContextMenu from '@/utils/removeContextMenu';
 
 type ArticleClientType = {
   staticArticle?: ArticleCardType;
   fetchTimestamp: number | null;
 };
+
+const arrowIconUri = '/black-arrow.svg';
 
 const ArticleClient: React.FC<ArticleClientType> = ({
   staticArticle,
@@ -88,6 +92,15 @@ const ArticleClient: React.FC<ArticleClientType> = ({
       </h1>
     );
 
+    const customArrows = (
+      <span className="w-3/5 aspect-square flex items-center justify-center rounded-full bg-aubergine-100/90 border-2 border-aubergine-700">
+        <span
+          style={{ backgroundImage: `url(${arrowIconUri})` }}
+          className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
+        />
+      </span>
+    );
+
     content = (
       <>
         <div className="relative">
@@ -107,10 +120,23 @@ const ArticleClient: React.FC<ArticleClientType> = ({
             </Link>
             {windowWidth < lgBreakpoint && titleJSX}
             <div className="w-[17rem] xs:w-[18rem] sm:w-[32rem] lg:w-[28rem] xl:w-[34rem] 3xl:w-[35rem] flex justify-center items-center overflow-hidden">
-              <ShopSlider
-                gallery={gallery}
-                controlArrows={windowWidth >= smBreakpoint}
-              />
+              <StaticSlider
+                isControlArrowsVisible={windowWidth >= smBreakpoint}
+                isPaginationVisible={true}
+                maxSlides={7}
+                transitionDuration={0.5}
+                customArrows={customArrows}
+              >
+                {gallery.map((img, i) => (
+                  <LoadableImage
+                    key={i}
+                    className="size-full object-contain"
+                    {...img}
+                    priority={i === 0}
+                    onContextMenu={removeContextMenu}
+                  />
+                ))}
+              </StaticSlider>
             </div>
           </div>
         </div>
@@ -153,3 +179,8 @@ const ArticleClient: React.FC<ArticleClientType> = ({
 };
 
 export default ArticleClient;
+
+// Seule la première image du slider, visible dès le chargement de la page,
+// est marquée avec `priority={true}` pour que Next.js la précharge immédiatement (via <link rel="preload"> dans le <head>).
+// Cela optimise le LCP (Largest Contentful Paint) et améliore les performances.
+// Les autres images seront chargées de manière lazy par défaut (chargement de l'img lors de son premier rendu).

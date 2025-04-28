@@ -8,7 +8,7 @@ import { GALLERY_SLIDER_SIZES } from '@/app/(pages)/gallery/GalleryClient';
 import { preloadOptimizedImage } from '@/utils/preloadOptimizedImage';
 import { AnimatePresence, motion } from 'framer-motion';
 
-type GallerySliderProps = {
+type DynamicSliderProps = {
   /** Tableau d'images formatées à afficher dans le slider */
   images: FormattedImage[];
   /** Index initial de l'image active */
@@ -28,7 +28,7 @@ const arrowIconUri = '/arrow.svg';
  * - Affiche un loader uniquement si le chargement dépasse un seuil de 0.4s.
  * - Utilise le composant `Image` de Next.js pour bénéficier de l'optimisation.
  */
-const GallerySlider: React.FC<GallerySliderProps> = ({
+const DynamicSlider: React.FC<DynamicSliderProps> = ({
   images,
   imgIdx,
   slideDuration = 0.4,
@@ -122,4 +122,4 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
   );
 };
 
-export default GallerySlider;
+export default DynamicSlider;
