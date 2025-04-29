@@ -3,9 +3,9 @@ import ShopClient from './ShopClient';
 import { ARTICLES_FETCH_URL, STRAPI_API_KEY } from '@/config/config.server';
 import { APIArticleType } from '@/types';
 
-// Invalide le cache toutes les heures générant ainsi une nouvelle ShopPage statique avec des données mises à jour
+// Invalide le cache toutes les 12 heures générant ainsi une nouvelle ShopPage statique avec des données mises à jour
 // Ceci est une sécurité supplémentaire au cas où l'invalidation du cache par le webhook Strapi ne se réalise pas correctement.
-export const revalidate = 3600;
+export const revalidate = 43200;
 
 // Récupération des données et transfert au Client Component
 export default async function ShopPage() {

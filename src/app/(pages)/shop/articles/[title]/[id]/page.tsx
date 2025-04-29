@@ -9,9 +9,9 @@ import { routes } from '@/config/config.global';
 import { redirect } from 'next/navigation';
 import { slugify } from '@/utils/slugify';
 
-// Invalide le cache toutes les heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
+// Invalide le cache toutes les 12 heures générant ainsi une nouvelle ArticlePage statique avec des données mises à jour
 // Ceci est une sécurité supplémentaire au cas où l'invalidation du cache par le webhook Strapi ne se réalise pas correctement.
-export const revalidate = 3600;
+export const revalidate = 43200;
 
 // Génération des routes dynamiques pour SSG sous forme /[title]/[id] avec encodage du titre pour un URL valide
 export async function generateStaticParams() {

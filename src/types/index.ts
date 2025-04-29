@@ -6,3 +6,4 @@ export * from './siteLanguage';
 export * from './social';
 export * from './gallery';
 export * from './about';
+export * from './atLeastOne';

@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import { AtLeastOne } from '@/types';
+import { computeStyle } from '@/utils/computeStyle';
+import React, { useCallback, useState } from 'react';
+
+type ArrowBtnStyle = AtLeastOne<{
+  width: string;
+  height: string;
+  backgroundColor: string;
+  backgroundImage: string;
+  borderStyle: string;
+  borderWidth: string;
+  borderColor: string;
+  borderRadius: string;
+  padding: string;
+  margin: string;
+  opacity: string;
+  transitionDuration: string;
+}>;
 
 type StaticSliderProps = {
   children?: React.ReactNode;
   customArrows?: React.ReactNode;
   isControlArrowsVisible?: boolean;
+  arrowBtnStyle?: ArrowBtnStyle;
+  arrowBtnHoverStyle?: Partial<ArrowBtnStyle>;
   isPaginationVisible?: boolean;
   maxSlides?: number;
   transitionDuration?: number;
@@ -11,9 +30,60 @@ type StaticSliderProps = {
 
 const arrowIconUri = '/black-arrow.svg';
 
+{
+  /* Control arrow */
+}
+const ArrowButton = React.memo(function ArrowButton({
+  onClick,
+  direction,
+  style,
+  hoverStyle,
+  customArrows,
+}: {
+  onClick: () => void;
+  direction: 'left' | 'right';
+  style: React.CSSProperties;
+  hoverStyle: React.CSSProperties;
+  customArrows?: React.ReactNode;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const appliedStyle = {
+    ...style,
+    ...(isHovered && hoverStyle),
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      aria-label={`${direction === 'left' ? 'previous' : 'next'} slide`}
+      className={`flex items-center justify-center transition-all cursor-pointer ${
+        direction === 'left' ? 'rotate-180' : ''
+      }`}
+      style={{
+        ...appliedStyle,
+        alignSelf: style.height === 'auto' ? 'auto' : 'center',
+      }}
+    >
+      <span className="size-full flex items-center justify-center">
+        {customArrows || (
+          <span
+            style={{ backgroundImage: `url(${arrowIconUri})` }}
+            className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
+          />
+        )}
+      </span>
+    </button>
+  );
+});
+
 const StaticSlider: React.FC<StaticSliderProps> = ({
   children,
   isControlArrowsVisible = true,
+  arrowBtnStyle,
+  arrowBtnHoverStyle,
   isPaginationVisible = false,
   maxSlides = 10,
   transitionDuration = 0.3,
@@ -22,10 +92,13 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
   const [activeIdx, setActiveIdx] = useState(0);
   const totalSlides = Math.min(React.Children.count(children), maxSlides);
 
-  const handlePrev = () =>
+  const handlePrev = useCallback(() => {
     setActiveIdx((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
 
-  const handleNext = () => setActiveIdx((prev) => (prev + 1) % totalSlides);
+  const handleNext = useCallback(() => {
+    setActiveIdx((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
 
   const onSelectImg = (i: number) => {
     setActiveIdx(i);
@@ -39,43 +112,19 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
     );
   }
 
-  {
-    /* Control arrows */
-  }
-  const sliderControls = {
-    leftArrow: (
-      <button
-        className="w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
-        onClick={() => handlePrev()}
-        aria-label="previous slide"
-      >
-        <span className="size-full rotate-180 flex items-center justify-center">
-          {customArrows || (
-            <span
-              style={{ backgroundImage: `url(${arrowIconUri})` }}
-              className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
-            />
-          )}
-        </span>
-      </button>
-    ),
-    rightArrow: (
-      <button
-        className="w-16 flex items-center justify-center transition-opacity opacity-70 hover:opacity-100 duration-300 cursor-pointer"
-        onClick={() => handleNext()}
-        aria-label="next slide"
-      >
-        <span className="size-full flex items-center justify-center">
-          {customArrows || (
-            <span
-              style={{ backgroundImage: `url(${arrowIconUri})` }}
-              className="size-full bg-no-repeat bg-[length:20px_20px] bg-center"
-            />
-          )}
-        </span>
-      </button>
-    ),
+  const defaultWidth = '4rem';
+  const defaultHeight = arrowBtnStyle?.height?.includes('%')
+    ? 'auto'
+    : arrowBtnStyle?.height ?? 'auto';
+
+  const completedArrowBtnStyle = {
+    ...arrowBtnStyle,
+    width: arrowBtnStyle?.width ?? defaultWidth,
+    height: defaultHeight,
   };
+
+  const computedArrowStyle = computeStyle(completedArrowBtnStyle);
+  const computedArrowHoverStyle = computeStyle(arrowBtnHoverStyle);
 
   {
     /* Indicators */
@@ -107,7 +156,15 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
       {/* Content + Control arrows */}
       <div className={`w-full flex`}>
         {/* Left arrow */}
-        {totalSlides > 1 && isControlArrowsVisible && sliderControls.leftArrow}
+        {totalSlides > 1 && isControlArrowsVisible && (
+          <ArrowButton
+            onClick={handlePrev}
+            direction="left"
+            style={computedArrowStyle}
+            hoverStyle={computedArrowHoverStyle}
+            customArrows={customArrows}
+          />
+        )}
 
         {/* Content */}
         <div className="relative flex-1 aspect-square border-x border-gray-400">
@@ -129,7 +186,15 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
         </div>
 
         {/* Right arrow */}
-        {totalSlides > 1 && isControlArrowsVisible && sliderControls.rightArrow}
+        {totalSlides > 1 && isControlArrowsVisible && (
+          <ArrowButton
+            onClick={handleNext}
+            direction="right"
+            style={computedArrowStyle}
+            hoverStyle={computedArrowHoverStyle}
+            customArrows={customArrows}
+          />
+        )}
       </div>
 
       {/* Indicators */}

@@ -126,6 +126,12 @@ const ArticleClient: React.FC<ArticleClientType> = ({
                 maxSlides={7}
                 transitionDuration={0.5}
                 customArrows={customArrows}
+                arrowBtnStyle={{
+                  width: '4rem',
+                }}
+                arrowBtnHoverStyle={{
+                  backgroundImage: `radial-gradient(ellipse at left,rgba(117, 69, 145, .7),rgba(117, 69, 145, 0) 70%)`,
+                }}
               >
                 {gallery.map((img, i) => (
                   <LoadableImage
