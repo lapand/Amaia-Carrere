@@ -100,10 +100,10 @@ export default function CartPage() {
               className="flex-1 relative max-lg:fixed max-lg:z-50 max-lg:bottom-0 max-lg:left-0 max-lg:w-full max-lg:bg-slate-100"
             >
               <div className="lg:sticky lg:top-56 xl:top-48 3xl:top-[300px] flex flex-col lg:gap-12 3xl:gap-16 border-l lg:border-l-gray-500 lg:p-4 xl:p-10">
-                <div className="flex flex-col xs:flex-row lg:flex-col sm:max-lg:justify-between max-sm:gap-2 lg:gap-12 3xl:gap-20 py-2 sm:py-5 lg:py-0 px-3 sm:px-10 lg:px-0 max-lg:border-y-[1px] border-slate-900">
-                  <div className="flex flex-col max-lg:justify-center gap-2 lg:gap-6 whitespace-nowrap">
+                <div className="flex lg:flex-col sm:max-lg:justify-between max-sm:gap-2 lg:gap-12 3xl:gap-20 py-2 sm:py-5 lg:py-0 px-3 sm:px-10 lg:px-0 max-lg:border-y-[1px] border-slate-900">
+                  <div className="flex flex-col max-lg:justify-center sm:gap-2 lg:gap-6 whitespace-nowrap">
                     <p>
-                      <span className="annie-use-your-telescope font-bold text-2xl sm:text-2.5xl lg:text-2xl 2xl:text-2.5xl">
+                      <span className="annie-use-your-telescope font-bold text-1.5xl xs:text-2xl sm:text-2.5xl lg:text-2xl 2xl:text-2.5xl">
                         Sous-total
                         {windowWidth >= smBreakpoint && (
                           <span className="text-xl sm:text-xl lg:text-xl 3xl:text-xl">
@@ -113,28 +113,28 @@ export default function CartPage() {
                         )}{' '}
                         :
                       </span>{' '}
-                      <span className="text-lg sm:text-xl lg:text-base 2xl:text-xl">
+                      <span className="text-base xs:text-lg sm:text-xl lg:text-base 2xl:text-xl">
                         {cartSubTotal.toFixed(2)}
                       </span>{' '}
                       €
                     </p>
                     <p className="text-sm sm:text-xl lg:text-base 2xl:text-lg">
-                      <span className="annie-use-your-telescope font-bold text-2xl sm:text-2xl lg:text-xl 2xl:text-2xl">
+                      <span className="annie-use-your-telescope font-bold text-1.5xl xs:text-2xl sm:text-2xl lg:text-xl 2xl:text-2xl">
                         {windowWidth >= smBreakpoint ? "Frais de livraison :" : "Livraison :"}
                       </span>{' '}
-                      <span className="text-lg sm:text-xl lg:text-base 2xl:text-lg">
+                      <span className="text-base xs:text-lg sm:text-xl lg:text-base 2xl:text-lg">
                         {shippingCost.toFixed(2)}
                       </span>{' '}
                       €
                     </p>
                   </div>
-                  <p className="max-sm:flex-1 max-lg:flex xs:flex-col sm:flex-row max-lg:items-center max-lg:gap-2 text-center">
+                  <p className="max-sm:flex-1 max-lg:flex max-sm:flex-col max-sm:justify-center max-lg:items-center sm:max-lg:gap-2 text-center">
                     <span className="annie-use-your-telescope font-bold text-2.5xl sm:text-4xl lg:text-2.5xl">
                       Total :
                     </span>
-                    <span className="text-xl xs:text-1.5xl sm:text-2xl xl:text-xl font-bold">
+                    <span className="text-lg xs:text-1.5xl sm:text-2xl xl:text-xl font-bold">
                       {' '}
-                      <span className="text-1.5xl sm:text-2.5xl lg:text-xl 2xl:text-xl">
+                      <span className="text-xl xs:text-1.5xl sm:text-2.5xl lg:text-xl 2xl:text-xl">
                         {cartTotal.toFixed(2)}
                       </span>{' '}
                       €

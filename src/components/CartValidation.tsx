@@ -117,7 +117,7 @@ const CartValidation: React.FC<CartValidationType> = ({
 
   return (
     <div className="flex flex-col gap-2 xl:gap-5 max-lg:m-2">
-      <div className="flex gap-5 sm:gap-3 max-sm:items-center items-start justify-center my-1 max-sm:mx-2">
+      <div className="flex gap-5 sm:gap-3 max-sm:items-center items-start justify-center">
         <input
           type="checkbox"
           id="cgv"
@@ -135,7 +135,7 @@ const CartValidation: React.FC<CartValidationType> = ({
         />
         <label
           htmlFor="cgv"
-          className="relative annie-use-your-telescope font-bold text-2xl sm:text-2.5xl lg:text-xl 2xl:text-xl"
+          className="relative annie-use-your-telescope font-bold text-1.5xl sm:text-2.5xl lg:text-xl 2xl:text-xl"
         >
           J&#39;accepte les{' '}
           <Link
