@@ -116,7 +116,7 @@ const CartValidation: React.FC<CartValidationType> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3 xl:gap-5 max-lg:m-2">
+    <div className="flex flex-col gap-2 xl:gap-5 max-lg:m-2">
       <div className="flex gap-5 sm:gap-3 max-sm:items-center items-start justify-center my-1 max-sm:mx-2">
         <input
           type="checkbox"
