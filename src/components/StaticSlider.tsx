@@ -100,7 +100,7 @@ const ArrowButton = React.memo(function ArrowButton({
   );
 });
 
-const DRAG_BUFFER = 50;
+const DRAG_BUFFER = 20;
 
 const SPRING_OPTIONS = {
   type: 'spring',
