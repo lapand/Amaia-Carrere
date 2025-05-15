@@ -25,6 +25,10 @@ type ArticleClientType = {
 
 const arrowIconUri = '/black-arrow.svg';
 
+// Seule la première image du slider, visible dès le chargement de la page,
+// est marquée avec `priority={true}` pour que Next.js la précharge immédiatement (via <link rel="preload"> dans le <head>).
+// Cela optimise le LCP (Largest Contentful Paint) et améliore les performances.
+// Les autres images seront chargées de manière lazy par défaut (chargement de l'img lors de son premier rendu).
 const ArticleClient: React.FC<ArticleClientType> = ({
   staticArticle,
   fetchTimestamp,
@@ -119,31 +123,31 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               </Button>
             </Link>
             {windowWidth < lgBreakpoint && titleJSX}
-            <div className="w-[17rem] xs:w-[18rem] sm:w-[32rem] lg:w-[28rem] xl:w-[34rem] 3xl:w-[35rem] flex justify-center items-center overflow-hidden">
-              <StaticSlider
-                isControlArrowsVisible={windowWidth >= smBreakpoint}
-                isPaginationVisible={true}
-                maxSlides={7}
-                transitionDuration={0.5}
-                customArrows={customArrows}
-                arrowBtnStyle={{
-                  width: '4rem',
-                }}
-                arrowBtnHoverStyle={{
-                  backgroundImage: `radial-gradient(ellipse at left,rgba(117, 69, 145, .7),rgba(117, 69, 145, 0) 70%)`,
-                }}
-              >
-                {gallery.map((img, i) => (
-                  <LoadableImage
-                    key={i}
-                    className="size-full object-contain"
-                    {...img}
-                    priority={i === 0}
-                    onContextMenu={removeContextMenu}
-                  />
-                ))}
-              </StaticSlider>
-            </div>
+            <StaticSlider
+              className="w-[17rem] xs:w-[18rem] sm:w-[32rem] lg:w-[28rem] xl:w-[34rem] 3xl:w-[35rem]"
+              isControlArrowsVisible={windowWidth >= smBreakpoint}
+              isPaginationVisible={true}
+              maxSlides={7}
+              transitionType="slide"
+              customArrows={customArrows}
+              arrowBtnStyle={{
+                width: '4rem',
+              }}
+              arrowBtnHoverStyle={{
+                backgroundImage: `radial-gradient(ellipse at left,rgba(117, 69, 145, .7),rgba(117, 69, 145, 0) 70%)`,
+              }}
+              draggable
+            >
+              {gallery.map((img, i) => (
+                <LoadableImage
+                  key={i}
+                  className="size-full object-contain"
+                  {...img}
+                  priority={i === 0}
+                  onContextMenu={removeContextMenu}
+                />
+              ))}
+            </StaticSlider>
           </div>
         </div>
         <div className="w-full sm:w-[32rem] lg:w-96 xl:w-[32rem] 3xl:w-[35rem] flex flex-col gap-6 sm:gap-10">
@@ -185,8 +189,3 @@ const ArticleClient: React.FC<ArticleClientType> = ({
 };
 
 export default ArticleClient;
-
-// Seule la première image du slider, visible dès le chargement de la page,
-// est marquée avec `priority={true}` pour que Next.js la précharge immédiatement (via <link rel="preload"> dans le <head>).
-// Cela optimise le LCP (Largest Contentful Paint) et améliore les performances.
-// Les autres images seront chargées de manière lazy par défaut (chargement de l'img lors de son premier rendu).
