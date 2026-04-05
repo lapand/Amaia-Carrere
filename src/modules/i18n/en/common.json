@@ -1,5 +1,5 @@
 {
-  "menu": ["Gallery", "Shop", "About", "Contact"],
+  "menu": ["Gallery", "News", "Shop", "About", "Contact"],
   "home": {
     "tagline": "Welcome to my studio,<br/> source of penciled dreams",
     "bubbles": {

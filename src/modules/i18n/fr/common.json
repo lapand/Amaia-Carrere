@@ -1,5 +1,5 @@
 {
-  "menu": ["Galerie", "Boutique", "A propos", "Contact"],
+  "menu": ["Galerie", "Nouveautés", "Boutique", "A propos", "Contact"],
   "home": {
     "tagline": "Bienvenue dans mon atelier,<br/> source de rêves crayonnés",
     "bubbles": {

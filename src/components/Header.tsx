@@ -135,7 +135,7 @@ const Header: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.header
-          className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-1 xs:gap-2 xs:px-2 sm:px-6 xl:px-20 text-primary-200 bg-primary-600`}
+          className={`sticky top-0 z-[100] w-full header-height flex items-center justify-between gap-1 xs:gap-2 xs:px-2 sm:px-6 lg:px-2 xl:px-12 text-primary-200 bg-primary-600`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -185,7 +185,7 @@ const Header: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="flex items-center max-lg:flex-row-reverse gap-1 xs:gap-2 sm:gap-8 md:gap-12 lg:gap-10 xl:gap-16 2xl:gap-24">
+          <div className="flex items-center max-lg:flex-row-reverse gap-1 xs:gap-2 sm:gap-8 md:gap-12 lg:gap-6 xl:gap-16 2xl:gap-24">
             <div>
               <Menu />
             </div>

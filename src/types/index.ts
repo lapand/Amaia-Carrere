@@ -7,3 +7,4 @@ export * from './social';
 export * from './gallery';
 export * from './about';
 export * from './atLeastOne';
+export * from './news';

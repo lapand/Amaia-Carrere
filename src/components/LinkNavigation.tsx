@@ -2,7 +2,7 @@ import { routes } from '@/config/config.global';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const menuTags: string[] = ['gallery', 'shop', 'about', 'contact'];
+const menuTags: string[] = ['gallery', 'news', 'shop', 'about', 'contact'];
 
 type LinkNavigationProps = {
   i: number;

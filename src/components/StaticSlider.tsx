@@ -1,14 +1,28 @@
 import useIsTouchDevice from '@/hooks/useIsTouchDevice';
 import { AtLeastOne } from '@/types';
 import { computeStyle } from '@/utils/computeStyle';
-import {
-  PanInfo,
-  motion,
-  useMotionValue,
-  useMotionValueEvent,
-  useSpring,
-} from 'framer-motion';
-import React, { useCallback, useMemo, useState } from 'react';
+import { PanInfo, motion, useMotionValue } from 'framer-motion';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
+type ArrowButtonProps = {
+  onClick: () => void;
+  direction: 'left' | 'right';
+  style: React.CSSProperties;
+  hoverStyle: React.CSSProperties;
+  customArrows?: React.ReactNode;
+  ariaHidden?: boolean;
+  tabIndex?: number;
+};
+
+type PaginationDotsProps = {
+  totalSlides: number;
+  activeIdx: number;
+  onSelect: (index: number) => void;
+  className?: string;
+  style: React.CSSProperties;
+  ariaHidden?: boolean;
+  tabIndex?: number;
+};
 
 type ArrowBtnStyle = AtLeastOne<{
   width: string;
@@ -38,11 +52,12 @@ type StaticSliderProps = {
   className?: string; // S’applique à la boîte externe. N’altère pas le layout interne.
   aspectRatioClassName?: string; // Définit l'aspect-ratio du contenu du slider
   draggable?: boolean | 'touch';
+  autoDelay?: number | false;
 };
 
 const arrowIconUri = '/black-arrow.svg';
 
-// Parcours récursivement tous les enfants et sous-enfants pour leur appliquer draggable={false} afin que le drag de Framer motion fonctionne correctement
+// Parcours récursivement tous les enfants et sous-enfants d'un noeud pour leur appliquer draggable={false} afin que le drag de Framer motion fonctionne correctement sur ce noeud.
 function cloneWithDraggableFalse(node: React.ReactNode): React.ReactNode {
   if (!React.isValidElement(node)) return node;
   return React.cloneElement(node as React.ReactElement<any>, {
@@ -60,13 +75,9 @@ const ArrowButton = React.memo(function ArrowButton({
   style,
   hoverStyle,
   customArrows,
-}: {
-  onClick: () => void;
-  direction: 'left' | 'right';
-  style: React.CSSProperties;
-  hoverStyle: React.CSSProperties;
-  customArrows?: React.ReactNode;
-}) {
+  ariaHidden,
+  tabIndex,
+}: ArrowButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const appliedStyle = {
@@ -80,6 +91,8 @@ const ArrowButton = React.memo(function ArrowButton({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label={`${direction === 'left' ? 'previous' : 'next'} slide`}
+      aria-hidden={ariaHidden}
+      tabIndex={tabIndex}
       className={`flex items-center justify-center transition-all cursor-pointer ${
         direction === 'left' ? 'rotate-180' : ''
       }`}
@@ -99,6 +112,46 @@ const ArrowButton = React.memo(function ArrowButton({
     </button>
   );
 });
+
+const PaginationDots = React.memo(function PaginationDots({
+  totalSlides,
+  activeIdx,
+  onSelect,
+  className,
+  style,
+  ariaHidden,
+  tabIndex,
+}: PaginationDotsProps) {
+  return (
+    <div
+      className={`flex space-x-2 rtl:space-x-reverse h-8 ${className}`}
+      style={style}
+    >
+      {Array.from({ length: totalSlides }).map((_, i) => (
+        <button
+          key={i}
+          type="button"
+          aria-current={i === activeIdx}
+          aria-label={`Slide ${i + 1}`}
+          aria-hidden={ariaHidden}
+          tabIndex={tabIndex}
+          onClick={() => onSelect(i)}
+          className={`p-2 group`}
+        >
+          <span
+            className={`block size-4 rounded-full outline outline-aubergine-600 border border-aubergine-100 opacity-90 transition duration-300 ${
+              i !== activeIdx
+                ? 'bg-aubergine-400 outline-1 group-hover:scale-[1.3] group-hover:outline-1'
+                : 'bg-aubergine-450 outline-1 scale-[1.3]'
+            }`}
+          />
+        </button>
+      ))}
+    </div>
+  );
+});
+
+const ONE_SECOND = 1000;
 
 const DRAG_BUFFER = 20;
 
@@ -122,10 +175,10 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
   className = 'size-full',
   aspectRatioClassName = 'aspect-square',
   draggable = 'touch',
+  autoDelay = false,
 }) => {
   const [activeIdx, setActiveIdx] = useState(0);
   const totalSlides = Math.min(React.Children.count(children), maxSlides);
-  const [dragging, setDragging] = useState(false);
   const isTouchDevice = useIsTouchDevice();
   const shouldEnableDrag =
     draggable === true || (draggable === 'touch' && isTouchDevice);
@@ -144,16 +197,10 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
 
   const dragX = useMotionValue(0);
 
-  const onDragStart = () => {
-    setDragging(true);
-  };
-
   const handleFadeDragEnd = (
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => {
-    setDragging(false);
-
     const offset = info.offset.x;
 
     if (offset < -DRAG_BUFFER) {
@@ -164,8 +211,6 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
   };
 
   const handleSlideDragEnd = () => {
-    setDragging(false);
-
     const x = dragX.get();
 
     if (x <= -DRAG_BUFFER && activeIdx < totalSlides - 1) {
@@ -174,6 +219,18 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
       handlePrev();
     }
   };
+
+  // Gestion du slide automatique - Bloque le défilé auto lors du drag
+  useEffect(() => {
+    if (!autoDelay || autoDelay <= 0) return;
+
+    const interval = setInterval(() => {
+      const x = dragX.get();
+      x === 0 && handleNext();
+    }, autoDelay * ONE_SECOND);
+
+    return () => clearInterval(interval);
+  }, [autoDelay]);
 
   const defaultWidth = '4rem';
   const defaultHeight = arrowBtnStyle?.height?.includes('%')
@@ -188,31 +245,6 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
 
   const computedArrowStyle = computeStyle(completedArrowBtnStyle);
   const computedArrowHoverStyle = computeStyle(arrowBtnHoverStyle);
-
-  {
-    /* Indicators */
-  }
-  const indicators = [];
-  for (let i = 0; i < totalSlides; i++) {
-    indicators.push(
-      <button
-        key={i}
-        type="button"
-        className="p-2 group"
-        aria-current={i === activeIdx ? true : false}
-        aria-label={`Slide ${i + 1}`}
-        onClick={() => onSelectImg(i)}
-      >
-        <span
-          className={`block size-4 rounded-full outline outline-aubergine-600 border border-aubergine-100 opacity-90 transition duration-300 ${
-            i !== activeIdx
-              ? 'bg-aubergine-400 outline-1 group-hover:scale-[1.3] group-hover:outline-1'
-              : 'bg-aubergine-450 outline-1 scale-[1.3]'
-          }`}
-        />
-      </button>
-    );
-  }
 
   // Désactive le drag natif des children pour que le drag de Framer motion fonctionne correctement
   const slides = useMemo(
@@ -229,16 +261,24 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
   }
 
   return (
+    // Boîte externe. N’altère pas le layout interne.
     <div className={`${className} overflow-hidden`}>
-      <div className="w-full flex flex-col items-center gap-2">
+      {/* Layout interne */}
+      <div className="w-full flex flex-col items-center gap-6">
         {/* Content + Control arrows */}
         <div className={`w-full flex`}>
           {/* Left arrow */}
-          {totalSlides > 1 && isControlArrowsVisible && (
+          {isControlArrowsVisible && (
             <ArrowButton
               onClick={handlePrev}
               direction="left"
-              style={computedArrowStyle}
+              style={{
+                ...computedArrowStyle,
+                visibility: totalSlides > 1 ? 'visible' : 'hidden',
+                pointerEvents: totalSlides > 1 ? 'auto' : 'none',
+              }}
+              ariaHidden={totalSlides <= 1}
+              tabIndex={totalSlides > 1 ? 0 : -1}
               hoverStyle={computedArrowHoverStyle}
               customArrows={customArrows}
             />
@@ -256,12 +296,13 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
                     key={i}
                     drag={shouldEnableDrag ? 'x' : false}
                     dragConstraints={{ left: 0, right: 0 }}
-                    onDragStart={onDragStart}
                     onDragEnd={handleFadeDragEnd}
                     style={{
+                      transitionProperty: 'opacity, visibility',
                       transitionDuration: `${transitionDuration}s`,
+                      x: dragX,
                     }}
-                    className={`absolute size-full transition-all ${
+                    className={`absolute size-full ${
                       i === activeIdx
                         ? 'opacity-100 visible'
                         : 'opacity-0 invisible'
@@ -283,7 +324,6 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
                 }}
                 animate={{ translateX: `-${100 * activeIdx}%` }}
                 transition={SPRING_OPTIONS}
-                onDragStart={onDragStart}
                 onDragEnd={handleSlideDragEnd}
                 className={`flex h-full ${
                   shouldEnableDrag && 'cursor-grab active:cursor-grabbing'
@@ -306,22 +346,36 @@ const StaticSlider: React.FC<StaticSliderProps> = ({
           </motion.div>
 
           {/* Right arrow */}
-          {totalSlides > 1 && isControlArrowsVisible && (
+          {isControlArrowsVisible && (
             <ArrowButton
               onClick={handleNext}
               direction="right"
-              style={computedArrowStyle}
+              style={{
+                ...computedArrowStyle,
+                visibility: totalSlides > 1 ? 'visible' : 'hidden',
+                pointerEvents: totalSlides > 1 ? 'auto' : 'none',
+              }}
+              ariaHidden={totalSlides <= 1}
+              tabIndex={totalSlides > 1 ? 0 : -1}
               hoverStyle={computedArrowHoverStyle}
               customArrows={customArrows}
             />
           )}
         </div>
 
-        {/* Indicators */}
-        {totalSlides > 1 && isPaginationVisible && (
-          <div className="flex bottom-5 left-1/2 space-x-2 rtl:space-x-reverse">
-            {indicators}
-          </div>
+        {/* PaginationDots */}
+        {isPaginationVisible && (
+          <PaginationDots
+            totalSlides={totalSlides}
+            activeIdx={activeIdx}
+            onSelect={onSelectImg}
+            style={{
+              visibility: totalSlides > 1 ? 'visible' : 'hidden',
+              pointerEvents: totalSlides > 1 ? 'auto' : 'none',
+            }}
+            ariaHidden={totalSlides <= 1}
+            tabIndex={totalSlides > 1 ? 0 : -1}
+          />
         )}
       </div>
     </div>

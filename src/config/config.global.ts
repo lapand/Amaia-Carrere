@@ -8,6 +8,7 @@ import { slugify } from '@/utils/slugify';
 export const routes = {
   home: '/',
   gallery: '/gallery',
+  news: '/news',
   shop: '/shop',
   article: (title: string, id: string) =>
     `/shop/articles/${slugify(title)}/${id}`,

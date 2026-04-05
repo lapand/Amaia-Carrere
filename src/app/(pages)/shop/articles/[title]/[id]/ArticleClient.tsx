@@ -126,9 +126,11 @@ const ArticleClient: React.FC<ArticleClientType> = ({
             <StaticSlider
               className="w-[17rem] xs:w-[18rem] sm:w-[32rem] lg:w-[28rem] xl:w-[34rem] 3xl:w-[35rem]"
               isControlArrowsVisible={windowWidth >= smBreakpoint}
-              isPaginationVisible={true}
+              isPaginationVisible
               maxSlides={7}
               transitionType="slide"
+              // transitionDuration={1}
+              // autoDelay={2}
               customArrows={customArrows}
               arrowBtnStyle={{
                 width: '4rem',
