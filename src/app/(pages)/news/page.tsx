@@ -11,8 +11,8 @@ export default async function NewsPage() {
   //   const data = await getNewsData();
   const data = [
     {
-      img: {
-        src: "/pink-et-renard-logo.webp",
+      mainImg: {
+        src: '/pink-et-renard.webp',
         alt: '',
         width: 300,
         height: 300,
@@ -33,6 +33,22 @@ Vous avez un idée de sujet, une envie spécifique pour votre établissement ?
 Nous serions ravis de vous proposer une planche adaptée à vos besoins !`,
       linkText: `⫸ Vers le site des éditions Waouche`,
       link: 'https://waouche.com',
+      gallery: [
+        {
+          src: '/pink-et-renard-le-consentement.webp',
+          alt: '',
+          width: 300,
+          height: 300,
+          formats: {},
+        },
+        {
+          src: '/pink-et-renard-les-regles.webp',
+          alt: '',
+          width: 300,
+          height: 300,
+          formats: {},
+        },
+      ],
     },
   ];
 
