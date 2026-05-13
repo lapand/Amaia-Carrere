@@ -108,7 +108,7 @@ const ArticleClient: React.FC<ArticleClientType> = ({
     content = (
       <>
         <div className="relative">
-          <div className="sm:sticky top-24 xl:top-36 3xl:top-40 sm:max-lg:w-3/4 mx-auto flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
+          <div className="sm:sticky z-[100] top-24 xl:top-36 3xl:top-40 sm:max-lg:w-3/4 mx-auto flex flex-col max-lg:items-center gap-3 sm:gap-6 lg:gap-10 3xl:gap-20">
             <Link href={routes.shop} className="self-start group">
               <Button
                 className="flex items-center px-4 sm:px-5 py-1 sm:py-2"
@@ -129,14 +129,14 @@ const ArticleClient: React.FC<ArticleClientType> = ({
               isPaginationVisible
               maxSlides={7}
               transitionType="slide"
-              // transitionDuration={1}
-              // autoDelay={2}
-              customArrows={customArrows}
+              // customArrows={customArrows}
               arrowBtnStyle={{
                 width: '4rem',
+                borderRadius: '0 200px 200px 0',
+                transitionDuration: '500ms',
               }}
               arrowBtnHoverStyle={{
-                backgroundImage: `radial-gradient(ellipse at left,rgba(117, 69, 145, .7),rgba(117, 69, 145, 0) 70%)`,
+                backgroundColor: 'rgba(117,69,145,.3)',
               }}
               draggable
             >

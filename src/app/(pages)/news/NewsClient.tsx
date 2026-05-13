@@ -57,7 +57,7 @@ const NewsClient: React.FC<NewsClientProps> = ({ articles }) => {
               </div>
               {gallery.length !== 0 && (
                 <StaticSlider
-                  className=""
+                  className="w-[17rem] xs:w-[20rem] sm:w-[36rem] lg:w-[40rem] 3xl:w-[45rem]"
                   isControlArrowsVisible={windowWidth >= smBreakpoint}
                   isPaginationVisible
                   maxSlides={7}

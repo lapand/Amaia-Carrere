@@ -5,12 +5,15 @@ import removeContextMenu from '../../../utils/removeContextMenu';
 import { FormattedImage } from '@/types';
 import LoadableImage from '@/components/LoadableImage';
 import StaticSlider from '@/components/StaticSlider';
+import { smBreakpoint } from '@/data/breakpoints';
+import useViewportWidth from '@/hooks/useViewportWidth';
 
 type GalleryClientProps = {
   images: FormattedImage[] | null;
 };
 
 const AboutClient: React.FC<GalleryClientProps> = ({ images }) => {
+  const windowWidth = useViewportWidth();
   useTranslation();
 
   // Seule la première image du slider, visible dès le chargement de la page,
@@ -46,7 +49,15 @@ const AboutClient: React.FC<GalleryClientProps> = ({ images }) => {
       <StaticSlider
         className="flex-1 flex items-center w-full sm:w-[35rem] lg:w-[40rem] 3xl:w-[50rem]"
         aspectRatioClassName="aspect-square lg:aspect-video"
-        isControlArrowsVisible={false}
+        isControlArrowsVisible={windowWidth >= smBreakpoint}
+        arrowBtnStyle={{
+          width: '4rem',
+          borderRadius: '0 200px 200px 0',
+          transitionDuration: '500ms',
+        }}
+        arrowBtnHoverStyle={{
+          backgroundColor: 'rgba(117,69,145,.3)',
+        }}
         isPaginationVisible
         maxSlides={7}
         transitionType="slide"
